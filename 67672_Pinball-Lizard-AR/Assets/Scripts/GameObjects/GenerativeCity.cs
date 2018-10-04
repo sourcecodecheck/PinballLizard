@@ -29,7 +29,7 @@ public class GenerativeCity : MonoBehaviour
     {
         city.BuildingObjects = buildingBlock;
         city.BlankSpot = Blank;
-        city.Generate(100, (int)(Random.value * 100), 0.67f, gameObject);
+        city.Generate(200, (int)(Random.value * 100), 0.90f, gameObject);
         yield return "done";
     }
 }

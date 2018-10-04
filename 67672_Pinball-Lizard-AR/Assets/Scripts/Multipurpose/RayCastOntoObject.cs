@@ -32,7 +32,7 @@ public class RayCastOntoObject : MonoBehaviour
                     if (Physics.Raycast(ray, out hit))
                     {
                         Rigidbody[] rigidbodies = hit.transform.parent.gameObject.GetComponentsInChildren<Rigidbody>();
-                        foreach (var rigidbody in rigidbodies)
+                        foreach (Rigidbody rigidbody in rigidbodies)
                         {
                             rigidbody.constraints = RigidbodyConstraints.None;
                         }

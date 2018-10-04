@@ -47,7 +47,7 @@ namespace Assets.DataStructures
             return -1;
         }
 
-        public bool InsertNeighbor(int index, ref HexNode node, ref GameObject parent)
+        public bool InsertNeighbor(int index, ref HexNode node, ref GameObject parent, float depth)
         {
             //this method assumes we are always building out from the root, level by level, won't work for random inserts
             if (Neighbors[index] == null)
@@ -72,6 +72,7 @@ namespace Assets.DataStructures
                     prevIndex = 5;
                 HexNode nextNode = Neighbors[nextIndex];
                 HexNode prevNode = Neighbors[prevIndex];
+                //make sure the neighbors are correct on other adjacent hexes
                 if (nextNode != null)
                 {
                     int nextNext = nextIndex + 1;
@@ -79,7 +80,7 @@ namespace Assets.DataStructures
                         nextNext = 0;
                     complimentaryIndex = nextNext + 1;
                     if (complimentaryIndex > 5)
-                        complimentaryIndex  = 0;
+                        complimentaryIndex = 0;
                     if (nextNode.Neighbors[complimentaryIndex] == null)
                     {
                         nextNode.Neighbors[complimentaryIndex] = node;
@@ -104,22 +105,22 @@ namespace Assets.DataStructures
                 switch (index)
                 {
                     case 0:
-                        node.gameObject.transform.position = gameObject.transform.position + new Vector3(-0.045f, 0, 0.04f);
+                        node.gameObject.transform.position = gameObject.transform.position + new Vector3(-0.045f, 0, 0.04f) * (depth * 0.75f);
                         break;
                     case 1:
-                        node.gameObject.transform.position = gameObject.transform.position + new Vector3(0.0f, 0, 0.1f);
+                        node.gameObject.transform.position = gameObject.transform.position + new Vector3(0.0f, 0, 0.1f) * (depth * 0.75f);
                         break;
                     case 2:
-                        node.gameObject.transform.position = gameObject.transform.position + new Vector3(0.045f, 0, 0.04f );
+                        node.gameObject.transform.position = gameObject.transform.position + new Vector3(0.045f, 0, 0.04f) * (depth * 0.75f);
                         break;
                     case 3:
-                        node.gameObject.transform.position = gameObject.transform.position + new Vector3(0.045f, 0, -0.04f );
+                        node.gameObject.transform.position = gameObject.transform.position + new Vector3(0.045f, 0, -0.04f) * (depth * 0.75f);
                         break;
                     case 4:
-                        node.gameObject.transform.position = gameObject.transform.position + new Vector3(0.0f , 0, -0.1f );
+                        node.gameObject.transform.position = gameObject.transform.position + new Vector3(0.0f, 0, -0.1f) * (depth * 0.75f);
                         break;
                     case 5:
-                        node.gameObject.transform.position = gameObject.transform.position + new Vector3(-0.045f , 0, -0.04f );
+                        node.gameObject.transform.position = gameObject.transform.position + new Vector3(-0.045f, 0, -0.04f) * (depth * 0.75f);
                         break;
                 }
                 node.gameObject.transform.parent = parent.transform;
@@ -156,7 +157,7 @@ namespace Assets.DataStructures
         {
             UnityEngine.Random.InitState(seed);
             //check to make sure we have objects in the gameobject pools
-            if (BuildingObjects.Count > 0 && BlankSpot !=null)
+            if (BuildingObjects.Count > 0 && BlankSpot != null)
             {
                 //increase max by amount of nodes to generate
                 nodeMax += amountOfNodes;
@@ -176,11 +177,11 @@ namespace Assets.DataStructures
                 //call recursive helper to fill rest of nodes beyond root
                 List<HexNode> nodeQueue = new List<HexNode> { mostRecent };
                 List<Guid> visited = new List<Guid>();
-                fillNodes(ref nodeQueue, buildingToRoadsRatio, ref visited, ref parent);
+                fillNodes(ref nodeQueue, buildingToRoadsRatio, ref visited, ref parent, 1);
             }
             else
                 throw new Exception("BuildingObjects must contain entries and BlankSpot must not be null");
-          
+
         }
         public void Clear()
         {
@@ -189,7 +190,7 @@ namespace Assets.DataStructures
         #endregion
 
         #region Helpers
-        private void fillNodes(ref List<HexNode> currentNodeQueue, float buildingToRoadsRatio, ref List<Guid> visited, ref GameObject parent)
+        private void fillNodes(ref List<HexNode> currentNodeQueue, float buildingToRoadsRatio, ref List<Guid> visited, ref GameObject parent, int depth)
         {
             //initialize next layer's queue
             List<HexNode> nextQueue = new List<HexNode>();
@@ -227,7 +228,7 @@ namespace Assets.DataStructures
                             : UnityEngine.Object.Instantiate(BlankSpot, parent.transform.position, Quaternion.identity)
                         };
                         //attempt to attach node to grid
-                        if (currentNode.InsertNeighbor(firstEmpty, ref toAdd, ref parent))
+                        if (currentNode.InsertNeighbor(firstEmpty, ref toAdd, ref parent, depth))
                         {
                             //if successful add node to queue to fill in its neighbors
                             nextQueue.Add(toAdd);
@@ -253,7 +254,7 @@ namespace Assets.DataStructures
                 }
             }
             //go to next layer of depth and fill nodes there
-            fillNodes(ref nextQueue, buildingToRoadsRatio, ref visited, ref parent);
+            fillNodes(ref nextQueue, buildingToRoadsRatio, ref visited, ref parent, depth + 1);
         }
         #endregion
     }
