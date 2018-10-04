@@ -47,7 +47,7 @@ namespace Assets.DataStructures
             return -1;
         }
 
-        public bool InsertNeighbor(int index, HexNode node, GameObject parent)
+        public bool InsertNeighbor(int index, ref HexNode node, ref GameObject parent)
         {
             //this method assumes we are always building out from the root, level by level, won't work for random inserts
             if (Neighbors[index] == null)
@@ -77,13 +77,13 @@ namespace Assets.DataStructures
                     int nextNext = nextIndex + 1;
                     if (nextNext > 5)
                         nextNext = 0;
-                    complimentaryIndex = nextNext + 3;
+                    complimentaryIndex = nextNext + 1;
                     if (complimentaryIndex > 5)
-                        complimentaryIndex -= 6;
-                    if (nextNode.Neighbors[nextNext] == null)
+                        complimentaryIndex  = 0;
+                    if (nextNode.Neighbors[complimentaryIndex] == null)
                     {
-                        nextNode.Neighbors[nextNext] = node;
-                        node.Neighbors[complimentaryIndex] = nextNode;
+                        nextNode.Neighbors[complimentaryIndex] = node;
+                        node.Neighbors[nextNext] = nextNode;
                     }
                 }
                 if (prevNode != null)
@@ -91,13 +91,13 @@ namespace Assets.DataStructures
                     int prevPrev = prevIndex - 1;
                     if (prevPrev < 0)
                         prevPrev = 5;
-                    complimentaryIndex = prevPrev + 3;
-                    if (complimentaryIndex > 5)
-                        complimentaryIndex -=6;
-                    if (prevNode.Neighbors[prevPrev] == null)
+                    complimentaryIndex = prevPrev - 1;
+                    if (complimentaryIndex < 0)
+                        complimentaryIndex = 5;
+                    if (prevNode.Neighbors[complimentaryIndex] == null)
                     {
-                        prevNode.Neighbors[prevPrev] = node;
-                        node.Neighbors[complimentaryIndex] = nextNode;
+                        prevNode.Neighbors[complimentaryIndex] = node;
+                        node.Neighbors[prevPrev] = nextNode;
                     }
                 }
                 //adjust position of game object according to position in data structure
@@ -174,7 +174,9 @@ namespace Assets.DataStructures
 
                 }
                 //call recursive helper to fill rest of nodes beyond root
-                fillNodes(new List<HexNode> { mostRecent }, buildingToRoadsRatio, new List<Guid>(), parent);
+                List<HexNode> nodeQueue = new List<HexNode> { mostRecent };
+                List<Guid> visited = new List<Guid>();
+                fillNodes(ref nodeQueue, buildingToRoadsRatio, ref visited, ref parent);
             }
             else
                 throw new Exception("BuildingObjects must contain entries and BlankSpot must not be null");
@@ -187,7 +189,7 @@ namespace Assets.DataStructures
         #endregion
 
         #region Helpers
-        private void fillNodes(List<HexNode> currentNodeQueue, float buildingToRoadsRatio, List<Guid> visited, GameObject parent)
+        private void fillNodes(ref List<HexNode> currentNodeQueue, float buildingToRoadsRatio, ref List<Guid> visited, ref GameObject parent)
         {
             //initialize next layer's queue
             List<HexNode> nextQueue = new List<HexNode>();
@@ -225,7 +227,7 @@ namespace Assets.DataStructures
                             : UnityEngine.Object.Instantiate(BlankSpot, parent.transform.position, Quaternion.identity)
                         };
                         //attempt to attach node to grid
-                        if (currentNode.InsertNeighbor(firstEmpty, toAdd, parent))
+                        if (currentNode.InsertNeighbor(firstEmpty, ref toAdd, ref parent))
                         {
                             //if successful add node to queue to fill in its neighbors
                             nextQueue.Add(toAdd);
@@ -238,6 +240,10 @@ namespace Assets.DataStructures
                             if (NodeCount >= nodeMax)
                                 return;
                         }
+                        else
+                        {
+                            UnityEngine.Object.Destroy(toAdd.gameObject);
+                        }
                     }
                 }
                 else
@@ -247,7 +253,7 @@ namespace Assets.DataStructures
                 }
             }
             //go to next layer of depth and fill nodes there
-            fillNodes(nextQueue, buildingToRoadsRatio, visited, parent);
+            fillNodes(ref nextQueue, buildingToRoadsRatio, ref visited, ref parent);
         }
         #endregion
     }

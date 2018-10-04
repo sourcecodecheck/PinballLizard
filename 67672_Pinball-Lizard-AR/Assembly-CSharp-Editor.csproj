@@ -103,16 +103,16 @@
     <None Include="Assets\SDKs\PlayServicesResolver\Editor\play-services-resolver_v1.2.64.0.txt" />
     <None Include="Assets\SDKs\GoogleARCore\Editor\ARCoreiOSDependencies.template" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-Lizard-AR/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-Lizard-AR/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-Lizard-AR/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-Lizard-AR/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-Lizard-AR/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-Lizard-AR/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-Lizard-AR/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-Lizard-AR/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -364,16 +364,16 @@
       <HintPath>D:/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Google.IOSResolver_v1.2.64.0">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-Lizard-AR/Assets/SDKs/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.64.0.dll</HintPath>
+      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-Lizard-AR/Assets/SDKs/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.64.0.dll</HintPath>
     </Reference>
     <Reference Include="Google.JarResolver_v1.2.64.0">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-Lizard-AR/Assets/SDKs/PlayServicesResolver/Editor/Google.JarResolver_v1.2.64.0.dll</HintPath>
+      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-Lizard-AR/Assets/SDKs/PlayServicesResolver/Editor/Google.JarResolver_v1.2.64.0.dll</HintPath>
     </Reference>
     <Reference Include="Google.VersionHandler">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-Lizard-AR/Assets/SDKs/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
+      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-Lizard-AR/Assets/SDKs/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
     </Reference>
     <Reference Include="Google.VersionHandlerImpl_v1.2.64.0">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-Lizard-AR/Assets/SDKs/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.64.0.dll</HintPath>
+      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-Lizard-AR/Assets/SDKs/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.64.0.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>C:/Users/jill.malta/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>

@@ -534,6 +534,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1553412460}
   - component: {fileID: 1553412459}
+  - component: {fileID: 1553412462}
+  - component: {fileID: 1553412461}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -569,6 +571,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1553412461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1553412458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dfcb507136d4914ead093c8fbd9094b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1553412462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1553412458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fd274f8cfde6a7458565e1d0222a657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 1958128831008912, guid: 1269994a84fcffa47ac29f08c92e125a, type: 2}
+  cameraForReference: {fileID: 876465670}
 --- !u!1001 &1595344800
 Prefab:
   m_ObjectHideFlags: 0

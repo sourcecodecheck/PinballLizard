@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\GameObjects\HexBehavior.cs" />
     <Compile Include="Assets\Scripts\GameObjects\Projectile.cs" />
     <Compile Include="Assets\Scripts\GameStates\MainGameController.cs" />
+    <Compile Include="Assets\Scripts\Multipurpose\RayCastOntoObject.cs" />
     <Compile Include="Assets\Scripts\PlatformSpecific\Android\AndroidHelpers.cs" />
     <Compile Include="Assets\SDKs\GoogleARCore\Examples\AugmentedImage\Scripts\AugmentedImageExampleController.cs" />
     <Compile Include="Assets\SDKs\GoogleARCore\Examples\AugmentedImage\Scripts\AugmentedImageVisualizer.cs" />
@@ -335,16 +336,16 @@
     <None Include="Assets\SDKs\GoogleARCore\Examples\ComputerVision\Materials\EdgeDetectionBackground.shader" />
     <None Include="Assets\SDKs\GoogleARCore\Examples\Common\Materials\Shaders\MobileSpecularWithLightEstimation.shader" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-Lizard-AR/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-Lizard-AR/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-Lizard-AR/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-Lizard-AR/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-Lizard-AR/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-Lizard-AR/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-Lizard-AR/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-Lizard-AR/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
