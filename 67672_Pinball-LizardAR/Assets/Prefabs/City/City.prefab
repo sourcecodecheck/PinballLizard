@@ -52,9 +52,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f26b70fac133744a47f70a9c7ed606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy1: {fileID: 1198820157500438, guid: e0bee6feaf3255d409258b54ae04d83d, type: 2}
-  Enemy2: {fileID: 0}
-  Enemy3: {fileID: 0}
+  IceEnemy: {fileID: 1198820157500438, guid: e0bee6feaf3255d409258b54ae04d83d, type: 2}
+  FireEnemy: {fileID: 0}
+  AtomEnemy: {fileID: 0}
   TimeToInitialSpawn: 3
   TimeToSpawnRepeat: 4
   NumberToSpawnTotal: 33

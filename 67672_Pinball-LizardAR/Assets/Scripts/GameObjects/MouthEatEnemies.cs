@@ -50,8 +50,7 @@ public class MouthEatEnemies : MonoBehaviour
         foreach (Touch touch in Input.touches)
         {
             Ray ray = Camera.main.ScreenPointToRay(touch.position);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit) && (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved))
+            if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
             {
                 RaycastHit[] dragHits = Physics.RaycastAll(ray);
                 foreach (RaycastHit dragHit in dragHits)
@@ -104,8 +103,6 @@ public class MouthEatEnemies : MonoBehaviour
                             break;
                         case AmmoTypes.ATOM:
                             instantiatedShot = Instantiate(AtomAmmo, Camera.main.transform.position, Camera.main.transform.rotation);
-                            break;
-                        case AmmoTypes.MAX_AMMOTYPES:
                             break;
                     }
                 }

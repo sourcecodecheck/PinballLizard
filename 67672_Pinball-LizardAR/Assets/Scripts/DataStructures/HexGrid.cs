@@ -89,7 +89,7 @@ namespace Assets.DataStructures
                     int firstEmpty = currentNode.FirstEmptyNeighbor();
                     bool isNodeBuilding = false;
                     float randomFloat = 0.0f;
-                    int objectIndex = 0;
+                    int buildingIndex = 0;
                     //while we have empty neighbors
                     while (firstEmpty != -1)
                     {
@@ -97,12 +97,12 @@ namespace Assets.DataStructures
                         randomFloat = UnityEngine.Random.value;
                         //determine if node is building or empty
                         isNodeBuilding = randomFloat < buildingToEmptyRatio;
-                        objectIndex = isNodeBuilding ? UnityEngine.Random.Range(0, BuildingObjects.Count - 1) : 0;
+                        buildingIndex = UnityEngine.Random.Range(0, BuildingObjects.Count - 1);
                         //create new node
                         HexNode toAdd = new HexNode
                         {
                             IsBuilding = isNodeBuilding,
-                            gameObject = isNodeBuilding ? UnityEngine.Object.Instantiate(BuildingObjects[objectIndex], parent.transform.position, Quaternion.identity)
+                            gameObject = isNodeBuilding ? UnityEngine.Object.Instantiate(BuildingObjects[buildingIndex], parent.transform.position, Quaternion.identity)
                             : UnityEngine.Object.Instantiate(BlankSpot, parent.transform.position, Quaternion.identity)
                         };
                         //attempt to attach node to grid

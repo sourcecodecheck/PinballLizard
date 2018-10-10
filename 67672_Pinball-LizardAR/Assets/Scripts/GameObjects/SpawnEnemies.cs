@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SpawnEnemies : MonoBehaviour
 {
-    public GameObject Enemy1;
-    public GameObject Enemy2;
-    public GameObject Enemy3;
+    public GameObject IceEnemy;
+    public GameObject FireEnemy;
+    public GameObject AtomEnemy;
     public float TimeToInitialSpawn;
     public float TimeToSpawnRepeat;
     public int NumberToSpawnTotal;
@@ -33,23 +33,23 @@ public class SpawnEnemies : MonoBehaviour
         if (enemyCount < NumberToSpawnTotal)
         {
             //faster execute time written this way
-            if (Enemy1 != null)
+            if (IceEnemy != null)
             {
                 GameObject spawnedEnemy = null;
-                if (Enemy2 != null)
+                if (FireEnemy != null)
                 {
-                    if (Enemy3 != null)
+                    if (AtomEnemy != null)
                     {
                         switch (Random.Range(0, 2))
                         {
                             case 0:
-                                spawnedEnemy = Instantiate(Enemy1, gameObject.transform.parent.position, Quaternion.identity);
+                                spawnedEnemy = Instantiate(IceEnemy, gameObject.transform.parent.position, Quaternion.identity);
                                 break;
                             case 1:
-                                spawnedEnemy = Instantiate(Enemy2, gameObject.transform.parent.position, Quaternion.identity);
+                                spawnedEnemy = Instantiate(FireEnemy, gameObject.transform.parent.position, Quaternion.identity);
                                 break;
                             case 2:
-                                spawnedEnemy = Instantiate(Enemy3, gameObject.transform.parent.position, Quaternion.identity);
+                                spawnedEnemy = Instantiate(AtomEnemy, gameObject.transform.parent.position, Quaternion.identity);
                                 break;
                         }
 
@@ -59,17 +59,17 @@ public class SpawnEnemies : MonoBehaviour
                         switch (Random.Range(0, 1))
                         {
                             case 0:
-                                spawnedEnemy = Instantiate(Enemy1, gameObject.transform.parent.position, Quaternion.identity);
+                                spawnedEnemy = Instantiate(IceEnemy, gameObject.transform.parent.position, Quaternion.identity);
                                 break;
                             case 1:
-                                spawnedEnemy = Instantiate(Enemy2, gameObject.transform.parent.position, Quaternion.identity);
+                                spawnedEnemy = Instantiate(FireEnemy, gameObject.transform.parent.position, Quaternion.identity);
                                 break;
                         }
                     }
                 }
                 else
                 {
-                    spawnedEnemy = Instantiate(Enemy1, gameObject.transform.parent.position, Quaternion.identity);
+                    spawnedEnemy = Instantiate(IceEnemy, gameObject.transform.parent.position, Quaternion.identity);
                 }
                 spawnedEnemy.transform.parent = gameObject.transform;
                 ++enemyCount;
