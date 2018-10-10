@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MouthEatEnemies : MonoBehaviour
 {
-    private enum AmmoTypes { ICE, FIRE, ATOM, MAX_AMMOTYPES }
+    private enum AmmoTypes { ICE = 0, FIRE, ATOM, MAX_AMMOTYPES }
 
     public Sprite OpenMouth;
     public Sprite ClosedMouth;

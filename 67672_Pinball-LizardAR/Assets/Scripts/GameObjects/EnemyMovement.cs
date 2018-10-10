@@ -31,7 +31,7 @@ public class EnemyMovement : MonoBehaviour
             if (distanceToCamera >= 0.09f && distanceToCamera < 0.15f)
             {
                 Grabbable = true;
-            }           
+            }
         }
     }
 }
