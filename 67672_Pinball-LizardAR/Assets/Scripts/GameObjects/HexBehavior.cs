@@ -26,6 +26,8 @@ public class HexBehavior : MonoBehaviour
                 rigidbody.constraints = RigidbodyConstraints.None;
             }
             GetComponent<Rigidbody>().AddForce(collision.transform.position.normalized, ForceMode.Impulse);
+            collision.gameObject.GetComponent<ShotBehavior>().HasHitBuilding = true;
+            collision.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
         }
     }
 }

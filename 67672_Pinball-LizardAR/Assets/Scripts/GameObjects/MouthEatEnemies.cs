@@ -87,7 +87,7 @@ public class MouthEatEnemies : MonoBehaviour
     {
         foreach (Touch touch in Input.touches)
         {
-            if (touch.phase == TouchPhase.Began)
+            if (touch.phase == TouchPhase.Began && touch.position.y < (Screen.height * 0.3f))
             {
                 if (ammoQueue.Count > 0)
                 {

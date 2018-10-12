@@ -61,6 +61,18 @@ namespace Assets.DataStructures
                 throw new Exception("BuildingObjects must contain entries and BlankSpot must not be null");
 
         }
+        public float GetDistanceBetweenPoints(int firstDirection, int secondDirection)
+        {
+            HexNode topEnd = Root.TraverseToEndOneDirection(firstDirection);
+            HexNode bottomEnd = Root.TraverseToEndOneDirection(secondDirection);
+
+            if (topEnd == null || bottomEnd == null)
+            {
+                return -1;
+            }
+            return Vector3.Distance(topEnd.gameObject.transform.position, bottomEnd.gameObject.transform.position);
+        }
+
         public void Clear()
         {
             Root = null;
@@ -134,6 +146,8 @@ namespace Assets.DataStructures
             //go to next layer of depth and fill nodes there
             fillNodes(ref nextQueue, buildingToEmptyRatio, ref visited, ref parent, depth + 1);
         }
+
+
         #endregion
 
         public class HexNode
@@ -234,28 +248,43 @@ namespace Assets.DataStructures
                     switch (index)
                     {
                         case 0:
-                            node.gameObject.transform.position = gameObject.transform.position + new Vector3(-0.045f, 0, 0.04f) * (depth * 0.75f);
+                            node.gameObject.transform.position = gameObject.transform.position + new Vector3(-0.045f, 0.001f, 0.04f) * (depth * 0.75f);
                             break;
                         case 1:
-                            node.gameObject.transform.position = gameObject.transform.position + new Vector3(0.0f, 0, 0.1f) * (depth * 0.75f);
+                            node.gameObject.transform.position = gameObject.transform.position + new Vector3(0.0f, 0.001f, 0.1f) * (depth * 0.75f);
                             break;
                         case 2:
-                            node.gameObject.transform.position = gameObject.transform.position + new Vector3(0.045f, 0, 0.04f) * (depth * 0.75f);
+                            node.gameObject.transform.position = gameObject.transform.position + new Vector3(0.045f, 0.001f, 0.04f) * (depth * 0.75f);
                             break;
                         case 3:
-                            node.gameObject.transform.position = gameObject.transform.position + new Vector3(0.045f, 0, -0.04f) * (depth * 0.75f);
+                            node.gameObject.transform.position = gameObject.transform.position + new Vector3(0.045f, 0.001f, -0.04f) * (depth * 0.75f);
                             break;
                         case 4:
-                            node.gameObject.transform.position = gameObject.transform.position + new Vector3(0.0f, 0, -0.1f) * (depth * 0.75f);
+                            node.gameObject.transform.position = gameObject.transform.position + new Vector3(0.0f, 0.001f, -0.1f) * (depth * 0.75f);
                             break;
                         case 5:
-                            node.gameObject.transform.position = gameObject.transform.position + new Vector3(-0.045f, 0, -0.04f) * (depth * 0.75f);
+                            node.gameObject.transform.position = gameObject.transform.position + new Vector3(-0.045f, 0.001f, -0.04f) * (depth * 0.75f);
                             break;
                     }
                     node.gameObject.transform.parent = parent.transform;
                     return true;
                 }
                 return false;
+            }
+
+            public HexNode TraverseToEndOneDirection(int direction)
+            {
+                if (direction > 5 || direction < 0)
+                {
+                    return null;
+                }
+                HexNode currentNode = this;
+
+                while (currentNode.Neighbors[direction] != null)
+                {
+                    currentNode = currentNode.Neighbors[direction];
+                }
+                return currentNode;
             }
             #endregion
         }

@@ -1276,10 +1276,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &114692023695202068
 MonoBehaviour:
@@ -1293,6 +1293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 5
+  HasHitBuilding: 0
 --- !u!135 &135549139504459022
 SphereCollider:
   m_ObjectHideFlags: 1

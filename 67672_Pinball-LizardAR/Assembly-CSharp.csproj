@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\ARCore\ARCoreController.cs" />
     <Compile Include="Assets\Scripts\ChadWuzHERE.cs" />
     <Compile Include="Assets\Scripts\DataStructures\HexGrid.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\ArmBehavior.cs" />
     <Compile Include="Assets\Scripts\GameObjects\Building.cs" />
     <Compile Include="Assets\Scripts\GameObjects\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\GameObjects\GenerativeCity.cs" />
