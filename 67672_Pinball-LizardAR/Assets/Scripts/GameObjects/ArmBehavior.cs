@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class ArmBehavior : MonoBehaviour
@@ -32,11 +29,12 @@ public class ArmBehavior : MonoBehaviour
                     touchStartPosition = touch.position;
                     break;
                 case TouchPhase.Moved:
-                    DoDrag();
+                    Volley();
                     break;
                 case TouchPhase.Ended:
                     Vector2 touchTraveled = touch.position - touchStartPosition;
                     DoSwipe(touchTraveled);
+                    Volley();
                     break;
             }
         }
@@ -50,7 +48,7 @@ public class ArmBehavior : MonoBehaviour
         }
     }
 
-    private void DoDrag()
+    private void Volley()
     {
         foreach (Touch touch in Input.touches)
         {
@@ -64,7 +62,6 @@ public class ArmBehavior : MonoBehaviour
                 {
                     hitobject.transform.rotation = Camera.main.transform.rotation;
                     hitobject.GetComponent<ShotBehavior>().HasHitBuilding = false;
-
                 }
             }
         }

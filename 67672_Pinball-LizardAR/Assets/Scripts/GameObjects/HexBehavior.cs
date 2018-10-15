@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HexBehavior : MonoBehaviour
 {
@@ -26,7 +24,8 @@ public class HexBehavior : MonoBehaviour
                 rigidbody.constraints = RigidbodyConstraints.None;
             }
             GetComponent<Rigidbody>().AddForce(collision.transform.position.normalized, ForceMode.Impulse);
-            collision.gameObject.GetComponent<ShotBehavior>().HasHitBuilding = true;
+            ShotBehavior collidingShot = collision.gameObject.GetComponent<ShotBehavior>();
+            collidingShot.HasHitBuilding = true;
             collision.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
         }
     }

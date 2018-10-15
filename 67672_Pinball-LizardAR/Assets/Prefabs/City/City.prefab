@@ -65,7 +65,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1954204498666104}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.6372404, y: -10.2790985, z: -119.376915}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
@@ -148,3 +148,6 @@ MonoBehaviour:
   Building4: {fileID: 1119938857269540, guid: 812485f081e7e9a42b3ae2003b968290, type: 2}
   Blank: {fileID: 1486261941468126, guid: 8ad4358e9e5adc341bdb3727f7316cca, type: 2}
   Base: {fileID: 1954204498666104}
+  NumberOfBuildingsGenerated: 100
+  BuildingToBlankRatio: 0.9
+  Seed: 0

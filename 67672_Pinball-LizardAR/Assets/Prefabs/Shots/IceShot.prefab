@@ -1294,6 +1294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   HasHitBuilding: 0
+  Life: 5
 --- !u!135 &135549139504459022
 SphereCollider:
   m_ObjectHideFlags: 1

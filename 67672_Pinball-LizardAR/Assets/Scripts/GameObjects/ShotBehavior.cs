@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ShotBehavior : MonoBehaviour
 {
-
     public float Speed;
     public bool HasHitBuilding;
+    public int Life;
     // Use this for initialization
     void Start()
     {
@@ -23,6 +21,11 @@ public class ShotBehavior : MonoBehaviour
         else
         {
             transform.position = Vector3.MoveTowards(transform.position, Camera.main.transform.position, Speed * Time.deltaTime * 0.15f);
+        }
+        if(Life <= 0)
+        {
+            //TODO: Do big boom thing
+            Destroy(gameObject);
         }
     }
 }
