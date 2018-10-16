@@ -10,6 +10,7 @@ public class SpawnEnemies : MonoBehaviour
     public int NumberToSpawnTotal;
 
     private int enemyCount;
+
     // Use this for initialization
     void Start()
     {

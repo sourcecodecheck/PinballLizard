@@ -17,6 +17,7 @@ public class GenerativeCity : MonoBehaviour
 
     private List<GameObject> buildingBlock;
     private HexGrid city;
+
     void Start()
     {
         buildingBlock = new List<GameObject> { Building1, Building2, Building3, Building4 };
@@ -34,18 +35,13 @@ public class GenerativeCity : MonoBehaviour
     {
         city.BuildingObjects = buildingBlock;
         city.BlankSpot = Blank;
-        Base.transform.position = transform.position;
-        Base.transform.rotation = transform.rotation;
         city.Generate(NumberOfBuildingsGenerated, Random.Range(0, 10000), BuildingToBlankRatio, gameObject);
-        float zeroTwoDistance = city.GetDistanceBetweenPoints(0, 2);
-        float fiveThreeDistance = city.GetDistanceBetweenPoints(5, 3);
-        float leftRightDistance = Mathf.Max(zeroTwoDistance, fiveThreeDistance);
-        float topBottomDistance = city.GetDistanceBetweenPoints(1, 4);
         Bounds meshBounds = Base.GetComponent<MeshFilter>().mesh.bounds;
-        //bounds extents are half the size so we multiply by 2
-        float xLength = meshBounds.extents.x * 2.0f; 
+        float xLength = meshBounds.extents.x;
         float zLength = meshBounds.extents.z * 2.0f;
-        Base.transform.localScale = new Vector3(leftRightDistance  / xLength  , 0.001f, topBottomDistance / zLength );
+        Base.transform.localScale = new Vector3(city.XDistance / xLength * 1.1f, 0.001f, city.ZDistance / zLength);
+        Base.transform.rotation = city.GetRootRotation();
+        Base.transform.position = city.GetRootPosition() + new Vector3(0, -0.01f, 0);
         yield return "done";
     }
 }

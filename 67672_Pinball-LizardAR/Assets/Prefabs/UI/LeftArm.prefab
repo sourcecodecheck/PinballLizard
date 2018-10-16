@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 222674210398476494}
   - component: {fileID: 114543871768381698}
   - component: {fileID: 114799906564311088}
-  - component: {fileID: 65947039630101094}
   m_Layer: 5
   m_Name: LeftArm
   m_TagString: Untagged
@@ -30,18 +29,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &65947039630101094
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1646027026923296}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 483.52502, y: 1396.4044, z: 308.75464}
-  m_Center: {x: 40.051453, y: 239.36774, z: -154.87732}
 --- !u!114 &114543871768381698
 MonoBehaviour:
   m_ObjectHideFlags: 1

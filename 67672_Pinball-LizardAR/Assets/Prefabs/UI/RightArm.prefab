@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 222241098544246876}
   - component: {fileID: 114607491553880882}
   - component: {fileID: 114834693982402134}
-  - component: {fileID: 65972516137971962}
   m_Layer: 5
   m_Name: RightArm
   m_TagString: Untagged
@@ -30,18 +29,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &65972516137971962
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1718056528769934}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 483.52502, y: 1396.4044, z: 362.84766}
-  m_Center: {x: 40.051453, y: 239.36774, z: -127.83081}
 --- !u!114 &114607491553880882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -80,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec50974cd71844b4ba90653af44249c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isRightArm: 1
+  IsRightArm: 1
   ArmPassive: {fileID: 21300000, guid: 8e4d483aa8d7ac042bbe78abe085ebc6, type: 3}
   ArmActive: {fileID: 21300002, guid: 8e4d483aa8d7ac042bbe78abe085ebc6, type: 3}
 --- !u!222 &222241098544246876
@@ -105,6 +92,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -165, y: 238}
+  m_AnchoredPosition: {x: -165, y: 173}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}

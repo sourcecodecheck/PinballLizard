@@ -3,27 +3,24 @@ using UnityEngine.UI;
 
 public class ArmBehavior : MonoBehaviour
 {
-
-    public bool isRightArm;
-
+    public bool IsRightArm;
     public Sprite ArmPassive;
     public Sprite ArmActive;
 
     private Vector2 touchStartPosition;
-    private bool isActive;
+
     // Use this for initialization
     void Start()
     {
-        isActive = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.touchCount > 0)
+        if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-            switch(touch.phase)
+            switch (touch.phase)
             {
                 case TouchPhase.Began:
                     touchStartPosition = touch.position;
@@ -33,18 +30,10 @@ public class ArmBehavior : MonoBehaviour
                     break;
                 case TouchPhase.Ended:
                     Vector2 touchTraveled = touch.position - touchStartPosition;
-                    DoSwipe(touchTraveled);
+                    SwipeAnimation(touchTraveled);
                     Volley();
                     break;
             }
-        }
-        if(isActive)
-        {
-            GetComponent<Image>().sprite = ArmActive;
-        }
-        else
-        {
-            GetComponent<Image>().sprite = ArmPassive;
         }
     }
 
@@ -67,27 +56,21 @@ public class ArmBehavior : MonoBehaviour
         }
     }
 
-    private void DoSwipe(Vector2 touchTraveled)
+    private void SwipeAnimation(Vector2 touchTraveled)
     {
-            if (touchTraveled.x > 0)
-            {
-                if (!isRightArm)
-                {
-                    isActive = true;
-                }
-            }
-            else if (touchTraveled.x < 0)
-            {
-                if (isRightArm)
-                {
-                    isActive = true;
-                }
-            }
-            Invoke("ResetArmPosition", 0.5f);
+        if (touchTraveled.x > 0 && !IsRightArm)
+        {
+            GetComponent<Image>().sprite = ArmActive;
+        }
+        else if (touchTraveled.x < 0 && IsRightArm)
+        {
+            GetComponent<Image>().sprite = ArmActive;
+        }
+        Invoke("ResetArmPosition", 0.5f);
     }
 
     private void ResetArmPosition()
     {
-        isActive = false;
+        GetComponent<Image>().sprite = ArmPassive;
     }
 }

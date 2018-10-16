@@ -2,11 +2,10 @@
 
 public class EnemyMovement : MonoBehaviour
 {
-
     public float MovementSpeed;
     public bool KeepMoving;
-
     public bool Grabbable;
+
     // Use this for initialization
     void Start()
     {

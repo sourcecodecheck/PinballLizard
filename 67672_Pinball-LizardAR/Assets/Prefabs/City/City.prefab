@@ -148,6 +148,6 @@ MonoBehaviour:
   Building4: {fileID: 1119938857269540, guid: 812485f081e7e9a42b3ae2003b968290, type: 2}
   Blank: {fileID: 1486261941468126, guid: 8ad4358e9e5adc341bdb3727f7316cca, type: 2}
   Base: {fileID: 1954204498666104}
-  NumberOfBuildingsGenerated: 100
+  NumberOfBuildingsGenerated: 98
   BuildingToBlankRatio: 0.9
   Seed: 0

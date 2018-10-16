@@ -11,6 +11,12 @@ namespace Assets.DataStructures
         public List<GameObject> BuildingObjects { get; set; }
         public GameObject BlankSpot { get; set; }
         public int NodeCount { get; private set; }
+        public float MaxX { get; private set; }
+        public float MinX { get; private set; }
+        public float MaxZ { get; private set; }
+        public float MinZ { get; private set; }
+        public float XDistance { get { return Mathf.Sqrt(MaxX * MaxX + MinX * MinX); } }
+        public float ZDistance { get { return Mathf.Sqrt(MaxZ * MaxZ + MinZ * MinZ); } }
         #endregion
 
         #region PrivateVariables
@@ -25,9 +31,13 @@ namespace Assets.DataStructures
             BlankSpot = null;
             Root = null;
             nodeMax = 0;
+            MaxX = 0;
+            MinX = 99999999;
+            MaxZ = 0;
+            MinZ = 99999999;
         }
 
-        public void Generate(int amountOfNodes, int seed, float buildingToEmptyRatio, GameObject parent)
+        public bool Generate(int amountOfNodes, int seed, float buildingToEmptyRatio, GameObject parent)
         {
             UnityEngine.Random.InitState(seed);
             //check to make sure we have objects in the gameobject pools
@@ -50,12 +60,17 @@ namespace Assets.DataStructures
 
                 }
                 //call recursive helper to fill rest of nodes beyond root
-                List<HexNode> nodeQueue = new List<HexNode> { mostRecent };
+                Queue<HexNode> nodeQueue = new Queue<HexNode>();
+                nodeQueue.Enqueue(mostRecent);
                 List<Guid> visited = new List<Guid>();
                 fillNodes(ref nodeQueue, buildingToEmptyRatio, ref visited, ref parent, 1);
             }
             else
+            {
                 throw new Exception("BuildingObjects must contain entries and BlankSpot must not be null");
+            }
+
+            return true;
 
         }
         public float GetDistanceBetweenPoints(int firstDirection, int secondDirection)
@@ -70,19 +85,24 @@ namespace Assets.DataStructures
             return Vector3.Distance(topEnd.gameObject.transform.position, bottomEnd.gameObject.transform.position);
         }
 
-        public void Clear()
+        public Quaternion GetRootRotation()
         {
-            Root = null;
+            return Root.gameObject.transform.rotation;
+        }
+        public Vector3 GetRootPosition()
+        {
+            return Root.gameObject.transform.position;
         }
         #endregion
 
         #region Helpers
-        private void fillNodes(ref List<HexNode> currentNodeQueue, float buildingToEmptyRatio, ref List<Guid> visited, ref GameObject parent, int depth)
+        private void fillNodes(ref Queue<HexNode> currentNodeQueue, float buildingToEmptyRatio, ref List<Guid> visited, ref GameObject parent, int depth)
         {
             //initialize next layer's queue
-            List<HexNode> nextQueue = new List<HexNode>();
-            foreach (HexNode currentNode in currentNodeQueue)
+            Queue<HexNode> nextQueue = new Queue<HexNode>();
+            while (currentNodeQueue.Count != 0)
             {
+                HexNode currentNode = currentNodeQueue.Dequeue();
                 //save our place
                 mostRecent = currentNode;
                 //make sure our node hasn't somehow gotten lost
@@ -97,15 +117,15 @@ namespace Assets.DataStructures
                     //get the first neighbor of the current node that is null
                     int firstEmpty = currentNode.FirstEmptyNeighbor();
                     bool isNodeBuilding = false;
-                    float randomFloat = 0.0f;
+                    float buildingDeterminator = 0.0f;
                     int buildingIndex = 0;
                     //while we have empty neighbors
                     while (firstEmpty != -1)
                     {
                         //pick a gameobject
-                        randomFloat = UnityEngine.Random.value;
+                        buildingDeterminator = UnityEngine.Random.value;
                         //determine if node is building or empty
-                        isNodeBuilding = randomFloat < buildingToEmptyRatio;
+                        isNodeBuilding = buildingDeterminator < buildingToEmptyRatio;
                         buildingIndex = UnityEngine.Random.Range(0, BuildingObjects.Count - 1);
                         //create new node
                         HexNode toAdd = new HexNode
@@ -118,11 +138,16 @@ namespace Assets.DataStructures
                         if (currentNode.InsertNeighbor(firstEmpty, ref toAdd, ref parent, depth))
                         {
                             //if successful add node to queue to fill in its neighbors
-                            nextQueue.Add(toAdd);
+                            nextQueue.Enqueue(toAdd);
                             //go to next empty on current node
                             firstEmpty = currentNode.FirstEmptyNeighbor();
                             //increment node count
                             ++NodeCount;
+
+                            MaxX = Mathf.Max(MaxX, currentNode.gameObject.transform.position.x);
+                            MaxZ = Mathf.Max(MaxZ, currentNode.gameObject.transform.position.z);
+                            MinX = Mathf.Min(MinX, currentNode.gameObject.transform.position.x);
+                            MinZ = Mathf.Min(MinZ, currentNode.gameObject.transform.position.z);
                             //if we've reached the desired amount of nodes exit
                             if (NodeCount >= nodeMax)
                                 return;
@@ -137,13 +162,18 @@ namespace Assets.DataStructures
                 else
                 {
                     //if node has already been processed, look for ones that haven't been
-                    nextQueue.AddRange(currentNode.Neighbors);
+                    foreach (HexNode neighbor in currentNode.Neighbors)
+                    {
+                        if (neighbor != null)
+                        {
+                            nextQueue.Enqueue(neighbor);
+                        }
+                    }
                 }
             }
             //go to next layer of depth and fill nodes there
             fillNodes(ref nextQueue, buildingToEmptyRatio, ref visited, ref parent, depth + 1);
         }
-
 
         #endregion
 
@@ -245,22 +275,22 @@ namespace Assets.DataStructures
                     switch (index)
                     {
                         case 0:
-                            node.gameObject.transform.position = gameObject.transform.position + new Vector3(-0.045f, 0.001f, 0.04f) * (depth * 0.75f);
+                            node.gameObject.transform.position = gameObject.transform.position + new Vector3(-0.045f, 0.001f, -0.045f) * (depth * 0.75f);
                             break;
                         case 1:
-                            node.gameObject.transform.position = gameObject.transform.position + new Vector3(0.0f, 0.001f, 0.1f) * (depth * 0.75f);
+                            node.gameObject.transform.position = gameObject.transform.position + new Vector3(-0.045f, 0.001f, 0.045f) * (depth * 0.75f);
                             break;
                         case 2:
-                            node.gameObject.transform.position = gameObject.transform.position + new Vector3(0.045f, 0.001f, 0.04f) * (depth * 0.75f);
+                            node.gameObject.transform.position = gameObject.transform.position + new Vector3(0.1f, 0.001f, 0.0f) * (depth * 0.75f);
                             break;
                         case 3:
-                            node.gameObject.transform.position = gameObject.transform.position + new Vector3(0.045f, 0.001f, -0.04f) * (depth * 0.75f);
+                            node.gameObject.transform.position = gameObject.transform.position + new Vector3(0.045f, 0.001f, 0.045f) * (depth * 0.75f);
                             break;
                         case 4:
-                            node.gameObject.transform.position = gameObject.transform.position + new Vector3(0.0f, 0.001f, -0.1f) * (depth * 0.75f);
+                            node.gameObject.transform.position = gameObject.transform.position + new Vector3(0.045f, 0.001f, -0.045f) * (depth * 0.75f);
                             break;
                         case 5:
-                            node.gameObject.transform.position = gameObject.transform.position + new Vector3(-0.045f, 0.001f, -0.04f) * (depth * 0.75f);
+                            node.gameObject.transform.position = gameObject.transform.position + new Vector3(-0.1f, 0.001f, -0.0f) * (depth * 0.75f);
                             break;
                     }
                     node.gameObject.transform.parent = parent.transform;

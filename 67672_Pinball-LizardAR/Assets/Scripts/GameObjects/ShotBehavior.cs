@@ -5,6 +5,7 @@ public class ShotBehavior : MonoBehaviour
     public float Speed;
     public bool HasHitBuilding;
     public int Life;
+
     // Use this for initialization
     void Start()
     {
