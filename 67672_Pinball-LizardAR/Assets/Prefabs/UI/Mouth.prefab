@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 222521740242895448}
   - component: {fileID: 114553339514263934}
   - component: {fileID: 114906044224527192}
+  - component: {fileID: 114772142805904504}
   m_Layer: 5
   m_Name: Mouth
   m_TagString: Untagged
@@ -56,6 +57,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114772142805904504
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1816415263017306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c35fb621636bd44c92bffc52c386b9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114906044224527192
 MonoBehaviour:
   m_ObjectHideFlags: 1

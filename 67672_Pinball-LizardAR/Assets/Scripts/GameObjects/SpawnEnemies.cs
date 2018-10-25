@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 public class SpawnEnemies : MonoBehaviour
 {
@@ -8,12 +10,15 @@ public class SpawnEnemies : MonoBehaviour
     public float TimeToInitialSpawn;
     public float TimeToSpawnRepeat;
     public int NumberToSpawnTotal;
+    public int ConcurrentEnemyCap;
 
     private int enemyCount;
+    private List<GameObject> spawnedEnemies;
 
     // Use this for initialization
     void Start()
     {
+        spawnedEnemies = new List<GameObject>();
         enemyCount = 0;
         if (TimeToInitialSpawn > 0 && TimeToSpawnRepeat > 0)
         {
@@ -24,12 +29,12 @@ public class SpawnEnemies : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        spawnedEnemies = spawnedEnemies.Where(e => (e == null) == false).ToList();
     }
 
     private void DoSpawn()
     {
-        if (enemyCount < NumberToSpawnTotal)
+        if (enemyCount < NumberToSpawnTotal && spawnedEnemies.Count < ConcurrentEnemyCap)
         {
             //faster execute time written this way than by checking for each individual one.
             if (IceEnemy != null)
@@ -71,6 +76,7 @@ public class SpawnEnemies : MonoBehaviour
                     spawnedEnemy = Instantiate(IceEnemy, gameObject.transform.parent.position + spawnOffset, Quaternion.identity);
                 }
                 spawnedEnemy.transform.parent = gameObject.transform;
+                spawnedEnemies.Add(spawnedEnemy);
                 ++enemyCount;
             }
         }

@@ -1,24 +1,22 @@
 ﻿using GoogleARCore;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ARCoreController : MonoBehaviour
 {
-
     public GameObject MainGameWorld;
-
     public Camera FirstPersonCamera;
-
     public GameObject SearchingForPlaneUI;
 
-    private bool gameWorldPlaced = false;
-    private bool isQuitting = false;
-    private List<DetectedPlane> m_AllPlanes = new List<DetectedPlane>();
+    private bool gameWorldPlaced;
+    private bool isQuitting;
+    private List<DetectedPlane> allPlanes;
     // Use this for initialization
     void Start()
     {
-
+        gameWorldPlaced = false;
+        isQuitting = false;
+        allPlanes = new List<DetectedPlane>();
     }
 
     // Update is called once per frame
@@ -26,11 +24,11 @@ public class ARCoreController : MonoBehaviour
     {
         UpdateState();
 
-        Session.GetTrackables<DetectedPlane>(m_AllPlanes);
+        Session.GetTrackables<DetectedPlane>(allPlanes);
         bool showSearchingUI = true;
-        for (int i = 0; i < m_AllPlanes.Count; ++i)
+        for (int i = 0; i < allPlanes.Count; ++i)
         {
-            if (m_AllPlanes[i].TrackingState == TrackingState.Tracking)
+            if (allPlanes[i].TrackingState == TrackingState.Tracking)
             {
                 showSearchingUI = false;
                 break;

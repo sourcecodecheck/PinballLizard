@@ -2,26 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//base class for buildings
-public class Building : MonoBehaviour {
+public class Building : MonoBehaviour
+{
+    public GameObject HexStack;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private bool isSelfDestructing;
+    // Use this for initialization
+    void Start()
+    {
+        isSelfDestructing = false;
+    }
 
-    void TakeHit()
+    // Update is called once per frame
+    void Update()
     {
 
     }
 
-    void Collapse()
+    private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.name.ToLower().Contains("shot") && !isSelfDestructing)
+        {
+            isSelfDestructing = true;
+            Instantiate(HexStack, gameObject.transform.position, gameObject.transform.localRotation);
+            Destroy(gameObject);
+        }
 
     }
 }

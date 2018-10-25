@@ -9,6 +9,10 @@ public class GenerativeCity : MonoBehaviour
     public GameObject Building2;
     public GameObject Building3;
     public GameObject Building4;
+    public GameObject Building5;
+    public GameObject Building6;
+    public GameObject Building7;
+    public GameObject Building8;
     public GameObject Blank;
     public GameObject Base;
     public int NumberOfBuildingsGenerated;
@@ -20,7 +24,8 @@ public class GenerativeCity : MonoBehaviour
 
     void Start()
     {
-        buildingBlock = new List<GameObject> { Building1, Building2, Building3, Building4 };
+        buildingBlock = new List<GameObject> { Building1, Building2, Building3, Building4,
+            Building5,  Building6,  Building7, Building8 };
         city = new HexGrid();
         StartCoroutine(BuildCity());
     }
@@ -39,7 +44,7 @@ public class GenerativeCity : MonoBehaviour
         Bounds meshBounds = Base.GetComponent<MeshFilter>().mesh.bounds;
         float xLength = meshBounds.extents.x;
         float zLength = meshBounds.extents.z * 2.0f;
-        Base.transform.localScale = new Vector3(city.XDistance / xLength * 1.1f, 0.001f, city.ZDistance / zLength);
+        Base.transform.localScale = new Vector3(city.XDistance / xLength * 1.15f, 0.001f, city.ZDistance / zLength);
         Base.transform.rotation = city.GetRootRotation();
         Base.transform.position = city.GetRootPosition() + new Vector3(0, -0.01f, 0);
         yield return "done";

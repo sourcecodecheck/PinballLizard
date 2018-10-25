@@ -46,8 +46,8 @@ public class ArmBehavior : MonoBehaviour
             foreach (RaycastHit draghit in draghits)
             {
                 GameObject hitobject = draghit.transform.gameObject;
-                if (draghit.distance < 0.5f &&
-                    hitobject.name.ToLower().Contains("shot") && hitobject.GetComponent<ShotBehavior>().HasHitBuilding == true)
+                if (draghit.distance < 0.3f && hitobject.name.ToLower().Contains("shot") &&
+                    hitobject.GetComponent<ShotBehavior>().HasHitBuilding == true)
                 {
                     hitobject.transform.rotation = Camera.main.transform.rotation;
                     hitobject.GetComponent<ShotBehavior>().HasHitBuilding = false;

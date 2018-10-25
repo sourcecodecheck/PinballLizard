@@ -2,10 +2,11 @@
 
 public class HexBehavior : MonoBehaviour
 {
+    private bool isSelfDestructing;
     // Use this for initialization
     void Start()
     {
-
+        isSelfDestructing = false;
     }
 
     // Update is called once per frame
@@ -26,7 +27,18 @@ public class HexBehavior : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(collision.transform.position.normalized, ForceMode.Impulse);
             ShotBehavior collidingShot = collision.gameObject.GetComponent<ShotBehavior>();
             collidingShot.HasHitBuilding = true;
-            collision.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            if (!isSelfDestructing)
+            {
+                Invoke("SelfDestruct", 7.0f);
+                isSelfDestructing = true;
+            }
         }
+    }
+
+    private void SelfDestruct()
+    {
+        Destroy(gameObject.transform.parent.gameObject);
+        Destroy(gameObject);
     }
 }

@@ -113,7 +113,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1954204498666104}
-  m_Mesh: {fileID: 4300000, guid: 2b98b0218f306a64e86a2c39e99ba90a, type: 3}
+  m_Mesh: {fileID: 4300000, guid: e57655b64334e6d4ab6a5e3b3f806724, type: 3}
 --- !u!114 &114237745427958168
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -131,6 +131,7 @@ MonoBehaviour:
   TimeToInitialSpawn: 3
   TimeToSpawnRepeat: 4
   NumberToSpawnTotal: 33
+  ConcurrentEnemyCap: 5
 --- !u!114 &114519317890729990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -142,10 +143,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aef10ef53227ad048a3e7412db748a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Building1: {fileID: 1491638702118300, guid: 63eef50d4968dda4c8ff8719df76c930, type: 2}
-  Building2: {fileID: 1586438658447304, guid: e18802eb1ae7ac14f9428d96a150ac25, type: 2}
-  Building3: {fileID: 1173432477719600, guid: 9f3889e6817b60f48a97c4552cf3b5a7, type: 2}
-  Building4: {fileID: 1119938857269540, guid: 812485f081e7e9a42b3ae2003b968290, type: 2}
+  Building1: {fileID: 1717734478576906, guid: 06145f045336e74499c28577bd04fd37, type: 2}
+  Building2: {fileID: 1626969153671788, guid: d52b327de7967cf4aaa15e0c30051942, type: 2}
+  Building3: {fileID: 1142868106857186, guid: 018c15737243ee94da3b0937e1cc06f7, type: 2}
+  Building4: {fileID: 1094734385426478, guid: b78ccd63d9cdd5442b2faff8aac8c675, type: 2}
+  Building5: {fileID: 1315246256022882, guid: c1c134b61a2457d4190a637749e49904, type: 2}
+  Building6: {fileID: 1275704411783564, guid: 042fcae25e7a1ee4eb5825676a8633d7, type: 2}
+  Building7: {fileID: 1196849032966958, guid: b801e411f5d32ea49acc7d3037faa817, type: 2}
+  Building8: {fileID: 1604978732235048, guid: c763781fb1a15f64681986033c3dbe31, type: 2}
   Blank: {fileID: 1486261941468126, guid: 8ad4358e9e5adc341bdb3727f7316cca, type: 2}
   Base: {fileID: 1954204498666104}
   NumberOfBuildingsGenerated: 98

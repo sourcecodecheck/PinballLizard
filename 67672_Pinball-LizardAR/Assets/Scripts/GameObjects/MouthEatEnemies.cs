@@ -12,13 +12,17 @@ public class MouthEatEnemies : MonoBehaviour
 
     private enum AmmoTypes { ICE = 0, FIRE, ATOM, MAX_AMMOTYPES }
     private Queue<AmmoTypes> ammoQueue;
+    private List<GameObject> eatenEnemies;
     private bool isOpen;
+    private bool isBombPrimed;
 
     // Use this for initialization
     void Start()
     {
         ammoQueue = new Queue<AmmoTypes>();
+        eatenEnemies = new List<GameObject>();
         isOpen = true;
+        isBombPrimed = false;
     }
 
     // Update is called once per frame
@@ -26,6 +30,11 @@ public class MouthEatEnemies : MonoBehaviour
     {
         OnTouch();
         UpdateMouthState();
+    }
+
+    public void PrimeBomb()
+    {
+        isBombPrimed = true;
     }
 
     private void OnTouch()
@@ -59,10 +68,11 @@ public class MouthEatEnemies : MonoBehaviour
                     {
                         Vector3 touchScreenSpace = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 0.1f));
                         Vector3 offset = hitobject.transform.position - touchScreenSpace;
-                        hitobject.transform.position = Vector3.Lerp(hitobject.transform.position, touchScreenSpace, Time.deltaTime * 2);
+                        hitobject.transform.position = Vector3.Lerp(hitobject.transform.position, touchScreenSpace, Time.deltaTime * 3);
                         if (touch.position.y < (Screen.height * 0.2f))
                         {
-                            Destroy(hitobject);
+                            hitobject.SetActive(false);
+                            eatenEnemies.Add(hitobject);
                             if (hitobbjectName.Contains("ice"))
                             {
                                 ammoQueue.Enqueue(AmmoTypes.ICE);
@@ -91,7 +101,7 @@ public class MouthEatEnemies : MonoBehaviour
                 {
                     AmmoTypes shot = ammoQueue.Dequeue();
                     GameObject instantiatedShot = null;
-                    switch (shot)
+                    switch(shot)
                     {
                         case AmmoTypes.ICE:
                             instantiatedShot = Instantiate(IceAmmo, Camera.main.transform.position, Camera.main.transform.rotation);
@@ -102,6 +112,11 @@ public class MouthEatEnemies : MonoBehaviour
                         case AmmoTypes.ATOM:
                             instantiatedShot = Instantiate(AtomAmmo, Camera.main.transform.position, Camera.main.transform.rotation);
                             break;
+                    }
+                    if(isBombPrimed)
+                    {
+                        instantiatedShot.GetComponent<ShotBehavior>().Life = 0;
+                        isBombPrimed = false;
                     }
                 }
                 else
@@ -123,6 +138,11 @@ public class MouthEatEnemies : MonoBehaviour
         {
             GetComponent<Image>().sprite = OpenMouth;
             isOpen = true;
+            foreach(GameObject enemy in eatenEnemies)
+            {
+                Destroy(enemy);
+            }
+            eatenEnemies.Clear();
         }
     }
 }
