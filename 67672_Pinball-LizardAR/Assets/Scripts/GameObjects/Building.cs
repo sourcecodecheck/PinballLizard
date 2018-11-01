@@ -25,8 +25,13 @@ public class Building : MonoBehaviour
         {
             isSelfDestructing = true;
             Instantiate(HexStack, gameObject.transform.position, gameObject.transform.localRotation);
-            Destroy(gameObject);
+            Invoke("DestroySelf", 0.1f);
         }
 
+    }
+
+    private void DestroySelf()
+    {
+        Destroy(gameObject);
     }
 }

@@ -15,8 +15,8 @@ namespace Assets.DataStructures
         public float MinX { get; private set; }
         public float MaxZ { get; private set; }
         public float MinZ { get; private set; }
-        public float XDistance { get { return Mathf.Sqrt(MaxX * MaxX + MinX * MinX); } }
-        public float ZDistance { get { return Mathf.Sqrt(MaxZ * MaxZ + MinZ * MinZ); } }
+        public float XDistance { get { return Vector3.Distance(new Vector3(MinX, 0, 0), new Vector3(MaxX, 0, 0)); } }
+        public float ZDistance { get { return Vector3.Distance(new Vector3(MinZ, 0, 0), new Vector3(MaxZ, 0, 0)); } }
         #endregion
 
         #region PrivateVariables
@@ -263,31 +263,32 @@ namespace Assets.DataStructures
                         }
                     }
                     //adjust position of game object according to position in data structure
+                    Vector3 randomVector = new Vector3(UnityEngine.Random.Range(-0.04f, 0.04f), 0, UnityEngine.Random.Range(-0.04f, 0.04f));
                     switch (index)
                     {
                         case 0:
-                            node.gameObject.transform.position = 
-                                gameObject.transform.position + new Vector3(-0.045f, 0.001f, -0.045f) * (depth * 0.75f);
+                            node.gameObject.transform.position =
+                                gameObject.transform.position + new Vector3(-0.045f, 0.001f, -0.045f) * (depth * 0.75f) + randomVector;
                             break;
                         case 1:
-                            node.gameObject.transform.position = 
-                                gameObject.transform.position + new Vector3(-0.045f, 0.001f, 0.045f) * (depth * 0.75f);
+                            node.gameObject.transform.position =
+                                gameObject.transform.position + new Vector3(-0.045f, 0.001f, 0.045f) * (depth * 0.75f) + randomVector;
                             break;
                         case 2:
-                            node.gameObject.transform.position = 
-                                gameObject.transform.position + new Vector3(0.1f, 0.001f, 0.0f) * (depth * 0.75f);
+                            node.gameObject.transform.position =
+                                gameObject.transform.position + new Vector3(0.1f, 0.001f, 0.0f) * (depth * 0.75f) + randomVector;
                             break;
                         case 3:
-                            node.gameObject.transform.position = 
-                                gameObject.transform.position + new Vector3(0.045f, 0.001f, 0.045f) * (depth * 0.75f);
+                            node.gameObject.transform.position =
+                                gameObject.transform.position + new Vector3(0.045f, 0.001f, 0.045f) * (depth * 0.75f) + randomVector;
                             break;
                         case 4:
-                            node.gameObject.transform.position = 
-                                gameObject.transform.position + new Vector3(0.045f, 0.001f, -0.045f) * (depth * 0.75f);
+                            node.gameObject.transform.position =
+                                gameObject.transform.position + new Vector3(0.045f, 0.001f, -0.045f) * (depth * 0.75f) + randomVector;
                             break;
                         case 5:
-                            node.gameObject.transform.position = 
-                                gameObject.transform.position + new Vector3(-0.1f, 0.001f, -0.0f) * (depth * 0.75f);
+                            node.gameObject.transform.position =
+                                gameObject.transform.position + new Vector3(-0.1f, 0.001f, -0.0f) * (depth * 0.75f) + randomVector;
                             break;
                     }
                     node.gameObject.transform.parent = parent.transform;

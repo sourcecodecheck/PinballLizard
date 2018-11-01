@@ -127,7 +127,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!64 &64671184304670374
@@ -143,7 +143,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: 62eac4e86037ee54d96e224b4b537f9e, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 62f4963b84709474886a7a569a096eac, type: 3}
 --- !u!114 &114573740603472586
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -6,13 +6,16 @@ public class MenuManager : MonoBehaviour {
     
     public GameObject MainMenuButtons;
     public GameObject SettingsButton;
+    public GameObject PlayerInfoBar;
+    public GameObject TitleScreen;
+    public GameObject HomeButton;
     public Canvas MenuParent;
 
     private List<GameObject> menuObjects;
 	// Use this for initialization
 	void Start () {
         menuObjects = new List<GameObject>();
-        LoadMainMenu();
+        LoadTitle();
 	}
 	
 	// Update is called once per frame
@@ -25,8 +28,33 @@ public class MenuManager : MonoBehaviour {
 
     private void LoadMainMenu()
     {
-        menuObjects.Add(Instantiate(MainMenuButtons, MenuParent.transform));
+        UnloadMenu();
+        GameObject playerInfoBarInstance = Instantiate(PlayerInfoBar, MenuParent.transform);
+        playerInfoBarInstance.GetComponentInChildren<CurrencyCounters>().PlayerInventory = gameObject.GetComponent<Inventory>();
+        menuObjects.Add(playerInfoBarInstance);
+        GameObject mainMenuButtonInstance = Instantiate(MainMenuButtons, MenuParent.transform);
+        mainMenuButtonInstance.GetComponentInChildren<MenuManagerChangeButton>().MenuManager = this;
+        menuObjects.Add(mainMenuButtonInstance);
         menuObjects.Add(Instantiate(SettingsButton, MenuParent.transform));
+    }
+
+    private void LoadTitle()
+    {
+        UnloadMenu();
+        GameObject titleScreenInstance = Instantiate(TitleScreen, MenuParent.transform);
+        titleScreenInstance.GetComponent<MenuManagerChangeButton>().MenuManager = this;
+        menuObjects.Add(titleScreenInstance);
+    }
+
+    private void LoadPlayerInfo()
+    {
+        UnloadMenu();
+        GameObject playerInfoBarInstance = Instantiate(PlayerInfoBar, MenuParent.transform);
+        playerInfoBarInstance.GetComponentInChildren<CurrencyCounters>().PlayerInventory = gameObject.GetComponent<Inventory>();
+        menuObjects.Add(playerInfoBarInstance);
+        GameObject homeButtonInstance = Instantiate(HomeButton, MenuParent.transform);
+        homeButtonInstance.GetComponentInChildren<MenuManagerChangeButton>().MenuManager = this;
+        menuObjects.Add(homeButtonInstance);
     }
 
 

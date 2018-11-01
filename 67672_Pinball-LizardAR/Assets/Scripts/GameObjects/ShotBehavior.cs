@@ -13,8 +13,7 @@ public class ShotBehavior : MonoBehaviour
         HasHitBuilding = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         if (HasHitBuilding)
         {
@@ -25,11 +24,16 @@ public class ShotBehavior : MonoBehaviour
         {
             gameObject.transform.position += gameObject.transform.forward * Speed * Time.deltaTime;
         }
-        if(Life <= 0)
+        if (Life <= 0)
         {
             Instantiate(Explosion, gameObject.transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 
     public void Volley()

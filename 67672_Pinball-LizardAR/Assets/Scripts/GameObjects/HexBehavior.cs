@@ -30,7 +30,7 @@ public class HexBehavior : MonoBehaviour
             collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             if (!isSelfDestructing)
             {
-                Invoke("SelfDestruct", 7.0f);
+                Invoke("SelfDestruct", 5.0f);
                 isSelfDestructing = true;
             }
         }

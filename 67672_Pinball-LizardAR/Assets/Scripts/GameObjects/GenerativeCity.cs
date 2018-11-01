@@ -43,10 +43,12 @@ public class GenerativeCity : MonoBehaviour
         city.Generate(NumberOfBuildingsGenerated, Random.Range(0, 10000), BuildingToBlankRatio, gameObject);
         Bounds meshBounds = Base.GetComponent<MeshFilter>().mesh.bounds;
         float xLength = meshBounds.extents.x;
-        float zLength = meshBounds.extents.z * 2.0f;
-        Base.transform.localScale = new Vector3(city.XDistance / xLength * 1.15f, 0.001f, city.ZDistance / zLength);
+        float zLength = meshBounds.extents.z ;
+
+        Base.transform.localScale = new Vector3(city.XDistance / xLength * 1.25f, 0.001f, city.ZDistance / zLength * 1.15f);
         Base.transform.rotation = city.GetRootRotation();
         Base.transform.position = city.GetRootPosition() + new Vector3(0, -0.01f, 0);
+        Base.transform.parent = gameObject.transform.parent;
         yield return "done";
     }
 }
