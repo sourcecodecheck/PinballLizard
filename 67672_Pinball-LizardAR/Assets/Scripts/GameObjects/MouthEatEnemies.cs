@@ -118,6 +118,7 @@ public class MouthEatEnemies : MonoBehaviour
                         instantiatedShot.GetComponent<ShotBehavior>().Life = 0;
                         isBombPrimed = false;
                     }
+                    ScoreEvents.SendSetMultiplier(1.0f);
                 }
                 else
                 {

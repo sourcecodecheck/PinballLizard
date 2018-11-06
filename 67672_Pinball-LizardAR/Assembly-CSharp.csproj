@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\ARCore\ARCoreController.cs" />
     <Compile Include="Assets\Scripts\DataStructures\HexGrid.cs" />
+    <Compile Include="Assets\Scripts\Events\ScoreEvents.cs" />
     <Compile Include="Assets\Scripts\GameObjects\ArmBehavior.cs" />
     <Compile Include="Assets\Scripts\GameObjects\BreathWeapon.cs" />
     <Compile Include="Assets\Scripts\GameObjects\Building.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Assets\Scripts\Menus\MenuManager.cs" />
     <Compile Include="Assets\Scripts\Menus\MenuManagerChangeButton.cs" />
     <Compile Include="Assets\Scripts\Menus\PlayerLevelBar.cs" />
+    <Compile Include="Assets\Scripts\Menus\ScoreDisplay.cs" />
     <Compile Include="Assets\Scripts\Menus\StartGame.cs" />
     <Compile Include="Assets\Scripts\PlatformSpecific\Android\AndroidHelpers.cs" />
     <Compile Include="Assets\Scripts\PlayFabRelated\Currencies.cs" />

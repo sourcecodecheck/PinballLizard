@@ -51,6 +51,7 @@ public class ArmBehavior : MonoBehaviour
                 {
                     hitobject.transform.rotation = Camera.main.transform.rotation;
                     hitobject.GetComponent<ShotBehavior>().HasHitBuilding = false;
+                    ScoreEvents.SendAddMultiplier(0.5f);
                 }
             }
         }
