@@ -1145,6 +1145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dfcb507136d4914ead093c8fbd9094b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ScoreUnit: 10
+  DefaultMultiplier: 1
 --- !u!114 &1553412463
 MonoBehaviour:
   m_ObjectHideFlags: 0

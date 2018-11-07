@@ -101,13 +101,13 @@ public class ARCoreController : MonoBehaviour
 
         if (Session.Status == SessionStatus.ErrorPermissionNotGranted)
         {
-            AndroidHelpers.ShowAndroidToastMessage("Camera permission is needed to run this application.");
+            ShowMessageWindowHelper.ShowMessage("Camera permission is needed to run this application.");
             isQuitting = true;
             Invoke("DelayQuit", 0.5f);
         }
         else if (Session.Status.IsError())
         {
-            AndroidHelpers.ShowAndroidToastMessage("ARCore encountered a problem connecting.  Please start the app again.");
+            ShowMessageWindowHelper.ShowMessage("ARCore encountered a problem connecting.  Please start the app again.");
             isQuitting = true;
             Invoke("DelayQuit", 0.5f);
         }

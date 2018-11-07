@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 1148015813}
   - component: {fileID: 1148015814}
   - component: {fileID: 1148015815}
+  - component: {fileID: 1148015816}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -246,6 +247,17 @@ MonoBehaviour:
     type: 2}
   HomeButton: {fileID: 1048746306678580, guid: af17b7190148ff945b47c62924658947, type: 2}
   MenuParent: {fileID: 2137016349}
+--- !u!114 &1148015816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1148015812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ab78fcd816d354a93737858bb5038b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2101684417
 GameObject:
   m_ObjectHideFlags: 0

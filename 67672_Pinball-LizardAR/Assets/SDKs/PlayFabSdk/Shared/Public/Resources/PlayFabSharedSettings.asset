@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 093286084a3d1994a9c28281a1c38b1d, type: 3}
   m_Name: PlayFabSharedSettings
   m_EditorClassIdentifier: 
-  TitleId: 
+  TitleId: 462F
   VerticalName: 
-  DeveloperSecretKey: 
+  DeveloperSecretKey: EJMNR3B39ZIGGUGQ6SET6D7YBWZZB7JKU3TT65B8DQUEWUKXYJ
   ProductionEnvironmentUrl: 
   RequestType: 2
   RequestTimeout: 2000

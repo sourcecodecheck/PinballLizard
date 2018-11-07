@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class MainGameController : MonoBehaviour
 {
+    public int ScoreUnit;
+    public float DefaultMultiplier;
+
     private int gameScore;
     private float gameMultiplier;
     private bool resetMultiplier;
@@ -24,9 +27,9 @@ public class MainGameController : MonoBehaviour
         }
     }
 
-    public void AddScore(int score)
+    public void AddScore(int scoreUnits)
     {
-        gameScore += (int)(score * gameMultiplier);
+        gameScore += (int)(scoreUnits * ScoreUnit * gameMultiplier);
         ScoreEvents.SendScoreUpdated(gameScore);
     }
 

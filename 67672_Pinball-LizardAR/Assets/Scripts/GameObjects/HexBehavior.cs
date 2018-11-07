@@ -28,7 +28,7 @@ public class HexBehavior : MonoBehaviour
             {
                 rigidbody.constraints = RigidbodyConstraints.None;
                 multiplierToAdd += 0.1f;
-                scoreToAdd += 10;
+                ++scoreToAdd;
             }
             ScoreEvents.SendAddScore(scoreToAdd);
             GetComponent<Rigidbody>().AddForce(collision.transform.position.normalized, ForceMode.Impulse);
