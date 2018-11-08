@@ -9,7 +9,7 @@ public class Inventory : MonoBehaviour {
     public int InstaBombCount;
     public int MayhemCount;
     public int BugBucksCount;
-    public int HolidayCurrencyCount;
+    public int AnimosityCount;
     public int PlayerLevel;
     public int ExperienceCount;
     public int ExperienceToNextLevel;

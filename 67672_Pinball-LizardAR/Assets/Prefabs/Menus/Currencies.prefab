@@ -152,6 +152,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224892619353477870}
   - component: {fileID: 114679450679669526}
+  - component: {fileID: 114749644450712950}
   m_Layer: 0
   m_Name: CurrencyCounts
   m_TagString: Untagged
@@ -321,6 +322,21 @@ MonoBehaviour:
   MayhemCount: {fileID: 114479920043328156}
   BugBucksCount: {fileID: 114907931024233168}
   HolidayCurrencyCount: {fileID: 114672930711072888}
+--- !u!114 &114749644450712950
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1920404960819116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb2d5f1f2aa85844a82ebe0661fa6507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MayhemKey: MH
+  AnimosityKey: AN
+  BugBucksKey: BB
+  PlayerInventory: {fileID: 0}
 --- !u!114 &114907931024233168
 MonoBehaviour:
   m_ObjectHideFlags: 1

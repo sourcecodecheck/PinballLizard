@@ -19,6 +19,6 @@ public class CurrencyCounters : MonoBehaviour {
 	void Update () {
         MayhemCount.text = PlayerInventory.MayhemCount.ToString();
         BugBucksCount.text = PlayerInventory.BugBucksCount.ToString();
-        HolidayCurrencyCount.text = PlayerInventory.HolidayCurrencyCount.ToString();
+        HolidayCurrencyCount.text = PlayerInventory.AnimosityCount.ToString();
 	}
 }

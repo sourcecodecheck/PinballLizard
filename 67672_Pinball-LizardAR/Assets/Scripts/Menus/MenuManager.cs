@@ -30,7 +30,9 @@ public class MenuManager : MonoBehaviour {
     {
         UnloadMenu();
         GameObject playerInfoBarInstance = Instantiate(PlayerInfoBar, MenuParent.transform);
-        playerInfoBarInstance.GetComponentInChildren<CurrencyCounters>().PlayerInventory = gameObject.GetComponent<Inventory>();
+        Inventory playerInventory = gameObject.GetComponent<Inventory>();
+        playerInfoBarInstance.GetComponentInChildren<CurrencyCounters>().PlayerInventory = playerInventory;
+        playerInfoBarInstance.GetComponentInChildren<Currencies>().PlayerInventory = playerInventory;
         menuObjects.Add(playerInfoBarInstance);
         GameObject mainMenuButtonInstance = Instantiate(MainMenuButtons, MenuParent.transform);
         mainMenuButtonInstance.GetComponentInChildren<MenuManagerChangeButton>().MenuManager = this;
@@ -50,7 +52,9 @@ public class MenuManager : MonoBehaviour {
     {
         UnloadMenu();
         GameObject playerInfoBarInstance = Instantiate(PlayerInfoBar, MenuParent.transform);
-        playerInfoBarInstance.GetComponentInChildren<CurrencyCounters>().PlayerInventory = gameObject.GetComponent<Inventory>();
+        Inventory playerInventory  = gameObject.GetComponent<Inventory>();
+        playerInfoBarInstance.GetComponentInChildren<CurrencyCounters>().PlayerInventory = playerInventory;
+        playerInfoBarInstance.GetComponentInChildren<Currencies>().PlayerInventory = playerInventory;
         menuObjects.Add(playerInfoBarInstance);
         GameObject homeButtonInstance = Instantiate(HomeButton, MenuParent.transform);
         homeButtonInstance.GetComponentInChildren<MenuManagerChangeButton>().MenuManager = this;
