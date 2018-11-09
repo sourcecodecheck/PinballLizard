@@ -73,6 +73,7 @@ public class MouthEatEnemies : MonoBehaviour
                         {
                             hitobject.SetActive(false);
                             eatenEnemies.Add(hitobject);
+                            TrackingEvents.SendBugEaten();
                             if (hitobbjectName.Contains("ice"))
                             {
                                 ammoQueue.Enqueue(AmmoTypes.ICE);

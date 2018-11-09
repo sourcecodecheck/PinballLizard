@@ -40,7 +40,8 @@ public class GenerativeCity : MonoBehaviour
     {
         city.BuildingObjects = buildingBlock;
         city.BlankSpot = Blank;
-        city.Generate(NumberOfBuildingsGenerated, Random.Range(0, 10000), BuildingToBlankRatio, gameObject);
+        int buildingsGenerated = city.Generate(NumberOfBuildingsGenerated, Random.Range(0, 10000), BuildingToBlankRatio, gameObject);
+        TrackingEvents.SendCityGenerated(buildingsGenerated);
         Bounds meshBounds = Base.GetComponent<MeshFilter>().mesh.bounds;
         float xLength = meshBounds.extents.x;
         float zLength = meshBounds.extents.z ;

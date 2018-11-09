@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\ARCore\ARCoreController.cs" />
     <Compile Include="Assets\Scripts\DataStructures\HexGrid.cs" />
     <Compile Include="Assets\Scripts\Events\ScoreEvents.cs" />
+    <Compile Include="Assets\Scripts\Events\TrackingEvents.cs" />
     <Compile Include="Assets\Scripts\GameObjects\ArmBehavior.cs" />
     <Compile Include="Assets\Scripts\GameObjects\BreathWeapon.cs" />
     <Compile Include="Assets\Scripts\GameObjects\Building.cs" />
@@ -82,12 +83,12 @@
     <Compile Include="Assets\Scripts\Menus\PlayerLevelBar.cs" />
     <Compile Include="Assets\Scripts\Menus\ScoreDisplay.cs" />
     <Compile Include="Assets\Scripts\Menus\StartGame.cs" />
+    <Compile Include="Assets\Scripts\Menus\VictoryDisplay.cs" />
     <Compile Include="Assets\Scripts\PlatformSpecific\Android\AndroidDeviceIDLogin.cs" />
     <Compile Include="Assets\Scripts\PlatformSpecific\Android\AndroidHelpers.cs" />
     <Compile Include="Assets\Scripts\PlatformSpecific\LoginHelper.cs" />
     <Compile Include="Assets\Scripts\PlatformSpecific\ShowMessageWindowHelper.cs" />
     <Compile Include="Assets\Scripts\PlayFabRelated\Currencies.cs" />
-    <Compile Include="Assets\Scripts\PlayFabRelated\LeaderBoard.cs" />
     <Compile Include="Assets\Scripts\PlayFabRelated\Store.cs" />
     <Compile Include="Assets\Scripts\PlayFabRelated\UserInfo.cs" />
     <Compile Include="Assets\Scripts\SavedData\Settings.cs" />

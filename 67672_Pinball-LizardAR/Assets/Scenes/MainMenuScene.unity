@@ -186,6 +186,7 @@ GameObject:
   - component: {fileID: 1148015814}
   - component: {fileID: 1148015815}
   - component: {fileID: 1148015816}
+  - component: {fileID: 1148015817}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -226,6 +227,8 @@ MonoBehaviour:
   PlayerLevel: 3
   ExperienceCount: 800
   ExperienceToNextLevel: 1000
+  BugsEatenCount: 0
+  BestScore: 0
 --- !u!114 &1148015815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,6 +261,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6ab78fcd816d354a93737858bb5038b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1148015817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1148015812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cef5d3a1081c3c47ab667c56a376ac9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerInventory: {fileID: 1148015814}
+  LevelKey: Level
+  ExperienceKey: Experience
+  BugsEatenKey: BugsEaten
+  BestScoreKey: BestScore
 --- !u!1 &2101684417
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,4 +34,8 @@ public class Building : MonoBehaviour
     {
         Destroy(gameObject);
     }
+    private void OnDestroy()
+    {
+        TrackingEvents.SendBuildingDestroyed();
+    }
 }

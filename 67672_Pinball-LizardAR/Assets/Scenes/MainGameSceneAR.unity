@@ -1098,6 +1098,8 @@ GameObject:
   - component: {fileID: 1553412459}
   - component: {fileID: 1553412461}
   - component: {fileID: 1553412463}
+  - component: {fileID: 1553412462}
+  - component: {fileID: 1553412464}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1147,6 +1149,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScoreUnit: 10
   DefaultMultiplier: 1
+  VictoryScreen: {fileID: 1852590895115634, guid: b01672d9d285ae44fabeb9fb89a78e26,
+    type: 2}
+  UIParent: {fileID: 569244236}
+--- !u!114 &1553412462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1553412458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb2d5f1f2aa85844a82ebe0661fa6507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MayhemKey: MH
+  AnimosityKey: AN
+  BugBucksKey: BB
+  PlayerInventory: {fileID: 1553412463}
 --- !u!114 &1553412463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1163,10 +1183,28 @@ MonoBehaviour:
   InstaBombCount: 0
   MayhemCount: 0
   BugBucksCount: 0
-  HolidayCurrencyCount: 0
+  AnimosityCount: 0
   PlayerLevel: 0
   ExperienceCount: 0
   ExperienceToNextLevel: 0
+  BugsEatenCount: 0
+  BestScore: 0
+--- !u!114 &1553412464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1553412458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cef5d3a1081c3c47ab667c56a376ac9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerInventory: {fileID: 1553412463}
+  LevelKey: Level
+  ExperienceKey: Experience
+  BugsEatenKey: Bugs Eaten
+  BestScoreKey: Best Score
 --- !u!1001 &1595344800
 Prefab:
   m_ObjectHideFlags: 0

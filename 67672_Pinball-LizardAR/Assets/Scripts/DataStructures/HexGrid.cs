@@ -22,6 +22,7 @@ namespace Assets.DataStructures
         #region PrivateVariables
         private HexNode mostRecent;
         private int nodeMax;
+        private int buildingCount;
         #endregion
 
         #region Functionality
@@ -37,7 +38,7 @@ namespace Assets.DataStructures
             MinZ = 99999999;
         }
 
-        public bool Generate(int amountOfNodes, int seed, float buildingToEmptyRatio, GameObject parent)
+        public int Generate(int amountOfNodes, int seed, float buildingToEmptyRatio, GameObject parent)
         {
             UnityEngine.Random.InitState(seed);
             //check to make sure we have objects in the gameobject pools
@@ -47,6 +48,7 @@ namespace Assets.DataStructures
                 nodeMax += amountOfNodes;
                 if (Root == null)
                 {
+                    buildingCount = 1;
                     int building = UnityEngine.Random.Range(0, BuildingObjects.Count - 1);
                     //instantiate root node and set it up
                     Root = new HexNode
@@ -71,7 +73,7 @@ namespace Assets.DataStructures
                 throw new Exception("BuildingObjects must contain entries and BlankSpot must not be null");
             }
 
-            return true;
+            return buildingCount;
         }
 
         public Quaternion GetRootRotation()
@@ -116,6 +118,7 @@ namespace Assets.DataStructures
                         buildingDeterminator = UnityEngine.Random.value;
                         //determine if node is building or empty
                         isNodeBuilding = buildingDeterminator < buildingToEmptyRatio;
+                       
                         buildingIndex = UnityEngine.Random.Range(0, BuildingObjects.Count - 1);
                         //create new node
                         HexNode toAdd = new HexNode
@@ -139,6 +142,11 @@ namespace Assets.DataStructures
                             MaxZ = Mathf.Max(MaxZ, currentNode.gameObject.transform.position.z);
                             MinX = Mathf.Min(MinX, currentNode.gameObject.transform.position.x);
                             MinZ = Mathf.Min(MinZ, currentNode.gameObject.transform.position.z);
+
+                            if (isNodeBuilding)
+                            {
+                                ++buildingCount;
+                            }
                             //if we've reached the desired amount of nodes exit
                             if (NodeCount >= nodeMax)
                                 return;

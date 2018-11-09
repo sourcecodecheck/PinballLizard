@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour {
-
+public class Inventory : MonoBehaviour
+{
     public int BreathWeaponCount;
     public int SkipCount;
     public int InstaBombCount;
@@ -13,18 +13,16 @@ public class Inventory : MonoBehaviour {
     public int PlayerLevel;
     public int ExperienceCount;
     public int ExperienceToNextLevel;
-  
-	// Use this for initialization
-	void Start () {
-        InvokeRepeating("UpdateFromPlayFab", 5.0f, 5.0f);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public int BugsEatenCount;
+    public int BestScore;
 
-    private void UpdateFromPlayFab()
+    // Use this for initialization
+    void Start()
+    {
+    }
+
+    // Update is called once per frame
+    void Update()
     {
 
     }

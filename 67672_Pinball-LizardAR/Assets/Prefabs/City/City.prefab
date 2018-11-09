@@ -153,6 +153,6 @@ MonoBehaviour:
   Building8: {fileID: 1604978732235048, guid: c763781fb1a15f64681986033c3dbe31, type: 2}
   Blank: {fileID: 1486261941468126, guid: 8ad4358e9e5adc341bdb3727f7316cca, type: 2}
   Base: {fileID: 1954204498666104}
-  NumberOfBuildingsGenerated: 98
-  BuildingToBlankRatio: 0.9
+  NumberOfBuildingsGenerated: 30
+  BuildingToBlankRatio: 1
   Seed: 0
