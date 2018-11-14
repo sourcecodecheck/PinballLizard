@@ -6,7 +6,6 @@ using PlayFab.ClientModels;
 
 public class Currencies : MonoBehaviour
 {
-
     public string MayhemKey;
     public string AnimosityKey;
     public string BugBucksKey;

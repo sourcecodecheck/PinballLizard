@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 222077071308056166}
   - component: {fileID: 114934856191465632}
   - component: {fileID: 114372817632561508}
+  - component: {fileID: 114485259945716986}
   m_Layer: 0
   m_Name: StoreButton
   m_TagString: Untagged
@@ -354,6 +355,19 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114485259945716986
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1054162215033988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61a11d62a04ab2e4abae9aa5e1a59692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuToChangeTo: 3
+  IsButton: 1
 --- !u!114 &114638669763033720
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -466,8 +480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a11d62a04ab2e4abae9aa5e1a59692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuManager: {fileID: 0}
-  MenuManagerCommand: LoadPlayerInfo
+  MenuToChangeTo: 2
   IsButton: 1
 --- !u!114 &114862509526637652
 MonoBehaviour:

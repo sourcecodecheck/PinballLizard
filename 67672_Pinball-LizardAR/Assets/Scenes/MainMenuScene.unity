@@ -187,6 +187,7 @@ GameObject:
   - component: {fileID: 1148015815}
   - component: {fileID: 1148015816}
   - component: {fileID: 1148015817}
+  - component: {fileID: 1148015818}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -249,6 +250,7 @@ MonoBehaviour:
   TitleScreen: {fileID: 1917666715815528, guid: f7e252954d1d9174b86f127ab942fa78,
     type: 2}
   HomeButton: {fileID: 1048746306678580, guid: af17b7190148ff945b47c62924658947, type: 2}
+  StoreFront: {fileID: 1677990113670032, guid: 154602223b3a58645b083ca99022c958, type: 2}
   MenuParent: {fileID: 2137016349}
 --- !u!114 &1148015816
 MonoBehaviour:
@@ -277,6 +279,19 @@ MonoBehaviour:
   ExperienceKey: Experience
   BugsEatenKey: BugsEaten
   BestScoreKey: BestScore
+--- !u!114 &1148015818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1148015812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02f5bb22ae1b75e4b9cdb5f9d620b53a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MayhemKey: MH
+  BugbucksKey: BB
 --- !u!1 &2101684417
 GameObject:
   m_ObjectHideFlags: 0

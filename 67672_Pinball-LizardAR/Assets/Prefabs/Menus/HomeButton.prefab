@@ -159,8 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a11d62a04ab2e4abae9aa5e1a59692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuManager: {fileID: 0}
-  MenuManagerCommand: LoadMainMenu
+  MenuToChangeTo: 1
   IsButton: 1
 --- !u!222 &222103663954238336
 CanvasRenderer:

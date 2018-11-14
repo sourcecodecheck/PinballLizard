@@ -29,7 +29,7 @@ public class SpawnEnemies : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        spawnedEnemies = spawnedEnemies.Where(e => (e == null) == false).ToList();
+        spawnedEnemies = spawnedEnemies.Where((e) => (e == null) == false).ToList();
     }
 
     private void DoSpawn()

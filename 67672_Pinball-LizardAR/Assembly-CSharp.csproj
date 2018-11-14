@@ -62,7 +62,9 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\ARCore\ARCoreController.cs" />
     <Compile Include="Assets\Scripts\DataStructures\HexGrid.cs" />
+    <Compile Include="Assets\Scripts\Events\MenuTransitionEvents.cs" />
     <Compile Include="Assets\Scripts\Events\ScoreEvents.cs" />
+    <Compile Include="Assets\Scripts\Events\StoreEvents.cs" />
     <Compile Include="Assets\Scripts\Events\TrackingEvents.cs" />
     <Compile Include="Assets\Scripts\GameObjects\ArmBehavior.cs" />
     <Compile Include="Assets\Scripts\GameObjects\BreathWeapon.cs" />
@@ -77,12 +79,15 @@
     <Compile Include="Assets\Scripts\GameObjects\ShotBehavior.cs" />
     <Compile Include="Assets\Scripts\GameObjects\SpawnEnemies.cs" />
     <Compile Include="Assets\Scripts\GameStates\MainGameController.cs" />
+    <Compile Include="Assets\Scripts\GameStates\MainGameUIManager.cs" />
     <Compile Include="Assets\Scripts\Menus\CurrencyCounters.cs" />
     <Compile Include="Assets\Scripts\Menus\MenuManager.cs" />
     <Compile Include="Assets\Scripts\Menus\MenuManagerChangeButton.cs" />
     <Compile Include="Assets\Scripts\Menus\PlayerLevelBar.cs" />
     <Compile Include="Assets\Scripts\Menus\ScoreDisplay.cs" />
     <Compile Include="Assets\Scripts\Menus\StartGame.cs" />
+    <Compile Include="Assets\Scripts\Menus\StoreFront.cs" />
+    <Compile Include="Assets\Scripts\Menus\StoreItem.cs" />
     <Compile Include="Assets\Scripts\Menus\VictoryDisplay.cs" />
     <Compile Include="Assets\Scripts\PlatformSpecific\Android\AndroidDeviceIDLogin.cs" />
     <Compile Include="Assets\Scripts\PlatformSpecific\Android\AndroidHelpers.cs" />

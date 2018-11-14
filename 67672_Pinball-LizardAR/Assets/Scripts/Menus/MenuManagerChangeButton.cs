@@ -5,18 +5,18 @@ using UnityEngine.UI;
 
 public class MenuManagerChangeButton : MonoBehaviour {
 
-    public MenuManager MenuManager;
-    public string MenuManagerCommand;
+    //title = 0, main = 1, playerinfo = 2, store = 3
+    public int MenuToChangeTo;
     public bool IsButton;
 	// Use this for initialization
 	void Start () {
         if (IsButton)
         {
-            GetComponent<Button>().onClick.AddListener(ToMainMenu);
+            GetComponent<Button>().onClick.AddListener(ToMenu);
         }
         else
         {
-            GetComponentInChildren<Button>().onClick.AddListener(ToMainMenu);
+            GetComponentInChildren<Button>().onClick.AddListener(ToMenu);
         }
        
     }
@@ -26,8 +26,8 @@ public class MenuManagerChangeButton : MonoBehaviour {
 		
 	}
 
-    private void ToMainMenu()
+    private void ToMenu()
     {
-        MenuManager.Invoke(MenuManagerCommand, 0.2f);
+        MenuTransitionEvents.SendChangeMenu((MenuTransitionEvents.Menus)MenuToChangeTo);
     }
 }

@@ -9,6 +9,7 @@ public class MenuManager : MonoBehaviour {
     public GameObject PlayerInfoBar;
     public GameObject TitleScreen;
     public GameObject HomeButton;
+    public GameObject StoreFront;
     public Canvas MenuParent;
 
     private List<GameObject> menuObjects;
@@ -16,6 +17,7 @@ public class MenuManager : MonoBehaviour {
 	void Start () {
         menuObjects = new List<GameObject>();
         LoadTitle();
+        MenuTransitionEvents.OnChangeMenu += ChangeMenu;
 	}
 	
 	// Update is called once per frame
@@ -26,39 +28,62 @@ public class MenuManager : MonoBehaviour {
         }
     }
 
+    void ChangeMenu(MenuTransitionEvents.Menus menu)
+    {
+        switch(menu)
+        {
+            case MenuTransitionEvents.Menus.TITLE:
+                LoadTitle();
+                break;
+            case MenuTransitionEvents.Menus.MAIN:
+                LoadMainMenu();
+                break;
+            case MenuTransitionEvents.Menus.PLAYERINFO:
+                LoadPlayerInfo();
+                break;
+            case MenuTransitionEvents.Menus.STORE:
+                LoadStoreFront();
+                break;
+        }
+    }
+
     private void LoadMainMenu()
     {
         UnloadMenu();
-        GameObject playerInfoBarInstance = Instantiate(PlayerInfoBar, MenuParent.transform);
-        Inventory playerInventory = gameObject.GetComponent<Inventory>();
-        playerInfoBarInstance.GetComponentInChildren<CurrencyCounters>().PlayerInventory = playerInventory;
-        playerInfoBarInstance.GetComponentInChildren<Currencies>().PlayerInventory = playerInventory;
-        menuObjects.Add(playerInfoBarInstance);
-        GameObject mainMenuButtonInstance = Instantiate(MainMenuButtons, MenuParent.transform);
-        mainMenuButtonInstance.GetComponentInChildren<MenuManagerChangeButton>().MenuManager = this;
-        menuObjects.Add(mainMenuButtonInstance);
+        menuObjects.Add(LoadPlayerInfoBar());
+        menuObjects.Add(Instantiate(MainMenuButtons, MenuParent.transform));
         menuObjects.Add(Instantiate(SettingsButton, MenuParent.transform));
     }
 
     private void LoadTitle()
     {
         UnloadMenu();
-        GameObject titleScreenInstance = Instantiate(TitleScreen, MenuParent.transform);
-        titleScreenInstance.GetComponent<MenuManagerChangeButton>().MenuManager = this;
-        menuObjects.Add(titleScreenInstance);
+        menuObjects.Add(Instantiate(TitleScreen, MenuParent.transform));
     }
 
     private void LoadPlayerInfo()
     {
         UnloadMenu();
+        menuObjects.Add(LoadPlayerInfoBar());
+        menuObjects.Add(Instantiate(HomeButton, MenuParent.transform));
+    }
+
+    private void LoadStoreFront()
+    {
+        UnloadMenu();
+        menuObjects.Add(Instantiate(HomeButton, MenuParent.transform));
+        menuObjects.Add(Instantiate(StoreFront, MenuParent.transform));
+        menuObjects.Add(LoadPlayerInfoBar());
+    }
+
+    private GameObject LoadPlayerInfoBar()
+    {
         GameObject playerInfoBarInstance = Instantiate(PlayerInfoBar, MenuParent.transform);
-        Inventory playerInventory  = gameObject.GetComponent<Inventory>();
+        Inventory playerInventory = gameObject.GetComponent<Inventory>();
         playerInfoBarInstance.GetComponentInChildren<CurrencyCounters>().PlayerInventory = playerInventory;
+        playerInfoBarInstance.GetComponentInChildren<PlayerLevelBar>().PlayerInventory = playerInventory;
         playerInfoBarInstance.GetComponentInChildren<Currencies>().PlayerInventory = playerInventory;
-        menuObjects.Add(playerInfoBarInstance);
-        GameObject homeButtonInstance = Instantiate(HomeButton, MenuParent.transform);
-        homeButtonInstance.GetComponentInChildren<MenuManagerChangeButton>().MenuManager = this;
-        menuObjects.Add(homeButtonInstance);
+        return playerInfoBarInstance;
     }
 
 
@@ -69,5 +94,9 @@ public class MenuManager : MonoBehaviour {
             Destroy(menuObject);
         }
         menuObjects.Clear();
+    }
+    private void OnDestroy()
+    {
+        MenuTransitionEvents.OnChangeMenu -= ChangeMenu;
     }
 }
