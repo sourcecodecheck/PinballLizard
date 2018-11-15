@@ -6,11 +6,11 @@ using System.Linq;
 
 public class StoreFront : MonoBehaviour
 {
-
     public string StoreId;
     public string CatalogVersion;
     public GameObject StoreItem;
     public GameObject ItemParent;
+    public GameObject PurchaseButtons;
 
     private List<GameObject> storeItems;
     // Use this for initialization
@@ -18,7 +18,9 @@ public class StoreFront : MonoBehaviour
     {
         storeItems = new List<GameObject>();
         StoreEvents.OnLoadItem += LoadItem;
+        StoreEvents.OnShowPurchaseButton += ShowPurchaseButton;
         StoreEvents.SendLoadStore(StoreId, CatalogVersion);
+        PurchaseButtons.SetActive(false);
     }
 
     // Update is called once per frame
@@ -27,7 +29,7 @@ public class StoreFront : MonoBehaviour
 
     }
 
-    public void LoadItem(string itemId, int mayhemPrice, int bugBucksPrice)
+    public void LoadItem(string itemId, int mayhemPrice, int bugBucksPrice, string storeId, string bugBucksKey, string mayhemKey)
     {
         storeItems = storeItems.Where((item) => item != null).ToList();
         GameObject storeItem = Instantiate(StoreItem, ItemParent.transform);
@@ -35,6 +37,11 @@ public class StoreFront : MonoBehaviour
         itemScript.ItemId = itemId;
         itemScript.MayhemPrice = mayhemPrice;
         itemScript.BugBucksPrice = bugBucksPrice;
+        itemScript.CatalogVersion = CatalogVersion;
+        itemScript.StoreId = storeId;
+        itemScript.BugBucksKey = bugBucksKey;
+        itemScript.MayhemKey = mayhemKey;
+        StoreId = storeId;
         Text[] texts = storeItem.GetComponentsInChildren<Text>();
         foreach(Text text in texts)
         {
@@ -54,11 +61,16 @@ public class StoreFront : MonoBehaviour
         storeItem.transform.position += new Vector3(150 * storeItems.Count, 0);
         storeItems.Add(storeItem);
     }
+    public void ShowPurchaseButton(bool isShowing)
+    {
+        PurchaseButtons.SetActive(isShowing);
+    }
 
     private void OnDestroy()
     {
         StoreEvents.OnLoadItem -= LoadItem;
-        foreach(GameObject storeItem in storeItems)
+        StoreEvents.OnShowPurchaseButton -= ShowPurchaseButton;
+        foreach (GameObject storeItem in storeItems)
         {
             Destroy(storeItem);
         }

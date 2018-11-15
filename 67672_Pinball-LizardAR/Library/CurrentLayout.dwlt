@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 6}
-  m_MinSize: {x: 950, y: 521}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -40,8 +40,8 @@ MonoBehaviour:
     y: 0
     width: 536
     height: 594
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 277, y: 71}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -67,10 +67,10 @@ MonoBehaviour:
     y: 30
     width: 1858
     height: 987
-  m_MinSize: {x: 677, y: 471}
-  m_MaxSize: {x: 12002, y: 14042}
+  m_MinSize: {x: 681, y: 492}
+  m_MaxSize: {x: 12006, y: 14042}
   vertical: 0
-  controlID: 71
+  controlID: 79
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -207,10 +207,10 @@ MonoBehaviour:
     y: 0
     width: 1858
     height: 987
-  m_MinSize: {x: 677, y: 471}
-  m_MaxSize: {x: 12002, y: 14042}
+  m_MinSize: {x: 681, y: 492}
+  m_MaxSize: {x: 12006, y: 14042}
   vertical: 1
-  controlID: 72
+  controlID: 80
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -232,10 +232,10 @@ MonoBehaviour:
     y: 0
     width: 1858
     height: 594
-  m_MinSize: {x: 677, y: 200}
-  m_MaxSize: {x: 12002, y: 4021}
+  m_MinSize: {x: 681, y: 221}
+  m_MaxSize: {x: 12006, y: 4021}
   vertical: 0
-  controlID: 73
+  controlID: 81
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -254,8 +254,8 @@ MonoBehaviour:
     y: 0
     width: 933
     height: 594
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 204, y: 221}
+  m_MaxSize: {x: 4004, y: 4021}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -413,20 +413,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Menus
+    - Assets/Prefabs/Enemy
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs/Menus
+  - Assets/Prefabs/Enemy
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\67672_Pinball-Lizard-AR\67672_Pinball-LizardAR\67672_Pinball-LizardAR
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: d22f0000
-    m_LastClickedID: 12242
-    m_ExpandedIDs: 00000000cc2d0000002f0000362f000002300000543000006e300000723000006a3100005c330000ec3300000634000000ca9a3b
+    scrollPos: {x: 0, y: 141}
+    m_SelectedIDs: 7e320000
+    m_LastClickedID: 12926
+    m_ExpandedIDs: 00000000d62d00001a2f0000502f0000243000007630000090300000943000008c31000084330000143400002e34000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -454,7 +454,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000cc2d0000002f0000362f000002300000543000006e300000723000006a3100005c330000ec33000006340000
+    m_ExpandedIDs: 00000000d62d00001a2f0000502f0000243000007630000090300000943000008c31000084330000143400002e340000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -481,8 +481,8 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c623000052060000e8270000c03000007a300000502f0000223100005e4400000000000094280000c03100002632000078310000e22f0000dc2d0000b0320000c83200005a320000c22d0000402f0000163b000068470000ea3a0000903300003660a0ff5469e4ff
+    m_HadKeyboardFocusLastEvent: 0
+    m_ExpandedInstanceIDs: c623000052060000e8270000c03000007a300000502f0000223100005e4400000000000094280000c03100002632000078310000e22f0000dc2d0000b0320000c83200005a320000c22d0000402f0000163b000068470000ea3a0000903300003660a0ff5469e4ffbe2e000010300000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -538,21 +538,21 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 96e194ff30e294ffc4e294ffbae494ffcee494ff2e5796ffc85796ff5c5896ff4a5a96ff565a96ff640398ff820398ff8a0398ff920398ff5c889aff7a889aff82889affa2d7a2ff42d8a2ffdcd8a2ffd2daa2ffe6daa2ffb8a3abffc0a3abffeaa3abff06a4abfff0b3abff2e69b3ffaaa3b3ffa827cbff4228cbffd628cbffa22acbffb42acbffc639cbff603acbfff43acbffba3ccbffc63ccbff6627d1ff1628d1ffc028d1ff8a2ad1ff9a2ad1ff945bd1ff445cd1ffee5cd1ffbc5ed1ffd05ed1ffe282d1ff8c83d1ff3084d1fff685d1ff0286d1ff86b3d2ff1ce6d2fff0f4d2ff468fd3ff6a8fd3ff6c8fd3ff5409d9ff5809d9ff5c09d9ff6209d9ff6a09d9ff8c09d9ff9009d9ff9409d9ffb009d9ffb6a4e4ffa0f5e4ff1afbe4ffb4abe5ffb8abe5ffbcabe5ffc2abe5ff3ee7e5ff5cf6f9ffe4f7f9ff28fff9ffec59fbff305cfbff3260fbffd4fbffffe4fbffff00000000e83400001e3500003c3d0000443d0000ca420000d24200008844000090440000044600002c46000062460000e4470000ec470000
+    m_ExpandedIDs: 20c9b9ffaec9b9ff36cab9ff1eccb9ff2accb9ff4ae6b9fff6e6b9ff9ce7b9ff88e9b9ff94e9b9ffe609bcff920abcff380bbcff240dbcff300dbcfff614bdff8815bdff1416bdff0018bdff0c18bdff806dbdff126ebdff9e6ebdff8a70bdff9670bdffa2dac0ff70b2c1ff44bbc1ff0c18c2ffb618c2ff5a19c2ffe01ac2fffc1ac2fff601d7ff8a02d7ff1803d7ff9804d7ffae04d7ffca1ad7ffe21ad7ffe879e8ff927ae8ff367be8ff267de8ff327de8fff8f9e8ffa2fae8ff46fbe8ff36fde8ff42fde8ffda2cedff3054edffda54edff7e55edff7857edff8e57edfffcf2eeffa6f3eeff4af4eeff3af6eeff46f6eeff06e1f2fface1f2ff4ce2f2ff3ce4f2ff48e4f2ffac90f3ff5091f3ffee91f3ffde93f3ffea93f3ffbce0f5ffc0e0f5ffb27fffffaed9ffffc6d9ffffccd9ffffe4fbffff00000000043500000c350000e63f0000ee3f00005042000058420000c844000054460000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: RightArm
+      m_OriginalName: RightArm
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: -2680124
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 4}
     m_SearchString: 
@@ -589,13 +589,13 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
   lastFramingTime: 11899.3228227
-  m_2DMode: 1
+  m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 928.4648, y: 183.23935, z: -836.71014}
+    m_Target: {x: 512.21436, y: -39.099, z: 167.72382}
     speed: 2
-    m_Value: {x: 928.4648, y: 183.23935, z: -836.71014}
+    m_Value: {x: 512.21436, y: -39.099, z: 167.72382}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -615,25 +615,25 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
     yGrid:
-      m_Target: 0
-      speed: 2
-      m_Value: 0
-    zGrid:
       m_Target: 1
       speed: 2
       m_Value: 1
+    zGrid:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
   m_Rotation:
-    m_Target: {x: 0, y: 0, z: 0, w: 1}
+    m_Target: {x: -0.3606507, y: -0.26448503, z: 0.10742466, w: -0.88794076}
     speed: 2
-    m_Value: {x: 0, y: 0, z: 0, w: 1}
+    m_Value: {x: -0.3606507, y: -0.26448503, z: 0.10742466, w: -0.88794076}
   m_Size:
-    m_Target: 1744.5304
+    m_Target: 1258.8625
     speed: 2
-    m_Value: 1744.5304
+    m_Value: 1258.8625
   m_Ortho:
-    m_Target: 1
+    m_Target: 0
     speed: 2
-    m_Value: 1
+    m_Value: 0
   m_ShowGlobalGrid: 1
   m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
   m_LastSceneViewOrtho: 0

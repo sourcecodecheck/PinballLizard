@@ -86,6 +86,7 @@
     <Compile Include="Assets\Scripts\Menus\PlayerLevelBar.cs" />
     <Compile Include="Assets\Scripts\Menus\ScoreDisplay.cs" />
     <Compile Include="Assets\Scripts\Menus\StartGame.cs" />
+    <Compile Include="Assets\Scripts\Menus\StoreButton.cs" />
     <Compile Include="Assets\Scripts\Menus\StoreFront.cs" />
     <Compile Include="Assets\Scripts\Menus\StoreItem.cs" />
     <Compile Include="Assets\Scripts\Menus\VictoryDisplay.cs" />

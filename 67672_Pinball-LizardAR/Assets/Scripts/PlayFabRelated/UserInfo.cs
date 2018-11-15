@@ -69,6 +69,7 @@ public class UserInfo : MonoBehaviour
                 },
                 (error) =>
                 {
+                    ShowMessageWindowHelper.ShowMessage(error.ErrorMessage);
                 });
         }
     }
@@ -92,6 +93,7 @@ public class UserInfo : MonoBehaviour
                 },
                 (error) =>
                 {
+                    ShowMessageWindowHelper.ShowMessage(error.ErrorMessage);
                 });
         }
     }
@@ -130,6 +132,7 @@ public class UserInfo : MonoBehaviour
                 },
                 (error) =>
                 {
+                    ShowMessageWindowHelper.ShowMessage(error.ErrorMessage);
                 });
         }
     }

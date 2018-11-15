@@ -14,11 +14,11 @@ public static class StoreEvents
         OnLoadStore(storeId, catalogVersion);
     }
 
-    public delegate void LoadItem(string itemId, int mayhemPrice, int bugBucksPrice);
+    public delegate void LoadItem(string itemId, int mayhemPrice, int bugBucksPrice, string storeId, string bugBucksKey, string mayhemKey);
     public static event LoadItem OnLoadItem;
-    public static void SendLoadItem(string itemId, int mayhemPrice, int bugBucksPrice)
+    public static void SendLoadItem(string itemId, int mayhemPrice, int bugBucksPrice, string storeId, string bugBucksKey, string mayhemKey)
     {
-        OnLoadItem(itemId, mayhemPrice, bugBucksPrice);
+        OnLoadItem(itemId, mayhemPrice, bugBucksPrice, storeId, bugBucksKey, mayhemKey);
     }
 
     public delegate void SelectItem(string itemId);
@@ -28,10 +28,24 @@ public static class StoreEvents
         OnSelectItem(itemId);
     }
 
-    public delegate void PurchaseItem(string itemId, string currency);
-    public static event PurchaseItem OnPurchaseItem;
-    public static void SendPurchaseItem(string itemId, string currency)
+    public delegate void ShowPurchaseButton(bool isShown);
+    public static event ShowPurchaseButton OnShowPurchaseButton;
+    public static void SendShowPurchaseButton(bool isShown)
     {
-        OnPurchaseItem(itemId, currency);
+        OnShowPurchaseButton(isShown);
+    }
+
+    public delegate void StartPurchase(string currency);
+    public static event StartPurchase OnStartPurchase;
+    public static void SendStartPurchase(string currency)
+    {
+        OnStartPurchase(currency);
+    }
+
+    public delegate void PurchaseItem(string itemId, string currency, string catalogVersion, string storeId, int price);
+    public static event PurchaseItem OnPurchaseItem;
+    public static void SendPurchaseItem(string itemId, string currency, string catalogVersion, string storeId, int price)
+    {
+        OnPurchaseItem(itemId, currency, catalogVersion, storeId, price);
     }
 }

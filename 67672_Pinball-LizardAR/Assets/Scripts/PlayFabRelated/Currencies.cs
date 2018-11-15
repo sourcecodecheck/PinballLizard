@@ -47,7 +47,7 @@ public class Currencies : MonoBehaviour
                 },
                 (error) =>
                 {
-                    Debug.Log(error.ErrorMessage);
+                    ShowMessageWindowHelper.ShowMessage(error.ErrorMessage);
                 });
         }
     }
