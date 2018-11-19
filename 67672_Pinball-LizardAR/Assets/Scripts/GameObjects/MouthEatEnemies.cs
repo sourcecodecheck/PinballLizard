@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MouthEatEnemies : MonoBehaviour
+public class MouthEatEnemies : Pausable
 {
     public Sprite OpenMouth;
     public Sprite ClosedMouth;
@@ -17,12 +17,13 @@ public class MouthEatEnemies : MonoBehaviour
     private bool isBombPrimed;
 
     // Use this for initialization
-    void Start()
+    new void Start()
     {
         ammoQueue = new Queue<AmmoTypes>();
         eatenEnemies = new List<GameObject>();
         isOpen = true;
         isBombPrimed = false;
+        base.Start();
     }
 
     // Update is called once per frame
@@ -39,15 +40,18 @@ public class MouthEatEnemies : MonoBehaviour
 
     private void OnTouch()
     {
-        if (Input.touchCount > 0)
+        if (!isPaused)
         {
-            if (isOpen)
+            if (Input.touchCount > 0)
             {
-                OpenMouthBehavior();
-            }
-            else
-            {
-                ClosedMouthBehavior();
+                if (isOpen)
+                {
+                    OpenMouthBehavior();
+                }
+                else
+                {
+                    ClosedMouthBehavior();
+                }
             }
         }
     }
@@ -146,5 +150,9 @@ public class MouthEatEnemies : MonoBehaviour
             }
             eatenEnemies.Clear();
         }
+    }
+    private new void OnDestroy()
+    {
+        base.OnDestroy();
     }
 }

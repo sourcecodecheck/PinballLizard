@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ShotBehavior : MonoBehaviour
+public class ShotBehavior : Pausable
 {
     public float Speed;
     public bool HasHitBuilding;
@@ -8,26 +8,30 @@ public class ShotBehavior : MonoBehaviour
     public GameObject Explosion;
 
     // Use this for initialization
-    void Start()
+    new void Start()
     {
         HasHitBuilding = false;
+        base.Start();
     }
 
     private void Update()
     {
-        if (HasHitBuilding)
+        if (!isPaused)
         {
-            transform.position = Vector3.MoveTowards(transform.position, Camera.main.transform.position,
-                Speed * Time.deltaTime * 0.15f);
-        }
-        else
-        {
-            gameObject.transform.position += gameObject.transform.forward * Speed * Time.deltaTime;
-        }
-        if (Life <= 0)
-        {
-            Instantiate(Explosion, gameObject.transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            if (HasHitBuilding)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, Camera.main.transform.position,
+                    Speed * Time.deltaTime * 0.15f);
+            }
+            else
+            {
+                gameObject.transform.position += gameObject.transform.forward * Speed * Time.deltaTime;
+            }
+            if (Life <= 0)
+            {
+                Instantiate(Explosion, gameObject.transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -38,6 +42,10 @@ public class ShotBehavior : MonoBehaviour
             HasHitBuilding = false;
             --Life;
         }
+    }
+    private new void OnDestroy()
+    {
+        base.OnDestroy();
     }
 }
 

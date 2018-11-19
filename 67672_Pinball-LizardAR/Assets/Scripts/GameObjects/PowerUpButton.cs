@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUpButton : MonoBehaviour
+public class PowerUpButton : Pausable
 {
     public enum PowerUp { BREATH, BOMB, SKIP, MAX_POWERUP }
     public PowerUp PowerUpType;
@@ -13,72 +13,79 @@ public class PowerUpButton : MonoBehaviour
     private bool isReadyToConfirm;
     private bool isDisplayingPrice;
     private bool isDisabled;
-    void Start()
+    new void Start()
     {
         isReadyToConfirm = false;
         isDisplayingPrice = false;
         isDisabled = true;
+        base.Start();
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (PowerUpType)
+        if (!isPaused)
         {
-            case PowerUp.BREATH:
-                if (inventory.BreathWeaponCount <= 0)
-                {
-                    isDisplayingPrice = true;
-                }
-                break;
-            case PowerUp.BOMB:
-                if (inventory.InstaBombCount <= 0)
-                {
-                    isDisplayingPrice = true;
-                }
-                break;
-            case PowerUp.SKIP:
-                if (inventory.SkipCount <= 0)
-                {
-                    isDisplayingPrice = true;
-                }
-                break;
-        }
-        if (isDisplayingPrice)
-        {
-            if (CheckPrice(PowerUpType) == false)
+            switch (PowerUpType)
             {
-                isDisabled = true;
+                case PowerUp.BREATH:
+                    if (inventory.BreathWeaponCount <= 0)
+                    {
+                        isDisplayingPrice = true;
+                    }
+                    break;
+                case PowerUp.BOMB:
+                    if (inventory.InstaBombCount <= 0)
+                    {
+                        isDisplayingPrice = true;
+                    }
+                    break;
+                case PowerUp.SKIP:
+                    if (inventory.SkipCount <= 0)
+                    {
+                        isDisplayingPrice = true;
+                    }
+                    break;
+            }
+            if (isDisplayingPrice)
+            {
+                if (CheckPrice(PowerUpType) == false)
+                {
+                    isDisabled = true;
+                }
             }
         }
     }
 
     public void OnClick()
     {
-        if (isDisabled == false)
+        if (!isPaused)
         {
-            if (isReadyToConfirm)
+            if (isDisabled == false)
             {
-                switch (PowerUpType)
+                if (isReadyToConfirm)
                 {
-                    case PowerUp.BREATH:
-                        ActivateBreath();
-                        break;
-                    case PowerUp.BOMB:
-                        ActivateBoom();
-                        break;
-                    case PowerUp.SKIP:
-                        ActivateSkip();
-                        break;
+                    switch (PowerUpType)
+                    {
+                        case PowerUp.BREATH:
+                            ActivateBreath();
+                            break;
+                        case PowerUp.BOMB:
+                            ActivateBoom();
+                            break;
+                        case PowerUp.SKIP:
+                            ActivateSkip();
+                            break;
+                    }
                 }
-            }
-            else
-            {
-                isReadyToConfirm = true;
-            }
-            if (isDisplayingPrice & isReadyToConfirm)
-            {
-                Buy(PowerUpType);
+                else
+                {
+                    isReadyToConfirm = true;
+                }
+                if (isDisplayingPrice & isReadyToConfirm)
+                {
+                    Buy(PowerUpType);
+                }
             }
         }
     }

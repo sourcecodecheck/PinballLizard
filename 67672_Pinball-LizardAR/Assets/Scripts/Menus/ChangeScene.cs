@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class StartGame : MonoBehaviour {
+public class ChangeScene : MonoBehaviour {
 
+    public int SceneToChangeTo;
 	// Use this for initialization
 	void Start () {
         GetComponent<Button>().onClick.AddListener(GameStart);
@@ -17,6 +18,6 @@ public class StartGame : MonoBehaviour {
 
     private void GameStart()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(SceneToChangeTo);
     }
 }

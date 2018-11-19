@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-public class SpawnEnemies : MonoBehaviour
+public class SpawnEnemies : Pausable
 {
     public GameObject IceEnemy;
     public GameObject FireEnemy;
@@ -16,7 +16,7 @@ public class SpawnEnemies : MonoBehaviour
     private List<GameObject> spawnedEnemies;
 
     // Use this for initialization
-    void Start()
+    new void Start()
     {
         spawnedEnemies = new List<GameObject>();
         enemyCount = 0;
@@ -24,6 +24,7 @@ public class SpawnEnemies : MonoBehaviour
         {
             InvokeRepeating("DoSpawn", TimeToInitialSpawn, TimeToSpawnRepeat);
         }
+        base.Start();
     }
 
     // Update is called once per frame
@@ -34,51 +35,58 @@ public class SpawnEnemies : MonoBehaviour
 
     private void DoSpawn()
     {
-        if (enemyCount < NumberToSpawnTotal && spawnedEnemies.Count < ConcurrentEnemyCap)
+        if (!isPaused)
         {
-            //faster execute time written this way than by checking for each individual one.
-            if (IceEnemy != null)
+            if (enemyCount < NumberToSpawnTotal && spawnedEnemies.Count < ConcurrentEnemyCap)
             {
-                Vector3 spawnOffset = new Vector3(Random.Range(-0.27f, 0.27f), 0, Random.Range(-0.27f, 0.27f));
-                GameObject spawnedEnemy = null;
-                if (FireEnemy != null)
+                //faster execute time written this way than by checking for each individual one.
+                if (IceEnemy != null)
                 {
-                    if (AtomEnemy != null)
+                    Vector3 spawnOffset = new Vector3(Random.Range(-0.27f, 0.27f), 0, Random.Range(-0.27f, 0.27f));
+                    GameObject spawnedEnemy = null;
+                    if (FireEnemy != null)
                     {
-                        switch (Random.Range(0, 2))
+                        if (AtomEnemy != null)
                         {
-                            case 0:
-                                spawnedEnemy = Instantiate(IceEnemy, gameObject.transform.parent.position + spawnOffset, Quaternion.identity);
-                                break;
-                            case 1:
-                                spawnedEnemy = Instantiate(FireEnemy, gameObject.transform.parent.position + spawnOffset, Quaternion.identity);
-                                break;
-                            case 2:
-                                spawnedEnemy = Instantiate(AtomEnemy, gameObject.transform.parent.position + spawnOffset, Quaternion.identity);
-                                break;
+                            switch (Random.Range(0, 2))
+                            {
+                                case 0:
+                                    spawnedEnemy = Instantiate(IceEnemy, gameObject.transform.parent.position + spawnOffset, Quaternion.identity);
+                                    break;
+                                case 1:
+                                    spawnedEnemy = Instantiate(FireEnemy, gameObject.transform.parent.position + spawnOffset, Quaternion.identity);
+                                    break;
+                                case 2:
+                                    spawnedEnemy = Instantiate(AtomEnemy, gameObject.transform.parent.position + spawnOffset, Quaternion.identity);
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            switch (Random.Range(0, 1))
+                            {
+                                case 0:
+                                    spawnedEnemy = Instantiate(IceEnemy, gameObject.transform.parent.position + spawnOffset, Quaternion.identity);
+                                    break;
+                                case 1:
+                                    spawnedEnemy = Instantiate(FireEnemy, gameObject.transform.parent.position + spawnOffset, Quaternion.identity);
+                                    break;
+                            }
                         }
                     }
                     else
                     {
-                        switch (Random.Range(0, 1))
-                        {
-                            case 0:
-                                spawnedEnemy = Instantiate(IceEnemy, gameObject.transform.parent.position + spawnOffset, Quaternion.identity);
-                                break;
-                            case 1:
-                                spawnedEnemy = Instantiate(FireEnemy, gameObject.transform.parent.position + spawnOffset, Quaternion.identity);
-                                break;
-                        }
+                        spawnedEnemy = Instantiate(IceEnemy, gameObject.transform.parent.position + spawnOffset, Quaternion.identity);
                     }
+                    spawnedEnemy.transform.parent = gameObject.transform;
+                    spawnedEnemies.Add(spawnedEnemy);
+                    ++enemyCount;
                 }
-                else
-                {
-                    spawnedEnemy = Instantiate(IceEnemy, gameObject.transform.parent.position + spawnOffset, Quaternion.identity);
-                }
-                spawnedEnemy.transform.parent = gameObject.transform;
-                spawnedEnemies.Add(spawnedEnemy);
-                ++enemyCount;
             }
         }
+    }
+    private new void OnDestroy()
+    {
+        base.OnDestroy();
     }
 }

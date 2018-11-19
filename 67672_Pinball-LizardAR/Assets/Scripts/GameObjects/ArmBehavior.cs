@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class ArmBehavior : MonoBehaviour
+public class ArmBehavior : Pausable
 {
     public bool IsRightArm;
     public Sprite ArmPassive;
@@ -10,29 +10,33 @@ public class ArmBehavior : MonoBehaviour
     private Vector2 touchStartPosition;
 
     // Use this for initialization
-    void Start()
+    new void Start()
     {
+        base.Start();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.touchCount > 0)
+        if (!isPaused)
         {
-            Touch touch = Input.GetTouch(0);
-            switch (touch.phase)
+            if (Input.touchCount > 0)
             {
-                case TouchPhase.Began:
-                    touchStartPosition = touch.position;
-                    break;
-                case TouchPhase.Moved:
-                    Volley();
-                    break;
-                case TouchPhase.Ended:
-                    Vector2 touchTraveled = touch.position - touchStartPosition;
-                    SwipeAnimation(touchTraveled);
-                    Volley();
-                    break;
+                Touch touch = Input.GetTouch(0);
+                switch (touch.phase)
+                {
+                    case TouchPhase.Began:
+                        touchStartPosition = touch.position;
+                        break;
+                    case TouchPhase.Moved:
+                        Volley();
+                        break;
+                    case TouchPhase.Ended:
+                        Vector2 touchTraveled = touch.position - touchStartPosition;
+                        SwipeAnimation(touchTraveled);
+                        Volley();
+                        break;
+                }
             }
         }
     }
@@ -73,5 +77,9 @@ public class ArmBehavior : MonoBehaviour
     private void ResetArmPosition()
     {
         GetComponent<Image>().sprite = ArmPassive;
+    }
+    private new void OnDestroy()
+    {
+        base.OnDestroy();
     }
 }

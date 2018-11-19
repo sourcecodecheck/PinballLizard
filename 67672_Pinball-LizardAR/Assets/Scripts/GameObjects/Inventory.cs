@@ -14,6 +14,7 @@ public class Inventory : MonoBehaviour
     public int ExperienceCount;
     public int ExperienceToNextLevel;
     public int BugsEatenCount;
+    public int LastGameScore;
     public int BestScore;
 
     // Use this for initialization
