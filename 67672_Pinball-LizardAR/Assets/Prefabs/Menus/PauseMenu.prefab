@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 222162858190373392}
   - component: {fileID: 114286539333425236}
   - component: {fileID: 114463206903164770}
-  - component: {fileID: 114556170438077316}
+  - component: {fileID: 114429325186319314}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -213,6 +213,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114429325186319314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1963051459396858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ae10930565230499c74c10853baebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToChangeTo: 0
 --- !u!114 &114448359081156298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -314,18 +326,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114556170438077316
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1963051459396858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4ae10930565230499c74c10853baebf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SceneToChangeTo: 0
 --- !u!114 &114752560382925650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -338,6 +338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPaused: 0
+  LoadPauseMenu: 0
 --- !u!222 &222082765126005234
 CanvasRenderer:
   m_ObjectHideFlags: 1

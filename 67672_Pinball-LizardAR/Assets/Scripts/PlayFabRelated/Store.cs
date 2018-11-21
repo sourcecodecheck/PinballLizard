@@ -10,10 +10,14 @@ public class Store : MonoBehaviour
     public string MayhemKey;
     public string BugbucksKey;
     // Use this for initialization
+
+    private ItemCatalog itemCatalog;
     void Start()
     {
+        itemCatalog = new ItemCatalog();
         StoreEvents.OnLoadStore += GetStore;
         StoreEvents.OnPurchaseItem += StartPurchase;
+        StoreEvents.OnLoadInventory += GetUserInventory;
     }
 
 
@@ -50,6 +54,10 @@ public class Store : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("sessionticket"))
         {
+            if (itemCatalog.isLoaded != true)
+            {
+                GetCatalog(catalogVersion);
+            }
             PlayFabClientAPI.GetStoreItems(new GetStoreItemsRequest()
             {
                 CatalogVersion = catalogVersion,
@@ -59,7 +67,7 @@ public class Store : MonoBehaviour
             {
                 foreach (PlayFab.ClientModels.StoreItem item in result.Store)
                 {
-                    StoreEvents.SendLoadItem(item.ItemId,
+                    StoreEvents.SendLoadStoreItem(item.ItemId, itemCatalog.GetCatalogItem(item.ItemId).DisplayName,
                         (int)item.VirtualCurrencyPrices[MayhemKey], (int)item.VirtualCurrencyPrices[BugbucksKey],
                         result.StoreId, BugbucksKey, MayhemKey);
                 }
@@ -70,9 +78,55 @@ public class Store : MonoBehaviour
             });
         }
     }
+
+    public void GetUserInventory(string catalogVersion)
+    {
+        if (PlayerPrefs.HasKey("sessionticket"))
+        {
+            if(itemCatalog.isLoaded != true)
+            {
+                GetCatalog(catalogVersion);
+            }
+            PlayFabClientAPI.GetUserInventory(
+                new GetUserInventoryRequest(),
+                (result) => 
+                {
+                    foreach( ItemInstance item in result.Inventory )
+                    {
+                        StoreEvents.SendLoadInventoryItem(item.ItemId, itemCatalog.GetCatalogItem(item.ItemId).DisplayName, (int)item.RemainingUses);
+                    }
+                },
+                (error) => 
+                {
+                    ShowMessageWindowHelper.ShowMessage(error.ErrorMessage);
+                });
+        }
+    }
+
+    public void GetCatalog(string catalogVersion)
+    {
+        if (PlayerPrefs.HasKey("sessionticket"))
+        {
+            PlayFabClientAPI.GetCatalogItems(
+            new GetCatalogItemsRequest()
+            {
+                CatalogVersion = catalogVersion
+            },
+            (result) =>
+            {
+                itemCatalog.LoadItems(result.Catalog);
+            },
+            (error) =>
+            {
+                ShowMessageWindowHelper.ShowMessage(error.ErrorMessage);
+            });
+        }
+    }
+
     private void OnDestroy()
     {
         StoreEvents.OnLoadStore -= GetStore;
         StoreEvents.OnPurchaseItem -= StartPurchase;
+        StoreEvents.OnLoadInventory -= GetUserInventory;
     }
 }

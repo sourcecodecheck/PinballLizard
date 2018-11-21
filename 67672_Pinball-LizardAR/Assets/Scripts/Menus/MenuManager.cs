@@ -10,13 +10,22 @@ public class MenuManager : MonoBehaviour {
     public GameObject TitleScreen;
     public GameObject HomeButton;
     public GameObject StoreFront;
+    public GameObject PlayerInventoryScreen;
     public Canvas MenuParent;
 
+    private static bool hasMainMenuBeenLoaded = false;
     private List<GameObject> menuObjects;
 	// Use this for initialization
 	void Start () {
         menuObjects = new List<GameObject>();
-        LoadTitle();
+        if (hasMainMenuBeenLoaded == false)
+        {
+            LoadTitle();
+        }
+        else
+        {
+            LoadMainMenu();
+        }
         MenuTransitionEvents.OnChangeMenu += ChangeMenu;
 	}
 	
@@ -30,7 +39,8 @@ public class MenuManager : MonoBehaviour {
 
     void ChangeMenu(MenuTransitionEvents.Menus menu)
     {
-        switch(menu)
+        UnloadMenu();
+        switch (menu)
         {
             case MenuTransitionEvents.Menus.TITLE:
                 LoadTitle();
@@ -44,12 +54,15 @@ public class MenuManager : MonoBehaviour {
             case MenuTransitionEvents.Menus.STORE:
                 LoadStoreFront();
                 break;
+            default:
+                LoadMainMenu();
+                break;
         }
     }
 
     private void LoadMainMenu()
     {
-        UnloadMenu();
+        hasMainMenuBeenLoaded = true;
         menuObjects.Add(LoadPlayerInfoBar());
         menuObjects.Add(Instantiate(MainMenuButtons, MenuParent.transform));
         menuObjects.Add(Instantiate(SettingsButton, MenuParent.transform));
@@ -57,20 +70,21 @@ public class MenuManager : MonoBehaviour {
 
     private void LoadTitle()
     {
-        UnloadMenu();
         menuObjects.Add(Instantiate(TitleScreen, MenuParent.transform));
     }
 
     private void LoadPlayerInfo()
     {
-        UnloadMenu();
         menuObjects.Add(LoadPlayerInfoBar());
         menuObjects.Add(Instantiate(HomeButton, MenuParent.transform));
+        GameObject inventoryScreen = Instantiate(PlayerInventoryScreen, MenuParent.transform);
+        Inventory playerInventory = gameObject.GetComponent<Inventory>();
+        inventoryScreen.GetComponent<PlayerInventoryScreen>().PlayerInventory = playerInventory;
+        menuObjects.Add(inventoryScreen);
     }
 
     private void LoadStoreFront()
     {
-        UnloadMenu();
         menuObjects.Add(Instantiate(HomeButton, MenuParent.transform));
         menuObjects.Add(Instantiate(StoreFront, MenuParent.transform));
         menuObjects.Add(LoadPlayerInfoBar());
@@ -85,7 +99,6 @@ public class MenuManager : MonoBehaviour {
         playerInfoBarInstance.GetComponentInChildren<Currencies>().PlayerInventory = playerInventory;
         return playerInfoBarInstance;
     }
-
 
     private void UnloadMenu()
     {

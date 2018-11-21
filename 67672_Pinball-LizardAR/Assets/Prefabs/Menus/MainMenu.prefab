@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 222152105894648344}
   - component: {fileID: 114862509526637652}
   - component: {fileID: 114380383907729686}
-  - component: {fileID: 114376320075304176}
+  - component: {fileID: 114863137841014606}
   m_Layer: 0
   m_Name: StartButton
   m_TagString: Untagged
@@ -303,18 +303,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114376320075304176
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1116176024029244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4ae10930565230499c74c10853baebf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SceneToChangeTo: 1
 --- !u!114 &114380383907729686
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -510,6 +498,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114863137841014606
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1116176024029244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ae10930565230499c74c10853baebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToChangeTo: 1
 --- !u!114 &114879881877401928
 MonoBehaviour:
   m_ObjectHideFlags: 1

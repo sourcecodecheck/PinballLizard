@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 public static class MenuTransitionEvents
 {
-    public enum Menus {TITLE, MAIN, PLAYERINFO, STORE, SETTINGS, MAX_MENUS }
+    public enum Menus {TITLE = 0, MAIN, PLAYERINFO, STORE, SETTINGS, MAX_MENUS }
     public delegate void ChangeMenu(Menus menu);
     public static event ChangeMenu OnChangeMenu;
     public static void SendChangeMenu(Menus menu)

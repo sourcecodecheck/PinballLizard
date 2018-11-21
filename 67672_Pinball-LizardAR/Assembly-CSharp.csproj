@@ -84,10 +84,13 @@
     <Compile Include="Assets\Scripts\GameStates\MainGameUIManager.cs" />
     <Compile Include="Assets\Scripts\Menus\ChangeScene.cs" />
     <Compile Include="Assets\Scripts\Menus\CurrencyCounters.cs" />
+    <Compile Include="Assets\Scripts\Menus\InventoryItem.cs" />
+    <Compile Include="Assets\Scripts\Menus\ItemCatalog.cs" />
     <Compile Include="Assets\Scripts\Menus\MenuManager.cs" />
     <Compile Include="Assets\Scripts\Menus\MenuManagerChangeButton.cs" />
     <Compile Include="Assets\Scripts\Menus\PauseButton.cs" />
     <Compile Include="Assets\Scripts\Menus\PauseMenu.cs" />
+    <Compile Include="Assets\Scripts\Menus\PlayerInventoryScreen.cs" />
     <Compile Include="Assets\Scripts\Menus\PlayerLevelBar.cs" />
     <Compile Include="Assets\Scripts\Menus\ScoreDisplay.cs" />
     <Compile Include="Assets\Scripts\Menus\StoreButton.cs" />

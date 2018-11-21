@@ -14,13 +14,13 @@ public static class StoreEvents
         OnLoadStore(storeId, catalogVersion);
     }
 
-    public delegate void LoadItem(string itemId, int mayhemPrice, int bugBucksPrice, string storeId, string bugBucksKey, string mayhemKey);
-    public static event LoadItem OnLoadItem;
-    public static void SendLoadItem(string itemId, int mayhemPrice, int bugBucksPrice, string storeId, string bugBucksKey, string mayhemKey)
+    public delegate void LoadStoreItem(string itemId, string itemName, int mayhemPrice, int bugBucksPrice, string storeId, string bugBucksKey, string mayhemKey);
+    public static event LoadStoreItem OnLoadStoreItem;
+    public static void SendLoadStoreItem(string itemId, string itemName, int mayhemPrice, int bugBucksPrice, string storeId, string bugBucksKey, string mayhemKey)
     {
-        OnLoadItem(itemId, mayhemPrice, bugBucksPrice, storeId, bugBucksKey, mayhemKey);
+        OnLoadStoreItem(itemId, itemName, mayhemPrice, bugBucksPrice, storeId, bugBucksKey, mayhemKey);
     }
-
+    
     public delegate void SelectItem(string itemId);
     public static event SelectItem OnSelectItem;
     public static void SendSelectItem(string itemId)
@@ -47,5 +47,19 @@ public static class StoreEvents
     public static void SendPurchaseItem(string itemId, string currency, string catalogVersion, string storeId, int price)
     {
         OnPurchaseItem(itemId, currency, catalogVersion, storeId, price);
+    }
+
+    public delegate void LoadInventory(string catalogVersion);
+    public static event LoadInventory OnLoadInventory;
+    public static void SendLoadInventory(string catalogVersion)
+    {
+        OnLoadInventory(catalogVersion);
+    }
+
+    public delegate void LoadInventoryItem(string itemId, string itemName, int count);
+    public static event LoadInventoryItem OnLoadInventoryItem;
+    public static void SendLoadInventoryItem(string itemId, string itemName, int count)
+    {
+        OnLoadInventoryItem(itemId, itemName, count);
     }
 }

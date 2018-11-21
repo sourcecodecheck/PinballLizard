@@ -6,18 +6,19 @@ using UnityEngine.UI;
 
 public class ChangeScene : MonoBehaviour {
 
-    public int SceneToChangeTo;
+    public int sceneToChangeTo;
 	// Use this for initialization
 	void Start () {
         GetComponent<Button>().onClick.AddListener(GameStart);
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    { 
 	}
 
     private void GameStart()
     {
-        SceneManager.LoadScene(SceneToChangeTo);
+        SceneManager.LoadScene(sceneToChangeTo);
     }
 }

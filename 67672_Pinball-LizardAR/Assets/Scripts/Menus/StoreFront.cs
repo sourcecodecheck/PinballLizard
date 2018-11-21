@@ -17,7 +17,7 @@ public class StoreFront : MonoBehaviour
     void Start()
     {
         storeItems = new List<GameObject>();
-        StoreEvents.OnLoadItem += LoadItem;
+        StoreEvents.OnLoadStoreItem += LoadItem;
         StoreEvents.OnShowPurchaseButton += ShowPurchaseButton;
         StoreEvents.SendLoadStore(StoreId, CatalogVersion);
         PurchaseButtons.SetActive(false);
@@ -29,7 +29,7 @@ public class StoreFront : MonoBehaviour
 
     }
 
-    public void LoadItem(string itemId, int mayhemPrice, int bugBucksPrice, string storeId, string bugBucksKey, string mayhemKey)
+    public void LoadItem(string itemId, string itemName, int mayhemPrice, int bugBucksPrice, string storeId, string bugBucksKey, string mayhemKey)
     {
         storeItems = storeItems.Where((item) => item != null).ToList();
         GameObject storeItem = Instantiate(StoreItem, ItemParent.transform);
@@ -47,7 +47,7 @@ public class StoreFront : MonoBehaviour
         {
             if(text.name.ToLower().Contains("item"))
             {
-                text.text = itemId;
+                text.text = itemName;
             }
             else if (text.name.ToLower().Contains("may"))
             {
@@ -68,7 +68,7 @@ public class StoreFront : MonoBehaviour
 
     private void OnDestroy()
     {
-        StoreEvents.OnLoadItem -= LoadItem;
+        StoreEvents.OnLoadStoreItem -= LoadItem;
         StoreEvents.OnShowPurchaseButton -= ShowPurchaseButton;
         foreach (GameObject storeItem in storeItems)
         {

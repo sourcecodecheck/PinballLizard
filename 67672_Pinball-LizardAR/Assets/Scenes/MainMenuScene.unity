@@ -167,6 +167,7 @@ MonoBehaviour:
   ExperienceCount: 0
   ExperienceToNextLevel: 1000
   BugsEatenCount: 0
+  LastGameScore: 0
   BestScore: 0
 --- !u!114 &1148015815
 MonoBehaviour:
@@ -189,6 +190,8 @@ MonoBehaviour:
     type: 2}
   HomeButton: {fileID: 1048746306678580, guid: af17b7190148ff945b47c62924658947, type: 2}
   StoreFront: {fileID: 1677990113670032, guid: 154602223b3a58645b083ca99022c958, type: 2}
+  PlayerInventoryScreen: {fileID: 1088036484681284, guid: 8966bc02e1b636f4583062c20fb34734,
+    type: 2}
   MenuParent: {fileID: 2137016349}
 --- !u!114 &1148015816
 MonoBehaviour:
