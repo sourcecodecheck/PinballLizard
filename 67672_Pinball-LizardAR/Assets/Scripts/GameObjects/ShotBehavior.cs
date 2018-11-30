@@ -33,6 +33,10 @@ public class ShotBehavior : Pausable
                 Destroy(gameObject);
             }
         }
+        if(Vector3.Distance(transform.position, Camera.main.transform.position) > 5 || Vector3.Distance(transform.position, Camera.main.transform.position) <= 0) 
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void Volley()
@@ -45,6 +49,7 @@ public class ShotBehavior : Pausable
     }
     private new void OnDestroy()
     {
+        GamePlayEvents.SendShotDestroyed();
         base.OnDestroy();
     }
 }

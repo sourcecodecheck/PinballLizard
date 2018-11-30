@@ -1,0 +1,51 @@
+AnimationStateScripts -Sends events when an animation finishes, may do other things eventually.
+	Items within are self explanatory
+ArCore: Houses ARCore controller which does our little bit of AR code
+Events: Static classes containing C# events through which other classes may communicate.
+	Items within are self explanatory
+GameObjects: Contains behaviors for in game objects
+	City: Generative city stuff, including collsion detection
+		HexGrid: Generates the city
+		City: GameObject that holds the city
+		Building: Collision behaviors for non destroyed building
+		HexBehavior: Collision behaviors for destroyed building parts
+	ArmBehavior: Handles behaviors for arms. Animations and volleying of shots
+	EnemyBehavior: Handles behaviors for enemies.
+	InGameStore: Placeholder for handling the in game stored
+	MouthBehavior: Handles Behaviors for  mouth. Eating and shooting enemies.
+	Pausable: Parent object for things affected by pausing.
+	PowerUpButton: Placeholder for activating powerups.
+	ShotBehavior: Handles player shot behaviors
+	SpawnEnemies: Spawns enemies
+Managers: Manager type scripts, handles things that are out of the scope of individual objects
+	Inventory: Local representation of certain player stats and inventory
+	MainGameContoller: Controls main game, including scoring and tracking events within the game.
+	MainGameUIManager: Currently handles loading the pause menu.
+	MenuManager: Handles loading menus in the main menu scene.
+Menus: Scripts that have to do with menu functionality
+	ChangeScene: Changes to a scene.
+	CurrencyCounters: Displays for currencies
+	InventoryItem: Representation of an item in the player inventory on screen
+	MenuManagerChangeButton: Causes the MenuManager to load a menu.
+	PauseButton: Pauses game.
+	PauseMenu: Destroys pause menu when game is unpaused
+	PlayerInventoryScreen: Displays player inventory
+	PlayerLevelBar: Experience bar for player.
+	ScoreDisplay: Displays score
+	StoreButton: Buttons for confirming/canceling purchase in store
+	StoreFront: Displays a store's contents
+	StoreItem: Representation of a store item on screen
+	VictoryDisplay: Shows the victory screen
+PlatformSpecific: Scripts that implement and abstract  platform specific functionality
+	Android: Android specific  functionality
+		AndroidDeviceIdLogin: Logs player into  PlayFab with android deviceId
+		AndroidHelpers: Small helper functions that don't merit their own class for Android specific functionality
+	LoginHelper: Abstracts logging in based on OS
+	ShowMessageWindowHelper: Abstracts showing a message window based on OS
+PlayFabRelated: PlayFab API calls
+	ItemCatalog: Stores item catalog retrieved from PlayFab
+	Currencies: Gets Currency info from PlayFab
+	Store: Gets Store items, catalogs and handles purchases
+	UserInfo: Gets statistics from PlayFab
+SavedData: Scripts for data that can persist and is stored locally.
+	Settings: Placeholder for settings

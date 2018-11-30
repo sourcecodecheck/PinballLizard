@@ -87,7 +87,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 2b98b0218f306a64e86a2c39e99ba90a, type: 3}
+  - {fileID: 2100000, guid: cfb73767b61a9d64498828afe444c20e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f26b70fac133744a47f70a9c7ed606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPaused: 0
   IceEnemy: {fileID: 1198820157500438, guid: e0bee6feaf3255d409258b54ae04d83d, type: 2}
   FireEnemy: {fileID: 0}
   AtomEnemy: {fileID: 0}

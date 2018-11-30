@@ -11,12 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0199c11aa6f514784c5c69cd8378d8, type: 3}
   m_Name: PlayFabEditorPrefsSO
   m_EditorClassIdentifier: 
-  DevAccountEmail: jill.malta@indigoslate.com
-  DevAccountToken: o4y397r6tq63tgxp47w8gq8zr6aqefmw3zr75betesfgepnf7nb3i4kjycfmst7d6j9mkonof7pyw67dybpxnh6yykfwxfh4e3r4ghfy8sizxs9rgpr93whe47cpn6zi7fm7eccswnbewngrm7yeqmh3gkxfi89hnpgn7xowthy3ymk1gxyognjofw56rm3k5npyc479
-  SelectedStudio: Pinball Lizard V2
-  SdkPath: Assets/SDKs/PlayFabSdk
+  DevAccountEmail: 
+  DevAccountToken: 
+  SelectedStudio: 
+  SdkPath: 
   EdExPath: 
   LocalCloudScriptPath: 
   PanelIsShown: 0
-  curMainMenuIdx: 1
+  curMainMenuIdx: 0
   curSubMenuIdx: 0

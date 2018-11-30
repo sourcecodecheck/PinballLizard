@@ -4,21 +4,39 @@ using UnityEngine.UI;
 public class ArmBehavior : Pausable
 {
     public bool IsRightArm;
-    public Sprite ArmPassive;
-    public Sprite ArmActive;
+    public GameObject ArmEnter;
+    public GameObject ArmIdle;
+    public GameObject ArmAction;
+    public GameObject ArmExit;
+    public GameObject Flash;
 
     private Vector2 touchStartPosition;
+    private GameObject activeAnimation;
+    private bool isActive;
 
     // Use this for initialization
     new void Start()
     {
+        isActive = false;
         base.Start();
+        AnimationEvents.OnHandsEnter += HandleArmEnter;
+        AnimationEvents.OnHandsEntered += HandleArmEntered;
+        AnimationEvents.OnHandsExit += HandleArmExit;
+        AnimationEvents.OnHandsExited += HandleArmExited;
+        if (IsRightArm)
+        {
+            AnimationEvents.OnRightHandSwiped += HandleArmSwiped;
+        }
+        else
+        {
+            AnimationEvents.OnLeftHandSwiped += HandleArmSwiped;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isPaused)
+        if (!isPaused && isActive)
         {
             if (Input.touchCount > 0)
             {
@@ -60,26 +78,115 @@ public class ArmBehavior : Pausable
             }
         }
     }
+    private void HandleArmEnter()
+    {
+        if (activeAnimation != null)
+        {
+            activeAnimation.SetActive(false);
+        }
+        isActive = true;
+        activeAnimation = ArmEnter;
+        activeAnimation.SetActive(true);
+    }
+    private void HandleArmEntered()
+    {
+        if (isActive)
+        {
+            if (activeAnimation != null)
+            {
+                activeAnimation.SetActive(false);
+            }
+            activeAnimation = ArmIdle;
+            activeAnimation.SetActive(true);
+        }
+    }
+    private void HandleArmSwiped()
+    {
+        if (isActive)
+        {
+            if (activeAnimation != null)
+            {
+                activeAnimation.SetActive(false);
+            }
+            activeAnimation = ArmIdle;
+            activeAnimation.SetActive(true);
+            Flash.SetActive(false);
+        }
+    }
+
+    private void HandleArmExit()
+    {
+        if (isActive)
+        {
+            isActive = false;
+            if (activeAnimation != null)
+            {
+                activeAnimation.SetActive(false);
+            }
+            activeAnimation = ArmExit;
+            activeAnimation.SetActive(true);
+        }
+    }
+
+    private void HandleArmExited()
+    {
+        if (!isActive)
+        {
+            if (activeAnimation != null)
+            {
+                activeAnimation.SetActive(false);
+            }
+            activeAnimation = null;
+        }
+    }
 
     private void SwipeAnimation(Vector2 touchTraveled)
     {
-        if (touchTraveled.x > 0 && !IsRightArm)
+        if (isActive)
         {
-            GetComponent<Image>().sprite = ArmActive;
+            if (touchTraveled.x > 0 && !IsRightArm)
+            {
+                if (activeAnimation != null)
+                {
+                    activeAnimation.SetActive(false);
+                }
+                if (activeAnimation != ArmAction)
+                {
+                    activeAnimation = ArmAction;
+                    activeAnimation.SetActive(true);
+                    Flash.SetActive(true);
+                }
+            }
+            else if (touchTraveled.x < 0 && IsRightArm)
+            {
+                if (activeAnimation != null)
+                {
+                    activeAnimation.SetActive(false);
+                }
+                if (activeAnimation != ArmAction)
+                {
+                    activeAnimation = ArmAction;
+                    activeAnimation.SetActive(true);
+                    Flash.SetActive(true);
+                }
+            }
         }
-        else if (touchTraveled.x < 0 && IsRightArm)
-        {
-            GetComponent<Image>().sprite = ArmActive;
-        }
-        Invoke("ResetArmPosition", 0.5f);
     }
 
-    private void ResetArmPosition()
-    {
-        GetComponent<Image>().sprite = ArmPassive;
-    }
     private new void OnDestroy()
     {
         base.OnDestroy();
+        AnimationEvents.OnHandsEnter -= HandleArmEnter;
+        AnimationEvents.OnHandsEntered -= HandleArmEntered;
+        AnimationEvents.OnHandsExit -= HandleArmExit;
+        AnimationEvents.OnHandsExited -= HandleArmExited;
+        if (IsRightArm)
+        {
+            AnimationEvents.OnRightHandSwiped -= HandleArmSwiped;
+        }
+        else
+        {
+            AnimationEvents.OnLeftHandSwiped -= HandleArmSwiped;
+        }
     }
 }

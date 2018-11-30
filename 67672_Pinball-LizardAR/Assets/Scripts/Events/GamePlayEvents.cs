@@ -26,4 +26,11 @@ public static class GamePlayEvents
     {
         OnLoadPauseMenu();
     }
+
+    public delegate void ShotDestroyed();
+    public static event ShotDestroyed OnShotDestroyed;
+    public static void SendShotDestroyed()
+    {
+        OnShotDestroyed();
+    }
 }

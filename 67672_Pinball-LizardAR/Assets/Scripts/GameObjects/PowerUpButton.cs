@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class PowerUpButton : Pausable
 {
-    public enum PowerUp { BREATH, BOMB, SKIP, MAX_POWERUP }
+    public enum PowerUp {BOMB, NUKE, MAX_POWERUP }
     public PowerUp PowerUpType;
     public Inventory inventory;
-    public MouthEatEnemies mouthEatEnemies;
-    public BreathWeapon breathWeapon;
+    public MouthBehavior mouthEatEnemies;
 
     private bool isReadyToConfirm;
     private bool isDisplayingPrice;
@@ -28,19 +27,13 @@ public class PowerUpButton : Pausable
         {
             switch (PowerUpType)
             {
-                case PowerUp.BREATH:
-                    if (inventory.BreathWeaponCount <= 0)
-                    {
-                        isDisplayingPrice = true;
-                    }
-                    break;
                 case PowerUp.BOMB:
                     if (inventory.InstaBombCount <= 0)
                     {
                         isDisplayingPrice = true;
                     }
                     break;
-                case PowerUp.SKIP:
+                case PowerUp.NUKE:
                     if (inventory.SkipCount <= 0)
                     {
                         isDisplayingPrice = true;
@@ -67,13 +60,10 @@ public class PowerUpButton : Pausable
                 {
                     switch (PowerUpType)
                     {
-                        case PowerUp.BREATH:
-                            ActivateBreath();
-                            break;
                         case PowerUp.BOMB:
                             ActivateBoom();
                             break;
-                        case PowerUp.SKIP:
+                        case PowerUp.NUKE:
                             ActivateSkip();
                             break;
                     }
@@ -88,11 +78,6 @@ public class PowerUpButton : Pausable
                 }
             }
         }
-    }
-
-    private void ActivateBreath()
-    {
-
     }
 
     private void ActivateBoom()
@@ -112,5 +97,9 @@ public class PowerUpButton : Pausable
     private bool CheckPrice(PowerUp powerUpType)
     {
         return false;
+    }
+    private new void OnDestroy()
+    {
+        base.OnDestroy();
     }
 }
