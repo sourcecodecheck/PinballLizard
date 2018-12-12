@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public int BreathWeaponCount;
-    public int SkipCount;
-    public int InstaBombCount;
+    public int NukeCount;
+    public int SpicyMeataBallCount;
     public int MayhemCount;
     public int BugBucksCount;
     public int AnimosityCount;

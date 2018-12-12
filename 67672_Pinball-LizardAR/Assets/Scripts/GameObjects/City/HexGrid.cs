@@ -32,9 +32,9 @@ namespace Assets.DataStructures
             BlankSpot = null;
             Root = null;
             nodeMax = 0;
-            MaxX = 0;
+            MaxX = -99999999;
             MinX = 99999999;
-            MaxZ = 0;
+            MaxZ = -99999999;
             MinZ = 99999999;
         }
 

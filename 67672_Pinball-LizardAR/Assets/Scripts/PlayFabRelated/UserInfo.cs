@@ -12,11 +12,14 @@ public class UserInfo : MonoBehaviour
     public string ExperienceKey;
     public string BugsEatenKey;
     public string BestScoreKey;
+
+    private ChallengeMode challengeMode;
     // Use this for initialization
     void Start()
     {
         InvokeRepeating("UpdateUserDataFromPlayFab", 0.5f, 5.0f);
         TrackingEvents.OnGameVictory += GameVictory;
+        challengeMode = new ChallengeMode();
     }
 
     // Update is called once per frame
@@ -52,7 +55,8 @@ public class UserInfo : MonoBehaviour
                 new ExecuteCloudScriptRequest()
                 {
                     FunctionName = "submitScore",
-                    FunctionParameter = PlayerInventory.LastGameScore
+                    FunctionParameter = new { score = PlayerInventory.LastGameScore,
+                        bugsEaten = PlayerInventory.BugsEatenCount } 
                 }, 
                 (result) => 
                 {
@@ -67,7 +71,14 @@ public class UserInfo : MonoBehaviour
     {
         PlayerInventory.LastGameScore = score;
         PlayerInventory.BugsEatenCount += bugsEaten;
-        SubmitScoreToPlayFab();
+        if (PlayerPrefs.HasKey("ischallenge") && PlayerPrefs.GetInt("ischallenge") == 1)
+        {
+            challengeMode.SendScore(PlayerInventory.LastGameScore, PlayerInventory.BugsEatenCount);
+        }
+        else
+        {
+            SubmitScoreToPlayFab();
+        }
     }
 
     private void SetUpNewPlayer()

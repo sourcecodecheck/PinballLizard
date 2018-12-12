@@ -157,9 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 133c1849945e7d34599222d32c931b6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BreathWeaponCount: 0
-  SkipCount: 0
-  InstaBombCount: 0
+  NukeCount: 0
+  SpicyMeataBallCount: 0
   MayhemCount: 0
   BugBucksCount: 0
   AnimosityCount: 0
@@ -192,6 +191,7 @@ MonoBehaviour:
   StoreFront: {fileID: 1677990113670032, guid: 154602223b3a58645b083ca99022c958, type: 2}
   PlayerInventoryScreen: {fileID: 1088036484681284, guid: 8966bc02e1b636f4583062c20fb34734,
     type: 2}
+  ARMenu: {fileID: 1390503810120132, guid: 6c35c517cfefcb14e87bfa1539968394, type: 2}
   MenuParent: {fileID: 2137016349}
 --- !u!114 &1148015816
 MonoBehaviour:

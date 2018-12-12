@@ -13,7 +13,7 @@ public class MainGameController : MonoBehaviour
     private bool resetMultiplier;
     private int bugsEatenThisGame;
     private int buildingCount;
-    void Start()
+    void Awake()
     {
         gameScore = 0;
         gameMultiplier = 1.0f;
@@ -24,6 +24,10 @@ public class MainGameController : MonoBehaviour
         TrackingEvents.OnBugEaten += AddBug;
         TrackingEvents.OnCityGenerated += CityGenerated;
         TrackingEvents.OnBuildingDestroyed += BuildingDestroyed;
+    }
+    private void Start()
+    {
+        
     }
 
     // Update is called once per frame

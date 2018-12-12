@@ -1,4 +1,6 @@
-﻿public static class ScoreEvents
+﻿using System.Collections.Generic;
+using PlayFab.ClientModels;
+public static class ScoreEvents
 {
     public delegate void AddScore(int scoreToAdd);
     public static event AddScore OnAddScore;
@@ -26,6 +28,13 @@
     public static void SendAddMultiplier(float multiplierToAdd)
     {
         OnAddMultiplier(multiplierToAdd);
+    }
+
+    public delegate void LeaderBoardRetrieved(List<PlayerLeaderboardEntry> leaderboardEntries);
+    public static event LeaderBoardRetrieved OnLeaderBoardRetrieved;
+    public static void SendLeaderBoardRetrieved(List<PlayerLeaderboardEntry> leaderboardEntries)
+    {
+        OnLeaderBoardRetrieved(leaderboardEntries);
     }
 }
 

@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class MouthBehavior: Pausable
+public class MouthBehavior : Pausable
 {
     public GameObject MouthIntro;
     public GameObject MouthIdle;
@@ -11,21 +10,23 @@ public class MouthBehavior: Pausable
     public GameObject IceAmmo;
     public GameObject FireAmmo;
     public GameObject AtomAmmo;
+    public float ShotScale;
 
     private enum AmmoTypes { ICE = 0, FIRE, ATOM, MAX_AMMOTYPES }
+    private enum MouthState { OPEN, NOM, CLOSED}
     private Queue<AmmoTypes> ammoQueue;
-    private List<GameObject> eatenEnemies;
+    private List<GameObject> taggedEnemies;
     private int shotsExisting;
-    private bool isOpen;
+    private MouthState state;
     private bool isBombPrimed;
     private GameObject activeAnimation;
 
     // Use this for initialization
-    new void Start()
+    void Awake()
     {
         ammoQueue = new Queue<AmmoTypes>();
-        eatenEnemies = new List<GameObject>();
-        isOpen = true;
+        taggedEnemies = new List<GameObject>();
+        state = MouthState.OPEN;
         isBombPrimed = false;
         AnimationEvents.OnMouthEnter += HandleMouthEnter;
         AnimationEvents.OnMouthEntered += HandleMouthEntered;
@@ -53,11 +54,11 @@ public class MouthBehavior: Pausable
         {
             if (Input.touchCount > 0)
             {
-                if (isOpen)
+                if (state == MouthState.OPEN)
                 {
                     OpenMouthBehavior();
                 }
-                else
+                else if(state == MouthState.CLOSED)
                 {
                     ClosedMouthBehavior();
                 }
@@ -67,6 +68,7 @@ public class MouthBehavior: Pausable
 
     private void OpenMouthBehavior()
     {
+        bool doNom = false;
         foreach (Touch touch in Input.touches)
         {
             Ray ray = Camera.main.ScreenPointToRay(touch.position);
@@ -77,38 +79,51 @@ public class MouthBehavior: Pausable
                 {
                     GameObject hitobject = dragHit.transform.gameObject;
                     string hitobbjectName = hitobject.name.ToLower();
-                    if (hitobbjectName.Contains("enemy") && hitobject.GetComponent<EnemyBehavior>().Grabbable == true)
+                    if (hitobbjectName.Contains("enemy") && hitobject.GetComponent<EnemyBehavior>().Grabbable == true && taggedEnemies.Contains(hitobject.gameObject) == false)
                     {
-                        Vector3 touchScreenSpace = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 0.1f));
-                        Vector3 offset = hitobject.transform.position - touchScreenSpace;
-                        hitobject.transform.position = Vector3.Lerp(hitobject.transform.position, touchScreenSpace, Time.deltaTime * 3);
-                        if (touch.position.y < (Screen.height * 0.2f))
-                        {
-
-                                DoNom();
-                            hitobject.SetActive(false);
-                            eatenEnemies.Add(hitobject);
-                            TrackingEvents.SendBugEaten();
-                            if (hitobbjectName.Contains("ice"))
-                            {
-                                ammoQueue.Enqueue(AmmoTypes.ICE);
-                            }
-                            else if (hitobbjectName.Contains("fire"))
-                            {
-                                ammoQueue.Enqueue(AmmoTypes.FIRE);
-                            }
-                            else if (hitobbjectName.Contains("atom"))
-                            {
-                                ammoQueue.Enqueue(AmmoTypes.ATOM);
-                            }
-                        }
+                        taggedEnemies.Add(hitobject.gameObject);
                     }
                 }
+                foreach (GameObject taggedEnemy in taggedEnemies)
+                {
+                    Vector3 touchScreenSpace = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 0.1f));
+                    touchScreenSpace.z = taggedEnemy.transform.position.z;
+                    taggedEnemy.transform.position = touchScreenSpace;//Vector3.Lerp(taggedEnemy.transform.position, touchScreenSpace, 0.8f);
+                    if (touch.position.y < (Screen.height * 0.2f))
+                    {
+                        doNom = true;
+                        break;
+                    }
+                }
+            }
+            if (doNom == true)
+            {
+                DoNom();
+                break;
             }
         }
     }
     private void DoNom()
     {
+        state = MouthState.NOM;
+        foreach (GameObject taggedEnemy in taggedEnemies)
+        {
+            taggedEnemy.SetActive(false);
+            TrackingEvents.SendBugEaten();
+            if (taggedEnemy.name.ToLower().Contains("ice"))
+            {
+                ammoQueue.Enqueue(AmmoTypes.ICE);
+            }
+            else if (taggedEnemy.name.ToLower().Contains("fire"))
+            {
+                ammoQueue.Enqueue(AmmoTypes.FIRE);
+            }
+            else if (taggedEnemy.name.ToLower().Contains("atom"))
+            {
+                ammoQueue.Enqueue(AmmoTypes.ATOM);
+            }
+        }
+        shotsExisting = ammoQueue.Count;
         if (activeAnimation != null)
         {
             activeAnimation.SetActive(false);
@@ -139,6 +154,7 @@ public class MouthBehavior: Pausable
                             instantiatedShot = Instantiate(AtomAmmo, Camera.main.transform.position, Camera.main.transform.rotation);
                             break;
                     }
+                    instantiatedShot.transform.localScale *= ShotScale;
                     if (isBombPrimed)
                     {
                         instantiatedShot.GetComponent<ShotBehavior>().Life = 0;
@@ -152,29 +168,18 @@ public class MouthBehavior: Pausable
                 }
             }
         }
-        //if(ammoQueue.Count <= 0)
-        //{
-        //    AnimationEvents.SendLeftHandExit();
-        //    AnimationEvents.SendRightHandExit();
-        //}
     }
 
     private void UpdateMouthState()
     {
-        if (ammoQueue.Count > 0)
+        if(state == MouthState.CLOSED)
         {
-
-            isOpen = false;
-        }
-        else
-        {
-            
-            foreach (GameObject enemy in eatenEnemies)
+            if (shotsExisting <= 0)
             {
-                Destroy(enemy);
+                AnimationEvents.SendHandsExit();
             }
-            eatenEnemies.Clear();
         }
+
     }
     private void HandleMouthEnter()
     {
@@ -184,7 +189,12 @@ public class MouthBehavior: Pausable
         }
         activeAnimation = MouthIntro;
         activeAnimation.SetActive(true);
-        isOpen = true;
+        state = MouthState.OPEN;
+        foreach(GameObject enemy in taggedEnemies)
+        {
+            Destroy(enemy);
+        }
+        taggedEnemies.Clear();
     }
 
     private void HandleMouthEntered()
@@ -215,15 +225,12 @@ public class MouthBehavior: Pausable
             activeAnimation.SetActive(false);
         }
         activeAnimation = null;
+        state = MouthState.CLOSED;
     }
 
     private void HandleShotDestroyed()
     {
         --shotsExisting;
-        if (shotsExisting <= 0)
-        {
-            AnimationEvents.SendHandsExit();
-        }
     }
 
     private new void OnDestroy()

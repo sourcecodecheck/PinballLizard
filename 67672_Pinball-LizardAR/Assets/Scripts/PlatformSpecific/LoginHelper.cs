@@ -14,9 +14,9 @@ class LoginHelper
     }
 #endif
 #if UNITY_IOS
-        public static void Login()
-        {
-            //Write iOS code
-        }
+    public static void Login()
+    {
+        iOSDeviceIdLogin.LoginPlayfabWithDeviceID();
+    }
 #endif
 }

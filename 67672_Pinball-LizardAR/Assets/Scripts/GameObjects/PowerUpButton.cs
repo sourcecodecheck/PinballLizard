@@ -28,13 +28,13 @@ public class PowerUpButton : Pausable
             switch (PowerUpType)
             {
                 case PowerUp.BOMB:
-                    if (inventory.InstaBombCount <= 0)
+                    if (inventory.SpicyMeataBallCount <= 0)
                     {
                         isDisplayingPrice = true;
                     }
                     break;
                 case PowerUp.NUKE:
-                    if (inventory.SkipCount <= 0)
+                    if (inventory.NukeCount <= 0)
                     {
                         isDisplayingPrice = true;
                     }

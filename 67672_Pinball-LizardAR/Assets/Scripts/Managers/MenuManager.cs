@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class MenuManager : MonoBehaviour {
-    
+public class MenuManager : MonoBehaviour
+{
     public GameObject MainMenuButtons;
     public GameObject SettingsButton;
     public GameObject PlayerInfoBar;
@@ -11,12 +12,17 @@ public class MenuManager : MonoBehaviour {
     public GameObject HomeButton;
     public GameObject StoreFront;
     public GameObject PlayerInventoryScreen;
+    public GameObject ARMenu;
+    public GameObject DailyChallengeLeaderBoard;
     public Canvas MenuParent;
 
     private static bool hasMainMenuBeenLoaded = false;
     private List<GameObject> menuObjects;
-	// Use this for initialization
-	void Start () {
+    private ChallengeMode challengeMode;
+
+    void Start()
+    {
+        challengeMode = new ChallengeMode();
         menuObjects = new List<GameObject>();
         if (hasMainMenuBeenLoaded == false)
         {
@@ -27,10 +33,10 @@ public class MenuManager : MonoBehaviour {
             LoadMainMenu();
         }
         MenuTransitionEvents.OnChangeMenu += ChangeMenu;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    void Update()
+    {
         if (Input.GetKey(KeyCode.Escape))
         {
             Application.Quit();
@@ -53,6 +59,12 @@ public class MenuManager : MonoBehaviour {
                 break;
             case MenuTransitionEvents.Menus.STORE:
                 LoadStoreFront();
+                break;
+            case MenuTransitionEvents.Menus.AR:
+                LoadAR();
+                break;
+            case MenuTransitionEvents.Menus.DAILY_CHALLENGE:
+                LoadDailyChallenge();
                 break;
             default:
                 LoadMainMenu();
@@ -89,6 +101,24 @@ public class MenuManager : MonoBehaviour {
         menuObjects.Add(Instantiate(StoreFront, MenuParent.transform));
         menuObjects.Add(LoadPlayerInfoBar());
     }
+    private void LoadAR()
+    {
+        PlayerPrefs.SetInt("ischallenge", 0);
+        PlayerPrefs.Save();
+        menuObjects.Add(Instantiate(ARMenu, MenuParent.transform));
+
+    }
+
+    private void LoadDailyChallenge()
+    {
+        PlayerPrefs.SetInt("ischallenge", 1);
+        PlayerPrefs.Save();
+        challengeMode.GetChallengeSeed();
+        challengeMode.GetLeaderBoard();
+        //uncomment this when we have a leaderboard graphic
+        //menuObjects.Add(Instantiate(DailyChallengeLeaderBoard, MenuParent.transform));
+        menuObjects.Add(Instantiate(ARMenu, MenuParent.transform));
+    }
 
     private GameObject LoadPlayerInfoBar()
     {
@@ -102,7 +132,7 @@ public class MenuManager : MonoBehaviour {
 
     private void UnloadMenu()
     {
-        foreach(GameObject menuObject in menuObjects)
+        foreach (GameObject menuObject in menuObjects)
         {
             Destroy(menuObject);
         }

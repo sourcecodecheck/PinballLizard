@@ -11,6 +11,7 @@ public class SpawnEnemies : Pausable
     public float TimeToSpawnRepeat;
     public int NumberToSpawnTotal;
     public int ConcurrentEnemyCap;
+    public float scale;
 
     private int enemyCount;
     private List<GameObject> spawnedEnemies;
@@ -78,6 +79,7 @@ public class SpawnEnemies : Pausable
                     {
                         spawnedEnemy = Instantiate(IceEnemy, gameObject.transform.parent.position + spawnOffset, Quaternion.identity);
                     }
+                    spawnedEnemy.transform.localScale *= scale;
                     spawnedEnemy.transform.parent = gameObject.transform;
                     spawnedEnemies.Add(spawnedEnemy);
                     ++enemyCount;

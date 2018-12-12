@@ -24,7 +24,8 @@ public class Building : MonoBehaviour
         if (collision.gameObject.name.ToLower().Contains("shot") && !isSelfDestructing)
         {
             isSelfDestructing = true;
-            Instantiate(HexStack, gameObject.transform.position, gameObject.transform.localRotation);
+            GameObject stack = Instantiate(HexStack, gameObject.transform.position, gameObject.transform.localRotation);
+            stack.transform.localScale = transform.localScale;
             Invoke("DestroySelf", 0.1f);
         }
 

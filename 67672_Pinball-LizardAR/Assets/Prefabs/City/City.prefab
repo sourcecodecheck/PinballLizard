@@ -133,6 +133,7 @@ MonoBehaviour:
   TimeToSpawnRepeat: 4
   NumberToSpawnTotal: 33
   ConcurrentEnemyCap: 5
+  scale: 1
 --- !u!114 &114519317890729990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -144,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aef10ef53227ad048a3e7412db748a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPaused: 0
   Building1: {fileID: 1717734478576906, guid: 06145f045336e74499c28577bd04fd37, type: 2}
   Building2: {fileID: 1626969153671788, guid: d52b327de7967cf4aaa15e0c30051942, type: 2}
   Building3: {fileID: 1142868106857186, guid: 018c15737243ee94da3b0937e1cc06f7, type: 2}
@@ -156,4 +158,6 @@ MonoBehaviour:
   Base: {fileID: 1954204498666104}
   NumberOfBuildingsGenerated: 30
   BuildingToBlankRatio: 1
+  scale: 1
   Seed: 0
+  isAR: 1

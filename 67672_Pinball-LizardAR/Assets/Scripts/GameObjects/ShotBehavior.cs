@@ -2,16 +2,31 @@
 
 public class ShotBehavior : Pausable
 {
-    public float Speed;
     public bool HasHitBuilding;
+    public float Speed;
     public int Life;
     public GameObject Explosion;
+    public float DeathDistance;
+
+    private float deathDistanceDerivedSpeed;
+    private bool isBeingDestroyed;
 
     // Use this for initialization
     new void Start()
     {
         HasHitBuilding = false;
         base.Start();
+        GameObject city = GameObject.Find("City");
+        if(city != null)
+        {
+            DeathDistance = Vector3.Distance(city.transform.position, Camera.main.transform.position) * 1.5f;
+        }
+        else
+        {
+            DeathDistance = 5;
+        }
+        isBeingDestroyed = false;
+        deathDistanceDerivedSpeed = DeathDistance * 0.1f;
     }
 
     private void Update()
@@ -21,11 +36,11 @@ public class ShotBehavior : Pausable
             if (HasHitBuilding)
             {
                 transform.position = Vector3.MoveTowards(transform.position, Camera.main.transform.position,
-                    Speed * Time.deltaTime * 0.15f);
+                   deathDistanceDerivedSpeed * Time.deltaTime);
             }
             else
             {
-                gameObject.transform.position += gameObject.transform.forward * Speed * Time.deltaTime;
+                gameObject.transform.position += gameObject.transform.forward * deathDistanceDerivedSpeed * Time.deltaTime;
             }
             if (Life <= 0)
             {
@@ -33,8 +48,11 @@ public class ShotBehavior : Pausable
                 Destroy(gameObject);
             }
         }
-        if(Vector3.Distance(transform.position, Camera.main.transform.position) > 5 || Vector3.Distance(transform.position, Camera.main.transform.position) <= 0) 
+        if((Vector3.Distance(transform.position, Camera.main.transform.position) > DeathDistance 
+            || Vector3.Distance(transform.position, Camera.main.transform.position) <= 0) 
+            && isBeingDestroyed == false ) 
         {
+            isBeingDestroyed = true;
             Destroy(gameObject);
         }
     }

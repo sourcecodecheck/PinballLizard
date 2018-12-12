@@ -68,11 +68,12 @@ public class ArmBehavior : Pausable
             foreach (RaycastHit draghit in draghits)
             {
                 GameObject hitobject = draghit.transform.gameObject;
-                if (draghit.distance < 0.3f && hitobject.name.ToLower().Contains("shot") &&
-                    hitobject.GetComponent<ShotBehavior>().HasHitBuilding == true)
+                ShotBehavior shotBehavior = hitobject.GetComponent<ShotBehavior>();
+                if (draghit.distance < (shotBehavior.DeathDistance * 0.2f) && hitobject.name.ToLower().Contains("shot") &&
+                    shotBehavior.HasHitBuilding == true)
                 {
                     hitobject.transform.rotation = Camera.main.transform.rotation;
-                    hitobject.GetComponent<ShotBehavior>().HasHitBuilding = false;
+                    shotBehavior.HasHitBuilding = false;
                     ScoreEvents.SendAddMultiplier(0.5f);
                 }
             }
