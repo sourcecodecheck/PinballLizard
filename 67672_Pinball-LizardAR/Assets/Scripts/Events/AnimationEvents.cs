@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-public static class AnimationEvents
+﻿public static class AnimationEvents
 {
     public delegate void MouthEnter();
     public static event MouthEnter OnMouthEnter;

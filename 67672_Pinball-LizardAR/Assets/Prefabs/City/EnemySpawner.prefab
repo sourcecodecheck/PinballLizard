@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPaused: 0
-  IceEnemy: {fileID: 1198820157500438, guid: e0bee6feaf3255d409258b54ae04d83d, type: 2}
+  IceEnemy: {fileID: 1155887635145770, guid: 496160c942778794b83570d6e7061f2d, type: 2}
   FireEnemy: {fileID: 0}
   AtomEnemy: {fileID: 0}
   TimeToInitialSpawn: 3

@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 
 public class HexBehavior : MonoBehaviour
 {
@@ -17,20 +15,17 @@ public class HexBehavior : MonoBehaviour
 
     }
 
+
     private void OnCollisionEnter(Collision collision)
     {
+
         if (collision.gameObject.name.ToLower().Contains("shot"))
         {
             Rigidbody[] rigidbodies = gameObject.transform.parent.gameObject.GetComponentsInChildren<Rigidbody>();
-            float multiplierToAdd = 0.0f;
-            int scoreToAdd = 0;
             foreach (Rigidbody rigidbody in rigidbodies)
             {
                 rigidbody.constraints = RigidbodyConstraints.None;
-                multiplierToAdd += 0.1f;
-                ++scoreToAdd;
             }
-            ScoreEvents.SendAddScore(scoreToAdd);
             GetComponent<Rigidbody>().AddForce(collision.transform.position.normalized, ForceMode.Impulse);
             ShotBehavior collidingShot = collision.gameObject.GetComponent<ShotBehavior>();
             collidingShot.HasHitBuilding = true;

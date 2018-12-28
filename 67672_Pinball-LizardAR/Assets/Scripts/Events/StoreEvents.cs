@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using PlayFab.ClientModels;
 
 public static class StoreEvents
 {
@@ -14,11 +9,11 @@ public static class StoreEvents
         OnLoadStore(storeId, catalogVersion);
     }
 
-    public delegate void LoadStoreItem(string itemId, string itemName, int mayhemPrice, int bugBucksPrice, string storeId, string bugBucksKey, string mayhemKey);
+    public delegate void LoadStoreItem(StoreItemData itemData);
     public static event LoadStoreItem OnLoadStoreItem;
-    public static void SendLoadStoreItem(string itemId, string itemName, int mayhemPrice, int bugBucksPrice, string storeId, string bugBucksKey, string mayhemKey)
+    public static void SendLoadStoreItem(StoreItemData itemData)
     {
-        OnLoadStoreItem(itemId, itemName, mayhemPrice, bugBucksPrice, storeId, bugBucksKey, mayhemKey);
+        OnLoadStoreItem(itemData);
     }
     
     public delegate void SelectItem(string itemId);
@@ -56,10 +51,45 @@ public static class StoreEvents
         OnLoadInventory(catalogVersion);
     }
 
-    public delegate void LoadInventoryItem(string itemId, string itemName, int count);
+    public delegate void LoadInventoryItem(ItemInstance instance);
     public static event LoadInventoryItem OnLoadInventoryItem;
-    public static void SendLoadInventoryItem(string itemId, string itemName, int count)
+    public static void SendLoadInventoryItem(ItemInstance instance)
     {
-        OnLoadInventoryItem(itemId, itemName, count);
+        OnLoadInventoryItem(instance);
+    }
+
+    public delegate void ConsumeItem(ItemInstance instance);
+    public static event ConsumeItem OnConsumeItem;
+    public static void SendConsumeItem(ItemInstance instance)
+    {
+        OnConsumeItem(instance);
+    }
+
+    public delegate void LoadCurrencies();
+    public static event LoadCurrencies OnLoadCurrencies;
+    public static void SendLoadCurrencies()
+    {
+        OnLoadCurrencies();
+    }
+
+    public delegate void UpdateCurrencyDisplay();
+    public static event UpdateCurrencyDisplay OnUpdateCurrencyDisplay;
+    public static void SendUpdateCurrencyDisplay()
+    {
+        OnUpdateCurrencyDisplay();
+    }
+
+    public delegate void StartInGamePurchase(PowerUpButton.PowerUp type);
+    public static event StartInGamePurchase OnStartInGamePurchase;
+    public static void SendStartInGamePurchase(PowerUpButton.PowerUp type)
+    {
+        OnStartInGamePurchase(type);
+    }
+
+    public delegate void UpdateInventoryDisplay();
+    public static event UpdateInventoryDisplay OnUpdateInventoryDisplay;
+    public static void SendUpdateInventoryDisplay()
+    {
+        OnUpdateInventoryDisplay();
     }
 }

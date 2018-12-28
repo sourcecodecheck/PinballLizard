@@ -1,42 +1,36 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
 
-public class PlayerInventoryScreen : MonoBehaviour {
+public class PlayerInventoryScreen : MonoBehaviour
+{
 
     public string CatalogVersion;
-    public GameObject InventoryItem;
     public Inventory PlayerInventory;
-
-    private Dictionary<string, InventoryItem> inventory;
+    public Text LevelText;
+    public Text UserIdText;
+    public Text DateJoinedText;
+    public Text HighestScoreText;
+    public Text BestComboText;
+    public Text SpicyCountText;
+    public Text BombCountText;
+    public Text FeastCountText;
     // Use this for initialization
-    void Awake () {
-        inventory = new Dictionary<string, InventoryItem>();
-        StoreEvents.OnLoadInventoryItem += LoadInventoryItem;
-        StoreEvents.SendLoadInventory(CatalogVersion);
-        GetComponentsInChildren<Text>().Where((text) => text.name == "BugsEaten").First().text = "BugsEaten: " + PlayerInventory.BugsEatenCount;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    void LoadInventoryItem(string itemId, string itemName, int count)
+    void Start()
     {
-            GameObject inventoryItemObject = Instantiate(InventoryItem, gameObject.transform);
-            inventoryItemObject.transform.position += new Vector3(200 * inventory.Count, 0);
-            InventoryItem inventoryItemScript = inventoryItemObject.GetComponent<InventoryItem>();
-            inventory.Add(itemId, inventoryItemScript);
-            inventoryItemScript.ItemName = itemName;
-            
-            inventory[itemId].GetComponentInChildren<Text>().text = itemName + ": " + count.ToString();
+        LevelText.text = PlayerInventory.PlayerLevel.ToString();
+        UserIdText.text = PlayerInventory.PlayerId;
+        DateJoinedText.text = PlayerInventory.DateJoined.ToString();
+        HighestScoreText.text = PlayerInventory.BestScore.ToString();
+        BestComboText.text = PlayerInventory.BestCombo.ToString();
+        SpicyCountText.text = PlayerInventory.SpicyMeatABallCount.ToString();
+        BombCountText.text = PlayerInventory.DaBombCount.ToString();
+        FeastCountText.text = PlayerInventory.ArachnoFeastCount.ToString();
     }
 
-    private void OnDestroy()
+    // Update is called once per frame
+    void Update()
     {
-        StoreEvents.OnLoadInventoryItem -= LoadInventoryItem;
+
     }
+
 }

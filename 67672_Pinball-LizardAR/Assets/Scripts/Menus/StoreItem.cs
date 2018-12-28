@@ -1,26 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class StoreItem : MonoBehaviour
 {
-    public string ItemId;
-    public string StoreId;
-    public string CatalogVersion;
-    public int MayhemPrice;
-    public int BugBucksPrice;
-    public string MayhemKey;
-    public string BugBucksKey;
+    public string KeyTerm;
+    public Button SelectButton;
+    public GameObject DetailWindow;
+    public GameObject WeekendBanner;
+    public StoreItemData ItemData;
+    public Inventory PlayerInventory;
 
     private bool isSelected;
     // Use this for initialization
-    void Start()
+    void Awake()
     {
-        isSelected = false;
-        StoreEvents.OnSelectItem += Select;
-        StoreEvents.OnStartPurchase += Purchase;
-        GetComponent<Button>().onClick.AddListener(OnClick);
+        if (SelectButton != null)
+        {
+            SelectButton.onClick.AddListener(OnClick);
+        }
+
     }
 
     // Update is called once per frame
@@ -28,51 +26,20 @@ public class StoreItem : MonoBehaviour
     {
     }
 
-    public void Select(string itemIdToSelect)
-    {
-        if (itemIdToSelect == ItemId)
-        {
-            isSelected = true;
-            GetComponentInChildren<Image>().color = new Color(1, 0, 1);
-            StoreEvents.SendShowPurchaseButton(true);
-        }
-        else
-        {
-            isSelected = false;
-            GetComponentInChildren<Image>().color = new Color(1, 1, 1);
-        }
-    }
-
-    public void Purchase(string currencyToUse)
-    {
-        if (isSelected)
-        {
-            int price = 0;
-            if(currencyToUse ==  MayhemKey)
-            {
-                price = MayhemPrice;
-            }
-            else if( currencyToUse == BugBucksKey)
-            {
-                price = BugBucksPrice;
-            }
-            if (price > 0)
-            {
-                StoreEvents.SendPurchaseItem(ItemId, currencyToUse, CatalogVersion, StoreId, price);
-            }
-            StoreEvents.SendSelectItem("");
-            StoreEvents.SendShowPurchaseButton(false);
-        }
-    }
-
     public void OnClick()
     {
-        StoreEvents.SendSelectItem(ItemId);
+        DetailWindow.SetActive(true);
+    }
+    public void SetButtonActive(bool isActive)
+    {
+        if(WeekendBanner != null)
+        {
+            WeekendBanner.gameObject.SetActive(!isActive);
+        }
+        SelectButton.gameObject.SetActive(isActive);
     }
 
     private void OnDestroy()
     {
-        StoreEvents.OnSelectItem -= Select;
-        StoreEvents.OnStartPurchase -= Purchase;
     }
 }

@@ -1,23 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ChangeScene : MonoBehaviour {
+public class ChangeScene : MonoBehaviour
+{
 
     public int sceneToChangeTo;
-	// Use this for initialization
-	void Start () {
-        GetComponent<Button>().onClick.AddListener(GameStart);
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    { 
-	}
+    // Use this for initialization
+    void Start()
+    {
+        GetComponent<Button>().onClick.AddListener(DoSceneChange);
+    }
 
-    private void GameStart()
+    // Update is called once per frame
+    void Update()
+    {
+    }
+
+    private void DoSceneChange()
     {
         SceneManager.LoadScene(sceneToChangeTo);
     }

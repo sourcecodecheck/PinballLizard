@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenuScene.unity
     guid: 5ac391948d75b494c9c988b002146c67
   - enabled: 1
-    path: Assets/Scenes/MainGameSceneAR.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/ARMainGameScene.unity
+    guid: f2a698ba51cd4bb4abb44c84f189d7e8
   - enabled: 1
     path: Assets/Scenes/NonARMainGame.unity
     guid: c3ed0b6ca0314a643932a4da0b7f03ad

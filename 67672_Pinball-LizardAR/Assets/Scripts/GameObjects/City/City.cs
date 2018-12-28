@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Assets.DataStructures;
 
 public class City : Pausable
 {
@@ -21,6 +20,8 @@ public class City : Pausable
     public int Seed;
     public bool isAR;
 
+    private const float rotateSpeed = 10f;
+
     private List<GameObject> buildingBlock;
     private HexGrid city;
 
@@ -38,13 +39,13 @@ public class City : Pausable
     {
         if (!isAR && !isPaused)
         {
-            transform.Rotate(new Vector3(0, 1, 0), 10 * Time.deltaTime);
+            transform.Rotate(new Vector3(0, 1, 0), rotateSpeed * Time.deltaTime);
         }
     }
 
     IEnumerator BuildCity()
     {
-        if(PlayerPrefs.HasKey("ischallenge") && PlayerPrefs.GetInt("ischallenge") == 1)
+        if (PlayerPrefs.HasKey("ischallenge") && PlayerPrefs.GetInt("ischallenge") == 1)
         {
             GenerateCityChallenge();
         }
@@ -52,8 +53,8 @@ public class City : Pausable
         {
             GenerateCityPlayerLevel();
         }
-        
-        if(isAR)
+
+        if (isAR)
         {
             ARScaling();
         }
@@ -68,10 +69,10 @@ public class City : Pausable
     {
         int seedFromServer = PlayerPrefs.GetInt("dailychallenge");
         float average = 0f;
-        for(int i = 1; i < 9; ++i)
+        for (int i = 1; i < 9; ++i)
         {
             average += seedFromServer % 10;
-            seedFromServer = 10;
+            seedFromServer /= 10;
         }
         average *= 0.11111111111111111111111111111111f;
         float ratio = average - (float)System.Math.Truncate(average);

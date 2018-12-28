@@ -1,7 +1,5 @@
 ﻿using PlayFab;
 using PlayFab.ClientModels;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class iOSDeviceIdLogin
@@ -17,6 +15,8 @@ public class iOSDeviceIdLogin
         },
        (response) => {
            PlayerPrefs.SetString("sessionticket", response.SessionTicket);
+           PlayerPrefs.SetString("playfabid", response.PlayFabId);
+           PlayerPrefs.Save();
        },
        (error) => {
            Debug.Log("Whoops");

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Pausable : MonoBehaviour {
 
@@ -16,7 +14,7 @@ public class Pausable : MonoBehaviour {
 		
 	}
 
-    void Pause()
+    void Pause(bool loadPauseMenu)
     {
         isPaused = !isPaused;
     }

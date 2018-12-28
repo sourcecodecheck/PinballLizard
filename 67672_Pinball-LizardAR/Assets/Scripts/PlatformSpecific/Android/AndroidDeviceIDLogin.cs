@@ -2,7 +2,6 @@
 using PlayFab.ClientModels;
 using PlayFab;
 
-
 public class AndroidDeviceIdLogin
 {
     public static string GetDeviceId()
@@ -37,6 +36,8 @@ public class AndroidDeviceIdLogin
         }, 
         (response) => {
             PlayerPrefs.SetString("sessionticket", response.SessionTicket);
+            PlayerPrefs.SetString("playfabid", response.PlayFabId);
+            PlayerPrefs.Save();
         },
         (error) => {
             Debug.Log("Whoops");

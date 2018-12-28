@@ -1,29 +1,44 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-public class ScoreDisplay : MonoBehaviour {
+public class ScoreDisplay : MonoBehaviour
+{
 
     // Use this for initialization
     public Text scoreText;
     private int score;
-	void Start () {
+    void Start()
+    {
         ScoreEvents.OnScoreUpdated += UpdateScore;
+        GamePlayEvents.OnFeastStart += FeastStart;
+        GamePlayEvents.OnFeastEnd += FeastEnd;
         score = 0;
-	}
-	
-	// Update is called once per frame
-	void Update () {
         scoreText.text = score.ToString();
     }
 
-   void UpdateScore(int currentScore)
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    void FeastStart()
+    {
+        scoreText.color = new Color(1f, 1f, 0f);
+    }
+    void FeastEnd()
+    {
+        scoreText.color = new Color(1f, 1f, 1f);
+    }
+
+    void UpdateScore(int currentScore)
     {
         score = currentScore;
         scoreText.text = score.ToString();
     }
     private void OnDestroy()
     {
+        GamePlayEvents.OnFeastStart -= FeastStart;
+        GamePlayEvents.OnFeastEnd -= FeastEnd;
         ScoreEvents.OnScoreUpdated -= UpdateScore;
     }
 }

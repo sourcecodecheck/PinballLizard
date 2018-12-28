@@ -1,21 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PauseMenu : MonoBehaviour {
+public class PauseMenu : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
-        GamePlayEvents.OnPause += OnUnPause;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-    void OnUnPause()
+    // Use this for initialization
+    void Start()
     {
-        Destroy(gameObject);
+        GamePlayEvents.OnPause += OnUnPause;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+    void OnUnPause(bool loadPauseMenu)
+    {
+        if (loadPauseMenu == true)
+        {
+            Destroy(gameObject);
+        }
     }
     private void OnDestroy()
     {

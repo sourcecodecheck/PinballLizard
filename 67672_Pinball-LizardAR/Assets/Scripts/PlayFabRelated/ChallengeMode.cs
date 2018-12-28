@@ -2,14 +2,15 @@
 using PlayFab.ClientModels;
 using PlayFab.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
-public class ChallengeMode
+public class ChallengeMode : MonoBehaviour
 {
+    private void Start()
+    {
+        ScoreEvents.OnLoadLeaderBoard += GetLeaderBoard;
+    }
+
     public void GetChallengeSeed()
     {
         if (PlayerPrefs.HasKey("sessionticket"))
@@ -20,11 +21,12 @@ public class ChallengeMode
                 PlayFabClientAPI.ExecuteCloudScript(
                    new ExecuteCloudScriptRequest()
                    {
-                       FunctionName = "getRandom"
+                       FunctionName = "getChallengeSeed"
                    },
                    (result) =>
                    {
-                       int randomResult = (int)((JsonObject)result.FunctionResult)[0];
+                       int randomResult = 
+                       PlayFabSimpleJson.DeserializeObject<int>(PlayFabSimpleJson.SerializeObject(((JsonObject)result.FunctionResult)[0]));
                        PlayerPrefs.SetInt("dailychallenge", randomResult);
                        PlayerPrefs.SetString("dailychallengeretrieval", DateTime.Today.ToShortDateString());
                        PlayerPrefs.Save();
@@ -35,44 +37,31 @@ public class ChallengeMode
             }
         }
     }
+
     public void GetLeaderBoard()
     {
         if (PlayerPrefs.HasKey("sessionticket"))
         {
-            PlayFabClientAPI.GetLeaderboardAroundPlayer(
-                new GetLeaderboardAroundPlayerRequest()
+            PlayFabClientAPI.GetLeaderboard(
+                new GetLeaderboardRequest()
                 {
-                    MaxResultsCount = 100,
-                    StatisticName = "Daily Challenge",
-                    Version = 1
+                    StartPosition = 0,
+                    MaxResultsCount = 10,
+                    StatisticName = "Daily Challenge"
                 },
                 (result) =>
                 {
-                    //ScoreEvents.SendLeaderBoardRetrieved(result.Leaderboard);
+                    ScoreEvents.SendLeaderBoardRetrieved(result.Leaderboard);
                 },
                 (error) =>
                 {
+                    Debug.Log(error);
                 });
         }
     }
 
-    public void SendScore(int score, int bugsEaten)
+    private void OnDestroy()
     {
-        if (PlayerPrefs.HasKey("sessionticket"))
-        {
-            PlayFabClientAPI.ExecuteCloudScript(
-                new ExecuteCloudScriptRequest()
-                {
-                    FunctionName = "submitDailyChallengeScore",
-                    FunctionParameter = new { score,  bugsEaten }
-                },
-                (result) =>
-                {
-                    //UpdateInventory(result.FunctionResult as JsonObject);
-                },
-                (error) =>
-                {
-                });
-        }
+        ScoreEvents.OnLoadLeaderBoard -= GetLeaderBoard;
     }
 }

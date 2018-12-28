@@ -1,28 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
     public GameObject MainMenuButtons;
     public GameObject SettingsButton;
-    public GameObject PlayerInfoBar;
     public GameObject TitleScreen;
-    public GameObject HomeButton;
     public GameObject StoreFront;
     public GameObject PlayerInventoryScreen;
     public GameObject ARMenu;
-    public GameObject DailyChallengeLeaderBoard;
+    public GameObject EventBoard;
     public Canvas MenuParent;
+    public Inventory PlayerInventory;
+    public ChallengeMode ChallengeMode;
 
     private static bool hasMainMenuBeenLoaded = false;
     private List<GameObject> menuObjects;
-    private ChallengeMode challengeMode;
+
 
     void Start()
     {
-        challengeMode = new ChallengeMode();
         menuObjects = new List<GameObject>();
         if (hasMainMenuBeenLoaded == false)
         {
@@ -30,6 +27,7 @@ public class MenuManager : MonoBehaviour
         }
         else
         {
+            PlayerInventory.enabled = true;
             LoadMainMenu();
         }
         MenuTransitionEvents.OnChangeMenu += ChangeMenu;
@@ -45,6 +43,7 @@ public class MenuManager : MonoBehaviour
 
     void ChangeMenu(MenuTransitionEvents.Menus menu)
     {
+        PlayerInventory.enabled = true;
         UnloadMenu();
         switch (menu)
         {
@@ -75,9 +74,11 @@ public class MenuManager : MonoBehaviour
     private void LoadMainMenu()
     {
         hasMainMenuBeenLoaded = true;
-        menuObjects.Add(LoadPlayerInfoBar());
-        menuObjects.Add(Instantiate(MainMenuButtons, MenuParent.transform));
-        menuObjects.Add(Instantiate(SettingsButton, MenuParent.transform));
+        //menuObjects.Add(LoadPlayerInfoBar());
+        GameObject mainMenuInstance = Instantiate(MainMenuButtons, MenuParent.transform);
+        mainMenuInstance.GetComponentInChildren<PlayerLevelBar>().PlayerInventory = PlayerInventory;
+        menuObjects.Add(mainMenuInstance);
+        //menuObjects.Add(Instantiate(SettingsButton, MenuParent.transform));
     }
 
     private void LoadTitle()
@@ -87,19 +88,21 @@ public class MenuManager : MonoBehaviour
 
     private void LoadPlayerInfo()
     {
-        menuObjects.Add(LoadPlayerInfoBar());
-        menuObjects.Add(Instantiate(HomeButton, MenuParent.transform));
+        //menuObjects.Add(LoadPlayerInfoBar());
         GameObject inventoryScreen = Instantiate(PlayerInventoryScreen, MenuParent.transform);
-        Inventory playerInventory = gameObject.GetComponent<Inventory>();
-        inventoryScreen.GetComponent<PlayerInventoryScreen>().PlayerInventory = playerInventory;
+        inventoryScreen.GetComponentInChildren<CurrencyCounters>().PlayerInventory = PlayerInventory;
+        inventoryScreen.GetComponent<PlayerInventoryScreen>().PlayerInventory = PlayerInventory;
         menuObjects.Add(inventoryScreen);
     }
 
     private void LoadStoreFront()
     {
-        menuObjects.Add(Instantiate(HomeButton, MenuParent.transform));
-        menuObjects.Add(Instantiate(StoreFront, MenuParent.transform));
-        menuObjects.Add(LoadPlayerInfoBar());
+        //menuObjects.Add(Instantiate(HomeButton, MenuParent.transform));
+        GameObject storeFront = Instantiate(StoreFront, MenuParent.transform);
+        storeFront.GetComponentInChildren<CurrencyCounters>().PlayerInventory = PlayerInventory;
+        storeFront.GetComponent<StoreFront>().PlayerInventory = PlayerInventory;
+        menuObjects.Add(storeFront);
+        //menuObjects.Add(LoadPlayerInfoBar());
     }
     private void LoadAR()
     {
@@ -113,21 +116,10 @@ public class MenuManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("ischallenge", 1);
         PlayerPrefs.Save();
-        challengeMode.GetChallengeSeed();
-        challengeMode.GetLeaderBoard();
-        //uncomment this when we have a leaderboard graphic
-        //menuObjects.Add(Instantiate(DailyChallengeLeaderBoard, MenuParent.transform));
-        menuObjects.Add(Instantiate(ARMenu, MenuParent.transform));
-    }
-
-    private GameObject LoadPlayerInfoBar()
-    {
-        GameObject playerInfoBarInstance = Instantiate(PlayerInfoBar, MenuParent.transform);
-        Inventory playerInventory = gameObject.GetComponent<Inventory>();
-        playerInfoBarInstance.GetComponentInChildren<CurrencyCounters>().PlayerInventory = playerInventory;
-        playerInfoBarInstance.GetComponentInChildren<PlayerLevelBar>().PlayerInventory = playerInventory;
-        playerInfoBarInstance.GetComponentInChildren<Currencies>().PlayerInventory = playerInventory;
-        return playerInfoBarInstance;
+        GameObject eventScreen = Instantiate(EventBoard, MenuParent.transform);
+        eventScreen.GetComponentInChildren<CurrencyCounters>().PlayerInventory = PlayerInventory;
+        ChallengeMode.GetChallengeSeed();
+        menuObjects.Add(eventScreen);
     }
 
     private void UnloadMenu()

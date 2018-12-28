@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class MenuManagerChangeButton : MonoBehaviour
@@ -18,7 +16,6 @@ public class MenuManagerChangeButton : MonoBehaviour
         {
             GetComponentInChildren<Button>().onClick.AddListener(ToMenu);
         }
-
     }
 
     // Update is called once per frame

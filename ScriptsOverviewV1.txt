@@ -2,24 +2,23 @@ AnimationStateScripts -Sends events when an animation finishes, may do other thi
 	Items within are self explanatory
 ArCore: Houses ARCore controller which does our little bit of AR code
 Events: Static classes containing C# events through which other classes may communicate.
-	Items within are self explanatory. Updated 12/12
+	Items within are self explanatory
 GameObjects: Contains behaviors for in game objects
 	City: Generative city stuff, including collsion detection
-		HexGrid: Generates the city. Updated 12/12
-		City: GameObject that holds the city. Updated 12/12
-		Building: Collision behaviors for non destroyed building. Updated 12/12
+		HexGrid: Generates the city
+		City: GameObject that holds the city
+		Building: Collision behaviors for non destroyed building
 		HexBehavior: Collision behaviors for destroyed building parts
-	ArmBehavior: Handles behaviors for arms. Animations and volleying of shots. Updated 12/12
-	EnemyBehavior: Handles behaviors for enemies. Updated 12/12
+	ArmBehavior: Handles behaviors for arms. Animations and volleying of shots
+	EnemyBehavior: Handles behaviors for enemies.
 	InGameStore: Placeholder for handling the in game stored
-	MouthBehavior: Handles Behaviors for  mouth. Eating and shooting enemies. Updated 12/12
-	NonARCamera: Handles camera control in NonAR Mode. Added 12/12
+	MouthBehavior: Handles Behaviors for  mouth. Eating and shooting enemies.
 	Pausable: Parent object for things affected by pausing.
-	PowerUpButton: Placeholder for activating powerups. Updated 12/12
-	ShotBehavior: Handles player shot behaviors. Updated 12/12
-	SpawnEnemies: Spawns enemies Updated 12/12
+	PowerUpButton: Placeholder for activating powerups.
+	ShotBehavior: Handles player shot behaviors
+	SpawnEnemies: Spawns enemies
 Managers: Manager type scripts, handles things that are out of the scope of individual objects
-	Inventory: Local representation of certain player stats and inventory. Updated 12/12
+	Inventory: Local representation of certain player stats and inventory
 	MainGameContoller: Controls main game, including scoring and tracking events within the game.
 	MainGameUIManager: Currently handles loading the pause menu.
 	MenuManager: Handles loading menus in the main menu scene.
@@ -41,15 +40,12 @@ PlatformSpecific: Scripts that implement and abstract  platform specific functio
 	Android: Android specific  functionality
 		AndroidDeviceIdLogin: Logs player into  PlayFab with android deviceId
 		AndroidHelpers: Small helper functions that don't merit their own class for Android specific functionality
-	iOS: iOS Specific functionality Added 12/12
-		iOSDeviceIdLogin: Logs player into  PlayFab with iOS deviceId. Added 12/12
-	LoginHelper: Abstracts logging in based on OS. Updated 12/12
+	LoginHelper: Abstracts logging in based on OS
 	ShowMessageWindowHelper: Abstracts showing a message window based on OS
 PlayFabRelated: PlayFab API calls
 	ItemCatalog: Stores item catalog retrieved from PlayFab
 	Currencies: Gets Currency info from PlayFab
 	Store: Gets Store items, catalogs and handles purchases
-	ChallengeMode: Functionality related to daily challenge mode. Added 12/12
-	UserInfo: Gets statistics from PlayFab Updated 12/12
+	UserInfo: Gets statistics from PlayFab
 SavedData: Scripts for data that can persist and is stored locally.
 	Settings: Placeholder for settings

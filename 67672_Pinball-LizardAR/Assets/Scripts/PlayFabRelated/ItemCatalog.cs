@@ -6,30 +6,30 @@ using System.Threading.Tasks;
 using PlayFab.ClientModels;
 
 
-class ItemCatalog
+public static class ItemCatalog
 {
-    public bool isLoaded { get { return catalog.Count > 0; }  }
+    public static bool isLoaded { get { return catalog.Count > 0; }  }
 
-    private static Dictionary<string, CatalogItem> catalog;
+    private static Dictionary<string, CatalogItem> catalog = new Dictionary<string, CatalogItem>();
 
-    public ItemCatalog()
-    {
-        catalog = new Dictionary<string, CatalogItem>();
-    }
-
-    public void ClearItems()
+    public static void ClearItems()
     {
         catalog.Clear();
     }
     
-    public void LoadItems(List<CatalogItem> catalogItems)
+    public static void LoadItems(List<CatalogItem> catalogItems)
     {
         catalog = catalogItems.ToDictionary((item) => item.ItemId);
     }
 
-    public CatalogItem GetCatalogItem(string itemId)
+    public static CatalogItem GetCatalogItem(string itemId)
     {
         return catalog[itemId];
+    }
+
+    public static CatalogItem SearchCatalog(string term)
+    {
+        return catalog.Where((pair) => pair.Key.ToLower().Contains(term)).FirstOrDefault().Value;
     }
 }
 

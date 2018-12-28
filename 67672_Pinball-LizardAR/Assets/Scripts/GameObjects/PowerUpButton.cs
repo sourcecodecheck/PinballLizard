@@ -1,23 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PowerUpButton : Pausable
 {
-    public enum PowerUp {BOMB, NUKE, MAX_POWERUP }
+    public enum PowerUp { SPICY, NUKE, FEAST }
     public PowerUp PowerUpType;
-    public Inventory inventory;
-    public MouthBehavior mouthEatEnemies;
+    public string keyTerm;
+    public Inventory Inventory;
+    public GameObject BuyButton;
+    public Text PowerUpCountDisplay;
+    public Button UsePowerUp;
 
-    private bool isReadyToConfirm;
-    private bool isDisplayingPrice;
     private bool isDisabled;
     new void Start()
     {
-        isReadyToConfirm = false;
-        isDisplayingPrice = false;
+        UsePowerUp.onClick.AddListener(OnClick);
         isDisabled = true;
         base.Start();
+        if (PowerUpType == PowerUp.SPICY)
+        {
+            GamePlayEvents.OnSpicyEnd += EndSpicy;
+        }
+        StoreEvents.OnUpdateInventoryDisplay += UpdateAmounts;
+        UpdateAmounts();
     }
 
     // Update is called once per frame
@@ -25,28 +30,7 @@ public class PowerUpButton : Pausable
     {
         if (!isPaused)
         {
-            switch (PowerUpType)
-            {
-                case PowerUp.BOMB:
-                    if (inventory.SpicyMeataBallCount <= 0)
-                    {
-                        isDisplayingPrice = true;
-                    }
-                    break;
-                case PowerUp.NUKE:
-                    if (inventory.NukeCount <= 0)
-                    {
-                        isDisplayingPrice = true;
-                    }
-                    break;
-            }
-            if (isDisplayingPrice)
-            {
-                if (CheckPrice(PowerUpType) == false)
-                {
-                    isDisabled = true;
-                }
-            }
+
         }
     }
 
@@ -56,50 +40,112 @@ public class PowerUpButton : Pausable
         {
             if (isDisabled == false)
             {
-                if (isReadyToConfirm)
+                switch (PowerUpType)
                 {
-                    switch (PowerUpType)
-                    {
-                        case PowerUp.BOMB:
-                            ActivateBoom();
-                            break;
-                        case PowerUp.NUKE:
-                            ActivateSkip();
-                            break;
-                    }
+                    case PowerUp.SPICY:
+                        ActivateSpicy();
+                        break;
+                    case PowerUp.NUKE:
+                        ActivateBomb();
+                        break;
+                    case PowerUp.FEAST:
+                        ActivateFeast();
+                        break;
                 }
-                else
-                {
-                    isReadyToConfirm = true;
-                }
-                if (isDisplayingPrice & isReadyToConfirm)
-                {
-                    Buy(PowerUpType);
-                }
+                UpdateAmounts();
             }
         }
     }
 
-    private void ActivateBoom()
-    {
 
+
+    private void UpdateAmounts()
+    {
+        switch (PowerUpType)
+        {
+            case PowerUp.SPICY:
+                if (Inventory.SpicyMeatABallCount <= 0)
+                {
+                    PowerUpCountDisplay.text = "0";
+                    BuyButton.SetActive(true);
+                    isDisabled = true;
+                }
+                else
+                {
+                    isDisabled = false;
+                    PowerUpCountDisplay.text = Inventory.SpicyMeatABallCount.ToString();
+                    BuyButton.SetActive(false);
+                }
+                break;
+            case PowerUp.NUKE:
+                if (Inventory.DaBombCount <= 0)
+                {
+                    PowerUpCountDisplay.text = "0";
+                    BuyButton.SetActive(true);
+                    isDisabled = true;
+                }
+                else
+                {
+                    isDisabled = false;
+                    PowerUpCountDisplay.text = Inventory.DaBombCount.ToString();
+                    BuyButton.SetActive(false);
+                }
+                break;
+            case PowerUp.FEAST:
+                if (Inventory.ArachnoFeastCount <= 0)
+                {
+                    PowerUpCountDisplay.text = "0";
+                    BuyButton.SetActive(true);
+                    isDisabled = true;
+                }
+                else
+                {
+                    isDisabled = false;
+                    PowerUpCountDisplay.text = Inventory.ArachnoFeastCount.ToString();
+                    BuyButton.SetActive(false);
+                }
+                break;
+        }
     }
 
-    private void ActivateSkip()
+    private void ActivateSpicy()
     {
-
+        GamePlayEvents.SendSpicyReady();
+        GamePlayEvents.SendUsePowerUp(keyTerm);
+        isDisabled = true;
     }
 
-    private void Buy(PowerUp powerUpType)
+    private void EndSpicy()
     {
+        isDisabled = false;
     }
 
-    private bool CheckPrice(PowerUp powerUpType)
+    private void ActivateBomb()
     {
-        return false;
+        GamePlayEvents.SendBombDetonated();
+        GamePlayEvents.SendUsePowerUp(keyTerm);
+        isDisabled = true;
     }
+
+    private void ActivateFeast()
+    {
+        GamePlayEvents.SendFeastStart();
+        GamePlayEvents.SendUsePowerUp(keyTerm);
+        Invoke("EndFeast", 10f);
+    }
+    private void EndFeast()
+    {
+        GamePlayEvents.SendFeastEnd();
+        isDisabled = false;
+    }
+
     private new void OnDestroy()
     {
+        if (PowerUpType == PowerUp.SPICY)
+        {
+            GamePlayEvents.OnSpicyEnd -= EndSpicy;
+        }
+        StoreEvents.OnUpdateInventoryDisplay -= UpdateAmounts;
         base.OnDestroy();
     }
 }

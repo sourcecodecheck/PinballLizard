@@ -156,3 +156,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HexStack: {fileID: 1586438658447304, guid: e18802eb1ae7ac14f9428d96a150ac25, type: 2}
+  StackCount: 8

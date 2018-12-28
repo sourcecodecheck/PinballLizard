@@ -30,6 +30,13 @@ public static class ScoreEvents
         OnAddMultiplier(multiplierToAdd);
     }
 
+    public delegate void LoadLeaderBoard();
+    public static event LoadLeaderBoard OnLoadLeaderBoard;
+    public static void SendLoadLeaderBoard()
+    {
+        OnLoadLeaderBoard();
+    }
+
     public delegate void LeaderBoardRetrieved(List<PlayerLeaderboardEntry> leaderboardEntries);
     public static event LeaderBoardRetrieved OnLeaderBoardRetrieved;
     public static void SendLeaderBoardRetrieved(List<PlayerLeaderboardEntry> leaderboardEntries)

@@ -1,26 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using System;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
+using PlayFab.Json;
 
 public class Store : MonoBehaviour
 {
     public string MayhemKey;
-    public string BugbucksKey;
+    public string BugBucksKey;
+    public string GluttonyKey;
     // Use this for initialization
 
-    private ItemCatalog itemCatalog;
-    void Start()
+    void Awake()
     {
-        itemCatalog = new ItemCatalog();
         StoreEvents.OnLoadStore += GetStore;
-        StoreEvents.OnPurchaseItem += StartPurchase;
+        StoreEvents.OnPurchaseItem += PurchaseItem;
         StoreEvents.OnLoadInventory += GetUserInventory;
+        StoreEvents.OnConsumeItem += ConsumeItem;
     }
-
-
 
     // Update is called once per frame
     void Update()
@@ -28,7 +26,7 @@ public class Store : MonoBehaviour
 
     }
 
-    public void StartPurchase(string itemId, string currency, string catalogVersion, string storeId, int price)
+    public void PurchaseItem(string itemId, string currency, string catalogVersion, string storeId, int price)
     {
         if (PlayerPrefs.HasKey("sessionticket"))
         {
@@ -43,6 +41,8 @@ public class Store : MonoBehaviour
             (result) =>
             {
                 ShowMessageWindowHelper.ShowMessage(result.Items.First().DisplayName + " Purchased!");
+                StoreEvents.SendLoadCurrencies();
+                StoreEvents.SendLoadInventory(catalogVersion);
             },
             (error) =>
             {
@@ -54,7 +54,7 @@ public class Store : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("sessionticket"))
         {
-            if (itemCatalog.isLoaded != true)
+            if (ItemCatalog.isLoaded != true)
             {
                 GetCatalog(catalogVersion);
             }
@@ -65,11 +65,35 @@ public class Store : MonoBehaviour
             },
             (result) =>
             {
+                GetIsEventTime();
                 foreach (PlayFab.ClientModels.StoreItem item in result.Store)
                 {
-                    StoreEvents.SendLoadStoreItem(item.ItemId, itemCatalog.GetCatalogItem(item.ItemId).DisplayName,
-                        (int)item.VirtualCurrencyPrices[MayhemKey], (int)item.VirtualCurrencyPrices[BugbucksKey],
-                        result.StoreId, BugbucksKey, MayhemKey);
+                    int mayhemPrice = -1;
+                    int bugBucksPrice = -1;
+                    int gluttonyPrice = -1; 
+                    if(item.VirtualCurrencyPrices.ContainsKey(MayhemKey))
+                    {
+                        mayhemPrice = (int)item.VirtualCurrencyPrices[MayhemKey];
+                    }
+                    if (item.VirtualCurrencyPrices.ContainsKey(BugBucksKey))
+                    {
+                        bugBucksPrice = (int)item.VirtualCurrencyPrices[BugBucksKey];
+                    }
+                    if (item.VirtualCurrencyPrices.ContainsKey(GluttonyKey))
+                    {
+                        gluttonyPrice = (int)item.VirtualCurrencyPrices[GluttonyKey];
+                    }
+                    StoreEvents.SendLoadStoreItem(new StoreItemData {
+                        ItemId = item.ItemId,
+                        CatalogVersion = catalogVersion,
+                        MayhemPrice = mayhemPrice,
+                        BugBucksPrice = bugBucksPrice,
+                        GluttonyPrice = gluttonyPrice,
+                        MayhemKey = MayhemKey,
+                        BugBucksKey = BugBucksKey,
+                        GluttonyKey = GluttonyKey,
+                        StoreId = result.StoreId
+                    });
                 }
             },
             (error) =>
@@ -83,7 +107,7 @@ public class Store : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("sessionticket"))
         {
-            if(itemCatalog.isLoaded != true)
+            if(ItemCatalog.isLoaded != true)
             {
                 GetCatalog(catalogVersion);
             }
@@ -93,7 +117,7 @@ public class Store : MonoBehaviour
                 {
                     foreach( ItemInstance item in result.Inventory )
                     {
-                        StoreEvents.SendLoadInventoryItem(item.ItemId, itemCatalog.GetCatalogItem(item.ItemId).DisplayName, (int)item.RemainingUses);
+                        StoreEvents.SendLoadInventoryItem(item);
                     }
                 },
                 (error) => 
@@ -101,6 +125,42 @@ public class Store : MonoBehaviour
                     ShowMessageWindowHelper.ShowMessage(error.ErrorMessage);
                 });
         }
+    }
+
+    private void ConsumeItem(ItemInstance itemInstance)
+    {
+        if (PlayerPrefs.HasKey("sessionticket"))
+        {
+            PlayFabClientAPI.ConsumeItem(new ConsumeItemRequest
+            {
+                ConsumeCount = 1,
+                ItemInstanceId = itemInstance.ItemInstanceId
+            },
+            (result) => 
+            {
+            },
+            (error) =>
+            {
+            });
+        }
+    }
+    private void GetIsEventTime()
+    {
+        PlayFabClientAPI.ExecuteCloudScript(
+               new ExecuteCloudScriptRequest()
+               {
+                   FunctionName = "initializePlayer",
+                   FunctionParameter = new { timeZoneOffset = TimeZone.CurrentTimeZone.GetUtcOffset(DateTime.Now).Hours }
+               },
+               (result) =>
+               {
+                   bool isEvent = (bool)((JsonObject)result.FunctionResult)["isEventTime"];
+                   PlayerPrefs.SetInt("isevent", isEvent ? 1 : 0);
+                   PlayerPrefs.Save();
+               },
+               (error) =>
+               {
+               });
     }
 
     public void GetCatalog(string catalogVersion)
@@ -114,7 +174,7 @@ public class Store : MonoBehaviour
             },
             (result) =>
             {
-                itemCatalog.LoadItems(result.Catalog);
+                ItemCatalog.LoadItems(result.Catalog);
             },
             (error) =>
             {
@@ -126,7 +186,7 @@ public class Store : MonoBehaviour
     private void OnDestroy()
     {
         StoreEvents.OnLoadStore -= GetStore;
-        StoreEvents.OnPurchaseItem -= StartPurchase;
+        StoreEvents.OnPurchaseItem -= PurchaseItem;
         StoreEvents.OnLoadInventory -= GetUserInventory;
     }
 }

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
-public static class TrackingEvents
+﻿public static class TrackingEvents
 {
     public delegate void BugEaten();
     public static event BugEaten OnBugEaten;
@@ -28,10 +21,24 @@ public static class TrackingEvents
         OnCityGenerated(numBuildings);
     }
 
-    public delegate void GameVictory(int score, int numbugsEaten);
+    public delegate void GameVictory(int score, int numbugsEaten, float maxMultiplier);
     public static event GameVictory OnGameVictory;
-    public static void SendGameVictory(int score, int numbugsEaten)
+    public static void SendGameVictory(int score, int numbugsEaten, float maxMultiplier)
     {
-        OnGameVictory(score, numbugsEaten);
+        OnGameVictory(score, numbugsEaten, maxMultiplier);
+    }
+
+    public delegate void GameDefeat(int score, int numbugsEaten, float maxMultiplier);
+    public static event GameDefeat OnGameDefeat;
+    public static void SendGameDefeat(int score, int numbugsEaten, float maxMultiplier)
+    {
+        OnGameDefeat(score, numbugsEaten, maxMultiplier);
+    }
+
+    public delegate void LoadPlayerInfo();
+    public static event LoadPlayerInfo OnLoadPlayerInfo;
+    public static void SendLoadPlayerInfo()
+    {
+        OnLoadPlayerInfo();
     }
 }

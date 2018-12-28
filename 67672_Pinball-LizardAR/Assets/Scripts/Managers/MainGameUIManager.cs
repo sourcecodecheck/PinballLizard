@@ -1,27 +1,38 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class MainGameUIManager : MonoBehaviour {
+public class MainGameUIManager : MonoBehaviour
+{
 
     public GameObject PauseMenu;
+    public GameObject PlayerInfoScreen;
+
     public Canvas MenuParent;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         GamePlayEvents.OnLoadPauseMenu += LoadPauseMenu;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        MenuTransitionEvents.OnLoadPlayerInfoScreen += LoadPlayerInfoScreen;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     void LoadPauseMenu()
     {
         Instantiate(PauseMenu, MenuParent.transform);
     }
+
+    void LoadPlayerInfoScreen()
+    {
+        PlayerInfoScreen.SetActive(true);
+    }
+
     private void OnDestroy()
     {
         GamePlayEvents.OnLoadPauseMenu -= LoadPauseMenu;
+        MenuTransitionEvents.OnLoadPlayerInfoScreen -= LoadPlayerInfoScreen;
     }
 }
