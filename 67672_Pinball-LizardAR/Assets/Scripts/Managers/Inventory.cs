@@ -29,7 +29,7 @@ public class Inventory : MonoBehaviour
     public DateTime DateJoined;
     public List<ItemInstance> ServerSideItems;
 
-    // Use this for initialization
+    
     void Start()
     {
         ExperienceToNextLevel = new List<int> { 1000 };
@@ -41,16 +41,19 @@ public class Inventory : MonoBehaviour
         DaBombCount = 0;
         SpicyMeatABallCount = 0;
         ArachnoFeastCount = 0;
-        if (PlayerPrefs.HasKey("playfabid"))
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.PlayFabId))
         {
-            PlayerId = PlayerPrefs.GetString("playfabid");
+            PlayerId = PlayerPrefs.GetString(PlayerPrefsKeys.PlayFabId);
         }
         TrackingEvents.SendLoadPlayerInfo();
     }
 
-    private void ClearItems(string itemId, string currency, string catalogVersion, string storeId, int price)
+    private void ClearItems(string itemId, string currency, string catalogVersion, string storeId, int price, bool isContainer)
     {
         ServerSideItems.Clear();
+        DaBombCount = 0;
+        SpicyMeatABallCount = 0;
+        ArachnoFeastCount = 0;
     }
 
     private void LoadServerSideItem(ItemInstance itemInstance)
@@ -89,6 +92,7 @@ public class Inventory : MonoBehaviour
         }
 
     }
+
     public int GetItemAmount(string itemId)
     {
         string lowercaseId = itemId;
@@ -108,7 +112,7 @@ public class Inventory : MonoBehaviour
     }
 
 
-    // Update is called once per frame
+    
     void Update()
     {
 
@@ -117,6 +121,7 @@ public class Inventory : MonoBehaviour
     private void OnDestroy()
     {
         StoreEvents.OnLoadInventoryItem -= LoadServerSideItem;
+        StoreEvents.OnPurchaseItem -= ClearItems;
         GamePlayEvents.OnUsePowerUp -= UseItem;
     }
 }

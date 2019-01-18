@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class City : Pausable
 {
+    //protoypes to be instanced
     public GameObject Building1;
     public GameObject Building2;
     public GameObject Building3;
@@ -13,7 +14,10 @@ public class City : Pausable
     public GameObject Building7;
     public GameObject Building8;
     public GameObject Blank;
+    public GameObject DaBomb;
+    //actual instance of an object
     public GameObject Base;
+
     public int NumberOfBuildingsGenerated;
     public float BuildingToBlankRatio;
     public float scale;
@@ -24,17 +28,19 @@ public class City : Pausable
 
     private List<GameObject> buildingBlock;
     private HexGrid city;
+    private GameObject daBombInstance;
 
     new void Start()
     {
         base.Start();
+        GamePlayEvents.OnBombDetonated += DaBombAnimation;
         buildingBlock = new List<GameObject> { Building1, Building2, Building3, Building4,
             Building5,  Building6,  Building7, Building8 };
         city = new HexGrid();
         StartCoroutine(BuildCity());
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         if (!isAR && !isPaused)
@@ -45,7 +51,7 @@ public class City : Pausable
 
     IEnumerator BuildCity()
     {
-        if (PlayerPrefs.HasKey("ischallenge") && PlayerPrefs.GetInt("ischallenge") == 1)
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.ChallengeModeSet) && PlayerPrefs.GetInt(PlayerPrefsKeys.ChallengeModeSet) == 1)
         {
             GenerateCityChallenge();
         }
@@ -67,7 +73,7 @@ public class City : Pausable
     }
     void GenerateCityChallenge()
     {
-        int seedFromServer = PlayerPrefs.GetInt("dailychallenge");
+        int seedFromServer = PlayerPrefs.GetInt(PlayerPrefsKeys.DailyChallengeSeed);
         float average = 0f;
         for (int i = 1; i < 9; ++i)
         {
@@ -88,7 +94,8 @@ public class City : Pausable
     {
         city.BuildingObjects = buildingBlock;
         city.BlankSpot = Blank;
-        int buildingsGenerated = city.Generate(NumberOfBuildingsGenerated, Random.Range(0, 10000), BuildingToBlankRatio, gameObject);
+        int buildingsGenerated = city.Generate(NumberOfBuildingsGenerated,
+            Random.Range(0, 10000), BuildingToBlankRatio, gameObject);
         TrackingEvents.SendCityGenerated(buildingsGenerated);
     }
 
@@ -116,8 +123,22 @@ public class City : Pausable
         transform.localScale *= scale;
         Base.transform.parent = gameObject.transform;
     }
+
+    void DaBombAnimation()
+    {
+        daBombInstance = Instantiate(DaBomb, transform);
+        Invoke("DestroyDaBomb", 5f);
+    }
+
+    void DestroyDaBomb()
+    {
+        Destroy(daBombInstance);
+        daBombInstance = null;
+    }
+
     new void OnDestroy()
     {
         base.OnDestroy();
+        GamePlayEvents.OnBombDetonated -= DaBombAnimation;
     }
 }

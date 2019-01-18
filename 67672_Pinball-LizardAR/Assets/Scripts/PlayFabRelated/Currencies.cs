@@ -9,13 +9,13 @@ public class Currencies : MonoBehaviour
     public string BugBucksKey;
     public string GluttonyKey;
     public Inventory PlayerInventory;
-    // Use this for initialization
+    
     void Start()
     {
         StoreEvents.OnLoadCurrencies += UpdateCurrency;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
 
@@ -23,14 +23,13 @@ public class Currencies : MonoBehaviour
 
     public void UpdateCurrency()
     {
-        if (PlayerPrefs.HasKey("sessionticket"))
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
             PlayFabClientAPI.GetUserInventory(new GetUserInventoryRequest(),
                 (response) =>
                 {
                     foreach (string currencyKey in response.VirtualCurrency.Keys)
                     {
-                        //Not a switch because it's not fixed values
                         if (currencyKey == MayhemKey)
                         {
                             PlayerInventory.MayhemCount = response.VirtualCurrency[currencyKey];

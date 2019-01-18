@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class PlayerInventoryScreen : MonoBehaviour
 {
-
     public string CatalogVersion;
     public Inventory PlayerInventory;
     public Text LevelText;
@@ -14,8 +13,20 @@ public class PlayerInventoryScreen : MonoBehaviour
     public Text SpicyCountText;
     public Text BombCountText;
     public Text FeastCountText;
-    // Use this for initialization
+    
     void Start()
+    {
+        StoreEvents.OnUpdateInventoryDisplay += UpdateInventoryDisplay;
+        UpdateInventoryDisplay();
+    }
+
+    
+    void Update()
+    {
+
+    }
+
+    void UpdateInventoryDisplay()
     {
         LevelText.text = PlayerInventory.PlayerLevel.ToString();
         UserIdText.text = PlayerInventory.PlayerId;
@@ -27,10 +38,8 @@ public class PlayerInventoryScreen : MonoBehaviour
         FeastCountText.text = PlayerInventory.ArachnoFeastCount.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-
+        StoreEvents.OnUpdateInventoryDisplay -= UpdateInventoryDisplay;
     }
-
 }

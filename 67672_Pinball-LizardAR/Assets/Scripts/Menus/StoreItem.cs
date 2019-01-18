@@ -11,7 +11,7 @@ public class StoreItem : MonoBehaviour
     public Inventory PlayerInventory;
 
     private bool isSelected;
-    // Use this for initialization
+    
     void Awake()
     {
         if (SelectButton != null)
@@ -21,7 +21,6 @@ public class StoreItem : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
     }

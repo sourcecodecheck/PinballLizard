@@ -11,18 +11,15 @@ public class UserInfo : MonoBehaviour
     public string ExperienceKey;
     public string BugsEatenKey;
     public string BestScoreKey;
-
-    private ChallengeMode challengeMode;
-    // Use this for initialization
+    
     void Start()
     {
         TrackingEvents.OnGameVictory += GameEnd;
         TrackingEvents.OnGameDefeat += GameEnd;
         TrackingEvents.OnLoadPlayerInfo += UpdateUserDataFromPlayFab;
-        challengeMode = new ChallengeMode();
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
 
@@ -30,7 +27,7 @@ public class UserInfo : MonoBehaviour
 
     void UpdateUserDataFromPlayFab()
     {
-        if (PlayerPrefs.HasKey("sessionticket"))
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
             PlayFabClientAPI.ExecuteCloudScript(
                new ExecuteCloudScriptRequest()
@@ -51,7 +48,7 @@ public class UserInfo : MonoBehaviour
 
     void GetFirstLoginTime()
     {
-        if (PlayerPrefs.HasKey("sessionticket"))
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
             PlayFabClientAPI.ExecuteCloudScript(
                new ExecuteCloudScriptRequest()
@@ -71,7 +68,7 @@ public class UserInfo : MonoBehaviour
 
     public void SubmitScoreToPlayFab(bool isChallenge)
     {
-        if (PlayerPrefs.HasKey("sessionticket"))
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
             PlayFabClientAPI.ExecuteCloudScript(
                 new ExecuteCloudScriptRequest()
@@ -99,7 +96,7 @@ public class UserInfo : MonoBehaviour
 
     public void GetNextFiveLevels()
     {
-        if (PlayerPrefs.HasKey("sessionticket"))
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
             PlayFabClientAPI.ExecuteCloudScript(
                 new ExecuteCloudScriptRequest()
@@ -140,7 +137,7 @@ public class UserInfo : MonoBehaviour
 
     private void SetUpNewPlayer()
     {
-        if (PlayerPrefs.HasKey("sessionticket"))
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
             PlayFabClientAPI.ExecuteCloudScript(
                 new ExecuteCloudScriptRequest()

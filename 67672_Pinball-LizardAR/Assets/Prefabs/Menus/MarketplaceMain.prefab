@@ -888,7 +888,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1289313851446362
 GameObject:
   m_ObjectHideFlags: 1
@@ -2363,7 +2363,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1726424653885604
 GameObject:
   m_ObjectHideFlags: 1
@@ -2414,7 +2414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1735941808649472
 GameObject:
   m_ObjectHideFlags: 1
@@ -2663,7 +2663,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1795490867853276
 GameObject:
   m_ObjectHideFlags: 1
@@ -3796,9 +3796,10 @@ MonoBehaviour:
   MayhemPriceText: {fileID: 114417686447561266}
   BugBucksPriceText: {fileID: 114746286489474182}
   GluttonyPriceText: {fileID: 0}
-  AmountOwnedText: {fileID: 0}
+  AmountOwnedText: {fileID: 114563222370780428}
   Item: {fileID: 114004574880992420}
   SendUnpause: 0
+  IsContainer: 0
 --- !u!114 &114082839677337592
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5702,9 +5703,10 @@ MonoBehaviour:
   MayhemPriceText: {fileID: 114808491241963940}
   BugBucksPriceText: {fileID: 114031400479551792}
   GluttonyPriceText: {fileID: 0}
-  AmountOwnedText: {fileID: 0}
+  AmountOwnedText: {fileID: 114742485286768738}
   Item: {fileID: 114645562632357272}
   SendUnpause: 0
+  IsContainer: 0
 --- !u!114 &114336155264308388
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6807,6 +6809,7 @@ MonoBehaviour:
   AmountOwnedText: {fileID: 0}
   Item: {fileID: 114852149483191252}
   SendUnpause: 0
+  IsContainer: 1
 --- !u!114 &114545033591115290
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7222,9 +7225,10 @@ MonoBehaviour:
   MayhemPriceText: {fileID: 0}
   BugBucksPriceText: {fileID: 0}
   GluttonyPriceText: {fileID: 114408864313439928}
-  AmountOwnedText: {fileID: 0}
+  AmountOwnedText: {fileID: 114017392709726190}
   Item: {fileID: 114336155264308388}
   SendUnpause: 0
+  IsContainer: 0
 --- !u!114 &114611852011041220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8324,6 +8328,7 @@ MonoBehaviour:
   AmountOwnedText: {fileID: 0}
   Item: {fileID: 114567536909494410}
   SendUnpause: 0
+  IsContainer: 1
 --- !u!114 &114800102406014950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11374,8 +11379,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -49.8, y: 991.1}
-  m_SizeDelta: {x: 100, y: 55}
+  m_AnchoredPosition: {x: -43.9, y: 991.1}
+  m_SizeDelta: {x: 111.8, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224253984287207492
 RectTransform:
@@ -12160,8 +12165,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -321, y: 991.1}
-  m_SizeDelta: {x: 100, y: 55}
+  m_AnchoredPosition: {x: -311.6, y: 991.1}
+  m_SizeDelta: {x: 118.8, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224464239317379234
 RectTransform:
@@ -12578,8 +12583,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 185.3, y: 991.1}
-  m_SizeDelta: {x: 100, y: 55}
+  m_AnchoredPosition: {x: 197.1, y: 991.1}
+  m_SizeDelta: {x: 123.5, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224595077031737328
 RectTransform:
@@ -12753,8 +12758,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 423.9, y: 991.1}
-  m_SizeDelta: {x: 100, y: 55}
+  m_AnchoredPosition: {x: 428.6, y: 991.1}
+  m_SizeDelta: {x: 109.4, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224663233210909134
 RectTransform:

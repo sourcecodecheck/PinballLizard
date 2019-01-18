@@ -1,17 +1,22 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using System;
 
 public class EventTimer : MonoBehaviour
 {
+    public Text Hours;
+    public Text Minutes;
 
-    // Use this for initialization
     void Start()
     {
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-
+        TimeSpan timeRemaining = DateTime.Today.AddDays(1) - DateTime.Now;
+        Hours.text = timeRemaining.Hours.ToString() + "hrs";
+        Minutes.text = timeRemaining.Minutes.ToString() + "min";
     }
 
 }

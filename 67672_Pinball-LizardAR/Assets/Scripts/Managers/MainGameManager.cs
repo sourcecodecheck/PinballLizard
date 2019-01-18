@@ -18,8 +18,12 @@ public class MainGameManager : MonoBehaviour
     private int buildingCount;
     private int appetiteMax;
     private int appetiteCurrent;
+    private bool gameStarted;
+    private bool gameEnded;
     void Awake()
     {
+        gameStarted = false;
+        gameEnded = false;
         appetiteMax = 10;
         appetiteCurrent = appetiteMax;
         gameScore = 0;
@@ -45,12 +49,28 @@ public class MainGameManager : MonoBehaviour
         GamePlayEvents.SendUpdateAppetite(appetiteCurrent, appetiteMax);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (Input.GetKey(KeyCode.Escape))
         {
             SceneManager.LoadScene(0);
+        }
+        if (gameStarted == true && gameEnded == false)
+        {
+            if (buildingCount <= 0)
+            {
+                VictoryScreen.SetActive(true);
+                Invoke("Victory", 0.2f);
+                gameEnded = true;
+            }
+            else if (appetiteCurrent <= 0)
+            {
+                gameEnded = true;
+                appetiteCurrent = 0;
+                DefeatScreen.SetActive(true);
+                Invoke("Defeat", 0.2f);
+            }
         }
     }
 
@@ -65,6 +85,7 @@ public class MainGameManager : MonoBehaviour
         gameMultiplier = multiplier;
         highestMultiplier = Mathf.Max(highestMultiplier, gameMultiplier);
     }
+
     public void AddMultiplier(float multiplier)
     {
         if (isFeastActive)
@@ -91,8 +112,9 @@ public class MainGameManager : MonoBehaviour
 
     public void DefeatCheck()
     {
-        if (appetiteCurrent <= 0 && buildingCount > 0)
+        if (appetiteCurrent <= 0 && buildingCount > 0 && gameEnded == false)
         {
+            gameEnded = true;
             appetiteCurrent = 0;
             DefeatScreen.SetActive(true);
             Invoke("Defeat", 0.2f);
@@ -102,8 +124,9 @@ public class MainGameManager : MonoBehaviour
     public void BuildingDestroyed()
     {
         --buildingCount;
-        if (buildingCount <= 0)
+        if (buildingCount <= 0 && gameEnded == false)
         {
+            gameEnded = true;
             VictoryScreen.SetActive(true);
             Invoke("Victory", 0.2f);
         }
@@ -123,6 +146,7 @@ public class MainGameManager : MonoBehaviour
 
     public void CityGenerated(int numBuildings)
     {
+        gameStarted = true;
         buildingCount = numBuildings;
     }
 

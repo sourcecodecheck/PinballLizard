@@ -67,7 +67,7 @@ Transform:
   m_GameObject: {fileID: 1626969153671788}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0001, y: 0.0001, z: 0.0001}
+  m_LocalScale: {x: 0.0005, y: 0.0005, z: 0.0005}
   m_Children:
   - {fileID: 4680244546744894}
   m_Father: {fileID: 0}
@@ -156,4 +156,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HexStack: {fileID: 1875400074375400, guid: b10c374d7ff848f4c8d975a420a71793, type: 2}
+  Explosion: {fileID: 1976225524317142, guid: c318a58d49a76bf47907d062c4c92714, type: 2}
   StackCount: 7

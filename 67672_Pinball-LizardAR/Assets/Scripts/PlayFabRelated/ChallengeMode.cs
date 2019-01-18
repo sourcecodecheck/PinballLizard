@@ -9,14 +9,15 @@ public class ChallengeMode : MonoBehaviour
     private void Start()
     {
         ScoreEvents.OnLoadLeaderBoard += GetLeaderBoard;
+        StoreEvents.OnSubtractAnimosity += SubtractAnimosity;
     }
 
     public void GetChallengeSeed()
     {
-        if (PlayerPrefs.HasKey("sessionticket"))
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
             string todayString = DateTime.Today.ToShortDateString();
-            if (PlayerPrefs.HasKey("dailychallengeretrieval") == false || PlayerPrefs.GetString("dailychallengeretrieval") != todayString)
+            if (PlayerPrefs.HasKey(PlayerPrefsKeys.DailyChallengeTimeStamp) == false || PlayerPrefs.GetString(PlayerPrefsKeys.DailyChallengeTimeStamp) != todayString)
             {
                 PlayFabClientAPI.ExecuteCloudScript(
                    new ExecuteCloudScriptRequest()
@@ -25,10 +26,11 @@ public class ChallengeMode : MonoBehaviour
                    },
                    (result) =>
                    {
-                       int randomResult = 
-                       PlayFabSimpleJson.DeserializeObject<int>(PlayFabSimpleJson.SerializeObject(((JsonObject)result.FunctionResult)[0]));
-                       PlayerPrefs.SetInt("dailychallenge", randomResult);
-                       PlayerPrefs.SetString("dailychallengeretrieval", DateTime.Today.ToShortDateString());
+                       int randomResult =
+                       PlayFabSimpleJson.DeserializeObject<int>(
+                           PlayFabSimpleJson.SerializeObject(((JsonObject)result.FunctionResult)[0]));
+                       PlayerPrefs.SetInt(PlayerPrefsKeys.DailyChallengeSeed, randomResult);
+                       PlayerPrefs.SetString(PlayerPrefsKeys.DailyChallengeTimeStamp, DateTime.Today.ToShortDateString());
                        PlayerPrefs.Save();
                    },
                    (error) =>
@@ -40,7 +42,7 @@ public class ChallengeMode : MonoBehaviour
 
     public void GetLeaderBoard()
     {
-        if (PlayerPrefs.HasKey("sessionticket"))
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
             PlayFabClientAPI.GetLeaderboard(
                 new GetLeaderboardRequest()
@@ -60,8 +62,28 @@ public class ChallengeMode : MonoBehaviour
         }
     }
 
+    public void SubtractAnimosity(int animosityToSubtract)
+    {
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
+        {
+            PlayFabClientAPI.ExecuteCloudScript(
+               new ExecuteCloudScriptRequest()
+               {
+                   FunctionName = "removeAnimosity",
+                   FunctionParameter = new { animosity = animosityToSubtract }
+               },
+               (result) =>
+               {
+               },
+               (error) =>
+               {
+               });
+        }
+    }
+
     private void OnDestroy()
     {
         ScoreEvents.OnLoadLeaderBoard -= GetLeaderBoard;
+        StoreEvents.OnSubtractAnimosity -= SubtractAnimosity;
     }
 }

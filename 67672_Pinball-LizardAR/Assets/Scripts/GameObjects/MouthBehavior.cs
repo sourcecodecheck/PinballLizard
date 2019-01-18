@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MouthBehavior : Pausable
 {
@@ -8,44 +10,45 @@ public class MouthBehavior : Pausable
     public GameObject MouthOutro;
     public GameObject MouthNom;
     public GameObject IceAmmo;
-    public GameObject FireAmmo;
-    public GameObject AtomAmmo;
-    public float ShotScale;
+    public GameObject Reticle;
+    public GameObject SpicyShot;
+    public Button ReticleButton;
 
-    private enum AmmoTypes { ICE = 0, FIRE, ATOM, MAX_AMMOTYPES }
-    private enum MouthState { OPEN, NOM, CLOSED}
+    private enum AmmoTypes { ICE = 0 }
+    private enum MouthState { OPEN, NOM, SHOOT, HANDS }
     private Queue<AmmoTypes> ammoQueue;
-    private List<GameObject> taggedEnemies;
     private int shotsExisting;
     private MouthState state;
-    private bool isBombPrimed;
+    private bool isSpicyReady;
     private GameObject activeAnimation;
+    private bool nomQueued;
+    private bool leftHandSwipe;
+    private bool isSwiping;
 
-    // Use this for initialization
     void Awake()
     {
+        leftHandSwipe = true;
+        nomQueued = false;
         ammoQueue = new Queue<AmmoTypes>();
-        taggedEnemies = new List<GameObject>();
         state = MouthState.OPEN;
-        isBombPrimed = false;
+        isSpicyReady = false;
         AnimationEvents.OnMouthEnter += HandleMouthEnter;
         AnimationEvents.OnMouthEntered += HandleMouthEntered;
         AnimationEvents.OnMouthExited += HandleMouthExited;
         AnimationEvents.OnMouthNommed += HandleMouthNommed;
         GamePlayEvents.OnShotDestroyed += HandleShotDestroyed;
+        GamePlayEvents.OnSpicyReady += SpicyReady;
+        GamePlayEvents.OnConfirmNom += DoNom;
+        GamePlayEvents.OnConfirmVolley += VolleyConfirm;
+        ReticleButton.onClick.AddListener(Shoot);
+        shotsExisting = 0;
         base.Start();
     }
 
-    // Update is called once per frame
     void Update()
     {
         OnTouch();
         UpdateMouthState();
-    }
-
-    public void PrimeBomb()
-    {
-        isBombPrimed = true;
     }
 
     private void OnTouch()
@@ -58,9 +61,9 @@ public class MouthBehavior : Pausable
                 {
                     OpenMouthBehavior();
                 }
-                else if(state == MouthState.CLOSED)
+                else if (state == MouthState.SHOOT)
                 {
-                    ClosedMouthBehavior();
+                    ShootBehavior();
                 }
             }
         }
@@ -68,62 +71,29 @@ public class MouthBehavior : Pausable
 
     private void OpenMouthBehavior()
     {
-        bool doNom = false;
         foreach (Touch touch in Input.touches)
         {
-            Ray ray = Camera.main.ScreenPointToRay(touch.position);
-            if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
+            if (touch.phase == TouchPhase.Began)
             {
-                RaycastHit[] dragHits = Physics.RaycastAll(ray);
-                foreach (RaycastHit dragHit in dragHits)
-                {
-                    GameObject hitobject = dragHit.transform.gameObject;
-                    string hitobbjectName = hitobject.name.ToLower();
-                    if (hitobbjectName.Contains("enemy") && hitobject.GetComponent<EnemyBehavior>().Grabbable == true && taggedEnemies.Contains(hitobject.gameObject) == false)
-                    {
-                        taggedEnemies.Add(hitobject.gameObject);
-                    }
-                }
-                foreach (GameObject taggedEnemy in taggedEnemies)
-                {
-                    Vector3 touchScreenSpace = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 0.1f));
-                    touchScreenSpace.z = taggedEnemy.transform.position.z;
-                    taggedEnemy.transform.position = touchScreenSpace;//Vector3.Lerp(taggedEnemy.transform.position, touchScreenSpace, 0.8f);
-                    if (touch.position.y < (Screen.height * 0.2f))
-                    {
-                        doNom = true;
-                        break;
-                    }
-                }
-            }
-            if (doNom == true)
-            {
-                DoNom();
+                GamePlayEvents.SendTryNom();
                 break;
             }
         }
     }
     private void DoNom()
     {
-        state = MouthState.NOM;
-        foreach (GameObject taggedEnemy in taggedEnemies)
+        ammoQueue.Enqueue(AmmoTypes.ICE);
+        TrackingEvents.SendBugEaten();
+        if (nomQueued == false)
         {
-            taggedEnemy.SetActive(false);
-            TrackingEvents.SendBugEaten();
-            if (taggedEnemy.name.ToLower().Contains("ice"))
-            {
-                ammoQueue.Enqueue(AmmoTypes.ICE);
-            }
-            else if (taggedEnemy.name.ToLower().Contains("fire"))
-            {
-                ammoQueue.Enqueue(AmmoTypes.FIRE);
-            }
-            else if (taggedEnemy.name.ToLower().Contains("atom"))
-            {
-                ammoQueue.Enqueue(AmmoTypes.ATOM);
-            }
+            nomQueued = true;
+            Invoke("NomAnimation", 0.1f);
         }
-        shotsExisting = ammoQueue.Count;
+    }
+
+    private void NomAnimation()
+    {
+        state = MouthState.NOM;
         if (activeAnimation != null)
         {
             activeAnimation.SetActive(false);
@@ -132,47 +102,49 @@ public class MouthBehavior : Pausable
         activeAnimation.SetActive(true);
     }
 
-    private void ClosedMouthBehavior()
+    private void SpicyReady()
+    {
+        isSpicyReady = true;
+    }
+
+    private void ShootBehavior()
     {
         foreach (Touch touch in Input.touches)
         {
-            if (touch.phase == TouchPhase.Began && touch.position.y < (Screen.height * 0.3f))
+            if (touch.phase == TouchPhase.Began)
             {
-                if (ammoQueue.Count > 0)
-                {
-                    AmmoTypes shot = ammoQueue.Dequeue();
-                    GameObject instantiatedShot = null;
-                    switch (shot)
-                    {
-                        case AmmoTypes.ICE:
-                            instantiatedShot = Instantiate(IceAmmo, Camera.main.transform.position, Camera.main.transform.rotation);
-                            break;
-                        case AmmoTypes.FIRE:
-                            instantiatedShot = Instantiate(FireAmmo, Camera.main.transform.position, Camera.main.transform.rotation);
-                            break;
-                        case AmmoTypes.ATOM:
-                            instantiatedShot = Instantiate(AtomAmmo, Camera.main.transform.position, Camera.main.transform.rotation);
-                            break;
-                    }
-                    instantiatedShot.transform.localScale *= ShotScale;
-                    if (isBombPrimed)
-                    {
-                        instantiatedShot.GetComponent<ShotBehavior>().Life = 0;
-                        isBombPrimed = false;
-                    }
-                    ScoreEvents.SendSetMultiplier(1.0f);
-                }
-                else
-                {
-                    break;
-                }
+                GamePlayEvents.SendTryVolley();
+                break;
             }
         }
     }
 
-    private void UpdateMouthState()
+    private void Shoot()
     {
-        if(state == MouthState.CLOSED)
+        if (state == MouthState.SHOOT)
+        {
+            if (ammoQueue.Count > 0)
+            {
+                GameObject instantiatedShot = null;
+                ammoQueue.Dequeue();
+                if (isSpicyReady)
+                {
+                    instantiatedShot = Instantiate(SpicyShot, Camera.main.transform.position, Camera.main.transform.rotation);
+                    isSpicyReady = false;
+                    GamePlayEvents.SendSpicyEnd();
+                }
+                else
+                {
+                    instantiatedShot = Instantiate(IceAmmo, Camera.main.transform.position, Camera.main.transform.rotation);
+                }
+                ScoreEvents.SendSetMultiplier(1.0f);
+            }
+        }
+    }
+
+        private void UpdateMouthState()
+    {
+        if (state == MouthState.HANDS || state == MouthState.SHOOT)
         {
             if (shotsExisting <= 0)
             {
@@ -183,6 +155,8 @@ public class MouthBehavior : Pausable
     }
     private void HandleMouthEnter()
     {
+        nomQueued = false;
+        Reticle.SetActive(false);
         if (activeAnimation != null)
         {
             activeAnimation.SetActive(false);
@@ -190,11 +164,6 @@ public class MouthBehavior : Pausable
         activeAnimation = MouthIntro;
         activeAnimation.SetActive(true);
         state = MouthState.OPEN;
-        foreach(GameObject enemy in taggedEnemies)
-        {
-            Destroy(enemy);
-        }
-        taggedEnemies.Clear();
     }
 
     private void HandleMouthEntered()
@@ -215,8 +184,9 @@ public class MouthBehavior : Pausable
         }
         activeAnimation = MouthOutro;
         activeAnimation.SetActive(true);
-        AnimationEvents.SendMouthExit();
         shotsExisting = ammoQueue.Count;
+        Reticle.SetActive(true);
+        AnimationEvents.SendMouthExit();
     }
     private void HandleMouthExited()
     {
@@ -225,7 +195,30 @@ public class MouthBehavior : Pausable
             activeAnimation.SetActive(false);
         }
         activeAnimation = null;
-        state = MouthState.CLOSED;
+        state = MouthState.SHOOT;
+    }
+
+    private void VolleyConfirm()
+    {
+        if (isSwiping == false)
+        {
+            isSwiping = true;
+            if (leftHandSwipe == true)
+            {
+                AnimationEvents.SendLeftHandSwipe();
+            }
+            else
+            {
+                AnimationEvents.SendRightHandSwipe();
+            }
+            leftHandSwipe = !leftHandSwipe;
+            Invoke("ResetSwipe", 0.1f);
+        }
+    }
+
+    private void ResetSwipe()
+    {
+        isSwiping = false;
     }
 
     private void HandleShotDestroyed()
@@ -240,6 +233,9 @@ public class MouthBehavior : Pausable
         AnimationEvents.OnMouthExited -= HandleMouthExited;
         AnimationEvents.OnMouthNommed -= HandleMouthNommed;
         GamePlayEvents.OnShotDestroyed -= HandleShotDestroyed;
+        GamePlayEvents.OnSpicyReady -= SpicyReady;
+        GamePlayEvents.OnConfirmNom -= DoNom;
+        GamePlayEvents.OnConfirmVolley -= VolleyConfirm;
         base.OnDestroy();
     }
 }

@@ -9,14 +9,14 @@ public class GameEndDisplay : MonoBehaviour
     public Text PlayerLevelText;
     public Text PowerUpsUsedText;
     public Inventory PlayerInventory;
-    // Use this for initialization
+    
     void Awake()
     {
         TrackingEvents.OnGameVictory += GameEnd;
         TrackingEvents.OnGameDefeat += GameEnd;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
 

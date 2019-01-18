@@ -10,12 +10,13 @@ public class StoreFront : MonoBehaviour
     public StoreItem EpicChest;
     public StoreItem ArachnoFeast;
     public Inventory PlayerInventory;
-    // Use this for initialization
+    
     void Start()
     {
         StoreEvents.OnLoadStoreItem += LoadItem;
         StoreEvents.SendLoadStore(StoreId, CatalogVersion);
-        if(PlayerPrefs.HasKey("isevent") && PlayerPrefs.GetInt("isevent") == 1)
+        if(PlayerPrefs.HasKey(PlayerPrefsKeys.EventSet) &&
+            PlayerPrefs.GetInt(PlayerPrefsKeys.EventSet) == 1)
         {
             ArachnoFeast.SetButtonActive(true);
         }
@@ -31,7 +32,7 @@ public class StoreFront : MonoBehaviour
         ArachnoFeast.PlayerInventory = PlayerInventory;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
 

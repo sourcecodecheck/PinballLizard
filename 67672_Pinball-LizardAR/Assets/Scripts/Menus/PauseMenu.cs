@@ -3,13 +3,13 @@
 public class PauseMenu : MonoBehaviour
 {
 
-    // Use this for initialization
+    
     void Start()
     {
         GamePlayEvents.OnPause += OnUnPause;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
 

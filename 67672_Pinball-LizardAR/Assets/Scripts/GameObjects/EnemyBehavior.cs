@@ -1,45 +1,63 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class EnemyBehavior : Pausable
 {
-    public bool KeepMoving;
-    public bool Grabbable;
+    public bool WillKeepMoving;
+    public bool IsGrabbable;
 
     private float moveStep;
-
-    // Use this for initialization
+    private bool isBeingNommed;
+    
     new void Start()
     {
         base.Start();
-        Grabbable = false;
-        KeepMoving = true;
-        moveStep = Vector3.Distance(transform.position, Camera.main.transform.position) * 0.1f;
+        IsGrabbable = false;
+        WillKeepMoving = true;
+        isBeingNommed = false;
+        moveStep = Vector3.Distance(transform.position, Camera.main.transform.position) * 0.3f;
+        GamePlayEvents.OnTryNom += TryNom;
     }
 
-    // Update is called once per frame
+    private void TryNom()
+    {
+       if(isBeingNommed == false && IsGrabbable == true)
+       {
+            isBeingNommed = true;
+            GamePlayEvents.SendConfirmNom();
+            Destroy(gameObject);
+       }
+    }
+
     void Update()
     {
         if (!isPaused)
         {
-            if (KeepMoving)
+            if (WillKeepMoving)
             {
                 transform.parent = null;
                 float distanceToCamera = Vector3.Distance(transform.position, Camera.main.transform.position);
-                
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Camera.main.transform.position - transform.position), Time.deltaTime);
-                if (distanceToCamera > moveStep * 2)
+                transform.rotation = Quaternion.Slerp(transform.rotation,
+                    Quaternion.LookRotation(Camera.main.transform.position - transform.position), Time.deltaTime);
+                if (distanceToCamera > moveStep * Time.deltaTime *10f)
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, Camera.main.transform.position, moveStep * Time.deltaTime);
+                    transform.position = 
+                        Vector3.MoveTowards(transform.position, Camera.main.transform.position, moveStep * Time.deltaTime);
                 }
-                else
+                if (distanceToCamera <= moveStep )
                 {
-                    Grabbable = true;
+                    IsGrabbable = true;
                 }
+            }
+            else
+            {
+                IsGrabbable = true;
             }
         }
     }
     new private void OnDestroy()
     {
+        GamePlayEvents.OnTryNom -= TryNom;
         base.OnDestroy();
     }
 }

@@ -25,7 +25,7 @@ public class PowerUpButton : Pausable
         UpdateAmounts();
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         if (!isPaused)

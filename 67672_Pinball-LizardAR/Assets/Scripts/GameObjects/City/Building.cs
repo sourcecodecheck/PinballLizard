@@ -3,18 +3,19 @@
 public class Building : MonoBehaviour
 {
     public GameObject HexStack;
+    public GameObject Explosion;
     public HexGrid.HexNode hexNode;
     public int StackCount;
 
     private bool isSelfDestructing;
-    // Use this for initialization
+    
     void Start()
     {
         isSelfDestructing = false;
         GamePlayEvents.OnBombDetonated += Explode;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
 
@@ -24,25 +25,30 @@ public class Building : MonoBehaviour
         if (!isSelfDestructing)
         {
             isSelfDestructing = true;
-            GameObject stack = Instantiate(HexStack, gameObject.transform.position, gameObject.transform.localRotation);
-            stack.transform.localScale = transform.localScale;
             ScoreEvents.SendAddMultiplier(0.1f * StackCount);
             ScoreEvents.SendAddScore(StackCount);
+            GameObject explosion = Instantiate(Explosion, gameObject.transform.position, Quaternion.LookRotation(Camera.main.transform.position - transform.position));
+            explosion.transform.localScale = transform.localScale * 200f;
+            Handheld.Vibrate();
             Invoke("DestroySelf", 0.1f);
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name.ToLower().Contains("shot"))
+        if (!isSelfDestructing)
         {
-            Explode();
-        }
-        if (collision.gameObject.name.ToLower().Contains("spicy"))
-        {
-            Destroy(collision.gameObject);
-            hexNode.SpreadExplosion();
-            Explode();
+            if (collision.gameObject.name.ToLower().Contains("shot"))
+            {
+                Explode();
+                Instantiate(HexStack, gameObject.transform.position, gameObject.transform.localRotation, gameObject.transform.parent);
+            }
+            if (collision.gameObject.name.ToLower().Contains("spicy"))
+            {
+                Destroy(collision.gameObject);
+                hexNode.SpreadExplosion();
+                Explode();
+            }
         }
     }
 

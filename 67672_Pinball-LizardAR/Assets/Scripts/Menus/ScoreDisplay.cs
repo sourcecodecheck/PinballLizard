@@ -2,8 +2,6 @@
 using UnityEngine.UI;
 public class ScoreDisplay : MonoBehaviour
 {
-
-    // Use this for initialization
     public Text scoreText;
     private int score;
     void Start()
@@ -15,7 +13,7 @@ public class ScoreDisplay : MonoBehaviour
         scoreText.text = score.ToString();
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
 

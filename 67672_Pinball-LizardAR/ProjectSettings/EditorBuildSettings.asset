@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NonARMainGame.unity
     guid: c3ed0b6ca0314a643932a4da0b7f03ad
+  - enabled: 0
+    path: Assets/Scenes/QRCodeScene.unity
+    guid: f583d62b3cc471e4a8abc33c01877172
   m_configObjects: {}

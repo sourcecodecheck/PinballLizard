@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Name: PlayFabEditorPrefsSO
   m_EditorClassIdentifier: 
   DevAccountEmail: jill.malta@indigoslate.com
-  DevAccountToken: 1szeor11xrj9m5jy4hiwx75rt86rdkw9ty8gncgfxsrnoxyhjknzs6bmmpko1fugm933izsmmmibuki97mhqshcto4qw41acmrgm5ryohomywzzzyoyrx5a5tbc195dakiuc9ma9zzria3aap1wwkjof8f79fk9ghwr1bm4af9exkd4me7gnempfm65fjpyyq1c3h7tr
+  DevAccountToken: 
   SelectedStudio: 
   SdkPath: Assets/SDKs/PlayFabSdk
   EdExPath: 
   LocalCloudScriptPath: 
   PanelIsShown: 0
-  curMainMenuIdx: 1
+  curMainMenuIdx: 0
   curSubMenuIdx: 0

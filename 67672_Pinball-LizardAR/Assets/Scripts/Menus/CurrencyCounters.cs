@@ -10,7 +10,7 @@ public class CurrencyCounters : MonoBehaviour
     public Text AnimosityCount;
     public Text GluttonyCount;
 
-    // Use this for initialization
+    
     void Start()
     {
         StoreEvents.OnUpdateCurrencyDisplay += UpdateDisplay;
@@ -18,7 +18,7 @@ public class CurrencyCounters : MonoBehaviour
         UpdateDisplay();
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
 

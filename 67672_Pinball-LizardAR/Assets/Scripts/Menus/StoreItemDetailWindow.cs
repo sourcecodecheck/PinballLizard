@@ -13,21 +13,23 @@ public class StoreItemDetailWindow : MonoBehaviour
     public Text AmountOwnedText;
     public StoreItem Item;
     public bool SendUnpause;
+    public bool IsContainer;
+
     void Awake()
-    { 
-        if(BuyMayhemButton != null)
+    {
+        if (BuyMayhemButton != null)
         {
             BuyMayhemButton.onClick.AddListener(PurchaseMayhem);
         }
-        if(BuyBugBucksButton != null)
+        if (BuyBugBucksButton != null)
         {
             BuyBugBucksButton.onClick.AddListener(PurchaseBugBucks);
         }
-        if(BuyGluttonyButton != null)
+        if (BuyGluttonyButton != null)
         {
             BuyGluttonyButton.onClick.AddListener(PurchaseGluttony);
         }
-        if(BackButton != null)
+        if (BackButton != null)
         {
             BackButton.onClick.AddListener(Back);
         }
@@ -43,19 +45,19 @@ public class StoreItemDetailWindow : MonoBehaviour
         {
             GluttonyPriceText.text = Item.ItemData.GluttonyPrice.ToString();
         }
-        if(AmountOwnedText != null)
+        if (AmountOwnedText != null)
         {
-            AmountOwnedText.text = Item.PlayerInventory.GetItemAmount(Item.ItemData.ItemId).ToString();
+            AmountOwnedText.text = "x" + Item.PlayerInventory.GetItemAmount(Item.ItemData.ItemId).ToString();
         }
     }
     void Update()
     {
-        
+
     }
     public void PurchaseMayhem()
     {
         StoreEvents.SendPurchaseItem(Item.ItemData.ItemId, Item.ItemData.MayhemKey,
-            Item.ItemData.CatalogVersion, Item.ItemData.StoreId, Item.ItemData.MayhemPrice);
+            Item.ItemData.CatalogVersion, Item.ItemData.StoreId, Item.ItemData.MayhemPrice, IsContainer);
         Back();
     }
 
@@ -63,21 +65,21 @@ public class StoreItemDetailWindow : MonoBehaviour
     public void PurchaseBugBucks()
     {
         StoreEvents.SendPurchaseItem(Item.ItemData.ItemId, Item.ItemData.BugBucksKey,
-            Item.ItemData.CatalogVersion, Item.ItemData.StoreId, Item.ItemData.BugBucksPrice);
+            Item.ItemData.CatalogVersion, Item.ItemData.StoreId, Item.ItemData.BugBucksPrice, IsContainer);
         Back();
     }
 
     public void PurchaseGluttony()
     {
-        StoreEvents.SendPurchaseItem(Item.ItemData.ItemId, Item.ItemData.GluttonyKey, Item.ItemData.CatalogVersion, 
-            Item.ItemData.StoreId, Item.ItemData.GluttonyPrice);
+        StoreEvents.SendPurchaseItem(Item.ItemData.ItemId, Item.ItemData.GluttonyKey, Item.ItemData.CatalogVersion,
+            Item.ItemData.StoreId, Item.ItemData.GluttonyPrice, IsContainer);
         Back();
     }
-    
+
     private void Back()
     {
         gameObject.SetActive(false);
-        if(SendUnpause)
+        if (SendUnpause)
         {
             GamePlayEvents.SendPause(false);
         }

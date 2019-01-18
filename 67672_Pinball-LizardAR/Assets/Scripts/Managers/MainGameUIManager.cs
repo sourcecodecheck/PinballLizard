@@ -5,16 +5,17 @@ public class MainGameUIManager : MonoBehaviour
 
     public GameObject PauseMenu;
     public GameObject PlayerInfoScreen;
+    public GameObject SettingsScreen;
 
     public Canvas MenuParent;
-    // Use this for initialization
+    
     void Start()
     {
         GamePlayEvents.OnLoadPauseMenu += LoadPauseMenu;
         MenuTransitionEvents.OnLoadPlayerInfoScreen += LoadPlayerInfoScreen;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
 
@@ -26,6 +27,11 @@ public class MainGameUIManager : MonoBehaviour
     }
 
     void LoadPlayerInfoScreen()
+    {
+        SettingsScreen.SetActive(true);
+    }
+
+    void LoadSettingsScreen()
     {
         PlayerInfoScreen.SetActive(true);
     }

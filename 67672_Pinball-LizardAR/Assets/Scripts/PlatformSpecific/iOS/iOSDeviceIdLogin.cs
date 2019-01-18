@@ -14,12 +14,13 @@ public class iOSDeviceIdLogin
             TitleId = PlayFabSettings.TitleId
         },
        (response) => {
-           PlayerPrefs.SetString("sessionticket", response.SessionTicket);
-           PlayerPrefs.SetString("playfabid", response.PlayFabId);
+           PlayerPrefs.SetString(PlayerPrefsKeys.SessionTicket, response.SessionTicket);
+           PlayerPrefs.SetString(PlayerPrefsKeys.PlayFabId, response.PlayFabId);
            PlayerPrefs.Save();
+           LogOnEvents.SendLoginSuccess();
        },
        (error) => {
-           Debug.Log("Whoops");
+           LogOnEvents.SendLoginFailure();
        });
     }
 }

@@ -10,7 +10,7 @@ public class Store : MonoBehaviour
     public string MayhemKey;
     public string BugBucksKey;
     public string GluttonyKey;
-    // Use this for initialization
+    
 
     void Awake()
     {
@@ -20,15 +20,15 @@ public class Store : MonoBehaviour
         StoreEvents.OnConsumeItem += ConsumeItem;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
 
     }
 
-    public void PurchaseItem(string itemId, string currency, string catalogVersion, string storeId, int price)
+    public void PurchaseItem(string itemId, string currency, string catalogVersion, string storeId, int price, bool isContainer)
     {
-        if (PlayerPrefs.HasKey("sessionticket"))
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
             PlayFabClientAPI.PurchaseItem(new PurchaseItemRequest()
             {
@@ -41,8 +41,16 @@ public class Store : MonoBehaviour
             (result) =>
             {
                 ShowMessageWindowHelper.ShowMessage(result.Items.First().DisplayName + " Purchased!");
-                StoreEvents.SendLoadCurrencies();
-                StoreEvents.SendLoadInventory(catalogVersion);
+                if(isContainer == true)
+                {
+                    StoreEvents.SendOpenContainerPopUp();
+                    ConsumeContainer(result.Items.First(), catalogVersion);
+                }
+                else
+                {
+                    StoreEvents.SendLoadCurrencies();
+                    StoreEvents.SendLoadInventory(catalogVersion);
+                }
             },
             (error) =>
             {
@@ -52,7 +60,7 @@ public class Store : MonoBehaviour
     }
     public void GetStore(string storeId, string catalogVersion)
     {
-        if (PlayerPrefs.HasKey("sessionticket"))
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
             if (ItemCatalog.isLoaded != true)
             {
@@ -105,7 +113,7 @@ public class Store : MonoBehaviour
 
     public void GetUserInventory(string catalogVersion)
     {
-        if (PlayerPrefs.HasKey("sessionticket"))
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
             if(ItemCatalog.isLoaded != true)
             {
@@ -129,7 +137,7 @@ public class Store : MonoBehaviour
 
     private void ConsumeItem(ItemInstance itemInstance)
     {
-        if (PlayerPrefs.HasKey("sessionticket"))
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
             PlayFabClientAPI.ConsumeItem(new ConsumeItemRequest
             {
@@ -144,6 +152,27 @@ public class Store : MonoBehaviour
             });
         }
     }
+
+    private void ConsumeContainer(ItemInstance itemInstance, string catalogVersion)
+    {
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
+        {
+            PlayFabClientAPI.UnlockContainerInstance(new UnlockContainerInstanceRequest
+            {
+                ContainerItemInstanceId = itemInstance.ItemInstanceId
+            },
+            (result) =>
+            {
+                StoreEvents.SendContainerOpened(result.GrantedItems, result.VirtualCurrency);
+                StoreEvents.SendLoadCurrencies();
+                StoreEvents.SendLoadInventory(catalogVersion);
+            },
+            (error) =>
+            {
+            });
+        }
+    }
+
     private void GetIsEventTime()
     {
         PlayFabClientAPI.ExecuteCloudScript(
@@ -155,7 +184,7 @@ public class Store : MonoBehaviour
                (result) =>
                {
                    bool isEvent = (bool)((JsonObject)result.FunctionResult)["isEventTime"];
-                   PlayerPrefs.SetInt("isevent", isEvent ? 1 : 0);
+                   PlayerPrefs.SetInt(PlayerPrefsKeys.EventSet, isEvent ? 1 : 0);
                    PlayerPrefs.Save();
                },
                (error) =>
@@ -165,7 +194,7 @@ public class Store : MonoBehaviour
 
     public void GetCatalog(string catalogVersion)
     {
-        if (PlayerPrefs.HasKey("sessionticket"))
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
             PlayFabClientAPI.GetCatalogItems(
             new GetCatalogItemsRequest()
@@ -188,5 +217,6 @@ public class Store : MonoBehaviour
         StoreEvents.OnLoadStore -= GetStore;
         StoreEvents.OnPurchaseItem -= PurchaseItem;
         StoreEvents.OnLoadInventory -= GetUserInventory;
+        StoreEvents.OnConsumeItem -= ConsumeItem;
     }
 }

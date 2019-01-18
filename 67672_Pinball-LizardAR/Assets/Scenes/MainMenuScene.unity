@@ -219,6 +219,49 @@ Prefab:
       propertyPath: MenuParent
       value: 
       objectReference: {fileID: 2137016349}
+    - target: {fileID: 114723271685787582, guid: 9b26112ab1577d24a8e0bda77d863bc1,
+        type: 2}
+      propertyPath: playfabsettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 698b2db098268c640929a7b8090a31eb,
+        type: 2}
+    - target: {fileID: 114649245368489526, guid: 9b26112ab1577d24a8e0bda77d863bc1,
+        type: 2}
+      propertyPath: PlayerLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114723271685787582, guid: 9b26112ab1577d24a8e0bda77d863bc1,
+        type: 2}
+      propertyPath: ProductionEnvironmentUrl
+      value: .playfabapi.com
+      objectReference: {fileID: 0}
+    - target: {fileID: 114723271685787582, guid: 9b26112ab1577d24a8e0bda77d863bc1,
+        type: 2}
+      propertyPath: TitleIdPopUp
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114723271685787582, guid: 9b26112ab1577d24a8e0bda77d863bc1,
+        type: 2}
+      propertyPath: Input
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114723271685787582, guid: 9b26112ab1577d24a8e0bda77d863bc1,
+        type: 2}
+      propertyPath: TryAgain
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114723271685787582, guid: 9b26112ab1577d24a8e0bda77d863bc1,
+        type: 2}
+      propertyPath: PlayFabSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 698b2db098268c640929a7b8090a31eb,
+        type: 2}
+    - target: {fileID: 114320896889645202, guid: 9b26112ab1577d24a8e0bda77d863bc1,
+        type: 2}
+      propertyPath: ContainerPopUp
+      value: 
+      objectReference: {fileID: 1196062387415010, guid: 763fb52121bd92243bd31753e9839d99,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b26112ab1577d24a8e0bda77d863bc1, type: 2}
   m_IsPrefabAsset: 0

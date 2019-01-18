@@ -5,13 +5,20 @@
     public static event ChangeMenu OnChangeMenu;
     public static void SendChangeMenu(Menus menu)
     {
-        OnChangeMenu(menu);
+        OnChangeMenu?.Invoke(menu);
     }
 
     public delegate void LoadPlayerInfoScreen();
     public static event LoadPlayerInfoScreen OnLoadPlayerInfoScreen;
     public static void SendLoadPlayerInfoScreen()
     {
-        OnLoadPlayerInfoScreen();
+        OnLoadPlayerInfoScreen?.Invoke();
+    }
+
+    public delegate void LoadSettingsScreen();
+    public static event LoadSettingsScreen OnLoadSettingsScreen;
+    public static void SendLoadSettingsScreen()
+    {
+        OnLoadSettingsScreen?.Invoke();
     }
 }

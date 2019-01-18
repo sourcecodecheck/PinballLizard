@@ -28,7 +28,7 @@ public class LeaderBoard : MonoBehaviour
     public Text Player10Score;
 
     private List<Tuple<Text, Text>> leaderboardTextDisplays;
-    // Use this for initialization
+    
     void Start()
     {
         ScoreEvents.OnLeaderBoardRetrieved += PopulateLeaderBoard;
@@ -48,7 +48,7 @@ public class LeaderBoard : MonoBehaviour
         ScoreEvents.SendLoadLeaderBoard();
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
 
@@ -56,7 +56,7 @@ public class LeaderBoard : MonoBehaviour
 
     void PopulateLeaderBoard(List<PlayerLeaderboardEntry> leaderboardEntries)
     {
-        string currentUserID = PlayerPrefs.GetString("");
+        string currentUserID = PlayerPrefs.GetString("playfabid");
         for (int i = 0; i < leaderboardTextDisplays.Count; ++i)
         {
             if (leaderboardEntries.Count <= i)
@@ -66,7 +66,14 @@ public class LeaderBoard : MonoBehaviour
             else
             {
                 leaderboardTextDisplays[i].Item1.transform.parent.gameObject.SetActive(true);
-                leaderboardTextDisplays[i].Item1.text = leaderboardEntries[i].PlayFabId;
+                if (leaderboardEntries[i].PlayFabId == currentUserID)
+                {
+                    leaderboardTextDisplays[i].Item1.text = "YOU!";
+                }
+                else
+                {
+                    leaderboardTextDisplays[i].Item1.text = leaderboardEntries[i].PlayFabId;
+                }
                 leaderboardTextDisplays[i].Item2.text = leaderboardEntries[i].StatValue.ToString();
             }
         }

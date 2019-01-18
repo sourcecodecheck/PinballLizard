@@ -11,7 +11,7 @@ public class InGameStore : MonoBehaviour
     public StoreItemDetailWindow SpicyWindow;
     public StoreItemDetailWindow BombWindow;
     public StoreItemDetailWindow FeastWindow;
-    // Use this for initialization
+    
     void Start()
     {
         StoreEvents.OnLoadStoreItem += LoadStoreItem;
@@ -19,7 +19,7 @@ public class InGameStore : MonoBehaviour
         StoreEvents.SendLoadStore(StoreId, CatalogVersion);
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
 
