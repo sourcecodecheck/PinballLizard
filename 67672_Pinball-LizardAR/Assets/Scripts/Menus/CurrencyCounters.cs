@@ -2,14 +2,12 @@
 using UnityEngine.UI;
 
 public class CurrencyCounters : MonoBehaviour
-{
-
+{ 
     public Inventory PlayerInventory;
     public Text MayhemCount;
     public Text BugBucksCount;
     public Text AnimosityCount;
     public Text GluttonyCount;
-
     
     void Start()
     {
@@ -17,11 +15,9 @@ public class CurrencyCounters : MonoBehaviour
         StoreEvents.SendLoadCurrencies();
         UpdateDisplay();
     }
-
     
     void Update()
     {
-
     }
 
     private void UpdateDisplay()

@@ -68,7 +68,12 @@ MonoBehaviour:
     type: 2}
   ARMenu: {fileID: 1685341366730504, guid: db005f3e920420549889935db50b55f4, type: 2}
   EventBoard: {fileID: 1543924082210966, guid: 99535caf2dc50cb40876b6236acd5213, type: 2}
+  ContainerPopUp: {fileID: 1196062387415010, guid: 763fb52121bd92243bd31753e9839d99,
+    type: 2}
+  Tutorial: {fileID: 0}
   MenuParent: {fileID: 0}
+  GeneralMessageWindow: {fileID: 1274791734511400, guid: f5a825dd45c2bbb47ac56b06697c671b,
+    type: 2}
   PlayerInventory: {fileID: 114649245368489526}
   ChallengeMode: {fileID: 114413271506018970}
 --- !u!114 &114413271506018970
@@ -132,7 +137,7 @@ MonoBehaviour:
   BugBucksCount: 0
   AnimosityCount: 0
   GluttonyCount: 0
-  PlayerLevel: 3
+  PlayerLevel: 1
   ExperienceCount: 0
   PreviousExperienceCount: 0
   ExperienceToNextLevel: 
@@ -157,6 +162,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6ab78fcd816d354a93737858bb5038b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayFabSettings: {fileID: 11400000, guid: 698b2db098268c640929a7b8090a31eb, type: 2}
+  TitleId: 
+  ProductionEnvironmentUrl: .playfabapi.com
+  TitleIdPopUp: {fileID: 0}
 --- !u!114 &114920584836492134
 MonoBehaviour:
   m_ObjectHideFlags: 1

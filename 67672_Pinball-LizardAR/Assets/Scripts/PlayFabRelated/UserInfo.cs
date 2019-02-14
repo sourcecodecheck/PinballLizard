@@ -11,7 +11,7 @@ public class UserInfo : MonoBehaviour
     public string ExperienceKey;
     public string BugsEatenKey;
     public string BestScoreKey;
-    
+
     void Start()
     {
         TrackingEvents.OnGameVictory += GameEnd;
@@ -19,7 +19,6 @@ public class UserInfo : MonoBehaviour
         TrackingEvents.OnLoadPlayerInfo += UpdateUserDataFromPlayFab;
     }
 
-    
     void Update()
     {
 
@@ -27,8 +26,10 @@ public class UserInfo : MonoBehaviour
 
     void UpdateUserDataFromPlayFab()
     {
+        //if we've logged in
         if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
+            //get stats from custom cloud script
             PlayFabClientAPI.ExecuteCloudScript(
                new ExecuteCloudScriptRequest()
                {
@@ -36,12 +37,13 @@ public class UserInfo : MonoBehaviour
                },
                (result) =>
                {
-                   GetNextFiveLevels();
                    UpdateInventory((JsonObject)result.FunctionResult);
+                   GetNextFiveLevels();
                    GetFirstLoginTime();
                },
                (error) =>
                {
+                   Debug.Log(error);
                });
         }
     }
@@ -50,6 +52,7 @@ public class UserInfo : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
+            //get first login time from cloud script
             PlayFabClientAPI.ExecuteCloudScript(
                new ExecuteCloudScriptRequest()
                {
@@ -62,6 +65,7 @@ public class UserInfo : MonoBehaviour
                },
                (error) =>
                {
+                   Debug.Log(error);
                });
         }
     }
@@ -90,6 +94,7 @@ public class UserInfo : MonoBehaviour
                 },
                 (error) =>
                 {
+                    Debug.Log(error);
                 });
         }
     }
@@ -113,7 +118,7 @@ public class UserInfo : MonoBehaviour
                     PlayerInventory.ExperienceToNextLevel.Clear();
                     JsonObject response = result.FunctionResult as JsonObject;
                     JsonObject requirements = response[0] as JsonObject;
-                    for(int i =0; i < 5; ++i)
+                    for (int i = 0; i < 5; ++i)
                     {
                         PlayerInventory.ExperienceToNextLevel.Add(
                             PlayFabSimpleJson.DeserializeObject<int>(PlayFabSimpleJson.SerializeObject(requirements[i])));
@@ -121,6 +126,7 @@ public class UserInfo : MonoBehaviour
                 },
                 (error) =>
                 {
+                    Debug.Log(error);
                 });
         }
     }
@@ -139,6 +145,7 @@ public class UserInfo : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
+            //initialize statistics to default values
             PlayFabClientAPI.ExecuteCloudScript(
                 new ExecuteCloudScriptRequest()
                 {
@@ -146,12 +153,13 @@ public class UserInfo : MonoBehaviour
                 },
                 (result) =>
                 {
-                    GetNextFiveLevels();
                     UpdateInventory((JsonObject)result.FunctionResult);
+                    GetNextFiveLevels();
                     GetFirstLoginTime();
                 },
                 (error) =>
                 {
+                    Debug.Log(error);
                 });
         }
     }
@@ -159,6 +167,7 @@ public class UserInfo : MonoBehaviour
 
     private void UpdateInventory(JsonObject inventoryResult)
     {
+        //update internal inventory object with the inventory results
         if (inventoryResult != null)
         {
             JsonObject statistics = inventoryResult["Statistics"] as JsonObject;
@@ -187,6 +196,7 @@ public class UserInfo : MonoBehaviour
                         break;
                 }
             }
+            MenuEvents.SendUpdateLevelDisplay();
         }
         else
         {

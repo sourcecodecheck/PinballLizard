@@ -50,10 +50,15 @@ public class StoreItemDetailWindow : MonoBehaviour
             AmountOwnedText.text = "x" + Item.PlayerInventory.GetItemAmount(Item.ItemData.ItemId).ToString();
         }
     }
+
     void Update()
     {
-
+        if (AmountOwnedText != null)
+        {
+            AmountOwnedText.text = "x" + Item.PlayerInventory.GetItemAmount(Item.ItemData.ItemId).ToString();
+        }
     }
+
     public void PurchaseMayhem()
     {
         StoreEvents.SendPurchaseItem(Item.ItemData.ItemId, Item.ItemData.MayhemKey,

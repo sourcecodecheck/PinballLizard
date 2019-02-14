@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class MenuManagerChangeButton : MonoBehaviour
 {
-    public MenuTransitionEvents.Menus MenuToChangeTo;
+    public MenuEvents.Menus MenuToChangeTo;
     public bool IsButton;
     
     void Start()
@@ -17,15 +17,13 @@ public class MenuManagerChangeButton : MonoBehaviour
             GetComponentInChildren<Button>().onClick.AddListener(ToMenu);
         }
     }
-
     
     void Update()
     {
-
     }
 
     private void ToMenu()
     {
-        MenuTransitionEvents.SendChangeMenu(MenuToChangeTo);
+        MenuEvents.SendChangeMenu(MenuToChangeTo);
     }
 }

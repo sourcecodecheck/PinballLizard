@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
 
 public class SpawnEnemies : Pausable
 {
@@ -8,30 +7,36 @@ public class SpawnEnemies : Pausable
     public float TimeToInitialSpawn;
     public float TimeToSpawnRepeat;
     public int ConcurrentEnemyCap;
+    public int TotalSpawnCap;
     public float Scale;
+    public float CameraOffset;
+    public float HeightOffset;
+    public float[] Rotations;
 
     private List<GameObject> spawnedEnemies;
     private bool isSpawning;
-
+    private float[] heightOffsets;
+    private int totalSpawned;
     
     new void Start()
     {
-        isSpawning = true;
+        isSpawning = false;
         spawnedEnemies = new List<GameObject>();
         if (TimeToInitialSpawn > 0 && TimeToSpawnRepeat > 0)
         {
             InvokeRepeating("DoSpawn", TimeToInitialSpawn, TimeToSpawnRepeat);
         }
-        AnimationEvents.OnMouthNommed += OnNom;
-        AnimationEvents.OnHandsExited += OnArmsExit;
+        AnimationEvents.OnMouthEntered += OnMouthEntered;
+        heightOffsets = new float[] { 0, HeightOffset, HeightOffset * 0.5f };
+        totalSpawned = 0;
         base.Start();
     }
 
     
     void Update()
     {
-        spawnedEnemies = spawnedEnemies.Where((e) => (e == null) == false).ToList();
     }
+
 
     private void DoSpawn()
     {
@@ -41,11 +46,12 @@ public class SpawnEnemies : Pausable
             {
                 if (Enemy != null)
                 {
-                    Vector3 spawnOffset = new Vector3(Random.Range(-0.27f, 0.27f), 0, Random.Range(-0.27f, 0.27f));
-                    GameObject spawnedEnemy = Instantiate(Enemy, gameObject.transform.position + spawnOffset, Quaternion.identity);
+                    Vector3 offset = new Vector3(0, heightOffsets[spawnedEnemies.Count], CameraOffset);
+                    GameObject spawnedEnemy = Instantiate(Enemy, gameObject.transform.position  + offset, Quaternion.identity, gameObject.transform);
                     spawnedEnemy.transform.localScale *= Scale;
-                    spawnedEnemy.transform.parent = gameObject.transform;
+                    spawnedEnemy.GetComponent<EnemyBehavior>().Rotation = Rotations[Random.Range(0, Rotations.Length - 1)];
                     spawnedEnemies.Add(spawnedEnemy);
+                    ++totalSpawned;
                 }
             }
         }
@@ -54,17 +60,21 @@ public class SpawnEnemies : Pausable
     private void OnNom()
     {
         isSpawning = false;
+        foreach(GameObject enemy in spawnedEnemies)
+        {
+            Destroy(enemy);
+        }
+        spawnedEnemies.Clear();
     }
 
-    private void OnArmsExit()
+    private void OnMouthEntered()
     {
         isSpawning = true;
     }
 
     private new void OnDestroy()
     {
-        AnimationEvents.OnMouthNommed -= OnNom;
-        AnimationEvents.OnHandsExited -= OnArmsExit;
+        AnimationEvents.OnMouthEntered -= OnMouthEntered;
         base.OnDestroy();
     }
 }

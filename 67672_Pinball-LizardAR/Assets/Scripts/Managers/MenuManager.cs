@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class MenuManager : MonoBehaviour
@@ -12,13 +12,14 @@ public class MenuManager : MonoBehaviour
     public GameObject ARMenu;
     public GameObject EventBoard;
     public GameObject ContainerPopUp;
+    public GameObject Tutorial;
     public Canvas MenuParent;
+    public GameObject GeneralMessageWindow;
     public Inventory PlayerInventory;
     public ChallengeMode ChallengeMode;
 
     private static bool hasMainMenuBeenLoaded = false;
     private List<GameObject> menuObjects;
-
 
     void Start()
     {
@@ -32,8 +33,9 @@ public class MenuManager : MonoBehaviour
             PlayerInventory.enabled = true;
             LoadMainMenu();
         }
-        MenuTransitionEvents.OnChangeMenu += ChangeMenu;
+        MenuEvents.OnChangeMenu += ChangeMenu;
         StoreEvents.OnOpenContainerPopUp += LoadContainerPopUp;
+        MenuEvents.OnShowGeneralMessage += ShowGeneralMessageWindow;
     }
 
     void Update()
@@ -44,28 +46,29 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    void ChangeMenu(MenuTransitionEvents.Menus menu)
+    void ChangeMenu(MenuEvents.Menus menu)
     {
         PlayerInventory.enabled = true;
+        TrackingEvents.SendLoadPlayerInfo();
         UnloadMenu();
         switch (menu)
         {
-            case MenuTransitionEvents.Menus.TITLE:
+            case MenuEvents.Menus.TITLE:
                 LoadTitle();
                 break;
-            case MenuTransitionEvents.Menus.MAIN:
+            case MenuEvents.Menus.MAIN:
                 LoadMainMenu();
                 break;
-            case MenuTransitionEvents.Menus.PLAYERINFO:
+            case MenuEvents.Menus.PLAYERINFO:
                 LoadPlayerInfo();
                 break;
-            case MenuTransitionEvents.Menus.STORE:
+            case MenuEvents.Menus.STORE:
                 LoadStoreFront();
                 break;
-            case MenuTransitionEvents.Menus.AR:
+            case MenuEvents.Menus.AR:
                 LoadAR();
                 break;
-            case MenuTransitionEvents.Menus.DAILY_CHALLENGE:
+            case MenuEvents.Menus.DAILY_CHALLENGE:
                 LoadDailyChallenge();
                 break;
             default:
@@ -76,8 +79,10 @@ public class MenuManager : MonoBehaviour
 
     private void LoadMainMenu()
     {
+        //PlayerPrefs.SetInt(PlayerPrefsKeys.HasViewedTutorial, 0);
         hasMainMenuBeenLoaded = true;
         GameObject mainMenuInstance = Instantiate(MainMenuButtons, MenuParent.transform);
+        mainMenuInstance.GetComponentInChildren<PlayerLevelDisplay>().PlayerInventory = PlayerInventory;
         mainMenuInstance.GetComponentInChildren<PlayerLevelBar>().PlayerInventory = PlayerInventory;
         menuObjects.Add(mainMenuInstance);
     }
@@ -110,10 +115,16 @@ public class MenuManager : MonoBehaviour
 
     private void LoadAR()
     {
-        PlayerPrefs.SetInt(PlayerPrefsKeys.ChallengeModeSet, 0);
-        PlayerPrefs.Save();
-        menuObjects.Add(Instantiate(ARMenu, MenuParent.transform));
-
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.HasViewedTutorial) == false || PlayerPrefs.GetInt(PlayerPrefsKeys.HasViewedTutorial) != 1)
+        {
+            LoadTutorial();
+        }
+        else
+        {
+            PlayerPrefs.SetInt(PlayerPrefsKeys.ChallengeModeSet, 0);
+            PlayerPrefs.Save();
+            menuObjects.Add(Instantiate(ARMenu, MenuParent.transform));
+        }
     }
 
     private void LoadDailyChallenge()
@@ -128,6 +139,17 @@ public class MenuManager : MonoBehaviour
         ChallengeMode.GetChallengeSeed();
         menuObjects.Add(eventScreen);
     }
+    private void LoadTutorial()
+    {
+        UnloadMenu();
+        GameObject tutorial = Instantiate(Tutorial, MenuParent.transform);
+        menuObjects.Add(tutorial);
+    }
+    private void ShowGeneralMessageWindow(string message)
+    {
+        GameObject messageWindow = Instantiate(GeneralMessageWindow, MenuParent.transform);
+        messageWindow.GetComponentInChildren<GeneralMessage>().SetMessage(message);
+    }
 
     private void UnloadMenu()
     {
@@ -139,6 +161,6 @@ public class MenuManager : MonoBehaviour
     }
     private void OnDestroy()
     {
-        MenuTransitionEvents.OnChangeMenu -= ChangeMenu;
+        MenuEvents.OnChangeMenu -= ChangeMenu;
     }
 }

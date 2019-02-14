@@ -2,13 +2,10 @@
 
 public class PauseMenu : MonoBehaviour
 {
-
-    
     void Start()
     {
         GamePlayEvents.OnPause += OnUnPause;
     }
-
     
     void Update()
     {

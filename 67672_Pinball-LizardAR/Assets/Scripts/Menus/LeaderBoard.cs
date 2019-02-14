@@ -70,6 +70,10 @@ public class LeaderBoard : MonoBehaviour
                 {
                     leaderboardTextDisplays[i].Item1.text = "YOU!";
                 }
+                else if(string.IsNullOrEmpty(leaderboardEntries[i].DisplayName) == false)
+                {
+                    leaderboardTextDisplays[i].Item1.text = leaderboardEntries[i].DisplayName;
+                }
                 else
                 {
                     leaderboardTextDisplays[i].Item1.text = leaderboardEntries[i].PlayFabId;

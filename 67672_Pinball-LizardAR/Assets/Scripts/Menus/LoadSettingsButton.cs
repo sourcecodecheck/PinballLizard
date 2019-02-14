@@ -17,6 +17,6 @@ public class LoadSettingsButton : MonoBehaviour
     }
     void OnClick()
     {
-        MenuTransitionEvents.SendLoadSettingsScreen();
+        MenuEvents.SendLoadSettingsScreen();
     }
 }

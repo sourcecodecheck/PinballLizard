@@ -10,7 +10,6 @@ public class StoreButton : MonoBehaviour
     {
         GetComponent<Button>().onClick.AddListener(OnClick);
     }
-
     
     void Update()
     {

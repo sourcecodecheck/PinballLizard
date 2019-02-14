@@ -1,5 +1,4 @@
 ﻿using PlayFab.ClientModels;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -23,13 +22,14 @@ public class ContainerPopUp : MonoBehaviour
     public Text AnimosityText;
     public Text GluttonyText;
 
-    // Use this for initialization
+    public GameObject CloseButton;
+
     void Start()
     {
         StoreEvents.OnContainerOpened += ReceiveContainerItems;
+        CloseButton.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -59,6 +59,7 @@ public class ContainerPopUp : MonoBehaviour
         {
             GluttonyText.text = currencies[GluttonyKey].ToString();
         }
+        CloseButton.SetActive(true);
     }
 
     private void OnDestroy()

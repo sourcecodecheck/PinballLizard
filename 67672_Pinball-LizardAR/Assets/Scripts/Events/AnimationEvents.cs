@@ -97,4 +97,32 @@
     {
             OnRightHandSwiped?.Invoke();
     }
+
+    public delegate void BannerEnter();
+    public static event BannerEnter OnBannerEnter;
+    public static void SendBannerEnter()
+    {
+        OnBannerEnter?.Invoke();
+    }
+
+    public delegate void BannerExited();
+    public static event BannerExited OnBannerExited;
+    public static void SendBannerExited()
+    {
+        OnBannerExited?.Invoke();
+    }
+
+    public delegate void MissEnter();
+    public static event MissEnter OnMissEnter;
+    public static void SendMissEnter()
+    {
+        OnMissEnter?.Invoke();
+    }
+
+    public delegate void MissExited();
+    public static event BannerExited OnMissExited;
+    public static void SendMissExited()
+    {
+        OnMissExited?.Invoke();
+    }
 }

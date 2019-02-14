@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PlayFab.ClientModels;
 
-
+/// <summary>
+/// Class for storing contents of catalog
+/// </summary>
 public static class ItemCatalog
 {
     public static bool isLoaded { get { return catalog.Count > 0; }  }

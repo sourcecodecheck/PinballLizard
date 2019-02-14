@@ -10,7 +10,6 @@ public class EventTimer : MonoBehaviour
     void Start()
     {
     }
-
     
     void Update()
     {

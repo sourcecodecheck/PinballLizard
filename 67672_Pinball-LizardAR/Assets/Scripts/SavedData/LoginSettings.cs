@@ -44,7 +44,7 @@ public class LoginSettings : MonoBehaviour
     }
     void LoginSucceeded()
     {
-        MenuTransitionEvents.SendChangeMenu(MenuTransitionEvents.Menus.MAIN);
+        MenuEvents.SendChangeMenu(MenuEvents.Menus.MAIN);
     }
     void LoginFailed()
     {

@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class MainGameManager : MonoBehaviour
 {
     public int ScoreUnit;
+    public int AppetiteMax;
     public float DefaultMultiplier;
     public GameObject VictoryScreen;
     public GameObject DefeatScreen;
@@ -16,16 +17,18 @@ public class MainGameManager : MonoBehaviour
     private bool isFeastActive;
     private int bugsEatenThisGame;
     private int buildingCount;
-    private int appetiteMax;
+    
     private int appetiteCurrent;
     private bool gameStarted;
     private bool gameEnded;
+    private bool daBombDetonated;
+
     void Awake()
     {
         gameStarted = false;
         gameEnded = false;
-        appetiteMax = 10;
-        appetiteCurrent = appetiteMax;
+        daBombDetonated = false;
+        appetiteCurrent = AppetiteMax;
         gameScore = 0;
         gameMultiplier = 1.0f;
         bugsEatenThisGame = 0;
@@ -42,13 +45,10 @@ public class MainGameManager : MonoBehaviour
         AnimationEvents.OnHandsExited += DefeatCheck;
     }
 
-
-
     private void Start()
     {
-        GamePlayEvents.SendUpdateAppetite(appetiteCurrent, appetiteMax);
+        GamePlayEvents.SendUpdateAppetite(appetiteCurrent, AppetiteMax);
     }
-
 
     void Update()
     {
@@ -56,7 +56,7 @@ public class MainGameManager : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
-        if (gameStarted == true && gameEnded == false)
+        if (gameStarted == true && gameEnded == false && daBombDetonated == false)
         {
             if (buildingCount <= 0)
             {
@@ -107,12 +107,12 @@ public class MainGameManager : MonoBehaviour
         {
             appetiteCurrent = 0;
         }
-        GamePlayEvents.SendUpdateAppetite(appetiteCurrent, appetiteMax);
+        GamePlayEvents.SendUpdateAppetite(appetiteCurrent, AppetiteMax);
     }
 
     public void DefeatCheck()
     {
-        if (appetiteCurrent <= 0 && buildingCount > 0 && gameEnded == false)
+        if (appetiteCurrent <= 0 && buildingCount > 0 && gameEnded == false && daBombDetonated == false)
         {
             gameEnded = true;
             appetiteCurrent = 0;
@@ -124,7 +124,7 @@ public class MainGameManager : MonoBehaviour
     public void BuildingDestroyed()
     {
         --buildingCount;
-        if (buildingCount <= 0 && gameEnded == false)
+        if (buildingCount <= 0 && gameEnded == false && daBombDetonated == false)
         {
             gameEnded = true;
             VictoryScreen.SetActive(true);
@@ -139,19 +139,32 @@ public class MainGameManager : MonoBehaviour
     {
         isFeastActive = false;
     }
-    private void BombBonus()
-    {
-        gameScore += 20000;
-    }
 
     public void CityGenerated(int numBuildings)
     {
         gameStarted = true;
         buildingCount = numBuildings;
     }
+    private void BombBonus()
+    {
+        if (daBombDetonated == false)
+        {
+            daBombDetonated = true;
+            gameScore += 20000;
+            Invoke("VictoryBomb", 2.0f);
+        }
+    }
+
+    private void VictoryBomb()
+    {
+        gameEnded = true;
+        VictoryScreen.SetActive(true);
+        Invoke("Victory", 0.2f);
+    }
 
     private void Victory()
     {
+        gameScore += 1000 * appetiteCurrent;
         TrackingEvents.SendGameVictory(gameScore, bugsEatenThisGame, highestMultiplier);
     }
 
@@ -171,5 +184,6 @@ public class MainGameManager : MonoBehaviour
         GamePlayEvents.OnFeastStart -= FeastStart;
         GamePlayEvents.OnFeastEnd -= FeastEnd;
         AnimationEvents.OnHandsExited -= DefeatCheck;
+        GamePlayEvents.OnBombDetonated -= BombBonus;
     }
 }

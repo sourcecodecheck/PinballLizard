@@ -3,33 +3,57 @@
 public class ShotBehavior : Pausable
 {
     public bool HasHitBuilding;
-    public float Speed;
+    public bool IsSpicy;
     public int Life;
     public GameObject Explosion;
-    public float DeathDistance;
+    public bool IsNonAR;
+    
     public float Scale;
+    public float MovementSpeed;
+    public Vector3 NonReboundDirection;
 
+    private float deathDistance;
     private float deathDistanceDerivedSpeed;
     private bool isBeingDestroyed;
     private bool isVolleyable;
+    private Renderer shotRenderer;
+    private Vector3 rotationVector;
+    private float rotationSpeed;
     
     new void Start()
     {
+        rotationVector = Vector3.zero;
         GamePlayEvents.OnTryVolley += Volley;
         HasHitBuilding = false;
         base.Start();
         GameObject city = GameObject.Find("City");
         if(city != null)
         {
-            DeathDistance = Vector3.Distance(city.transform.position, Camera.main.transform.position);
+            deathDistance = Vector3.Distance(city.transform.position, Camera.main.transform.position);
         }
         else
         {
-            DeathDistance = 5;
+            deathDistance = 5;
         }
         isBeingDestroyed = false;
-        deathDistanceDerivedSpeed = DeathDistance * 0.3f;
-        
+        deathDistanceDerivedSpeed = deathDistance * MovementSpeed;
+        shotRenderer = GetComponentInChildren<Renderer>();
+        NonReboundDirection = Camera.main.transform.forward;
+        RegenerateRotation();
+        if(IsNonAR)
+        {
+            deathDistance *= 1.5f;
+        }
+    }
+    public void HitBuilding()
+    {
+        HasHitBuilding = true;
+        RegenerateRotation();
+    }
+    public void RegenerateRotation()
+    {
+        rotationVector = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        rotationSpeed = Random.Range(5f, 30f);
     }
 
     private void Update()
@@ -39,29 +63,41 @@ public class ShotBehavior : Pausable
         {
             if (HasHitBuilding)
             {
-                transform.position = Vector3.MoveTowards(transform.position, Camera.main.transform.position,
+                Vector3 nextPosition = Vector3.MoveTowards(transform.position, Camera.main.transform.position,
                    deathDistanceDerivedSpeed * Time.deltaTime);
+                if(Vector3.Distance(gameObject.transform.position, nextPosition) < 0.0001f && isBeingDestroyed == false)
+                {
+                    AnimationEvents.SendMissEnter();
+                    SelfDestruct();
+                    return;
+                }
+                transform.position = nextPosition;
             }
             else
             {
-                gameObject.transform.position += gameObject.transform.forward * deathDistanceDerivedSpeed * Time.deltaTime;
+                gameObject.transform.position += NonReboundDirection * deathDistanceDerivedSpeed * Time.deltaTime;
             }
             if (Life <= 0)
             {
                 Instantiate(Explosion, gameObject.transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
+            gameObject.transform.Rotate(rotationVector, rotationSpeed);
         }
-        if((distanceFromCamera > DeathDistance 
-            || distanceFromCamera < 0) 
-            && isBeingDestroyed == false ) 
+        if(isBeingDestroyed == false)
         {
-            isBeingDestroyed = true;
-            Destroy(gameObject);
+            if(distanceFromCamera > deathDistance || (shotRenderer.isVisible == false && HasHitBuilding == true))
+            {
+                SelfDestruct();
+            }
         }
-        if(distanceFromCamera <= (DeathDistance * 0.2f))
+        if(distanceFromCamera <= (deathDistance * 0.2f))
         {
             isVolleyable = true;
+        }
+        else
+        {
+            isVolleyable = false;
         }
     }
 
@@ -69,14 +105,37 @@ public class ShotBehavior : Pausable
     {
         if (HasHitBuilding == true && isVolleyable == true)
         {
+            rotationVector = Vector3.zero;
+            transform.position = Vector3.MoveTowards(transform.position, Camera.main.transform.position,
+                 deathDistanceDerivedSpeed * Time.deltaTime);
+            NonReboundDirection = Camera.main.transform.forward;
+            RegenerateRotation();
             HasHitBuilding = false;
             GamePlayEvents.SendConfirmVolley();
         }
+        else
+        {
+            AnimationEvents.SendMissEnter();
+        }
     }
+    private void SelfDestruct()
+    {
+        Instantiate(Explosion, gameObject.transform.position, Quaternion.identity);
+        isBeingDestroyed = true;
+        Destroy(gameObject);
+        if (IsSpicy == false)
+        {
+            TrackingEvents.SendBugEaten();
+        }
+    }
+
     private new void OnDestroy()
     {
         GamePlayEvents.OnTryVolley -= Volley;
-        GamePlayEvents.SendShotDestroyed();
+        if (IsSpicy == false)
+        {
+            GamePlayEvents.SendShotDestroyed();
+        }
         base.OnDestroy();
     }
 }

@@ -143,11 +143,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPaused: 0
   HasHitBuilding: 0
-  Speed: 3
+  IsSpicy: 1
   Life: 5
-  Explosion: {fileID: 0}
-  DeathDistance: 0
+  Explosion: {fileID: 1976225524317142, guid: c318a58d49a76bf47907d062c4c92714, type: 2}
+  IsNonAR: 1
   Scale: 400
+  MovementSpeed: 0.5
+  NonReboundDirection: {x: 0, y: 0, z: 0}
 --- !u!135 &135412327824352788
 SphereCollider:
   m_ObjectHideFlags: 1

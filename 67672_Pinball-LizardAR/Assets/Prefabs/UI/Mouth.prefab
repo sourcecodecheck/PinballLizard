@@ -192,7 +192,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 0be05a1fbf05b294aae8177b88822a61, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -215,8 +215,10 @@ MonoBehaviour:
   MouthOutro: {fileID: 1873429892120422}
   MouthNom: {fileID: 1361475703213196}
   IceAmmo: {fileID: 1355818188750212, guid: 7b9a251260da5d041a6fdf3418804511, type: 2}
-  FireAmmo: {fileID: 0}
-  AtomAmmo: {fileID: 0}
+  Reticle: {fileID: 0}
+  SpicyShot: {fileID: 1005727424914008, guid: fa717e8fd4408da4f948fa8af7e7b7f6, type: 2}
+  ReticleButton: {fileID: 0}
+  VolleyInterval: 0
 --- !u!114 &114523327303998664
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -238,7 +240,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: db1765c4d4630b6429757395c0bcd662, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -265,7 +267,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 68a54ad56b5c6784ebfd42054591eeb4, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -292,7 +294,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: db1765c4d4630b6429757395c0bcd662, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

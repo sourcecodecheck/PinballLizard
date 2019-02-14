@@ -14,11 +14,15 @@ public class ChallengeMode : MonoBehaviour
 
     public void GetChallengeSeed()
     {
+        //if we have successfully logged in
         if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
+            //get the date
             string todayString = DateTime.Today.ToShortDateString();
+            //if we haven't gotten the new seed today
             if (PlayerPrefs.HasKey(PlayerPrefsKeys.DailyChallengeTimeStamp) == false || PlayerPrefs.GetString(PlayerPrefsKeys.DailyChallengeTimeStamp) != todayString)
             {
+                //runa  cloudscript to get the challenge mode seed
                 PlayFabClientAPI.ExecuteCloudScript(
                    new ExecuteCloudScriptRequest()
                    {
@@ -26,6 +30,7 @@ public class ChallengeMode : MonoBehaviour
                    },
                    (result) =>
                    {
+                       //retrieve random seed and store it along with the time we retrieved it
                        int randomResult =
                        PlayFabSimpleJson.DeserializeObject<int>(
                            PlayFabSimpleJson.SerializeObject(((JsonObject)result.FunctionResult)[0]));
@@ -35,6 +40,7 @@ public class ChallengeMode : MonoBehaviour
                    },
                    (error) =>
                    {
+                       Debug.Log(error);
                    });
             }
         }
@@ -44,6 +50,7 @@ public class ChallengeMode : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
+            //retrieve top ten in leaderboard
             PlayFabClientAPI.GetLeaderboard(
                 new GetLeaderboardRequest()
                 {
@@ -53,6 +60,7 @@ public class ChallengeMode : MonoBehaviour
                 },
                 (result) =>
                 {
+                    //notify leaderboard object that it has been retrieved so we can update it
                     ScoreEvents.SendLeaderBoardRetrieved(result.Leaderboard);
                 },
                 (error) =>
@@ -66,6 +74,7 @@ public class ChallengeMode : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
+            //run cloud script to subract one point of animosity
             PlayFabClientAPI.ExecuteCloudScript(
                new ExecuteCloudScriptRequest()
                {
@@ -77,6 +86,7 @@ public class ChallengeMode : MonoBehaviour
                },
                (error) =>
                {
+                   Debug.Log(error);
                });
         }
     }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,8 +10,10 @@ public class MouthBehavior : Pausable
     public GameObject MouthNom;
     public GameObject IceAmmo;
     public GameObject Reticle;
+    public GameObject SpicyReticle;
     public GameObject SpicyShot;
-    public Button ReticleButton;
+    public Button[] ReticleButtons;
+    public float VolleyInterval;
 
     private enum AmmoTypes { ICE = 0 }
     private enum MouthState { OPEN, NOM, SHOOT, HANDS }
@@ -40,7 +41,10 @@ public class MouthBehavior : Pausable
         GamePlayEvents.OnSpicyReady += SpicyReady;
         GamePlayEvents.OnConfirmNom += DoNom;
         GamePlayEvents.OnConfirmVolley += VolleyConfirm;
-        ReticleButton.onClick.AddListener(Shoot);
+        foreach (Button button in ReticleButtons)
+        {
+            button.onClick.AddListener(Shoot);
+        }
         shotsExisting = 0;
         base.Start();
     }
@@ -61,9 +65,9 @@ public class MouthBehavior : Pausable
                 {
                     OpenMouthBehavior();
                 }
-                else if (state == MouthState.SHOOT)
+                else if (state == MouthState.HANDS)
                 {
-                    ShootBehavior();
+                    HandsBehavior();
                 }
             }
         }
@@ -71,19 +75,35 @@ public class MouthBehavior : Pausable
 
     private void OpenMouthBehavior()
     {
+        bool doNom = false;
         foreach (Touch touch in Input.touches)
         {
+            Ray ray = Camera.main.ScreenPointToRay(touch.position);
             if (touch.phase == TouchPhase.Began)
             {
-                GamePlayEvents.SendTryNom();
-                break;
+                RaycastHit[] dragHits = Physics.RaycastAll(ray);
+                foreach (RaycastHit dragHit in dragHits)
+                {
+                    GameObject hitobject = dragHit.transform.gameObject;
+                    string hitobbjectName = hitobject.name.ToLower();
+                    if (hitobbjectName.Contains("enemy"))
+                    {
+                        GamePlayEvents.SendTryNom(hitobject.GetInstanceID());
+                        doNom = true;
+                    }
+                }
             }
+            
         }
+        if(doNom == false && Input.touches.Length > 0)
+        {
+            //AnimationEvents.SendMissEnter();
+        }
+
     }
     private void DoNom()
     {
         ammoQueue.Enqueue(AmmoTypes.ICE);
-        TrackingEvents.SendBugEaten();
         if (nomQueued == false)
         {
             nomQueued = true;
@@ -99,15 +119,21 @@ public class MouthBehavior : Pausable
             activeAnimation.SetActive(false);
         }
         activeAnimation = MouthNom;
+        AnimationEvents.SendMouthNom();
         activeAnimation.SetActive(true);
     }
 
     private void SpicyReady()
     {
         isSpicyReady = true;
+        if(state == MouthState.SHOOT)
+        {
+            Reticle.SetActive(false);
+            SpicyReticle.SetActive(true);
+        }
     }
 
-    private void ShootBehavior()
+    private void HandsBehavior()
     {
         foreach (Touch touch in Input.touches)
         {
@@ -125,30 +151,36 @@ public class MouthBehavior : Pausable
         {
             if (ammoQueue.Count > 0)
             {
-                GameObject instantiatedShot = null;
-                ammoQueue.Dequeue();
                 if (isSpicyReady)
                 {
-                    instantiatedShot = Instantiate(SpicyShot, Camera.main.transform.position, Camera.main.transform.rotation);
+                    Instantiate(SpicyShot, Camera.main.transform.position, Camera.main.transform.rotation);
                     isSpicyReady = false;
                     GamePlayEvents.SendSpicyEnd();
+                    SpicyReticle.SetActive(false);
+                    Reticle.SetActive(true);
                 }
                 else
                 {
-                    instantiatedShot = Instantiate(IceAmmo, Camera.main.transform.position, Camera.main.transform.rotation);
+                    ammoQueue.Dequeue();
+                    Instantiate(IceAmmo, Camera.main.transform.position, Camera.main.transform.rotation);
+                    state = MouthState.HANDS;
+                    AnimationEvents.SendHandsEnter();
+                    Reticle.SetActive(false);
                 }
                 ScoreEvents.SendSetMultiplier(1.0f);
+               
             }
         }
     }
 
-        private void UpdateMouthState()
+    private void UpdateMouthState()
     {
         if (state == MouthState.HANDS || state == MouthState.SHOOT)
         {
             if (shotsExisting <= 0)
             {
                 AnimationEvents.SendHandsExit();
+                AnimationEvents.SendMouthEnter();
             }
         }
 
@@ -185,7 +217,14 @@ public class MouthBehavior : Pausable
         activeAnimation = MouthOutro;
         activeAnimation.SetActive(true);
         shotsExisting = ammoQueue.Count;
-        Reticle.SetActive(true);
+        if (isSpicyReady == true)
+        {
+            SpicyReticle.SetActive(true);
+        }
+        else
+        {
+            Reticle.SetActive(true);
+        }
         AnimationEvents.SendMouthExit();
     }
     private void HandleMouthExited()
@@ -196,6 +235,7 @@ public class MouthBehavior : Pausable
         }
         activeAnimation = null;
         state = MouthState.SHOOT;
+        GamePlayEvents.SendUpdateAmmoCount(ammoQueue.Count);
     }
 
     private void VolleyConfirm()
@@ -212,7 +252,8 @@ public class MouthBehavior : Pausable
                 AnimationEvents.SendRightHandSwipe();
             }
             leftHandSwipe = !leftHandSwipe;
-            Invoke("ResetSwipe", 0.1f);
+            Invoke("ResetSwipe", VolleyInterval);
+            AudioEvents.SendPlayBugSmack();
         }
     }
 
@@ -224,6 +265,9 @@ public class MouthBehavior : Pausable
     private void HandleShotDestroyed()
     {
         --shotsExisting;
+        //AnimationEvents.SendHandsExit();
+        Reticle.SetActive(true);
+        state = MouthState.SHOOT;
     }
 
     private new void OnDestroy()
@@ -236,6 +280,7 @@ public class MouthBehavior : Pausable
         GamePlayEvents.OnSpicyReady -= SpicyReady;
         GamePlayEvents.OnConfirmNom -= DoNom;
         GamePlayEvents.OnConfirmVolley -= VolleyConfirm;
+
         base.OnDestroy();
     }
 }

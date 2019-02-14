@@ -9,7 +9,6 @@ public class Pausable : MonoBehaviour {
         GamePlayEvents.OnPause += Pause;
 	}
 	
-	
 	void Update () {
 		
 	}

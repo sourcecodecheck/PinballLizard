@@ -10,7 +10,6 @@ public class Store : MonoBehaviour
     public string MayhemKey;
     public string BugBucksKey;
     public string GluttonyKey;
-    
 
     void Awake()
     {
@@ -23,13 +22,14 @@ public class Store : MonoBehaviour
     
     void Update()
     {
-
     }
 
     public void PurchaseItem(string itemId, string currency, string catalogVersion, string storeId, int price, bool isContainer)
     {
+        //if we've logged in
         if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
+            //request to purchase item
             PlayFabClientAPI.PurchaseItem(new PurchaseItemRequest()
             {
                 ItemId = itemId,
@@ -40,21 +40,28 @@ public class Store : MonoBehaviour
             },
             (result) =>
             {
-                ShowMessageWindowHelper.ShowMessage(result.Items.First().DisplayName + " Purchased!");
+                //notify and update inventory and displays
+                
+                //if it's a container
                 if(isContainer == true)
                 {
+                    //open container
                     StoreEvents.SendOpenContainerPopUp();
                     ConsumeContainer(result.Items.First(), catalogVersion);
                 }
                 else
                 {
+                    //notify and update inventory and displays
                     StoreEvents.SendLoadCurrencies();
                     StoreEvents.SendLoadInventory(catalogVersion);
+                    MenuEvents.SendShowGeneralMessage(result.Items.First().DisplayName + " Purchased!");
+                    //ShowMessageWindowHelper.ShowMessage(result.Items.First().DisplayName + " Purchased!");
                 }
             },
             (error) =>
             {
-                ShowMessageWindowHelper.ShowMessage(error.ErrorMessage);
+                MenuEvents.SendShowGeneralMessage(error.ErrorMessage);
+                //ShowMessageWindowHelper.ShowMessage(error.ErrorMessage);
             });
         }
     }
@@ -62,10 +69,13 @@ public class Store : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
+            //if we haven't loaded the catalog yet
             if (ItemCatalog.isLoaded != true)
             {
+                //load the catalog
                 GetCatalog(catalogVersion);
             }
+            //load the specific store
             PlayFabClientAPI.GetStoreItems(new GetStoreItemsRequest()
             {
                 CatalogVersion = catalogVersion,
@@ -73,7 +83,9 @@ public class Store : MonoBehaviour
             },
             (result) =>
             {
+                //check for event time
                 GetIsEventTime();
+                //notify and update storefront with item details
                 foreach (PlayFab.ClientModels.StoreItem item in result.Store)
                 {
                     int mayhemPrice = -1;
@@ -106,7 +118,7 @@ public class Store : MonoBehaviour
             },
             (error) =>
             {
-                ShowMessageWindowHelper.ShowMessage(error.ErrorMessage);
+                Debug.Log(error);
             });
         }
     }
@@ -115,14 +127,17 @@ public class Store : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
+            //catalog check and load
             if(ItemCatalog.isLoaded != true)
             {
                 GetCatalog(catalogVersion);
             }
+            //load inventory
             PlayFabClientAPI.GetUserInventory(
                 new GetUserInventoryRequest(),
                 (result) => 
                 {
+                    //notify and update inventory of every item
                     foreach( ItemInstance item in result.Inventory )
                     {
                         StoreEvents.SendLoadInventoryItem(item);
@@ -139,6 +154,7 @@ public class Store : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
+            //request to consume item instance
             PlayFabClientAPI.ConsumeItem(new ConsumeItemRequest
             {
                 ConsumeCount = 1,
@@ -149,6 +165,7 @@ public class Store : MonoBehaviour
             },
             (error) =>
             {
+                Debug.Log(error);
             });
         }
     }
@@ -157,24 +174,28 @@ public class Store : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
+            //request to open and use container
             PlayFabClientAPI.UnlockContainerInstance(new UnlockContainerInstanceRequest
             {
                 ContainerItemInstanceId = itemInstance.ItemInstanceId
             },
             (result) =>
             {
+                //notify and update inventory and container display window
                 StoreEvents.SendContainerOpened(result.GrantedItems, result.VirtualCurrency);
                 StoreEvents.SendLoadCurrencies();
                 StoreEvents.SendLoadInventory(catalogVersion);
             },
             (error) =>
             {
+                Debug.Log(error);
             });
         }
     }
 
     private void GetIsEventTime()
     {
+        //run cloudscript to check if it's event time
         PlayFabClientAPI.ExecuteCloudScript(
                new ExecuteCloudScriptRequest()
                {
@@ -189,6 +210,7 @@ public class Store : MonoBehaviour
                },
                (error) =>
                {
+                   Debug.Log(error);
                });
     }
 
@@ -196,6 +218,7 @@ public class Store : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
+            //retrieve all items in catalog and store in catalog static class
             PlayFabClientAPI.GetCatalogItems(
             new GetCatalogItemsRequest()
             {
@@ -207,7 +230,7 @@ public class Store : MonoBehaviour
             },
             (error) =>
             {
-                ShowMessageWindowHelper.ShowMessage(error.ErrorMessage);
+                Debug.Log(error);
             });
         }
     }

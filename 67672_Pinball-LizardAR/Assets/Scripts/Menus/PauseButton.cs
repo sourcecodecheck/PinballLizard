@@ -9,11 +9,9 @@ public class PauseButton : Pausable
         base.Start();
         GetComponent<Button>().onClick.AddListener(ButtonPressed);
     }
-
     
     void Update()
     {
-
     }
 
     void ButtonPressed()

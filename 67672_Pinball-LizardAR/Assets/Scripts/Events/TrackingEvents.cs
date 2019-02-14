@@ -1,4 +1,5 @@
-﻿public static class TrackingEvents
+﻿using System.Collections.Generic;
+public static class TrackingEvents
 {
     public delegate void BugEaten();
     public static event BugEaten OnBugEaten;
@@ -40,5 +41,19 @@
     public static void SendLoadPlayerInfo()
     {
         OnLoadPlayerInfo?.Invoke();
+    }
+
+    public delegate void PlayFabPlayerEvent(Dictionary<string, object> eventBody, string eventTitle);
+    public static event PlayFabPlayerEvent OnPlayFabPlayerEvent;
+    public static void SendPlayFabPlayerEvent(Dictionary<string, object> eventBody, string eventTitle)
+    {
+        OnPlayFabPlayerEvent?.Invoke(eventBody, eventTitle);
+    }
+
+    public delegate void PlayFabTitleEvent(Dictionary<string, object> eventBody, string eventTitle);
+    public static event PlayFabTitleEvent OnPlayFabTitleEvent;
+    public static void SendPlayFabTitleEvent(Dictionary<string, object> eventBody, string eventTitle)
+    {
+        OnPlayFabTitleEvent?.Invoke(eventBody, eventTitle);
     }
 }

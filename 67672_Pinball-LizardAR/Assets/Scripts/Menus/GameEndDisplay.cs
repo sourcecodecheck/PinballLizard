@@ -15,11 +15,9 @@ public class GameEndDisplay : MonoBehaviour
         TrackingEvents.OnGameVictory += GameEnd;
         TrackingEvents.OnGameDefeat += GameEnd;
     }
-
     
     void Update()
     {
-
     }
 
     public void GameEnd(int score, int bugsEaten, float maxMultiplier)

@@ -9,7 +9,6 @@ public class LoadPlayerInfoButton : MonoBehaviour
     {
         OnPress.onClick.AddListener(OnClick);
     }
-
     
     void Update()
     {
@@ -17,6 +16,6 @@ public class LoadPlayerInfoButton : MonoBehaviour
     }
     void OnClick()
     {
-        MenuTransitionEvents.SendLoadPlayerInfoScreen();
+        MenuEvents.SendLoadPlayerInfoScreen();
     }
 }

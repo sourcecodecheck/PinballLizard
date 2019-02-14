@@ -2,20 +2,29 @@
 
 public class MainGameUIManager : MonoBehaviour
 {
-
+    //instantiated
     public GameObject PauseMenu;
-    public GameObject PlayerInfoScreen;
-    public GameObject SettingsScreen;
-
+    public GameObject ContainerPopUp;
+    public GameObject GeneralMessageWindow;
+    //show/hide
+    public GameObject BuyItemsScreen;
+    public GameObject Banner;
+    public GameObject Miss;
+    //canvas
     public Canvas MenuParent;
-    
+
     void Start()
     {
         GamePlayEvents.OnLoadPauseMenu += LoadPauseMenu;
-        MenuTransitionEvents.OnLoadPlayerInfoScreen += LoadPlayerInfoScreen;
+        MenuEvents.OnLoadPlayerInfoScreen += LoadPlayerInfoScreen;
+        MenuEvents.OnShowGeneralMessage += ShowGeneralMessageWindow;
+        AnimationEvents.OnBannerEnter += ShowBanner;
+        AnimationEvents.OnBannerExited += HideBanner;
+        StoreEvents.OnOpenContainerPopUp += LoadContainerPopUp;
+        AnimationEvents.OnMissEnter += ShowMiss;
+        AnimationEvents.OnMissExited += HideMiss;
     }
 
-    
     void Update()
     {
 
@@ -28,17 +37,47 @@ public class MainGameUIManager : MonoBehaviour
 
     void LoadPlayerInfoScreen()
     {
-        SettingsScreen.SetActive(true);
+        BuyItemsScreen.SetActive(true);
+    }
+    void LoadContainerPopUp()
+    {
+        Instantiate(ContainerPopUp, MenuParent.transform);
     }
 
-    void LoadSettingsScreen()
+    private void HideBanner()
     {
-        PlayerInfoScreen.SetActive(true);
+        Banner.SetActive(false);
+    }
+
+    private void ShowBanner()
+    {
+        Banner.SetActive(true);
+    }
+
+    private void HideMiss()
+    {
+        Miss.SetActive(false);
+    }
+
+    private void ShowMiss()
+    {
+        Miss.SetActive(true);
+    }
+
+    private void ShowGeneralMessageWindow(string message)
+    {
+        GameObject messageWindow = Instantiate(GeneralMessageWindow, MenuParent.transform);
+        messageWindow.GetComponentInChildren<GeneralMessage>().SetMessage(message);
     }
 
     private void OnDestroy()
     {
         GamePlayEvents.OnLoadPauseMenu -= LoadPauseMenu;
-        MenuTransitionEvents.OnLoadPlayerInfoScreen -= LoadPlayerInfoScreen;
+        MenuEvents.OnLoadPlayerInfoScreen -= LoadPlayerInfoScreen;
+        AnimationEvents.OnBannerEnter -= ShowBanner;
+        AnimationEvents.OnBannerExited -= HideBanner;
+        MenuEvents.OnShowGeneralMessage -= ShowGeneralMessageWindow;
+        AnimationEvents.OnMissEnter -= ShowMiss;
+        AnimationEvents.OnMissExited -= HideMiss;
     }
 }

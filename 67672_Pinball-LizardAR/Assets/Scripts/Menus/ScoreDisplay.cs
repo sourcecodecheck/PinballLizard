@@ -12,11 +12,9 @@ public class ScoreDisplay : MonoBehaviour
         score = 0;
         scoreText.text = score.ToString();
     }
-
     
     void Update()
     {
-
     }
 
     void FeastStart()

@@ -98,11 +98,11 @@
         OnDestroyARVisualizers?.Invoke();
     }
 
-    public delegate void TryNom();
+    public delegate void TryNom(int instanceId);
     public static event TryNom OnTryNom;
-    public static void SendTryNom()
+    public static void SendTryNom(int instanceId)
     {
-        OnTryNom?.Invoke();
+        OnTryNom?.Invoke(instanceId);
     }
 
     public delegate void ConfirmNom();
@@ -110,5 +110,19 @@
     public static void SendConfirmNom()
     {
         OnConfirmNom?.Invoke();
+    }
+
+    public delegate void DeConfirmNom();
+    public static event DeConfirmNom OnDeConfirmNom;
+    public static void SendDeConfirmNom()
+    {
+        OnDeConfirmNom?.Invoke();
+    }
+
+    public delegate void UpdateAmmoCount(int current);
+    public static event UpdateAmmoCount OnUpdateAmmoCount;
+    public static void SendUpdateAmmoCount(int current)
+    {
+        OnUpdateAmmoCount?.Invoke(current);
     }
 }

@@ -10,7 +10,6 @@ public class AppetiteDisplay : MonoBehaviour
     {
         GamePlayEvents.OnUpdateAppetite += UpdateAppetite;
     }
-
     
     void Update()
     {
@@ -19,8 +18,14 @@ public class AppetiteDisplay : MonoBehaviour
 
     void UpdateAppetite(int current, int max)
     {
-        AppetiteCurrentText.text = current.ToString();
-        AppetiteMaxText.text = max.ToString();
+        if (AppetiteCurrentText != null)
+        {
+            AppetiteCurrentText.text = current.ToString();
+        }
+        if (AppetiteMaxText != null)
+        {
+            AppetiteMaxText.text = max.ToString();
+        }
     }
 
     private void OnDestroy()

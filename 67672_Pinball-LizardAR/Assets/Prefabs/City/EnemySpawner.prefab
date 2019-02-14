@@ -52,11 +52,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPaused: 0
-  IceEnemy: {fileID: 1155887635145770, guid: 496160c942778794b83570d6e7061f2d, type: 2}
-  FireEnemy: {fileID: 0}
-  AtomEnemy: {fileID: 0}
+  Enemy: {fileID: 0}
   TimeToInitialSpawn: 3
   TimeToSpawnRepeat: 4
-  NumberToSpawnTotal: 33
   ConcurrentEnemyCap: 5
-  scale: 30
+  TotalSpawnCap: 3
+  Scale: 0
+  CameraOffset: 0
+  HeightOffset: 0
+  Rotations:
+  - 2
+  - -2
+  - 1.5
+  - -1.5
+  - 0.5
+  - -0.5

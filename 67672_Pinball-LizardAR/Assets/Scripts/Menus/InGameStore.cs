@@ -22,7 +22,6 @@ public class InGameStore : MonoBehaviour
     
     void Update()
     {
-
     }
 
     void LoadStoreItem(StoreItemData itemData)

@@ -5,14 +5,7 @@ using UnityEngine;
 public class City : Pausable
 {
     //protoypes to be instanced
-    public GameObject Building1;
-    public GameObject Building2;
-    public GameObject Building3;
-    public GameObject Building4;
-    public GameObject Building5;
-    public GameObject Building6;
-    public GameObject Building7;
-    public GameObject Building8;
+    public GameObject[] Buildings;
     public GameObject Blank;
     public GameObject DaBomb;
     //actual instance of an object
@@ -34,13 +27,11 @@ public class City : Pausable
     {
         base.Start();
         GamePlayEvents.OnBombDetonated += DaBombAnimation;
-        buildingBlock = new List<GameObject> { Building1, Building2, Building3, Building4,
-            Building5,  Building6,  Building7, Building8 };
+        buildingBlock = new List<GameObject>(Buildings);
         city = new HexGrid();
         StartCoroutine(BuildCity());
     }
 
-    
     void Update()
     {
         if (!isAR && !isPaused)
@@ -95,7 +86,7 @@ public class City : Pausable
         city.BuildingObjects = buildingBlock;
         city.BlankSpot = Blank;
         int buildingsGenerated = city.Generate(NumberOfBuildingsGenerated,
-            Random.Range(0, 10000), BuildingToBlankRatio, gameObject);
+            UnityEngine.Random.Range(0, 10000), BuildingToBlankRatio, gameObject);
         TrackingEvents.SendCityGenerated(buildingsGenerated);
     }
 
@@ -105,8 +96,10 @@ public class City : Pausable
         float xLength = meshBounds.extents.x * 0.5f;
         float zLength = meshBounds.extents.z * 0.5f;
         Base.transform.rotation = city.GetRootRotation();
-        Base.transform.position = city.GetRootPosition() + new Vector3(0, -0.1f, 0);
-        Base.transform.localScale = new Vector3(city.XDistance / xLength, 0.001f, city.ZDistance / zLength);
+        Base.transform.position = city.GetRootPosition() + new Vector3(0, -0.025f, 0);
+        float xScale = city.XDistance / xLength;
+        float zScale = city.ZDistance / zLength;
+        Base.transform.localScale = new Vector3(xScale * 0.9f, 0.0005f, zScale * 0.7f);
         transform.localScale *= scale;
         Base.transform.parent = gameObject.transform.parent;
     }
@@ -114,12 +107,14 @@ public class City : Pausable
     void NonARScaling()
     {
         Bounds meshBounds = Base.GetComponent<MeshFilter>().mesh.bounds;
-        float xLength = meshBounds.extents.x * 0.0005f;
-        float zLength = meshBounds.extents.z * 0.0005f;
+        float xLength = meshBounds.extents.x * 0.001f;
+        float zLength = meshBounds.extents.z * 0.001f;
         Base.transform.rotation = city.GetRootRotation();
         Base.transform.position = city.GetRootPosition() + new Vector3(0, -1.0f, 0);
         Base.transform.parent = null;
-        Base.transform.localScale = new Vector3(city.XDistance / xLength, 0.1f, city.ZDistance / zLength);
+        float xScale = city.XDistance / xLength;
+        float zScale = city.ZDistance / zLength;
+        Base.transform.localScale = new Vector3(xScale * 0.7f, 0.1f, zScale * 0.5f);
         transform.localScale *= scale;
         Base.transform.parent = gameObject.transform;
     }

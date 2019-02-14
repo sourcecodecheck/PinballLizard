@@ -7,4 +7,5 @@
     public const string DailyChallengeTimeStamp = "dailychallengeretrieval";
     public const string DailyChallengeSeed = "dailychallenge";
     public const string PlayFabTitleId = "playfabtitleid";
+    public const string HasViewedTutorial = "hasplayedgame";
 }

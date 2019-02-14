@@ -20,10 +20,8 @@ public class PlayerInventoryScreen : MonoBehaviour
         UpdateInventoryDisplay();
     }
 
-    
     void Update()
     {
-
     }
 
     void UpdateInventoryDisplay()

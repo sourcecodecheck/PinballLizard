@@ -33,7 +33,6 @@ public class ArmBehavior : Pausable
         }
     }
 
-
     void Update()
     { 
     }
@@ -85,6 +84,7 @@ public class ArmBehavior : Pausable
             }
             activeAnimation = ArmExit;
             activeAnimation.SetActive(true);
+            //AnimationEvents.SendHandsExited();
         }
     }
 
@@ -125,10 +125,12 @@ public class ArmBehavior : Pausable
         AnimationEvents.OnHandsExited -= HandleArmExited;
         if (IsRightArm)
         {
+            AnimationEvents.OnRightHandSwipe -= SwipeAnimation;
             AnimationEvents.OnRightHandSwiped -= HandleArmSwiped;
         }
         else
         {
+            AnimationEvents.OnLeftHandSwipe -= SwipeAnimation;
             AnimationEvents.OnLeftHandSwiped -= HandleArmSwiped;
         }
     }

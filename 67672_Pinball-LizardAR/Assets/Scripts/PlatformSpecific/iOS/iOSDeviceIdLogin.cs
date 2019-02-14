@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class iOSDeviceIdLogin
 {
-	public static void LoginPlayfabWithDeviceID() {
+    public static void LoginPlayfabWithDeviceID()
+    {
         PlayFabClientAPI.LoginWithIOSDeviceID(new LoginWithIOSDeviceIDRequest()
         {
             DeviceId = SystemInfo.deviceUniqueIdentifier,
@@ -13,13 +14,15 @@ public class iOSDeviceIdLogin
             CreateAccount = true,
             TitleId = PlayFabSettings.TitleId
         },
-       (response) => {
+       (response) =>
+       {
            PlayerPrefs.SetString(PlayerPrefsKeys.SessionTicket, response.SessionTicket);
            PlayerPrefs.SetString(PlayerPrefsKeys.PlayFabId, response.PlayFabId);
            PlayerPrefs.Save();
            LogOnEvents.SendLoginSuccess();
        },
-       (error) => {
+       (error) =>
+       {
            LogOnEvents.SendLoginFailure();
        });
     }

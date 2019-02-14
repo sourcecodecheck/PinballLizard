@@ -16,7 +16,6 @@ public class Inventory : MonoBehaviour
     public int PlayerLevel;
     public int ExperienceCount;
     public int PreviousExperienceCount;
-    public List<int> ExperienceToNextLevel;
     public int BugsEatenCount;
     public int LastGameScore;
     public int BestScore;
@@ -27,16 +26,15 @@ public class Inventory : MonoBehaviour
     public string FeastKeyTerm;
     public string PlayerId;
     public DateTime DateJoined;
-    public List<ItemInstance> ServerSideItems;
-
+    public List<int> ExperienceToNextLevel;
+    public Dictionary<string, ItemInstance> ServerSideItems;
     
     void Start()
     {
         ExperienceToNextLevel = new List<int> { 1000 };
-        ServerSideItems = new List<ItemInstance>();
+        ServerSideItems = new Dictionary<string, ItemInstance>();
         StoreEvents.OnLoadInventoryItem += LoadServerSideItem;
         StoreEvents.SendLoadInventory(CatalogVersion);
-        StoreEvents.OnPurchaseItem += ClearItems;
         GamePlayEvents.OnUsePowerUp += UseItem;
         DaBombCount = 0;
         SpicyMeatABallCount = 0;
@@ -48,36 +46,33 @@ public class Inventory : MonoBehaviour
         TrackingEvents.SendLoadPlayerInfo();
     }
 
-    private void ClearItems(string itemId, string currency, string catalogVersion, string storeId, int price, bool isContainer)
-    {
-        ServerSideItems.Clear();
-        DaBombCount = 0;
-        SpicyMeatABallCount = 0;
-        ArachnoFeastCount = 0;
-    }
-
     private void LoadServerSideItem(ItemInstance itemInstance)
     {
-        ServerSideItems.Add(itemInstance);
-        string lowercaseId = itemInstance.ItemId.ToLower();
-        if (lowercaseId.Contains(SpicyKeyTerm))
+        if (ServerSideItems.Keys.Contains(itemInstance.ItemInstanceId) == false)
         {
-            SpicyMeatABallCount += itemInstance.RemainingUses ?? 1;
+            ServerSideItems.Add(itemInstance.ItemInstanceId, itemInstance);
+            string lowercaseId = itemInstance.ItemId.ToLower();
+            if (lowercaseId.Contains(SpicyKeyTerm))
+            {
+                SpicyMeatABallCount += itemInstance.RemainingUses ?? 1;
+            }
+            else if (lowercaseId.Contains(BombKeyTerm))
+            {
+                DaBombCount += itemInstance.RemainingUses ?? 1;
+            }
+            else if (lowercaseId.Contains(FeastKeyTerm))
+            {
+                ArachnoFeastCount += itemInstance.RemainingUses ?? 1;
+            }
+            StoreEvents.SendUpdateInventoryDisplay();
         }
-        else if (lowercaseId.Contains(BombKeyTerm))
-        {
-            DaBombCount += itemInstance.RemainingUses ?? 1;
-        }
-        else if (lowercaseId.Contains(FeastKeyTerm))
-        {
-            ArachnoFeastCount += itemInstance.RemainingUses ?? 1;
-        }
-        StoreEvents.SendUpdateInventoryDisplay();
     }
 
     public void UseItem(string keyTerm)
     {
-        StoreEvents.SendConsumeItem(ServerSideItems.FirstOrDefault((item) => item.ItemId.ToLower().Contains(keyTerm)));
+        ItemInstance itemInstance = ServerSideItems.FirstOrDefault((item) => item.Value.ItemId.ToLower().Contains(keyTerm)).Value;
+        ServerSideItems.Remove(itemInstance.ItemInstanceId);
+        StoreEvents.SendConsumeItem(itemInstance);
         if (keyTerm.Contains(SpicyKeyTerm))
         {
             --SpicyMeatABallCount;
@@ -90,7 +85,6 @@ public class Inventory : MonoBehaviour
         {
             --ArachnoFeastCount;
         }
-
     }
 
     public int GetItemAmount(string itemId)
@@ -110,8 +104,6 @@ public class Inventory : MonoBehaviour
         }
         return -1;
     }
-
-
     
     void Update()
     {
@@ -121,7 +113,6 @@ public class Inventory : MonoBehaviour
     private void OnDestroy()
     {
         StoreEvents.OnLoadInventoryItem -= LoadServerSideItem;
-        StoreEvents.OnPurchaseItem -= ClearItems;
         GamePlayEvents.OnUsePowerUp -= UseItem;
     }
 }

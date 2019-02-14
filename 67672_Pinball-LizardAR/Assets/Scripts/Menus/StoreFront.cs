@@ -35,7 +35,6 @@ public class StoreFront : MonoBehaviour
     
     void Update()
     {
-
     }
 
     private void LoadItem(StoreItemData itemData)

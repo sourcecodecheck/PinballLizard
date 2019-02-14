@@ -14,20 +14,21 @@ public class Currencies : MonoBehaviour
     {
         StoreEvents.OnLoadCurrencies += UpdateCurrency;
     }
-
     
     void Update()
     {
-
     }
 
     public void UpdateCurrency()
     {
+        //if we've logged in
         if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
+            //retrieve user's inventory
             PlayFabClientAPI.GetUserInventory(new GetUserInventoryRequest(),
                 (response) =>
                 {
+                    //notify and update currency displays and inventory
                     foreach (string currencyKey in response.VirtualCurrency.Keys)
                     {
                         if (currencyKey == MayhemKey)
@@ -47,7 +48,7 @@ public class Currencies : MonoBehaviour
                 },
                 (error) =>
                 {
-                    ShowMessageWindowHelper.ShowMessage(error.ErrorMessage);
+                    Debug.Log(error);
                 });
         }
     }

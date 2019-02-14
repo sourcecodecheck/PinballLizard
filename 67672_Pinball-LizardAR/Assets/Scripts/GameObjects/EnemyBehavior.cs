@@ -1,31 +1,31 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyBehavior : Pausable
 {
     public bool WillKeepMoving;
     public bool IsGrabbable;
+    public float Rotation;
 
-    private float moveStep;
     private bool isBeingNommed;
-    
+    //private Renderer renderer;
+
     new void Start()
     {
         base.Start();
         IsGrabbable = false;
         WillKeepMoving = true;
         isBeingNommed = false;
-        moveStep = Vector3.Distance(transform.position, Camera.main.transform.position) * 0.3f;
         GamePlayEvents.OnTryNom += TryNom;
     }
 
-    private void TryNom()
+    private void TryNom(int instanceId)
     {
-       if(isBeingNommed == false && IsGrabbable == true)
+       if(isBeingNommed == false && gameObject.GetInstanceID() == instanceId)
        {
+
             isBeingNommed = true;
             GamePlayEvents.SendConfirmNom();
-            Destroy(gameObject);
+            Invoke("SelfDestruct", 0.2f);
        }
     }
 
@@ -33,28 +33,14 @@ public class EnemyBehavior : Pausable
     {
         if (!isPaused)
         {
-            if (WillKeepMoving)
-            {
-                transform.parent = null;
-                float distanceToCamera = Vector3.Distance(transform.position, Camera.main.transform.position);
-                transform.rotation = Quaternion.Slerp(transform.rotation,
-                    Quaternion.LookRotation(Camera.main.transform.position - transform.position), Time.deltaTime);
-                if (distanceToCamera > moveStep * Time.deltaTime *10f)
-                {
-                    transform.position = 
-                        Vector3.MoveTowards(transform.position, Camera.main.transform.position, moveStep * Time.deltaTime);
-                }
-                if (distanceToCamera <= moveStep )
-                {
-                    IsGrabbable = true;
-                }
-            }
-            else
-            {
-                IsGrabbable = true;
-            }
+            transform.RotateAround(gameObject.transform.parent.position, new Vector3(0f, 1f, 0f), Rotation);
         }
     }
+    void SelfDestruct()
+    {
+        Destroy(gameObject);
+    }
+
     new private void OnDestroy()
     {
         GamePlayEvents.OnTryNom -= TryNom;

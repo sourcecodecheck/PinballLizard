@@ -13,10 +13,8 @@ public class TryLoginButton: MonoBehaviour
         OnPress.onClick.AddListener(OnClick);
     }
 
-    
     void Update()
     {
-
     }
     void OnClick()
     {
