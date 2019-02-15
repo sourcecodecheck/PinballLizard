@@ -1,58 +1,44 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class StoreItem : MonoBehaviour {
-
-    public string ItemId;
-    public int MayhemPrice;
-    public int BugBucksPrice;
+public class StoreItem : MonoBehaviour
+{
+    public string KeyTerm;
+    public Button SelectButton;
+    public GameObject DetailWindow;
+    public GameObject WeekendBanner;
+    public StoreItemData ItemData;
+    public Inventory PlayerInventory;
 
     private bool isSelected;
-	// Use this for initialization
-	void Start () {
-        isSelected = false;
-        StoreEvents.OnSelectItem += Select;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
-
-    public void Select(string itemIdToSelect)
+    
+    void Awake()
     {
-        if(itemIdToSelect == ItemId)
+        if (SelectButton != null)
         {
-            if (isSelected)
-            {
-                
-            }
-            else
-            {
-                isSelected = true;
-                GetComponentInChildren<Image>().color = new Color(1, 0, 1);
-            }
+            SelectButton.onClick.AddListener(OnClick);
         }
-        else
-        {
-            isSelected = false;
-            GetComponentInChildren<Image>().color = new Color(1, 1, 1);
-        }
+
     }
 
-    public void Purchase(string currencyToUse)
+    void Update()
     {
-        StoreEvents.SendPurchaseItem(ItemId, currencyToUse);
     }
 
-    private void OnMouseDown()
+    public void OnClick()
     {
-        StoreEvents.SendSelectItem(ItemId);
+        DetailWindow.SetActive(true);
+    }
+    public void SetButtonActive(bool isActive)
+    {
+        if(WeekendBanner != null)
+        {
+            WeekendBanner.gameObject.SetActive(!isActive);
+        }
+        SelectButton.gameObject.SetActive(isActive);
     }
 
     private void OnDestroy()
     {
-        StoreEvents.OnSelectItem -= Select;
     }
 }

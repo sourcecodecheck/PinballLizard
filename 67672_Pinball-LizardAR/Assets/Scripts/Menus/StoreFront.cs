@@ -1,66 +1,69 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using System.Linq;
+﻿using UnityEngine;
 
 public class StoreFront : MonoBehaviour
 {
-
     public string StoreId;
     public string CatalogVersion;
-    public GameObject StoreItem;
-    public GameObject ItemParent;
-
-    private List<GameObject> storeItems;
-    // Use this for initialization
+    public StoreItem SpicyMeatABall;
+    public StoreItem DaBomb;
+    public StoreItem StandardChest;
+    public StoreItem EpicChest;
+    public StoreItem ArachnoFeast;
+    public Inventory PlayerInventory;
+    
     void Start()
     {
-        storeItems = new List<GameObject>();
-        StoreEvents.OnLoadItem += LoadItem;
+        StoreEvents.OnLoadStoreItem += LoadItem;
         StoreEvents.SendLoadStore(StoreId, CatalogVersion);
+        if(PlayerPrefs.HasKey(PlayerPrefsKeys.EventSet) &&
+            PlayerPrefs.GetInt(PlayerPrefsKeys.EventSet) == 1)
+        {
+            ArachnoFeast.SetButtonActive(true);
+        }
+        else
+        {
+            ArachnoFeast.SetButtonActive(false);
+        }
+
+        SpicyMeatABall.PlayerInventory = PlayerInventory;
+        DaBomb.PlayerInventory = PlayerInventory;
+        StandardChest.PlayerInventory = PlayerInventory;
+        EpicChest.PlayerInventory = PlayerInventory;
+        ArachnoFeast.PlayerInventory = PlayerInventory;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-
     }
 
-    public void LoadItem(string itemId, int mayhemPrice, int bugBucksPrice)
+    private void LoadItem(StoreItemData itemData)
     {
-        storeItems = storeItems.Where((item) => item != null).ToList();
-        GameObject storeItem = Instantiate(StoreItem, ItemParent.transform);
-        StoreItem itemScript = storeItem.GetComponent<StoreItem>();
-        itemScript.ItemId = itemId;
-        itemScript.MayhemPrice = mayhemPrice;
-        itemScript.BugBucksPrice = bugBucksPrice;
-        Text[] texts = storeItem.GetComponentsInChildren<Text>();
-        foreach(Text text in texts)
+        string lowerCasedItemId = itemData.ItemId.ToLower();
+        if(lowerCasedItemId.Contains(SpicyMeatABall.KeyTerm))
         {
-            if(text.name.ToLower().Contains("item"))
-            {
-                text.text = itemId;
-            }
-            else if (text.name.ToLower().Contains("may"))
-            {
-                text.text = mayhemPrice.ToString();
-            }
-            else if (text.name.ToLower().Contains("bug"))
-            {
-                text.text = bugBucksPrice.ToString();
-            }
+            SpicyMeatABall.ItemData = itemData;
         }
-        storeItem.transform.position += new Vector3(150 * storeItems.Count, 0);
-        storeItems.Add(storeItem);
+        else if (lowerCasedItemId.Contains(DaBomb.KeyTerm))
+        {
+            DaBomb.ItemData = itemData;
+        }
+        else if (lowerCasedItemId.Contains(StandardChest.KeyTerm))
+        {
+            StandardChest.ItemData = itemData;
+        }
+        else if (lowerCasedItemId.Contains(EpicChest.KeyTerm))
+        {
+            EpicChest.ItemData = itemData;
+        }
+        else if (lowerCasedItemId.Contains(ArachnoFeast.KeyTerm))
+        {
+            ArachnoFeast.ItemData = itemData;
+        }
     }
 
     private void OnDestroy()
     {
-        StoreEvents.OnLoadItem -= LoadItem;
-        foreach(GameObject storeItem in storeItems)
-        {
-            Destroy(storeItem);
-        }
+        StoreEvents.OnLoadStoreItem -= LoadItem;
     }
 }

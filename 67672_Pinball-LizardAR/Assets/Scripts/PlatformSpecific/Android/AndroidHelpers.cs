@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class AndroidHelpers {
-
-
+public static class AndroidHelpers
+{
     public static void ShowAndroidToastMessage(string message)
     {
         AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");

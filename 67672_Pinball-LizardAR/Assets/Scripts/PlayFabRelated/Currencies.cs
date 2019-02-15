@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
 
@@ -9,26 +7,28 @@ public class Currencies : MonoBehaviour
     public string MayhemKey;
     public string AnimosityKey;
     public string BugBucksKey;
+    public string GluttonyKey;
     public Inventory PlayerInventory;
-    // Use this for initialization
+    
     void Start()
     {
-        InvokeRepeating("UpdateCurrency", 0.5f, 5.0f);
+        StoreEvents.OnLoadCurrencies += UpdateCurrency;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-
     }
 
-    void UpdateCurrency()
+    public void UpdateCurrency()
     {
-        if (PlayerPrefs.HasKey("sessionticket"))
+        //if we've logged in
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
+            //retrieve user's inventory
             PlayFabClientAPI.GetUserInventory(new GetUserInventoryRequest(),
                 (response) =>
                 {
+                    //notify and update currency displays and inventory
                     foreach (string currencyKey in response.VirtualCurrency.Keys)
                     {
                         if (currencyKey == MayhemKey)
@@ -44,11 +44,17 @@ public class Currencies : MonoBehaviour
                             PlayerInventory.BugBucksCount = response.VirtualCurrency[currencyKey];
                         }
                     }
+                    StoreEvents.SendUpdateCurrencyDisplay();
                 },
                 (error) =>
                 {
-                    Debug.Log(error.ErrorMessage);
+                    Debug.Log(error);
                 });
         }
+    }
+
+    private void OnDestroy()
+    {
+        StoreEvents.OnLoadCurrencies -= UpdateCurrency;
     }
 }

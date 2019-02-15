@@ -266,12 +266,6 @@
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/jill.malta/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>D:/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>D:/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Common.dll</HintPath>
-    </Reference>
     <Reference Include="mscorlib">
       <HintPath>D:\Unity\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>
     </Reference>
@@ -619,18 +613,58 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AnimationStateScripts\HandsEntered.cs" />
+    <Compile Include="Assets\Scripts\AnimationStateScripts\HandsExited.cs" />
+    <Compile Include="Assets\Scripts\AnimationStateScripts\LeftHandActioned.cs" />
+    <Compile Include="Assets\Scripts\AnimationStateScripts\MouthEntered.cs" />
+    <Compile Include="Assets\Scripts\AnimationStateScripts\MouthExited.cs" />
+    <Compile Include="Assets\Scripts\AnimationStateScripts\MouthNommed.cs" />
+    <Compile Include="Assets\Scripts\AnimationStateScripts\RightHandActioned.cs" />
     <Compile Include="Assets\Scripts\ARCore\ARCoreController.cs" />
-    <Compile Include="Assets\Scripts\ChadWuzHERE.cs" />
-    <Compile Include="Assets\Scripts\DataStructures\HexGrid.cs" />
-    <Compile Include="Assets\Scripts\GameObjects\Building.cs" />
-    <Compile Include="Assets\Scripts\GameObjects\EnemyMovement.cs" />
-    <Compile Include="Assets\Scripts\GameObjects\GenerativeCity.cs" />
-    <Compile Include="Assets\Scripts\GameObjects\HexBehavior.cs" />
-    <Compile Include="Assets\Scripts\GameObjects\Projectile.cs" />
+    <Compile Include="Assets\Scripts\Events\AnimationEvents.cs" />
+    <Compile Include="Assets\Scripts\Events\GamePlayEvents.cs" />
+    <Compile Include="Assets\Scripts\Events\MenuTransitionEvents.cs" />
+    <Compile Include="Assets\Scripts\Events\ScoreEvents.cs" />
+    <Compile Include="Assets\Scripts\Events\StoreEvents.cs" />
+    <Compile Include="Assets\Scripts\Events\TrackingEvents.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\ArmBehavior.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\City\Building.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\City\City.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\City\HexBehavior.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\City\HexGrid.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\EnemyBehavior.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\InGameStore.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\MouthBehavior.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Pausable.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\PowerUpButton.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\ShotBehavior.cs" />
     <Compile Include="Assets\Scripts\GameObjects\SpawnEnemies.cs" />
-    <Compile Include="Assets\Scripts\GameStates\MainGameController.cs" />
-    <Compile Include="Assets\Scripts\Multipurpose\RayCastOntoObject.cs" />
+    <Compile Include="Assets\Scripts\Managers\Inventory.cs" />
+    <Compile Include="Assets\Scripts\Managers\MainGameController.cs" />
+    <Compile Include="Assets\Scripts\Managers\MainGameUIManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\MenuManager.cs" />
+    <Compile Include="Assets\Scripts\Menus\ChangeScene.cs" />
+    <Compile Include="Assets\Scripts\Menus\CurrencyCounters.cs" />
+    <Compile Include="Assets\Scripts\Menus\InventoryItem.cs" />
+    <Compile Include="Assets\Scripts\Menus\MenuManagerChangeButton.cs" />
+    <Compile Include="Assets\Scripts\Menus\PauseButton.cs" />
+    <Compile Include="Assets\Scripts\Menus\PauseMenu.cs" />
+    <Compile Include="Assets\Scripts\Menus\PlayerInventoryScreen.cs" />
+    <Compile Include="Assets\Scripts\Menus\PlayerLevelBar.cs" />
+    <Compile Include="Assets\Scripts\Menus\ScoreDisplay.cs" />
+    <Compile Include="Assets\Scripts\Menus\StoreButton.cs" />
+    <Compile Include="Assets\Scripts\Menus\StoreFront.cs" />
+    <Compile Include="Assets\Scripts\Menus\StoreItem.cs" />
+    <Compile Include="Assets\Scripts\Menus\VictoryDisplay.cs" />
+    <Compile Include="Assets\Scripts\PlatformSpecific\Android\AndroidDeviceIDLogin.cs" />
     <Compile Include="Assets\Scripts\PlatformSpecific\Android\AndroidHelpers.cs" />
+    <Compile Include="Assets\Scripts\PlatformSpecific\LoginHelper.cs" />
+    <Compile Include="Assets\Scripts\PlatformSpecific\ShowMessageWindowHelper.cs" />
+    <Compile Include="Assets\Scripts\PlayFabRelated\Currencies.cs" />
+    <Compile Include="Assets\Scripts\PlayFabRelated\ItemCatalog.cs" />
+    <Compile Include="Assets\Scripts\PlayFabRelated\Store.cs" />
+    <Compile Include="Assets\Scripts\PlayFabRelated\UserInfo.cs" />
+    <Compile Include="Assets\Scripts\SavedData\Settings.cs" />
     <Compile Include="Assets\SDKs\GoogleARCore\Examples\AugmentedImage\Scripts\AugmentedImageExampleController.cs" />
     <Compile Include="Assets\SDKs\GoogleARCore\Examples\AugmentedImage\Scripts\AugmentedImageVisualizer.cs" />
     <Compile Include="Assets\SDKs\GoogleARCore\Examples\CloudAnchors\Scripts\AnchorIdFromRoomRequestMessage.cs" />

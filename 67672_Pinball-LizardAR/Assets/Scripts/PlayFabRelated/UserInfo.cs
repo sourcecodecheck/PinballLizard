@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
+using PlayFab.Json;
+using System;
 
 public class UserInfo : MonoBehaviour
 {
@@ -11,14 +11,14 @@ public class UserInfo : MonoBehaviour
     public string ExperienceKey;
     public string BugsEatenKey;
     public string BestScoreKey;
-    // Use this for initialization
+
     void Start()
     {
-        InvokeRepeating("UpdateUserDataFromPlayFab", 0.5f, 5.0f);
-        TrackingEvents.OnGameVictory += GameVictory;
+        TrackingEvents.OnGameVictory += GameEnd;
+        TrackingEvents.OnGameDefeat += GameEnd;
+        TrackingEvents.OnLoadPlayerInfo += UpdateUserDataFromPlayFab;
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -26,115 +26,187 @@ public class UserInfo : MonoBehaviour
 
     void UpdateUserDataFromPlayFab()
     {
-        if (PlayerPrefs.HasKey("sessionticket"))
+        //if we've logged in
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
-            PlayFabClientAPI.GetPlayerStatistics(new GetPlayerStatisticsRequest()
-            {
-                StatisticNames = new List<string>
+            //get stats from custom cloud script
+            PlayFabClientAPI.ExecuteCloudScript(
+               new ExecuteCloudScriptRequest()
+               {
+                   FunctionName = "getPlayerStatistics"
+               },
+               (result) =>
+               {
+                   UpdateInventory((JsonObject)result.FunctionResult);
+                   GetNextFiveLevels();
+                   GetFirstLoginTime();
+               },
+               (error) =>
+               {
+                   Debug.Log(error);
+               });
+        }
+    }
+
+    void GetFirstLoginTime()
+    {
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
+        {
+            //get first login time from cloud script
+            PlayFabClientAPI.ExecuteCloudScript(
+               new ExecuteCloudScriptRequest()
+               {
+                   FunctionName = "getFirstLogin"
+               },
+               (result) =>
+               {
+                   string creationTime = result.FunctionResult as string;
+                   PlayerInventory.DateJoined = DateTime.Parse(creationTime);
+               },
+               (error) =>
+               {
+                   Debug.Log(error);
+               });
+        }
+    }
+
+    public void SubmitScoreToPlayFab(bool isChallenge)
+    {
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
+        {
+            PlayFabClientAPI.ExecuteCloudScript(
+                new ExecuteCloudScriptRequest()
                 {
-                    LevelKey,
-                    ExperienceKey,
-                    BugsEatenKey,
-                    BestScoreKey
-                }
-            },
+                    FunctionName = "submitScore",
+                    FunctionParameter = new
+                    {
+                        score = PlayerInventory.LastGameScore,
+                        bugsEaten = PlayerInventory.BugsEatenCount,
+                        bestCombo = PlayerInventory.BestCombo * 10f,
+                        isEvent = isChallenge
+                    }
+                },
                 (result) =>
                 {
-                    if (result.Statistics.Count == 0)
-                    {
-                        SetUpNewPlayer();
-                    }
-                    else
-                    {
-                        foreach (var statistic in result.Statistics)
-                        {
-                            if (statistic.StatisticName == LevelKey)
-                            {
-                                PlayerInventory.PlayerLevel = statistic.Value;
-                            }
-                            if (statistic.StatisticName == ExperienceKey)
-                            {
-                                PlayerInventory.ExperienceCount = statistic.Value;
-                            }
-                            if (statistic.StatisticName == BugsEatenKey)
-                            {
-                                PlayerInventory.BugsEatenCount = statistic.Value;
-                            }
-                            if (statistic.StatisticName == BestScoreKey)
-                            {
-                                PlayerInventory.BestScore = statistic.Value;
-                            }
-                        }
-                    }
+                    GetNextFiveLevels();
+                    UpdateInventory((JsonObject)result.FunctionResult);
+                    GetFirstLoginTime();
                 },
                 (error) =>
                 {
+                    Debug.Log(error);
                 });
         }
     }
 
-    public void UpdateUserDataToPlayFab()
+    public void GetNextFiveLevels()
     {
-        if (PlayerPrefs.HasKey("sessionticket"))
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
-            PlayFabClientAPI.UpdatePlayerStatistics(
-                new UpdatePlayerStatisticsRequest()
+            PlayFabClientAPI.ExecuteCloudScript(
+                new ExecuteCloudScriptRequest()
                 {
-                    Statistics = new List<StatisticUpdate>
+                    FunctionName = "getUpcomingExperienceRequirements",
+                    FunctionParameter = new
                     {
-                        new StatisticUpdate { StatisticName = ExperienceKey, Value = PlayerInventory.ExperienceCount },
-                        new StatisticUpdate { StatisticName = BugsEatenKey, Value = PlayerInventory.BugsEatenCount },
-                        new StatisticUpdate { StatisticName = BestScoreKey, Value = PlayerInventory.BestScore }
+                        level = PlayerInventory.PlayerLevel,
+                        count = 5
                     }
                 },
                 (result) =>
                 {
+                    PlayerInventory.ExperienceToNextLevel.Clear();
+                    JsonObject response = result.FunctionResult as JsonObject;
+                    JsonObject requirements = response[0] as JsonObject;
+                    for (int i = 0; i < 5; ++i)
+                    {
+                        PlayerInventory.ExperienceToNextLevel.Add(
+                            PlayFabSimpleJson.DeserializeObject<int>(PlayFabSimpleJson.SerializeObject(requirements[i])));
+                    }
                 },
                 (error) =>
                 {
+                    Debug.Log(error);
                 });
         }
     }
-    public void GameVictory(int score, int bugsEaten)
+
+    public void GameEnd(int score, int bugsEaten, float maxMultiplier)
     {
-        if (PlayerInventory.BestScore < score)
-        {
-            PlayerInventory.BestScore = score;
-        }
-        PlayerInventory.ExperienceCount += score / 10;
+        PlayerInventory.LastGameScore = score;
         PlayerInventory.BugsEatenCount += bugsEaten;
-        UpdateUserDataToPlayFab();
+        PlayerInventory.BestCombo = maxMultiplier;
+        bool isChallenge = PlayerPrefs.GetInt("ischallenge") == 1;
+        SubmitScoreToPlayFab(isChallenge);
+
     }
 
     private void SetUpNewPlayer()
     {
-        if (PlayerPrefs.HasKey("sessionticket"))
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
-            PlayFabClientAPI.UpdatePlayerStatistics(
-                new UpdatePlayerStatisticsRequest()
+            //initialize statistics to default values
+            PlayFabClientAPI.ExecuteCloudScript(
+                new ExecuteCloudScriptRequest()
                 {
-                    Statistics = new List<StatisticUpdate>
-                    {
-                        new StatisticUpdate { StatisticName = LevelKey, Value = 1 },
-                        new StatisticUpdate { StatisticName = ExperienceKey, Value = 0 },
-                        new StatisticUpdate { StatisticName = BugsEatenKey, Value = 0 },
-                        new StatisticUpdate { StatisticName = BestScoreKey, Value = 0 }
-                    }
+                    FunctionName = "initializePlayer"
                 },
                 (result) =>
                 {
-                    PlayerInventory.PlayerLevel = 1;
-                    PlayerInventory.ExperienceCount = 0;
-                    PlayerInventory.BugsEatenCount = 0;
-                    PlayerInventory.BestScore = 0;
+                    UpdateInventory((JsonObject)result.FunctionResult);
+                    GetNextFiveLevels();
+                    GetFirstLoginTime();
                 },
                 (error) =>
                 {
+                    Debug.Log(error);
                 });
+        }
+    }
+
+
+    private void UpdateInventory(JsonObject inventoryResult)
+    {
+        //update internal inventory object with the inventory results
+        if (inventoryResult != null)
+        {
+            JsonObject statistics = inventoryResult["Statistics"] as JsonObject;
+            foreach (JsonObject stat in statistics.Values)
+            {
+                string statName = stat[0] as string;
+                switch (statName)
+                {
+                    case "Best Score":
+                        PlayerInventory.BestScore = PlayFabSimpleJson.DeserializeObject<int>(PlayFabSimpleJson.SerializeObject(stat[1]));
+                        break;
+                    case "Bugs Eaten":
+                        PlayerInventory.BugsEatenCount = PlayFabSimpleJson.DeserializeObject<int>(PlayFabSimpleJson.SerializeObject(stat[1]));
+                        break;
+                    case "Level":
+                        PlayerInventory.PlayerLevel = PlayFabSimpleJson.DeserializeObject<int>(PlayFabSimpleJson.SerializeObject(stat[1]));
+                        break;
+                    case "Experience":
+                        PlayerInventory.PreviousExperienceCount = PlayerInventory.ExperienceCount;
+                        PlayerInventory.ExperienceCount = PlayFabSimpleJson.DeserializeObject<int>(PlayFabSimpleJson.SerializeObject(stat[1]));
+                        break;
+                    case "Daily Challenge":
+                        break;
+                    case "Best Combo":
+                        PlayerInventory.BestCombo = PlayFabSimpleJson.DeserializeObject<int>(PlayFabSimpleJson.SerializeObject(stat[1]));
+                        break;
+                }
+            }
+            MenuEvents.SendUpdateLevelDisplay();
+        }
+        else
+        {
+            SetUpNewPlayer();
         }
     }
     private void OnDestroy()
     {
-        TrackingEvents.OnGameVictory -= GameVictory;
+        TrackingEvents.OnGameVictory -= GameEnd;
+        TrackingEvents.OnGameDefeat -= GameEnd;
+        TrackingEvents.OnLoadPlayerInfo -= UpdateUserDataFromPlayFab;
     }
 }

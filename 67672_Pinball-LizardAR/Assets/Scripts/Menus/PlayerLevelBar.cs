@@ -1,30 +1,43 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerLevelBar : MonoBehaviour
 {
+    public Slider ExpSlider;
     public Inventory PlayerInventory;
-    public Image BarBackground;
-    public Image BarForeground;
-    public Text LevelText;
+    public bool IsStatic;
 
-    private float defaultBarX;
-    // Use this for initialization
+    private float percentage;
+    private int nextLevel;
+    
     void Start()
     {
-        defaultBarX = BarForeground.rectTransform.position.x;
+        percentage = 0f;
+        nextLevel = 0;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        float lerpResult = Mathf.Lerp(0, BarBackground.rectTransform.sizeDelta.x,
-            (float)PlayerInventory.ExperienceCount / (float)PlayerInventory.ExperienceToNextLevel);
-        BarForeground.rectTransform.sizeDelta = new Vector2(lerpResult,
-            BarForeground.rectTransform.sizeDelta.y);
-        BarForeground.rectTransform.position = new Vector2(defaultBarX + lerpResult * 0.5f, BarForeground.rectTransform.position.y);
-        LevelText.text = "Player Level " + PlayerInventory.PlayerLevel;
+        if (PlayerInventory != null && PlayerInventory.PlayerLevel != 0)
+        {
+            if (IsStatic == false)
+            {
+                percentage +=
+                   (float)PlayerInventory.ExperienceCount / (float)PlayerInventory.ExperienceToNextLevel[nextLevel] * Time.deltaTime;
+                float truePercentage = (float)PlayerInventory.ExperienceCount / (float)PlayerInventory.ExperienceToNextLevel[nextLevel];
+                percentage = Mathf.Min(percentage, truePercentage);
+                if (percentage >= 1)
+                {
+                    nextLevel = Mathf.Min(nextLevel + 1, PlayerInventory.ExperienceToNextLevel.Count - 1);
+                    //play sound effect
+                }
+                
+            }
+            else
+            {
+                percentage = Mathf.Min(1f, (float)PlayerInventory.ExperienceCount / (float)PlayerInventory.ExperienceToNextLevel[nextLevel]);
+            }
+            ExpSlider.value = percentage;
+        }
     }
 }

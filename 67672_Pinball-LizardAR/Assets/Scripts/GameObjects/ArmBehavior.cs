@@ -1,77 +1,137 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
-public class ArmBehavior : MonoBehaviour
+public class ArmBehavior : Pausable
 {
     public bool IsRightArm;
-    public Sprite ArmPassive;
-    public Sprite ArmActive;
+    public GameObject ArmEnter;
+    public GameObject ArmIdle;
+    public GameObject ArmAction;
+    public GameObject ArmExit;
+    public GameObject Flash;
 
     private Vector2 touchStartPosition;
+    private GameObject activeAnimation;
+    private bool isActive;
 
-    // Use this for initialization
-    void Start()
+    new void Start()
     {
+        isActive = false;
+        base.Start();
+        AnimationEvents.OnHandsEnter += HandleArmEnter;
+        AnimationEvents.OnHandsEntered += HandleArmEntered;
+        AnimationEvents.OnHandsExit += HandleArmExit;
+        AnimationEvents.OnHandsExited += HandleArmExited;
+        if (IsRightArm)
+        {
+            AnimationEvents.OnRightHandSwipe += SwipeAnimation;
+            AnimationEvents.OnRightHandSwiped += HandleArmSwiped;
+        }
+        else
+        {
+            AnimationEvents.OnLeftHandSwipe += SwipeAnimation;
+            AnimationEvents.OnLeftHandSwiped += HandleArmSwiped;
+        }
     }
 
-    // Update is called once per frame
     void Update()
+    { 
+    }
+
+    private void HandleArmEnter()
     {
-        if (Input.touchCount > 0)
+        if (activeAnimation != null)
         {
-            Touch touch = Input.GetTouch(0);
-            switch (touch.phase)
+            activeAnimation.SetActive(false);
+        }
+        isActive = true;
+        activeAnimation = ArmEnter;
+        activeAnimation.SetActive(true);
+    }
+    private void HandleArmEntered()
+    {
+        if (isActive)
+        {
+            if (activeAnimation != null)
             {
-                case TouchPhase.Began:
-                    touchStartPosition = touch.position;
-                    break;
-                case TouchPhase.Moved:
-                    Volley();
-                    break;
-                case TouchPhase.Ended:
-                    Vector2 touchTraveled = touch.position - touchStartPosition;
-                    SwipeAnimation(touchTraveled);
-                    Volley();
-                    break;
+                activeAnimation.SetActive(false);
+            }
+            activeAnimation = ArmIdle;
+            activeAnimation.SetActive(true);
+        }
+    }
+    private void HandleArmSwiped()
+    {
+        if (isActive)
+        {
+            if (activeAnimation != null)
+            {
+                activeAnimation.SetActive(false);
+            }
+            activeAnimation = ArmIdle;
+            activeAnimation.SetActive(true);
+            Flash.SetActive(false);
+        }
+    }
+
+    private void HandleArmExit()
+    {
+        if (isActive)
+        {
+            isActive = false;
+            if (activeAnimation != null)
+            {
+                activeAnimation.SetActive(false);
+            }
+            activeAnimation = ArmExit;
+            activeAnimation.SetActive(true);
+            //AnimationEvents.SendHandsExited();
+        }
+    }
+
+    private void HandleArmExited()
+    {
+        if (!isActive)
+        {
+            if (activeAnimation != null)
+            {
+                activeAnimation.SetActive(false);
+            }
+            activeAnimation = null;
+        }
+    }
+
+    private void SwipeAnimation()
+    {
+        if (isActive)
+        {
+            if (activeAnimation != null)
+            {
+                activeAnimation.SetActive(false);
+            }
+            if (activeAnimation != ArmAction)
+            {
+                activeAnimation = ArmAction;
+                activeAnimation.SetActive(true);
+                Flash.SetActive(true);
             }
         }
     }
-
-    private void Volley()
+    private new void OnDestroy()
     {
-        foreach (Touch touch in Input.touches)
+        base.OnDestroy();
+        AnimationEvents.OnHandsEnter -= HandleArmEnter;
+        AnimationEvents.OnHandsEntered -= HandleArmEntered;
+        AnimationEvents.OnHandsExit -= HandleArmExit;
+        AnimationEvents.OnHandsExited -= HandleArmExited;
+        if (IsRightArm)
         {
-            Ray ray = Camera.main.ScreenPointToRay(touch.position);
-            RaycastHit[] draghits = Physics.RaycastAll(ray);
-            foreach (RaycastHit draghit in draghits)
-            {
-                GameObject hitobject = draghit.transform.gameObject;
-                if (draghit.distance < 0.3f && hitobject.name.ToLower().Contains("shot") &&
-                    hitobject.GetComponent<ShotBehavior>().HasHitBuilding == true)
-                {
-                    hitobject.transform.rotation = Camera.main.transform.rotation;
-                    hitobject.GetComponent<ShotBehavior>().HasHitBuilding = false;
-                    ScoreEvents.SendAddMultiplier(0.5f);
-                }
-            }
+            AnimationEvents.OnRightHandSwipe -= SwipeAnimation;
+            AnimationEvents.OnRightHandSwiped -= HandleArmSwiped;
         }
-    }
-
-    private void SwipeAnimation(Vector2 touchTraveled)
-    {
-        if (touchTraveled.x > 0 && !IsRightArm)
+        else
         {
-            GetComponent<Image>().sprite = ArmActive;
+            AnimationEvents.OnLeftHandSwipe -= SwipeAnimation;
+            AnimationEvents.OnLeftHandSwiped -= HandleArmSwiped;
         }
-        else if (touchTraveled.x < 0 && IsRightArm)
-        {
-            GetComponent<Image>().sprite = ArmActive;
-        }
-        Invoke("ResetArmPosition", 0.5f);
-    }
-
-    private void ResetArmPosition()
-    {
-        GetComponent<Image>().sprite = ArmPassive;
     }
 }

@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_2_7;UNITY_2018_2;UNITY_2018;UNITY_ANALYTICS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITES;ENABLE_GRID;ENABLE_TILEMAP;ENABLE_TERRAIN;ENABLE_TEXTURE_STREAMING;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;PLATFORM_SUPPORTS_MONO;INCLUDE_PUBNUB;ENABLE_VIDEO;ENABLE_PACKMAN;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_LOCALIZATION;PLATFORM_ANDROID;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_SUBSTANCE;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_EVENT_QUEUE;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;PLATFORM_SUPPORTS_ADS_ID;UNITY_CAN_SHOW_SPLASH_SCREEN;ENABLE_VR;ENABLE_AR;ENABLE_SPATIALTRACKING;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_4_6;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_VSTU;UNITY_PRO_LICENSE;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_2_7;UNITY_2018_2;UNITY_2018;UNITY_ANALYTICS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITES;ENABLE_GRID;ENABLE_TILEMAP;ENABLE_TERRAIN;ENABLE_TEXTURE_STREAMING;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;PLATFORM_SUPPORTS_MONO;INCLUDE_PUBNUB;ENABLE_VIDEO;ENABLE_PACKMAN;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_LOCALIZATION;PLATFORM_ANDROID;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_SUBSTANCE;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_EVENT_QUEUE;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;PLATFORM_SUPPORTS_ADS_ID;UNITY_CAN_SHOW_SPLASH_SCREEN;ENABLE_VR;ENABLE_AR;ENABLE_SPATIALTRACKING;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_4_6;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_VSTU;UNITY_PRO_LICENSE;UNITY_POST_PROCESSING_STACK_V2;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -60,179 +60,90 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\ARCore\ARCoreController.cs" />
-    <Compile Include="Assets\Scripts\DataStructures\HexGrid.cs" />
-    <Compile Include="Assets\Scripts\Events\MenuTransitionEvents.cs" />
+    <Compile Include="Assets\Scripts\AnimationStateScripts\BannerExited.cs" />
+    <Compile Include="Assets\Scripts\AnimationStateScripts\HandsEntered.cs" />
+    <Compile Include="Assets\Scripts\AnimationStateScripts\HandsExited.cs" />
+    <Compile Include="Assets\Scripts\AnimationStateScripts\LeftHandActioned.cs" />
+    <Compile Include="Assets\Scripts\AnimationStateScripts\MissPlayed.cs" />
+    <Compile Include="Assets\Scripts\AnimationStateScripts\MouthEntered.cs" />
+    <Compile Include="Assets\Scripts\AnimationStateScripts\MouthExited.cs" />
+    <Compile Include="Assets\Scripts\AnimationStateScripts\MouthNommed.cs" />
+    <Compile Include="Assets\Scripts\AnimationStateScripts\RightHandActioned.cs" />
+    <Compile Include="Assets\Scripts\AR\ARController.cs" />
+    <Compile Include="Assets\Scripts\AR\DestroyARVisualizer.cs" />
+    <Compile Include="Assets\Scripts\Events\AnimationEvents.cs" />
+    <Compile Include="Assets\Scripts\Events\AudioEvents.cs" />
+    <Compile Include="Assets\Scripts\Events\GamePlayEvents.cs" />
+    <Compile Include="Assets\Scripts\Events\LogOnEvents.cs" />
+    <Compile Include="Assets\Scripts\Events\MenuEvents.cs" />
     <Compile Include="Assets\Scripts\Events\ScoreEvents.cs" />
     <Compile Include="Assets\Scripts\Events\StoreEvents.cs" />
     <Compile Include="Assets\Scripts\Events\TrackingEvents.cs" />
     <Compile Include="Assets\Scripts\GameObjects\ArmBehavior.cs" />
-    <Compile Include="Assets\Scripts\GameObjects\BreathWeapon.cs" />
-    <Compile Include="Assets\Scripts\GameObjects\Building.cs" />
-    <Compile Include="Assets\Scripts\GameObjects\EnemyMovement.cs" />
-    <Compile Include="Assets\Scripts\GameObjects\GenerativeCity.cs" />
-    <Compile Include="Assets\Scripts\GameObjects\HexBehavior.cs" />
-    <Compile Include="Assets\Scripts\GameObjects\InGameStore.cs" />
-    <Compile Include="Assets\Scripts\GameObjects\Inventory.cs" />
-    <Compile Include="Assets\Scripts\GameObjects\MouthEatEnemies.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\City\Building.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\City\City.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\City\HexBehavior.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\City\HexGrid.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\City\HexNode.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\EnemyBehavior.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\MouthBehavior.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\NonARCamera.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Pausable.cs" />
     <Compile Include="Assets\Scripts\GameObjects\PowerUpButton.cs" />
     <Compile Include="Assets\Scripts\GameObjects\ShotBehavior.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\SoundPlayer.cs" />
     <Compile Include="Assets\Scripts\GameObjects\SpawnEnemies.cs" />
-    <Compile Include="Assets\Scripts\GameStates\MainGameController.cs" />
-    <Compile Include="Assets\Scripts\GameStates\MainGameUIManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\Inventory.cs" />
+    <Compile Include="Assets\Scripts\Managers\MainGameManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\MainGameUIManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\MenuManager.cs" />
+    <Compile Include="Assets\Scripts\Menus\AmmoDisplay.cs" />
+    <Compile Include="Assets\Scripts\Menus\AnimosityCost.cs" />
+    <Compile Include="Assets\Scripts\Menus\AppetiteDisplay.cs" />
+    <Compile Include="Assets\Scripts\Menus\ChangeScene.cs" />
+    <Compile Include="Assets\Scripts\Menus\ContainerPopUp.cs" />
     <Compile Include="Assets\Scripts\Menus\CurrencyCounters.cs" />
-    <Compile Include="Assets\Scripts\Menus\MenuManager.cs" />
+    <Compile Include="Assets\Scripts\Menus\DestroyObjectButton.cs" />
+    <Compile Include="Assets\Scripts\Menus\DisableGameObject.cs" />
+    <Compile Include="Assets\Scripts\Menus\EnableObject.cs" />
+    <Compile Include="Assets\Scripts\Menus\EventTimer.cs" />
+    <Compile Include="Assets\Scripts\Menus\GameEndDisplay.cs" />
+    <Compile Include="Assets\Scripts\Menus\GeneralMessage.cs" />
+    <Compile Include="Assets\Scripts\Menus\InGameBuyButton.cs" />
+    <Compile Include="Assets\Scripts\Menus\InGameStore.cs" />
+    <Compile Include="Assets\Scripts\Menus\LeaderBoard.cs" />
+    <Compile Include="Assets\Scripts\Menus\LoadPlayerInfoButton.cs" />
+    <Compile Include="Assets\Scripts\Menus\LoadSettingsButton.cs" />
     <Compile Include="Assets\Scripts\Menus\MenuManagerChangeButton.cs" />
+    <Compile Include="Assets\Scripts\Menus\MenuManagerChangeTouch.cs" />
+    <Compile Include="Assets\Scripts\Menus\PauseButton.cs" />
+    <Compile Include="Assets\Scripts\Menus\PauseMenu.cs" />
+    <Compile Include="Assets\Scripts\Menus\PlayerInventoryScreen.cs" />
     <Compile Include="Assets\Scripts\Menus\PlayerLevelBar.cs" />
+    <Compile Include="Assets\Scripts\Menus\PlayerLevelDisplay.cs" />
+    <Compile Include="Assets\Scripts\Menus\PlaySoundOnButton.cs" />
+    <Compile Include="Assets\Scripts\Menus\ReloadCurrentScene.cs" />
     <Compile Include="Assets\Scripts\Menus\ScoreDisplay.cs" />
-    <Compile Include="Assets\Scripts\Menus\StartGame.cs" />
+    <Compile Include="Assets\Scripts\Menus\StoreButton.cs" />
     <Compile Include="Assets\Scripts\Menus\StoreFront.cs" />
     <Compile Include="Assets\Scripts\Menus\StoreItem.cs" />
-    <Compile Include="Assets\Scripts\Menus\VictoryDisplay.cs" />
+    <Compile Include="Assets\Scripts\Menus\StoreItemData.cs" />
+    <Compile Include="Assets\Scripts\Menus\StoreItemDetailWindow.cs" />
+    <Compile Include="Assets\Scripts\Menus\TryLoginButton.cs" />
+    <Compile Include="Assets\Scripts\Menus\Tutorial.cs" />
     <Compile Include="Assets\Scripts\PlatformSpecific\Android\AndroidDeviceIDLogin.cs" />
     <Compile Include="Assets\Scripts\PlatformSpecific\Android\AndroidHelpers.cs" />
+    <Compile Include="Assets\Scripts\PlatformSpecific\iOS\iOSDeviceIdLogin.cs" />
     <Compile Include="Assets\Scripts\PlatformSpecific\LoginHelper.cs" />
     <Compile Include="Assets\Scripts\PlatformSpecific\ShowMessageWindowHelper.cs" />
+    <Compile Include="Assets\Scripts\PlayFabRelated\ChallengeMode.cs" />
     <Compile Include="Assets\Scripts\PlayFabRelated\Currencies.cs" />
+    <Compile Include="Assets\Scripts\PlayFabRelated\Events.cs" />
+    <Compile Include="Assets\Scripts\PlayFabRelated\ItemCatalog.cs" />
     <Compile Include="Assets\Scripts\PlayFabRelated\Store.cs" />
     <Compile Include="Assets\Scripts\PlayFabRelated\UserInfo.cs" />
-    <Compile Include="Assets\Scripts\SavedData\Settings.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\Examples\AugmentedImage\Scripts\AugmentedImageExampleController.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\Examples\AugmentedImage\Scripts\AugmentedImageVisualizer.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\Examples\CloudAnchors\Scripts\AnchorIdFromRoomRequestMessage.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\Examples\CloudAnchors\Scripts\AnchorIdFromRoomResponseMessage.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\Examples\CloudAnchors\Scripts\ARKitHelper.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\Examples\CloudAnchors\Scripts\CloudAnchorController.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\Examples\CloudAnchors\Scripts\CloudAnchorUIController.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\Examples\CloudAnchors\Scripts\RoomSharingClient.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\Examples\CloudAnchors\Scripts\RoomSharingMsgType.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\Examples\CloudAnchors\Scripts\RoomSharingServer.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\Examples\Common\Scripts\DetectedPlaneGenerator.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\Examples\Common\Scripts\DetectedPlaneVisualizer.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\Examples\Common\Scripts\PointcloudVisualizer.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\Examples\ComputerVision\Scripts\ComputerVisionController.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\Examples\ComputerVision\Scripts\EdgeDetector.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\Examples\ComputerVision\Scripts\PointClickHandler.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\Examples\ComputerVision\Scripts\TextureReader.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\Examples\ComputerVision\Scripts\TextureReaderApi.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\Examples\HelloAR\Scripts\HelloARController.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\InstantPreview\Scripts\InstantPreviewInput.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\InstantPreview\Scripts\InstantPreviewManager.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\InstantPreview\Scripts\InstantPreviewTrackedPoseDriver.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Anchor.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\AndroidPermissionsManager.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\AndroidPermissionsRequestResult.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\AnchorApi.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiApkInstallationStatus.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiApkInstallStatusExtensions.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiArStatus.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiArStatusExtensions.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiAvailability.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiAvailabilityExtensions.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiCameraFocusMode.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiCameraMetadata.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiCloudAnchorMode.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiCloudAnchorState.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiCloudAnchorStateExtensions.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiConstants.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiDisplayUvCoords.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiDisplayUvCoordsExtensions.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiFeaturePointOrientationMode.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiFeaturePointOrientationModeExtensions.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiLightEstimateState.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiLightEstimateStateExtensions.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiLightEstimationMode.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiPlaneFindingMode.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiPlaneType.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiPlaneTypeExtensions.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiPoseData.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiPrestoConfig.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiPrestoStatus.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiPrestoStatusExtensions.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiTrackableType.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiTrackingState.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiTrackingStateExtensions.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiTrackingStateXPExtensions.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ApiUpdateMode.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\AugmentedImageApi.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\AugmentedImageDatabaseApi.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\CameraApi.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\CameraConfigApi.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\CameraConfigListApi.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\CameraMetadataApi.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\FrameApi.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\HitTestApi.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\ImageApi.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\LightEstimateApi.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\NativeSession.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\PlaneApi.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\PointApi.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\PointCloudApi.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\PoseApi.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\SessionApi.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\SessionConfigApi.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\TrackableApi.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Api\TrackableListApi.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\ApkAvailabilityStatus.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\ApkInstallationStatus.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\ARCoreBackgroundRenderer.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\ARCoreSession.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\ARCoreSessionConfig.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Async\WaitForTaskCompletionYieldInstruction.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\AsyncTask.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\AugmentedImage.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\AugmentedImageDatabase.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\AugmentedImageDatabaseEntry.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\CameraConfig.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\CameraFocusMode.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\CameraImageBytes.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\CameraIntrinsics.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\CameraMetadataTag.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\CameraMetadataValue.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\CloudAnchorResult.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\CloudServiceResponse.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Deprecated\TrackedPlane.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Deprecated\TrackedPoint.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Deprecated\TrackedPointOrientationMode.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\DetectedPlane.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\DetectedPlaneFindingMode.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\DetectedPlaneType.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\DisplayUvCoords.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\EnvironmentalLight.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\ExperimentSupport\ExperimentBase.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\ExperimentSupport\ExperimentManager.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\FeaturePoint.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\FeaturePointOrientationMode.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Frame.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\LightEstimate.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\LightEstimateState.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Managers\ARCoreAndroidLifecycleManager.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Managers\ARCoreIOSLifecycleManager.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Managers\ARPrestoCallbackManager.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Managers\CloudServiceManager.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Managers\ILifecycleManager.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Managers\LifecycleManager.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Managers\TrackableManager.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\PointCloudPoint.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Session.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\SessionStatus.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\SessionStatusExtensions.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Trackable.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\TrackableHit.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\TrackableHitFlags.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\TrackableQueryFilter.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\TrackingState.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Utility\ARCoreProjectSettings.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Utility\ARDebug.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Utility\ConversionHelper.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Utility\DllImportNoop.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Utility\IntPtrEqualityComparer.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Utility\MarshalingHelper.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\Utility\ShellHelper.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\XPAnchor.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\XPSession.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\XPSessionStatus.cs" />
-    <Compile Include="Assets\SDKs\GoogleARCore\SDK\Scripts\XPTrackingState.cs" />
+    <Compile Include="Assets\Scripts\SavedData\LoginSettings.cs" />
+    <Compile Include="Assets\Scripts\SavedData\PlayerPrefsKeys.cs" />
     <Compile Include="Assets\SDKs\PlayFabSdk\Admin\PlayFabAdminAPI.cs" />
     <Compile Include="Assets\SDKs\PlayFabSdk\Admin\PlayFabAdminModels.cs" />
     <Compile Include="Assets\SDKs\PlayFabSdk\Admin\PlayFabEvents.cs" />
@@ -356,24 +267,51 @@
     <Compile Include="Assets\SDKs\PlayFabSdk\Shared\SignalR.NET20\Transports\OptionalEventSignal.cs" />
     <Compile Include="Assets\SDKs\PlayFabSdk\Shared\SignalR.NET20\Transports\ServerSentEventsTransport.cs" />
     <Compile Include="Assets\SDKs\PlayFabSdk\Shared\SignalR.NET20\Transports\SseEvent.cs" />
-    <None Include="Assets\SDKs\GoogleARCore\Examples\Common\Materials\Shaders\PlaneGrid.shader" />
     <None Include="Assets\SDKs\PlayFabSdk\link.xml" />
-    <None Include="Assets\SDKs\GoogleARCore\Examples\Common\Materials\Shaders\MobileDiffuseWithLightEstimation.shader" />
-    <None Include="Assets\SDKs\GoogleARCore\SDK\Materials\ARBackground.shader" />
-    <None Include="Assets\SDKs\GoogleARCore\Examples\Common\Materials\Shaders\PointCloud.shader" />
-    <None Include="Assets\SDKs\GoogleARCore\Examples\ComputerVision\Materials\EdgeDetectionBackground.shader" />
-    <None Include="Assets\SDKs\GoogleARCore\Examples\Common\Materials\Shaders\MobileSpecularWithLightEstimation.shader" />
+    <None Include="Assets\link.xml" />
+    <None Include="Assets\Shaders\TransparentTest.shader" />
+    <None Include="Assets\sprites\Shaders\BuildingSimple.shader" />
+    <Reference Include="Unity.XR.ARKit">
+      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.ARCore">
+      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARCore.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.ARFoundation.Editor">
+      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARFoundation.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.XR.ARFoundation">
+      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARFoundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.ARCore.Editor">
+      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARCore.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Postprocessing.Editor">
+      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.ARExtensions">
+      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.ARExtensions.Editor">
+      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARExtensions.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.ARKit.Editor">
+      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARKit.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

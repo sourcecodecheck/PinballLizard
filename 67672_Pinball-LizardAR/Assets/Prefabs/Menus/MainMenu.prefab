@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 222152105894648344}
   - component: {fileID: 114862509526637652}
   - component: {fileID: 114380383907729686}
-  - component: {fileID: 114376320075304176}
+  - component: {fileID: 114153512729876154}
   m_Layer: 0
   m_Name: StartButton
   m_TagString: Untagged
@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 222274693254784206}
   - component: {fileID: 114638669763033720}
   - component: {fileID: 114730314030378256}
+  - component: {fileID: 114421084116452392}
   m_Layer: 0
   m_Name: DailyChallengeButton
   m_TagString: Untagged
@@ -202,6 +203,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Store
+--- !u!114 &114153512729876154
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1116176024029244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61a11d62a04ab2e4abae9aa5e1a59692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuToChangeTo: 5
+  IsButton: 1
 --- !u!114 &114203899563696972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -303,17 +317,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114376320075304176
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1116176024029244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4ae10930565230499c74c10853baebf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114380383907729686
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -355,6 +358,19 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114421084116452392
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1146204676258162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61a11d62a04ab2e4abae9aa5e1a59692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuToChangeTo: 6
+  IsButton: 1
 --- !u!114 &114485259945716986
 MonoBehaviour:
   m_ObjectHideFlags: 1

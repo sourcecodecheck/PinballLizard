@@ -337,4 +337,5 @@ sysinfo.txt
 
 # Builds
 *.apk
-/67672_Pinball-Lizard-AR/Temp
+67672_Pinball-LizardAR/Temp/**
+67672_Pinball-LizardAR/Library/**
