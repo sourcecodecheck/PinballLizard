@@ -5,6 +5,8 @@ using PlayFab;
 using PlayFab.ClientModels;
 using PlayFab.Json;
 using System;
+using Microsoft.AppCenter.Unity.Crashes;
+
 
 public class Events : MonoBehaviour
 {
@@ -38,6 +40,7 @@ public class Events : MonoBehaviour
             (error) =>
             {
                 Debug.Log(error.ErrorMessage);
+                Crashes.TrackError(new Exception(error.ErrorMessage));
             }
        );
     }
@@ -58,6 +61,7 @@ public class Events : MonoBehaviour
             (error) =>
             {
                 Debug.Log(error.ErrorMessage);
+                Crashes.TrackError(new Exception(error.ErrorMessage));
             }
        );
     }

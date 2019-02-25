@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3af73a24c2f21f440a411a1128265b4d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - MainGameWorld: {fileID: 1929362836211844, guid: c64a351b8a7c99b45a683668a0246d66,
+      type: 2}
+  - FirstPersonCamera: {instanceID: 0}
+  - SearchingForPlaneUI: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

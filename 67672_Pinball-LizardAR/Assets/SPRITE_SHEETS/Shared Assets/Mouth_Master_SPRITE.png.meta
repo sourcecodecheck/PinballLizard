@@ -1,0 +1,414 @@
+fileFormatVersion: 2
+guid: 7d4b31d112013d542a1de73a561a4c44
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Mouth_Master_SPRITE_0
+    21300002: Mouth_Master_SPRITE_1
+    21300004: Mouth_Master_SPRITE_2
+    21300006: Mouth_Master_SPRITE_3
+    21300008: Mouth_Master_SPRITE_4
+    21300010: Mouth_Master_SPRITE_5
+    21300012: Mouth_Master_SPRITE_6
+    21300014: Mouth_Master_SPRITE_7
+    21300016: Mouth_Master_SPRITE_8
+    21300018: Mouth_Master_SPRITE_9
+    21300020: Mouth_Master_SPRITE_10
+    21300022: Mouth_Master_SPRITE_11
+    21300024: Mouth_Master_SPRITE_12
+    21300026: Mouth_Master_SPRITE_13
+    21300028: Mouth_Master_SPRITE_14
+  externalObjects: {}
+  serializedVersion: 7
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Mouth_Master_SPRITE_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3276.6665
+        width: 819.2
+        height: 1638.3334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 717c2ea67ce86914db065a18f8d7273c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mouth_Master_SPRITE_1
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 3276.6665
+        width: 819.2
+        height: 1638.3334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b496b904116fb0438db4d0c13ae18ed
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mouth_Master_SPRITE_2
+      rect:
+        serializedVersion: 2
+        x: 1638
+        y: 3276.6665
+        width: 819.2
+        height: 1638.3334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1233b20cc9da1bb4193771f86c36d3eb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mouth_Master_SPRITE_3
+      rect:
+        serializedVersion: 2
+        x: 2457
+        y: 3276.6665
+        width: 819.2
+        height: 1638.3334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98cf7148038ff9047826e02e31531219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mouth_Master_SPRITE_4
+      rect:
+        serializedVersion: 2
+        x: 3276
+        y: 3276.6665
+        width: 819.2
+        height: 1638.3334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e4f3518118aa0849884eab041e46a30
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mouth_Master_SPRITE_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1638.6666
+        width: 819.2
+        height: 1638.3334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ea6ea5bd41631b4b9a66fa9ad6e4105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mouth_Master_SPRITE_6
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 1638.6666
+        width: 819.2
+        height: 1638.3334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 614fb0f410898da41918e920fdd1800a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mouth_Master_SPRITE_7
+      rect:
+        serializedVersion: 2
+        x: 1638
+        y: 1638.6666
+        width: 819.2
+        height: 1638.3334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b997cb42123f3dd4e856f9d8eb860f63
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mouth_Master_SPRITE_8
+      rect:
+        serializedVersion: 2
+        x: 2457
+        y: 1638.6666
+        width: 819.2
+        height: 1638.3334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b7783e969c62b04a964a0db265b444a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mouth_Master_SPRITE_9
+      rect:
+        serializedVersion: 2
+        x: 3276
+        y: 1638.6666
+        width: 819.2
+        height: 1638.3334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ea3f28190fe8464d9a0e16b9bf402cf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mouth_Master_SPRITE_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0.666626
+        width: 819.2
+        height: 1638.3334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc7f5efd97d1db44fb7a1e53acc15625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mouth_Master_SPRITE_11
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 0.666626
+        width: 819.2
+        height: 1638.3334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a6eedaabb7cdbe46a684ad9685fcc72
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mouth_Master_SPRITE_12
+      rect:
+        serializedVersion: 2
+        x: 1638
+        y: 0.666626
+        width: 819.2
+        height: 1638.3334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ec9ad91851dc7843b7f74ef4837a36e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mouth_Master_SPRITE_13
+      rect:
+        serializedVersion: 2
+        x: 2457
+        y: 0.666626
+        width: 819.2
+        height: 1638.3334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cffadf148e2c1f4a84c5883d39c0466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mouth_Master_SPRITE_14
+      rect:
+        serializedVersion: 2
+        x: 3276
+        y: 0.666626
+        width: 819.2
+        height: 1638.3334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5352ca85b43ea48418e48cdf1b94745a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 088e4868e7c35f34d87c78196df65d60
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

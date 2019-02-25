@@ -3,6 +3,7 @@ using PlayFab.ClientModels;
 using PlayFab.Json;
 using System;
 using UnityEngine;
+using Microsoft.AppCenter.Unity.Crashes;
 
 public class ChallengeMode : MonoBehaviour
 {
@@ -41,6 +42,7 @@ public class ChallengeMode : MonoBehaviour
                    (error) =>
                    {
                        Debug.Log(error);
+                       Crashes.TrackError(new Exception(error.ErrorMessage));
                    });
             }
         }
@@ -66,6 +68,7 @@ public class ChallengeMode : MonoBehaviour
                 (error) =>
                 {
                     Debug.Log(error);
+                    Crashes.TrackError(new Exception(error.ErrorMessage));
                 });
         }
     }
@@ -87,6 +90,7 @@ public class ChallengeMode : MonoBehaviour
                (error) =>
                {
                    Debug.Log(error);
+                   Crashes.TrackError(new Exception(error.ErrorMessage));
                });
         }
     }

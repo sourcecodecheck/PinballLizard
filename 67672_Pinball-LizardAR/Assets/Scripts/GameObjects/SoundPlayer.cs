@@ -9,7 +9,6 @@ public class SoundPlayer : MonoBehaviour
     public AudioClip[] Sounds;
     public AudioSource SoundSource;
 
-    // Use this for initialization
     void Start()
     {
         switch(Category)
@@ -26,11 +25,11 @@ public class SoundPlayer : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
 
     }
+
     void PlaySound()
     {
         int soundSelected = Random.Range(0, Sounds.Length - 1);

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System;
 using UnityEngine;
+using Microsoft.AppCenter.Unity.Crashes;
 
 public class MenuManager : MonoBehaviour
 {
@@ -79,76 +80,139 @@ public class MenuManager : MonoBehaviour
 
     private void LoadMainMenu()
     {
-        //PlayerPrefs.SetInt(PlayerPrefsKeys.HasViewedTutorial, 0);
-        hasMainMenuBeenLoaded = true;
-        GameObject mainMenuInstance = Instantiate(MainMenuButtons, MenuParent.transform);
-        mainMenuInstance.GetComponentInChildren<PlayerLevelDisplay>().PlayerInventory = PlayerInventory;
-        mainMenuInstance.GetComponentInChildren<PlayerLevelBar>().PlayerInventory = PlayerInventory;
-        menuObjects.Add(mainMenuInstance);
+        try
+        {
+            //PlayerPrefs.SetInt(PlayerPrefsKeys.HasViewedTutorial, 0);
+            hasMainMenuBeenLoaded = true;
+            GameObject mainMenuInstance = Instantiate(MainMenuButtons, MenuParent.transform);
+            mainMenuInstance.GetComponentInChildren<PlayerLevelDisplay>().PlayerInventory = PlayerInventory;
+            mainMenuInstance.GetComponentInChildren<PlayerLevelBar>().PlayerInventory = PlayerInventory;
+            menuObjects.Add(mainMenuInstance);
+        }
+        catch(Exception menuLoading)
+        {
+            Crashes.TrackError(menuLoading);
+        }
     }
 
     private void LoadTitle()
     {
-        menuObjects.Add(Instantiate(TitleScreen, MenuParent.transform));
+        try
+        {
+            menuObjects.Add(Instantiate(TitleScreen, MenuParent.transform));
+        }
+        catch (Exception menuLoading)
+        {
+            Crashes.TrackError(menuLoading);
+        }
     }
 
     private void LoadPlayerInfo()
     {
-        GameObject inventoryScreen = Instantiate(PlayerInventoryScreen, MenuParent.transform);
-        inventoryScreen.GetComponentInChildren<CurrencyCounters>().PlayerInventory = PlayerInventory;
-        inventoryScreen.GetComponent<PlayerInventoryScreen>().PlayerInventory = PlayerInventory;
-        menuObjects.Add(inventoryScreen);
+        try
+        {
+            GameObject inventoryScreen = Instantiate(PlayerInventoryScreen, MenuParent.transform);
+            inventoryScreen.GetComponentInChildren<CurrencyCounters>().PlayerInventory = PlayerInventory;
+            inventoryScreen.GetComponent<PlayerInventoryScreen>().PlayerInventory = PlayerInventory;
+            menuObjects.Add(inventoryScreen);
+        }
+        catch (Exception menuLoading)
+        {
+            Crashes.TrackError(menuLoading);
+        }
     }
 
     private void LoadStoreFront()
     {
-        GameObject storeFront = Instantiate(StoreFront, MenuParent.transform);
-        storeFront.GetComponentInChildren<CurrencyCounters>().PlayerInventory = PlayerInventory;
-        storeFront.GetComponent<StoreFront>().PlayerInventory = PlayerInventory;
-        menuObjects.Add(storeFront);
+        try
+        {
+            GameObject storeFront = Instantiate(StoreFront, MenuParent.transform);
+            storeFront.GetComponentInChildren<CurrencyCounters>().PlayerInventory = PlayerInventory;
+            storeFront.GetComponent<StoreFront>().PlayerInventory = PlayerInventory;
+            menuObjects.Add(storeFront);
+        }
+        catch (Exception menuLoading)
+        {
+            Crashes.TrackError(menuLoading);
+        }
     }
 
     private void LoadContainerPopUp()
     {
-        Instantiate(ContainerPopUp, MenuParent.transform);
+        try
+        {
+            Instantiate(ContainerPopUp, MenuParent.transform);
+        }
+        catch (Exception menuLoading)
+        {
+            Crashes.TrackError(menuLoading);
+        }
     }
 
     private void LoadAR()
     {
-        if (PlayerPrefs.HasKey(PlayerPrefsKeys.HasViewedTutorial) == false || PlayerPrefs.GetInt(PlayerPrefsKeys.HasViewedTutorial) != 1)
+        try
         {
-            LoadTutorial();
+            if (PlayerPrefs.HasKey(PlayerPrefsKeys.HasViewedTutorial) == false || PlayerPrefs.GetInt(PlayerPrefsKeys.HasViewedTutorial) != 1)
+            {
+                LoadTutorial();
+            }
+            else
+            {
+                PlayerPrefs.SetInt(PlayerPrefsKeys.ChallengeModeSet, 0);
+                PlayerPrefs.Save();
+                menuObjects.Add(Instantiate(ARMenu, MenuParent.transform));
+            }
         }
-        else
+        catch (Exception menuLoading)
         {
-            PlayerPrefs.SetInt(PlayerPrefsKeys.ChallengeModeSet, 0);
-            PlayerPrefs.Save();
-            menuObjects.Add(Instantiate(ARMenu, MenuParent.transform));
+            Crashes.TrackError(menuLoading);
         }
     }
 
     private void LoadDailyChallenge()
     {
-        PlayerPrefs.SetInt(PlayerPrefsKeys.ChallengeModeSet, 1);
-        PlayerPrefs.Save();
-        GameObject eventScreen = Instantiate(EventBoard, MenuParent.transform);
-        eventScreen.GetComponentInChildren<CurrencyCounters>().PlayerInventory = PlayerInventory;
-        AnimosityCost animosityPopUp = eventScreen.GetComponentInChildren<AnimosityCost>();
-        animosityPopUp.PlayerInventory = PlayerInventory;
-        animosityPopUp.gameObject.SetActive(false);
-        ChallengeMode.GetChallengeSeed();
-        menuObjects.Add(eventScreen);
+        try
+        {
+            PlayerPrefs.SetInt(PlayerPrefsKeys.ChallengeModeSet, 1);
+            PlayerPrefs.Save();
+            GameObject eventScreen = Instantiate(EventBoard, MenuParent.transform);
+            eventScreen.GetComponentInChildren<CurrencyCounters>().PlayerInventory = PlayerInventory;
+            AnimosityCost animosityPopUp = eventScreen.GetComponentInChildren<AnimosityCost>();
+            animosityPopUp.PlayerInventory = PlayerInventory;
+            animosityPopUp.gameObject.SetActive(false);
+            ChallengeMode.GetChallengeSeed();
+            menuObjects.Add(eventScreen);
+        }
+        catch (Exception menuLoading)
+        {
+            Crashes.TrackError(menuLoading);
+        }
     }
     private void LoadTutorial()
     {
-        UnloadMenu();
-        GameObject tutorial = Instantiate(Tutorial, MenuParent.transform);
-        menuObjects.Add(tutorial);
+        try
+        {
+            UnloadMenu();
+            GameObject tutorial = Instantiate(Tutorial, MenuParent.transform);
+            menuObjects.Add(tutorial);
+        }
+        catch (Exception menuLoading)
+        {
+            Crashes.TrackError(menuLoading);
+        }
     }
     private void ShowGeneralMessageWindow(string message)
     {
-        GameObject messageWindow = Instantiate(GeneralMessageWindow, MenuParent.transform);
-        messageWindow.GetComponentInChildren<GeneralMessage>().SetMessage(message);
+        try
+        {
+            GameObject messageWindow = Instantiate(GeneralMessageWindow, MenuParent.transform);
+            messageWindow.GetComponentInChildren<GeneralMessage>().SetMessage(message);
+        }
+        catch (Exception menuLoading)
+        {
+            Crashes.TrackError(menuLoading);
+        }
     }
 
     private void UnloadMenu()

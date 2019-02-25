@@ -7,7 +7,6 @@ public class EnemyBehavior : Pausable
     public float Rotation;
 
     private bool isBeingNommed;
-    //private Renderer renderer;
 
     new void Start()
     {
@@ -22,7 +21,6 @@ public class EnemyBehavior : Pausable
     {
        if(isBeingNommed == false && gameObject.GetInstanceID() == instanceId)
        {
-
             isBeingNommed = true;
             GamePlayEvents.SendConfirmNom();
             Invoke("SelfDestruct", 0.2f);

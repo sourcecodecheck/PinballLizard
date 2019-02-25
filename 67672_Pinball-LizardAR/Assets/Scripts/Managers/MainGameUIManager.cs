@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System;
+using Microsoft.AppCenter.Unity.Crashes;
 
 public class MainGameUIManager : MonoBehaviour
 {
@@ -32,7 +34,14 @@ public class MainGameUIManager : MonoBehaviour
 
     void LoadPauseMenu()
     {
-        Instantiate(PauseMenu, MenuParent.transform);
+        try
+        {
+            Instantiate(PauseMenu, MenuParent.transform);
+        }
+        catch (Exception menuLoading)
+        {
+            Crashes.TrackError(menuLoading);
+        }
     }
 
     void LoadPlayerInfoScreen()
@@ -41,7 +50,14 @@ public class MainGameUIManager : MonoBehaviour
     }
     void LoadContainerPopUp()
     {
-        Instantiate(ContainerPopUp, MenuParent.transform);
+        try
+        {
+            Instantiate(ContainerPopUp, MenuParent.transform);
+        }
+        catch (Exception menuLoading)
+        {
+            Crashes.TrackError(menuLoading);
+        }
     }
 
     private void HideBanner()
@@ -66,8 +82,15 @@ public class MainGameUIManager : MonoBehaviour
 
     private void ShowGeneralMessageWindow(string message)
     {
-        GameObject messageWindow = Instantiate(GeneralMessageWindow, MenuParent.transform);
-        messageWindow.GetComponentInChildren<GeneralMessage>().SetMessage(message);
+        try
+        {
+            GameObject messageWindow = Instantiate(GeneralMessageWindow, MenuParent.transform);
+            messageWindow.GetComponentInChildren<GeneralMessage>().SetMessage(message);
+        }
+        catch (Exception menuLoading)
+        {
+            Crashes.TrackError(menuLoading);
+        }
     }
 
     private void OnDestroy()

@@ -2,6 +2,8 @@
 
 public class HexBehavior : MonoBehaviour
 {
+    public float TimeToSelfDestruct;
+
     private bool isSelfDestructing;
 
     void Start()
@@ -25,13 +27,13 @@ public class HexBehavior : MonoBehaviour
             }
             GetComponent<Rigidbody>().AddForce(collision.transform.position.normalized, ForceMode.Impulse);
             ShotBehavior collidingShot = collision.gameObject.GetComponent<ShotBehavior>();
-            //collidingShot.NonReboundDirection = Vector3.Reflect(collidingShot.NonReboundDirection, collision.contacts[0].normal);
+            collidingShot.NonReboundDirection = Vector3.Reflect(collidingShot.NonReboundDirection, collision.contacts[0].normal);
             collidingShot.RegenerateRotation();
-            //collidingShot.Invoke("HitBuilding", 0.1f);
-            collidingShot.HasHitBuilding = true;
+            collidingShot.Invoke("HitBuilding", 0.1f);
+            //collidingShot.HasHitBuilding = true;
             collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
-            Invoke("SelfDestruct", 5.0f);
+            Invoke("SelfDestruct", TimeToSelfDestruct);
             isSelfDestructing = true;
         }
     }

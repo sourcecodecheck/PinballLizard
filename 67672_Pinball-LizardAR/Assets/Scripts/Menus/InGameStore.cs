@@ -18,7 +18,6 @@ public class InGameStore : MonoBehaviour
         StoreEvents.OnStartInGamePurchase += InGameBuyStart;
         StoreEvents.SendLoadStore(StoreId, CatalogVersion);
     }
-
     
     void Update()
     {

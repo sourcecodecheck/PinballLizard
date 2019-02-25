@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114920584836492134}
   - component: {fileID: 114549065341086598}
   - component: {fileID: 114413271506018970}
+  - component: {fileID: 114912234493377584}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -70,7 +71,7 @@ MonoBehaviour:
   EventBoard: {fileID: 1543924082210966, guid: 99535caf2dc50cb40876b6236acd5213, type: 2}
   ContainerPopUp: {fileID: 1196062387415010, guid: 763fb52121bd92243bd31753e9839d99,
     type: 2}
-  Tutorial: {fileID: 0}
+  Tutorial: {fileID: 1254923355395940, guid: 2028cfd7bc8124f4d909c21263f6ecf7, type: 2}
   MenuParent: {fileID: 0}
   GeneralMessageWindow: {fileID: 1274791734511400, guid: f5a825dd45c2bbb47ac56b06697c671b,
     type: 2}
@@ -125,7 +126,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1422444826761412}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 133c1849945e7d34599222d32c931b6a, type: 3}
   m_Name: 
@@ -140,7 +141,6 @@ MonoBehaviour:
   PlayerLevel: 1
   ExperienceCount: 0
   PreviousExperienceCount: 0
-  ExperienceToNextLevel: 
   BugsEatenCount: 0
   LastGameScore: 0
   BestScore: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   BombKeyTerm: bomb
   FeastKeyTerm: feast
   PlayerId: 
-  ServerSideItems: []
+  ExperienceToNextLevel: 
 --- !u!114 &114723271685787582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -165,7 +165,20 @@ MonoBehaviour:
   PlayFabSettings: {fileID: 11400000, guid: 698b2db098268c640929a7b8090a31eb, type: 2}
   TitleId: 
   ProductionEnvironmentUrl: .playfabapi.com
+  LoginTimeout: 0
   TitleIdPopUp: {fileID: 0}
+  TimeoutMessage: {fileID: 0}
+--- !u!114 &114912234493377584
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1422444826761412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e332e5ecdd45a44b97b7551bda8e96f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114920584836492134
 MonoBehaviour:
   m_ObjectHideFlags: 1

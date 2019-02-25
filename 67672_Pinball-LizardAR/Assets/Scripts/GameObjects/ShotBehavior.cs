@@ -4,12 +4,11 @@ public class ShotBehavior : Pausable
 {
     public bool HasHitBuilding;
     public bool IsSpicy;
-    public int Life;
     public GameObject Explosion;
     public bool IsNonAR;
-    
-    public float Scale;
     public float MovementSpeed;
+    public float RotationMin;
+    public float RotationMax;
     public Vector3 NonReboundDirection;
 
     private float deathDistance;
@@ -53,7 +52,7 @@ public class ShotBehavior : Pausable
     public void RegenerateRotation()
     {
         rotationVector = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
-        rotationSpeed = Random.Range(5f, 30f);
+        rotationSpeed = Random.Range(RotationMin, RotationMax);
     }
 
     private void Update()
@@ -76,11 +75,6 @@ public class ShotBehavior : Pausable
             else
             {
                 gameObject.transform.position += NonReboundDirection * deathDistanceDerivedSpeed * Time.deltaTime;
-            }
-            if (Life <= 0)
-            {
-                Instantiate(Explosion, gameObject.transform.position, Quaternion.identity);
-                Destroy(gameObject);
             }
             gameObject.transform.Rotate(rotationVector, rotationSpeed);
         }

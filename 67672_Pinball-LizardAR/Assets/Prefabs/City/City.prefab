@@ -226,10 +226,13 @@ MonoBehaviour:
   TimeToInitialSpawn: 0.2
   TimeToSpawnRepeat: 2
   ConcurrentEnemyCap: 3
-  TotalSpawnCap: 0
+  TotalSpawnCap: 3
   Scale: 2
   CameraOffset: 0.48
-  HeightOffset: 0.3
+  HeightOffsets:
+  - 0
+  - 0.3
+  - 0.15
   Rotations:
   - 2
   - 1.5

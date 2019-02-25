@@ -144,11 +144,12 @@ MonoBehaviour:
   isPaused: 0
   HasHitBuilding: 0
   IsSpicy: 1
-  Life: 5
   Explosion: {fileID: 1976225524317142, guid: c318a58d49a76bf47907d062c4c92714, type: 2}
-  DeathDistance: 0
+  IsNonAR: 0
   Scale: 1
   MovementSpeed: 0.3
+  RotationMin: 5
+  RotationMax: 30
   NonReboundDirection: {x: 0, y: 0, z: 0}
 --- !u!135 &135219487999305656
 SphereCollider:

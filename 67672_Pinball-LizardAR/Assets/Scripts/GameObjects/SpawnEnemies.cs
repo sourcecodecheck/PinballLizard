@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Linq;
 using System.Collections.Generic;
 
 public class SpawnEnemies : Pausable
@@ -10,12 +11,11 @@ public class SpawnEnemies : Pausable
     public int TotalSpawnCap;
     public float Scale;
     public float CameraOffset;
-    public float HeightOffset;
+    public float[] HeightOffsets;
     public float[] Rotations;
 
     private List<GameObject> spawnedEnemies;
     private bool isSpawning;
-    private float[] heightOffsets;
     private int totalSpawned;
     
     new void Start()
@@ -27,7 +27,6 @@ public class SpawnEnemies : Pausable
             InvokeRepeating("DoSpawn", TimeToInitialSpawn, TimeToSpawnRepeat);
         }
         AnimationEvents.OnMouthEntered += OnMouthEntered;
-        heightOffsets = new float[] { 0, HeightOffset, HeightOffset * 0.5f };
         totalSpawned = 0;
         base.Start();
     }
@@ -35,6 +34,7 @@ public class SpawnEnemies : Pausable
     
     void Update()
     {
+        spawnedEnemies = spawnedEnemies.Where((enemy) => enemy != null).ToList();
     }
 
 
@@ -42,11 +42,16 @@ public class SpawnEnemies : Pausable
     {
         if (!isPaused)
         {
-            if (spawnedEnemies.Count < ConcurrentEnemyCap && isSpawning)
+            if (spawnedEnemies.Count < ConcurrentEnemyCap && isSpawning && totalSpawned < TotalSpawnCap)
             {
                 if (Enemy != null)
                 {
-                    Vector3 offset = new Vector3(0, heightOffsets[spawnedEnemies.Count], CameraOffset);
+                    int offsetIndex = spawnedEnemies.Count;
+                    while(offsetIndex > HeightOffsets.Length - 1)
+                    {
+                        offsetIndex -= HeightOffsets.Length;
+                    }
+                    Vector3 offset = new Vector3(0, HeightOffsets[offsetIndex], CameraOffset);
                     GameObject spawnedEnemy = Instantiate(Enemy, gameObject.transform.position  + offset, Quaternion.identity, gameObject.transform);
                     spawnedEnemy.transform.localScale *= Scale;
                     spawnedEnemy.GetComponent<EnemyBehavior>().Rotation = Rotations[Random.Range(0, Rotations.Length - 1)];

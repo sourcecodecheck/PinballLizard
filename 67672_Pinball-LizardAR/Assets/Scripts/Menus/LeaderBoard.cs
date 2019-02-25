@@ -28,7 +28,7 @@ public class LeaderBoard : MonoBehaviour
     public Text Player10Score;
 
     private List<Tuple<Text, Text>> leaderboardTextDisplays;
-    
+
     void Start()
     {
         ScoreEvents.OnLeaderBoardRetrieved += PopulateLeaderBoard;
@@ -48,7 +48,7 @@ public class LeaderBoard : MonoBehaviour
         ScoreEvents.SendLoadLeaderBoard();
     }
 
-    
+
     void Update()
     {
 
@@ -70,7 +70,7 @@ public class LeaderBoard : MonoBehaviour
                 {
                     leaderboardTextDisplays[i].Item1.text = "YOU!";
                 }
-                else if(string.IsNullOrEmpty(leaderboardEntries[i].DisplayName) == false)
+                else if (string.IsNullOrEmpty(leaderboardEntries[i].DisplayName) == false)
                 {
                     leaderboardTextDisplays[i].Item1.text = leaderboardEntries[i].DisplayName;
                 }

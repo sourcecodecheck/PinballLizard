@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
+using Microsoft.AppCenter.Unity.Crashes;
+using System;
+
 
 public class Currencies : MonoBehaviour
 {
@@ -49,6 +52,7 @@ public class Currencies : MonoBehaviour
                 (error) =>
                 {
                     Debug.Log(error);
+                    Crashes.TrackError(new Exception(error.ErrorMessage));
                 });
         }
     }

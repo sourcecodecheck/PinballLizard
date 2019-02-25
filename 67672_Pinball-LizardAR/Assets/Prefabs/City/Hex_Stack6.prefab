@@ -232,7 +232,7 @@ Transform:
   m_GameObject: {fileID: 1491638702118300}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0005, y: 0.0005, z: 0.0005}
+  m_LocalScale: {x: 0.00051, y: 0.00051, z: 0.00051}
   m_Children:
   - {fileID: 4254941300797108}
   - {fileID: 4954592101070834}
@@ -680,6 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff0a4a52759e4a34289d3e8e709864c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimeToSelfDestruct: 5
 --- !u!114 &114316191317118548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -691,6 +692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff0a4a52759e4a34289d3e8e709864c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimeToSelfDestruct: 5
 --- !u!114 &114382266025146342
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -702,6 +704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff0a4a52759e4a34289d3e8e709864c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimeToSelfDestruct: 5
 --- !u!114 &114519967419849040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -713,6 +716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff0a4a52759e4a34289d3e8e709864c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimeToSelfDestruct: 5
 --- !u!114 &114534446001154374
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -724,6 +728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff0a4a52759e4a34289d3e8e709864c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimeToSelfDestruct: 5
 --- !u!114 &114991646172323312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -735,3 +740,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff0a4a52759e4a34289d3e8e709864c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimeToSelfDestruct: 5

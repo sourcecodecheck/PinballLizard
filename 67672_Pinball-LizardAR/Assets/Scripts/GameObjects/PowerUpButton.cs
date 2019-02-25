@@ -10,6 +10,7 @@ public class PowerUpButton : Pausable
     public GameObject BuyButton;
     public Text PowerUpCountDisplay;
     public Button UsePowerUp;
+    public float FeastLength;
 
     private bool isDisabled;
     new void Start()
@@ -131,7 +132,7 @@ public class PowerUpButton : Pausable
     {
         GamePlayEvents.SendFeastStart();
         GamePlayEvents.SendUsePowerUp(keyTerm);
-        Invoke("EndFeast", 10f);
+        Invoke("EndFeast", FeastLength);
     }
     private void EndFeast()
     {

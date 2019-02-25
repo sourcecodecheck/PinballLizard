@@ -60,6 +60,51 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AppCenter\Editor\AppCenterBehaviorEditor.cs" />
+    <Compile Include="Assets\AppCenter\Editor\AppCenterBehaviorEditorAdvanced.cs" />
+    <Compile Include="Assets\AppCenter\Editor\AppCenterPostBuild.cs" />
+    <Compile Include="Assets\AppCenter\Editor\AppCenterPreBuild.cs" />
+    <Compile Include="Assets\AppCenter\Editor\AppCenterSettingsContext.cs" />
+    <Compile Include="Assets\AppCenter\Editor\AppCenterSettingsEditor.cs" />
+    <Compile Include="Assets\AppCenter\Editor\AppCenterSettingsEditorAdvanced.cs" />
+    <Compile Include="Assets\AppCenter\Editor\AppCenterSettingsMakerAndroid.cs" />
+    <Compile Include="Assets\AppCenter\Editor\AppCenterSettingsMakerIos.cs" />
+    <Compile Include="Assets\AppCenter\Editor\ApplicationIdHelper.cs" />
+    <Compile Include="Assets\AppCenter\Editor\AppSecretDrawer.cs" />
+    <Compile Include="Assets\AppCenter\Editor\CustomUrlPropertyDrawer.cs" />
+    <Compile Include="Assets\AppCenter\Editor\FirebaseDependency.cs" />
+    <Compile Include="Assets\AppCenter\Editor\IAppCenterSettingsMaker.cs" />
+    <Compile Include="Assets\AppCenter\Editor\MaxStorageSizePropertyDrawer.cs" />
+    <Compile Include="Assets\AppCenter\Editor\PBXProjectWrapper.cs" />
+    <Compile Include="Assets\AppCenter\Editor\PlistDocumentWrapper.cs" />
+    <Compile Include="Assets\AppCenter\Editor\ProjectCapabilityManagerWrapper.cs" />
+    <Compile Include="Assets\AppCenter\Editor\XmlResourceHelper.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\AppCenterEditor.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\AppCenterEditorSDK\AppCenterEditorHttp.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\AppCenterEditorSDK\Constants.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\AppCenterEditorSDK\ISerializer.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\AppCenterEditorSDK\JsonWrapper.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\AppCenterEditorSDK\PackagesInstaller.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\AppCenterEditorSDK\SimpleJson.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\AppCenterEditorSDK\SimpleJsonInstance.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\Components\DrawUtils.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\Components\ProgressBar.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\Panels\AppCenterEditorHeader.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\Panels\AppCenterEditorMenu.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\Panels\AppCenterEditorSDKTools.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\Panels\SDKPackage\AppCenterAnalyticsPackage.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\Panels\SDKPackage\AppCenterCrashesPackage.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\Panels\SDKPackage\AppCenterDistributePackage.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\Panels\SDKPackage\AppCenterPushPackage.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\Panels\SDKPackage\AppCenterSDKPackage.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\Utils\AppCenterEditorGuiFieldHelper.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\Utils\AppCenterEditorHelper.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\Utils\AppCenterEditorPrefsSO.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\Utils\AppCenterEditorVersion.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\Utils\EdExLoggerFactory.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\Utils\EditorCoroutine.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\Utils\IEdExLogger.cs" />
+    <Compile Include="Assets\AppCenterEditorExtensions\Editor\Scripts\Utils\LocalLogger.cs" />
     <Compile Include="Assets\PlayFabEditorExtensions\Editor\PlayFabEditor.cs" />
     <Compile Include="Assets\PlayFabEditorExtensions\Editor\Scripts\Components\ProgressBar.cs" />
     <Compile Include="Assets\PlayFabEditorExtensions\Editor\Scripts\Components\SubMenuComponent.cs" />
@@ -91,46 +136,46 @@
     <Compile Include="Assets\SDKs\PlayFabSdk\Shared\Models\Editor\MakeSharedSettingsObj.cs" />
     <None Include="Assets\SDKs\PlayServicesResolver\Editor\play-services-resolver_v1.2.64.0.txt" />
     <Reference Include="Unity.XR.ARKit">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARKit.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARKit.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARCore">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARCore.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARCore.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARFoundation.Editor">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARFoundation.Editor.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARFoundation.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARFoundation">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARFoundation.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARFoundation.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARCore.Editor">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARCore.Editor.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARCore.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARExtensions">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARExtensions.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARExtensions.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARExtensions.Editor">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARExtensions.Editor.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARExtensions.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARKit.Editor">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARKit.Editor.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARKit.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -376,16 +421,16 @@
       <HintPath>D:/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Google.IOSResolver_v1.2.64.0">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Assets/SDKs/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.64.0.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Assets/SDKs/PlayServicesResolver/Editor/Google.IOSResolver_v1.2.64.0.dll</HintPath>
     </Reference>
     <Reference Include="Google.JarResolver_v1.2.64.0">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Assets/SDKs/PlayServicesResolver/Editor/Google.JarResolver_v1.2.64.0.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Assets/SDKs/PlayServicesResolver/Editor/Google.JarResolver_v1.2.64.0.dll</HintPath>
     </Reference>
     <Reference Include="Google.VersionHandler">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Assets/SDKs/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Assets/SDKs/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
     </Reference>
     <Reference Include="Google.VersionHandlerImpl_v1.2.64.0">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Assets/SDKs/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.64.0.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Assets/SDKs/PlayServicesResolver/Editor/Google.VersionHandlerImpl_v1.2.64.0.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>C:/Users/jill.malta/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>

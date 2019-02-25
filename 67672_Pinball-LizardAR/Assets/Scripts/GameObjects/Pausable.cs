@@ -1,17 +1,19 @@
 ﻿using UnityEngine;
 
-public class Pausable : MonoBehaviour {
-
+public class Pausable : MonoBehaviour
+{
     public bool isPaused;
-	
-	protected void Start () {
+
+    protected void Start()
+    {
         isPaused = false;
         GamePlayEvents.OnPause += Pause;
-	}
-	
-	void Update () {
-		
-	}
+    }
+
+    void Update()
+    {
+
+    }
 
     void Pause(bool loadPauseMenu)
     {

@@ -7,7 +7,6 @@ public class NonARCamera : MonoBehaviour
         Input.gyro.enabled = true;
     }
 
-
     void Update()
     {
         transform.Rotate(-Input.gyro.rotationRateUnbiased.x, -Input.gyro.rotationRateUnbiased.y, 0);

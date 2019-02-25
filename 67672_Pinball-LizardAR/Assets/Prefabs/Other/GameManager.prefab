@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dc9f51864716f4e8c624311dac4dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PauseMenu: {fileID: 1963611045964770, guid: b48c64a3e7cba1b448653893e36f2312, type: 2}
+  PauseMenu: {fileID: 1532830964573044, guid: b034318ddbd2b8e43960e880309400ce, type: 2}
   ContainerPopUp: {fileID: 1196062387415010, guid: 763fb52121bd92243bd31753e9839d99,
     type: 2}
   GeneralMessageWindow: {fileID: 1274791734511400, guid: f5a825dd45c2bbb47ac56b06697c671b,
@@ -487,7 +487,10 @@ MonoBehaviour:
   TotalSpawnCap: 3
   Scale: 1000
   CameraOffset: 175
-  HeightOffset: 40
+  HeightOffsets:
+  - 0
+  - 40
+  - 20
   Rotations:
   - 2
   - -2

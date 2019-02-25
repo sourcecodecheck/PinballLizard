@@ -60,6 +60,72 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AppCenter\AppCenterBehavior.cs" />
+    <Compile Include="Assets\AppCenter\AppCenterBehaviorAdvanced.cs" />
+    <Compile Include="Assets\AppCenter\AppCenterSettings.cs" />
+    <Compile Include="Assets\AppCenter\AppCenterSettingsAdvanced.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\Android\Utility\JavaDateHelper.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\Android\Utility\JavaNumberHelper.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\Android\Utility\JavaStringMapHelper.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\Android\AppCenterInternal.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\Android\AppCenterTask.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\Android\AppCenterTaskWithResult.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\Android\CustomPropertiesInternal.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\Android\UnityAppCenterConsumer.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\Blank\AppCenterInternal.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\Blank\AppCenterTaskWithResult.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\Blank\CustomPropertiesInternal.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\iOS\AppCenterInternal.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\iOS\AppCenterTask.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\iOS\AppCenterTaskWithResult.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\iOS\CustomPropertiesInternal.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\Shared\AppCenter.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\Shared\AppCenterTask.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\Shared\AppCenterTaskAwaiter.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\Shared\AppCenterTaskWithResult.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\Shared\AppCenterTaskYieldInstruction.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\Shared\CustomProperties.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\Shared\Device.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\Shared\LogLevel.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\Shared\StartupType.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\Shared\UnityCoroutineHelper.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\Shared\WrapperSdk.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\UWP\AppCenterInternal.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\UWP\AppCenterTask.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\UWP\AppCenterTaskWithResult.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\UWP\CustomPropertiesInternal.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\UWP\UnityApplicationSettings.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\UWP\UnityApplicationSettingsFactory.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\UWP\UnityApplicationSettingsHelper.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\UWP\UnityChannelGroupFactory.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\UWP\UnityHttpNetworkAdapter.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\UWP\UnityScreenSizeProvider.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Core\UWP\UnityScreenSizeProviderFactory.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Crashes\Android\CrashesDelegate.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Crashes\Android\CrashesInternal.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Crashes\Android\JavaObjectsConverter.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Crashes\Android\WrapperExceptionInternal.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Crashes\Blank\CrashesDelegate.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Crashes\Blank\CrashesInternal.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Crashes\Blank\WrapperExceptionInternal.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Crashes\iOS\CrashesDelegate.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Crashes\iOS\CrashesInternal.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Crashes\iOS\WrapperExceptionInternal.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Crashes\Models\ErrorAttachmentLog.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Crashes\Models\ErrorReport.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Crashes\Models\Exception.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Crashes\Shared\Crashes.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Crashes\Shared\WrapperException.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Crashes\UWP\CrashesDelegate.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Crashes\UWP\CrashesInternal.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\AppCenterSDK\Crashes\UWP\WrapperExceptionInternal.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\iOS\Core\Utility\DeviceHelper.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\iOS\Core\Utility\NSDateHelper.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\iOS\Core\Utility\NSNumberHelper.cs" />
+    <Compile Include="Assets\AppCenter\Plugins\iOS\Core\Utility\NSStringDictionaryHelper.cs" />
+    <Compile Include="Assets\AppCenter\Properties\AppSecretAttribute.cs" />
+    <Compile Include="Assets\AppCenter\Properties\CustomUrlProperty.cs" />
+    <Compile Include="Assets\AppCenter\Properties\MaxStorageSizeProperty.cs" />
     <Compile Include="Assets\Scripts\AnimationStateScripts\BannerExited.cs" />
     <Compile Include="Assets\Scripts\AnimationStateScripts\HandsEntered.cs" />
     <Compile Include="Assets\Scripts\AnimationStateScripts\HandsExited.cs" />
@@ -69,6 +135,7 @@
     <Compile Include="Assets\Scripts\AnimationStateScripts\MouthExited.cs" />
     <Compile Include="Assets\Scripts\AnimationStateScripts\MouthNommed.cs" />
     <Compile Include="Assets\Scripts\AnimationStateScripts\RightHandActioned.cs" />
+    <Compile Include="Assets\Scripts\AppCenter\CrashTracking.cs" />
     <Compile Include="Assets\Scripts\AR\ARController.cs" />
     <Compile Include="Assets\Scripts\AR\DestroyARVisualizer.cs" />
     <Compile Include="Assets\Scripts\Events\AnimationEvents.cs" />
@@ -102,6 +169,7 @@
     <Compile Include="Assets\Scripts\Menus\AppetiteDisplay.cs" />
     <Compile Include="Assets\Scripts\Menus\ChangeScene.cs" />
     <Compile Include="Assets\Scripts\Menus\ContainerPopUp.cs" />
+    <Compile Include="Assets\Scripts\Menus\CrashTheGameButton.cs" />
     <Compile Include="Assets\Scripts\Menus\CurrencyCounters.cs" />
     <Compile Include="Assets\Scripts\Menus\DestroyObjectButton.cs" />
     <Compile Include="Assets\Scripts\Menus\DisableGameObject.cs" />
@@ -269,49 +337,51 @@
     <Compile Include="Assets\SDKs\PlayFabSdk\Shared\SignalR.NET20\Transports\SseEvent.cs" />
     <None Include="Assets\SDKs\PlayFabSdk\link.xml" />
     <None Include="Assets\link.xml" />
+    <None Include="Assets\AppCenter\Plugins\WSA\IL2CPP\Debugger.cpp.txt" />
+    <None Include="Assets\AppCenter\link.xml" />
     <None Include="Assets\Shaders\TransparentTest.shader" />
     <None Include="Assets\sprites\Shaders\BuildingSimple.shader" />
     <Reference Include="Unity.XR.ARKit">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARKit.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARKit.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARCore">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARCore.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARCore.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARFoundation.Editor">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARFoundation.Editor.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARFoundation.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARFoundation">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARFoundation.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARFoundation.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARCore.Editor">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARCore.Editor.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARCore.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARExtensions">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARExtensions.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARExtensions.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARExtensions.Editor">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARExtensions.Editor.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARExtensions.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.ARKit.Editor">
-      <HintPath>D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARKit.Editor.dll</HintPath>
+      <HintPath>D:/PlayfabPinballLizard/PinballLizard/67672_Pinball-LizardAR/Library/ScriptAssemblies/Unity.XR.ARKit.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

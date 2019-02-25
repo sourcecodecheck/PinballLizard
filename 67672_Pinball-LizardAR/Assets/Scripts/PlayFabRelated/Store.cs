@@ -4,6 +4,8 @@ using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
 using PlayFab.Json;
+using Microsoft.AppCenter.Unity.Crashes;
+
 
 public class Store : MonoBehaviour
 {
@@ -62,6 +64,7 @@ public class Store : MonoBehaviour
             {
                 MenuEvents.SendShowGeneralMessage(error.ErrorMessage);
                 //ShowMessageWindowHelper.ShowMessage(error.ErrorMessage);
+                Crashes.TrackError(new Exception(error.ErrorMessage));
             });
         }
     }
@@ -119,6 +122,7 @@ public class Store : MonoBehaviour
             (error) =>
             {
                 Debug.Log(error);
+                Crashes.TrackError(new Exception(error.ErrorMessage));
             });
         }
     }
@@ -146,6 +150,7 @@ public class Store : MonoBehaviour
                 (error) => 
                 {
                     ShowMessageWindowHelper.ShowMessage(error.ErrorMessage);
+                    Crashes.TrackError(new Exception(error.ErrorMessage));
                 });
         }
     }
@@ -166,6 +171,7 @@ public class Store : MonoBehaviour
             (error) =>
             {
                 Debug.Log(error);
+                Crashes.TrackError(new Exception(error.ErrorMessage));
             });
         }
     }
@@ -189,6 +195,7 @@ public class Store : MonoBehaviour
             (error) =>
             {
                 Debug.Log(error);
+                Crashes.TrackError(new Exception(error.ErrorMessage));
             });
         }
     }
@@ -211,6 +218,7 @@ public class Store : MonoBehaviour
                (error) =>
                {
                    Debug.Log(error);
+                   Crashes.TrackError(new Exception(error.ErrorMessage));
                });
     }
 
@@ -231,6 +239,7 @@ public class Store : MonoBehaviour
             (error) =>
             {
                 Debug.Log(error);
+                Crashes.TrackError(new Exception(error.ErrorMessage));
             });
         }
     }

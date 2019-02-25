@@ -2,6 +2,7 @@
 using System.Linq;
 using PlayFab.ClientModels;
 
+
 /// <summary>
 /// Class for storing contents of catalog
 /// </summary>

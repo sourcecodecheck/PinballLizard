@@ -75,7 +75,7 @@ public class MouthBehavior : Pausable
 
     private void OpenMouthBehavior()
     {
-        bool doNom = false;
+        //bool doNom = false;
         foreach (Touch touch in Input.touches)
         {
             Ray ray = Camera.main.ScreenPointToRay(touch.position);
@@ -89,16 +89,16 @@ public class MouthBehavior : Pausable
                     if (hitobbjectName.Contains("enemy"))
                     {
                         GamePlayEvents.SendTryNom(hitobject.GetInstanceID());
-                        doNom = true;
+                        //doNom = true;
                     }
                 }
             }
             
         }
-        if(doNom == false && Input.touches.Length > 0)
-        {
-            //AnimationEvents.SendMissEnter();
-        }
+        //if (doNom == false && Input.touchCount > 0)
+        //{
+        //    AnimationEvents.SendMissEnter();
+        //}
 
     }
     private void DoNom()

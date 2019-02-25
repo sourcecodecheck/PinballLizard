@@ -3,6 +3,8 @@ using PlayFab;
 using PlayFab.ClientModels;
 using PlayFab.Json;
 using System;
+using Microsoft.AppCenter.Unity.Crashes;
+
 
 public class UserInfo : MonoBehaviour
 {
