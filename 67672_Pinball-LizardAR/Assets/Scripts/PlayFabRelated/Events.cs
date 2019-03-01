@@ -12,7 +12,7 @@ public class Events : MonoBehaviour
 {
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         TrackingEvents.OnPlayFabTitleEvent += SendTitleEvent;
         TrackingEvents.OnPlayFabPlayerEvent += SendPlayerEvent;
@@ -40,7 +40,10 @@ public class Events : MonoBehaviour
             (error) =>
             {
                 Debug.Log(error.ErrorMessage);
+#if UNITY_ANDROID
+                //Crashes on iOS every single time without fail
                 Crashes.TrackError(new Exception(error.ErrorMessage));
+#endif
             }
        );
     }
@@ -61,7 +64,10 @@ public class Events : MonoBehaviour
             (error) =>
             {
                 Debug.Log(error.ErrorMessage);
+#if UNITY_ANDROID
+                //Crashes on iOS every single time without fail
                 Crashes.TrackError(new Exception(error.ErrorMessage));
+#endif
             }
        );
     }

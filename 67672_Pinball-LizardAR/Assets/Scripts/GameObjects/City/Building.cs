@@ -4,8 +4,12 @@ public class Building : MonoBehaviour
 {
     public GameObject HexStack;
     public GameObject Explosion;
+    public GameObject ARCollider;
+    public GameObject NonARCollider;
+
     public HexNode hexNode;
     public int StackCount;
+
 
     private bool isSelfDestructing;
     
@@ -39,12 +43,21 @@ public class Building : MonoBehaviour
     {
         if (!isSelfDestructing)
         {
-            if (collision.gameObject.name.ToLower().Contains("shot"))
+            string colliderName = collision.gameObject.name.ToLower();
+            if (colliderName.Contains("shot"))
             {
                 Explode();
-                Instantiate(HexStack, gameObject.transform.position, gameObject.transform.localRotation, gameObject.transform.parent);
+                GameObject stack = Instantiate(HexStack, gameObject.transform.position, gameObject.transform.localRotation, gameObject.transform.parent);
+                if (colliderName.Contains("non"))
+                {
+                    Instantiate(NonARCollider, stack.transform);
+                }
+                else
+                {
+                    Instantiate(ARCollider, stack.transform);
+                }
             }
-            if (collision.gameObject.name.ToLower().Contains("spicy"))
+            if (colliderName.Contains("spicy"))
             {
                 Destroy(collision.gameObject);
                 hexNode.SpreadExplosion();

@@ -56,4 +56,11 @@ public static class TrackingEvents
     {
         OnPlayFabTitleEvent?.Invoke(eventBody, eventTitle);
     }
+
+    public delegate void AddExperience(int numBuildings);
+    public static event AddExperience OnAddExperience;
+    public static void SendAddExperience(int experienceToAdd)
+    {
+        OnAddExperience?.Invoke(experienceToAdd);
+    }
 }

@@ -44,6 +44,7 @@ public class Inventory : MonoBehaviour
             PlayerId = PlayerPrefs.GetString(PlayerPrefsKeys.PlayFabId);
         }
         TrackingEvents.SendLoadPlayerInfo();
+        StoreEvents.SendLoadCurrencies();
     }
 
     private void LoadServerSideItem(ItemInstance itemInstance)

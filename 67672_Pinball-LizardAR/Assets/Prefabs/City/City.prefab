@@ -114,7 +114,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1954204498666104}
-  m_Mesh: {fileID: 4300000, guid: e57655b64334e6d4ab6a5e3b3f806724, type: 3}
+  m_Mesh: {fileID: 4300002, guid: e57655b64334e6d4ab6a5e3b3f806724, type: 3}
 --- !u!82 &82025882728552382
 AudioSource:
   m_ObjectHideFlags: 1
@@ -227,7 +227,7 @@ MonoBehaviour:
   TimeToSpawnRepeat: 2
   ConcurrentEnemyCap: 3
   TotalSpawnCap: 3
-  Scale: 2
+  Scale: 3
   CameraOffset: 0.48
   HeightOffsets:
   - 0
@@ -288,7 +288,7 @@ MonoBehaviour:
   Blank: {fileID: 1486261941468126, guid: 8ad4358e9e5adc341bdb3727f7316cca, type: 2}
   DaBomb: {fileID: 1718084816663352, guid: 1736103505510cd4ba515bd778e36079, type: 2}
   Base: {fileID: 1954204498666104}
-  NumberOfBuildingsGenerated: 36
+  NumberOfBuildingsGenerated: 43
   BuildingToBlankRatio: 1
   scale: 1
   Seed: 0

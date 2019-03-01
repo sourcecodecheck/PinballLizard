@@ -14,7 +14,7 @@ public class UserInfo : MonoBehaviour
     public string BugsEatenKey;
     public string BestScoreKey;
 
-    void Start()
+    void Awake()
     {
         TrackingEvents.OnGameVictory += GameEnd;
         TrackingEvents.OnGameDefeat += GameEnd;
@@ -46,6 +46,9 @@ public class UserInfo : MonoBehaviour
                (error) =>
                {
                    Debug.Log(error);
+#if UNITY_ANDROID
+                   Crashes.TrackError(new Exception(error.ErrorMessage));
+#endif
                });
         }
     }
@@ -68,6 +71,9 @@ public class UserInfo : MonoBehaviour
                (error) =>
                {
                    Debug.Log(error);
+#if UNITY_ANDROID
+                   Crashes.TrackError(new Exception(error.ErrorMessage));
+#endif
                });
         }
     }
@@ -97,6 +103,9 @@ public class UserInfo : MonoBehaviour
                 (error) =>
                 {
                     Debug.Log(error);
+#if UNITY_ANDROID
+                    Crashes.TrackError(new Exception(error.ErrorMessage));
+#endif
                 });
         }
     }
@@ -111,7 +120,7 @@ public class UserInfo : MonoBehaviour
                     FunctionName = "getUpcomingExperienceRequirements",
                     FunctionParameter = new
                     {
-                        level = PlayerInventory.PlayerLevel,
+                        level = PlayerInventory.PlayerLevel > 1? PlayerInventory.PlayerLevel - 1: PlayerInventory.PlayerLevel,
                         count = 5
                     }
                 },
@@ -129,6 +138,9 @@ public class UserInfo : MonoBehaviour
                 (error) =>
                 {
                     Debug.Log(error);
+#if UNITY_ANDROID
+                    Crashes.TrackError(new Exception(error.ErrorMessage));
+#endif
                 });
         }
     }
@@ -162,6 +174,10 @@ public class UserInfo : MonoBehaviour
                 (error) =>
                 {
                     Debug.Log(error);
+#if UNITY_ANDROID
+                    //Crashes on iOS every single time without fail
+                    Crashes.TrackError(new Exception(error.ErrorMessage));
+#endif
                 });
         }
     }
@@ -205,6 +221,7 @@ public class UserInfo : MonoBehaviour
             SetUpNewPlayer();
         }
     }
+
     private void OnDestroy()
     {
         TrackingEvents.OnGameVictory -= GameEnd;

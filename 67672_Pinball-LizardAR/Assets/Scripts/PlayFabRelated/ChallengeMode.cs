@@ -7,7 +7,7 @@ using Microsoft.AppCenter.Unity.Crashes;
 
 public class ChallengeMode : MonoBehaviour
 {
-    private void Start()
+    private void Awake()
     {
         ScoreEvents.OnLoadLeaderBoard += GetLeaderBoard;
         StoreEvents.OnSubtractAnimosity += SubtractAnimosity;
@@ -42,7 +42,10 @@ public class ChallengeMode : MonoBehaviour
                    (error) =>
                    {
                        Debug.Log(error);
+#if UNITY_ANDROID
+                       //Crashes on iOS every single time without fail
                        Crashes.TrackError(new Exception(error.ErrorMessage));
+#endif
                    });
             }
         }
@@ -68,7 +71,10 @@ public class ChallengeMode : MonoBehaviour
                 (error) =>
                 {
                     Debug.Log(error);
+#if UNITY_ANDROID
+                    //Crashes on iOS every single time without fail
                     Crashes.TrackError(new Exception(error.ErrorMessage));
+#endif
                 });
         }
     }
@@ -90,7 +96,10 @@ public class ChallengeMode : MonoBehaviour
                (error) =>
                {
                    Debug.Log(error);
+#if UNITY_ANDROID
+                   //Crashes on iOS every single time without fail
                    Crashes.TrackError(new Exception(error.ErrorMessage));
+#endif
                });
         }
     }

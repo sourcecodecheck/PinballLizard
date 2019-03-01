@@ -40,7 +40,10 @@ public class MainGameUIManager : MonoBehaviour
         }
         catch (Exception menuLoading)
         {
+#if UNITY_ANDROID
+            //Crashes on iOS every single time without fail
             Crashes.TrackError(menuLoading);
+#endif
         }
     }
 
@@ -56,7 +59,10 @@ public class MainGameUIManager : MonoBehaviour
         }
         catch (Exception menuLoading)
         {
+#if UNITY_ANDROID
+            //Crashes on iOS every single time without fail
             Crashes.TrackError(menuLoading);
+#endif
         }
     }
 

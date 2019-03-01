@@ -5,12 +5,19 @@ ModelImporter:
   fileIDToRecycleName:
     100000: PLAG_Platform
     100002: //RootNode
+    100004: PLAG_Platform_Base
     400000: PLAG_Platform
     400002: //RootNode
+    400004: PLAG_Platform_Base
     2100000: PLAG_PlatformMat
+    2100002: initialShadingGroup
+    2100004: PLAG_Platform_BaseMat
     2300000: PLAG_Platform
+    2300002: PLAG_Platform_Base
     3300000: PLAG_Platform
+    3300002: PLAG_Platform_Base
     4300000: PLAG_Platform
+    4300002: PLAG_Platform_Base
   externalObjects:
   - first:
       type: UnityEngine:Material

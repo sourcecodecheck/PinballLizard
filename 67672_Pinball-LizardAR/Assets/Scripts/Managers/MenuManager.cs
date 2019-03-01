@@ -86,12 +86,14 @@ public class MenuManager : MonoBehaviour
             hasMainMenuBeenLoaded = true;
             GameObject mainMenuInstance = Instantiate(MainMenuButtons, MenuParent.transform);
             mainMenuInstance.GetComponentInChildren<PlayerLevelDisplay>().PlayerInventory = PlayerInventory;
-            mainMenuInstance.GetComponentInChildren<PlayerLevelBar>().PlayerInventory = PlayerInventory;
+            mainMenuInstance.GetComponentInChildren<PlayerLevelBarEndGame>().PlayerInventory = PlayerInventory;
             menuObjects.Add(mainMenuInstance);
         }
         catch(Exception menuLoading)
         {
+#if UNITY_ANDROID
             Crashes.TrackError(menuLoading);
+#endif
         }
     }
 
@@ -103,7 +105,9 @@ public class MenuManager : MonoBehaviour
         }
         catch (Exception menuLoading)
         {
+#if UNITY_ANDROID
             Crashes.TrackError(menuLoading);
+#endif
         }
     }
 
@@ -118,7 +122,9 @@ public class MenuManager : MonoBehaviour
         }
         catch (Exception menuLoading)
         {
+#if UNITY_ANDROID
             Crashes.TrackError(menuLoading);
+#endif
         }
     }
 
@@ -133,7 +139,10 @@ public class MenuManager : MonoBehaviour
         }
         catch (Exception menuLoading)
         {
+#if UNITY_ANDROID
+            //Crashes on iOS every single time without fail
             Crashes.TrackError(menuLoading);
+#endif
         }
     }
 
@@ -145,7 +154,10 @@ public class MenuManager : MonoBehaviour
         }
         catch (Exception menuLoading)
         {
+#if UNITY_ANDROID
+            //Crashes on iOS every single time without fail
             Crashes.TrackError(menuLoading);
+#endif
         }
     }
 
@@ -166,7 +178,10 @@ public class MenuManager : MonoBehaviour
         }
         catch (Exception menuLoading)
         {
+#if UNITY_ANDROID
+            //Crashes on iOS every single time without fail
             Crashes.TrackError(menuLoading);
+#endif
         }
     }
 
@@ -186,7 +201,10 @@ public class MenuManager : MonoBehaviour
         }
         catch (Exception menuLoading)
         {
+#if UNITY_ANDROID
+            //Crashes on iOS every single time without fail
             Crashes.TrackError(menuLoading);
+#endif
         }
     }
     private void LoadTutorial()
@@ -199,7 +217,10 @@ public class MenuManager : MonoBehaviour
         }
         catch (Exception menuLoading)
         {
+#if UNITY_ANDROID
+            //Crashes on iOS every single time without fail
             Crashes.TrackError(menuLoading);
+#endif
         }
     }
     private void ShowGeneralMessageWindow(string message)
@@ -211,7 +232,10 @@ public class MenuManager : MonoBehaviour
         }
         catch (Exception menuLoading)
         {
+#if UNITY_ANDROID
+            //Crashes on iOS every single time without fail
             Crashes.TrackError(menuLoading);
+#endif
         }
     }
 

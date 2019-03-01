@@ -188,6 +188,7 @@
     <Compile Include="Assets\Scripts\Menus\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\Menus\PlayerInventoryScreen.cs" />
     <Compile Include="Assets\Scripts\Menus\PlayerLevelBar.cs" />
+    <Compile Include="Assets\Scripts\Menus\PlayerLevelBarEndGame.cs" />
     <Compile Include="Assets\Scripts\Menus\PlayerLevelDisplay.cs" />
     <Compile Include="Assets\Scripts\Menus\PlaySoundOnButton.cs" />
     <Compile Include="Assets\Scripts\Menus\ReloadCurrentScene.cs" />

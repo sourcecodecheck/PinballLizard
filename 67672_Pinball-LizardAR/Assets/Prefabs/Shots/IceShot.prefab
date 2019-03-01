@@ -97,7 +97,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1355818188750212}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -43.17, y: 481.87558, z: -1865.956}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
   m_Children:
   - {fileID: 4434346582615532}
@@ -279,7 +279,6 @@ MonoBehaviour:
   IsSpicy: 0
   Explosion: {fileID: 1976225524317142, guid: c318a58d49a76bf47907d062c4c92714, type: 2}
   IsNonAR: 0
-  Scale: 1
   MovementSpeed: 0.3
   RotationMin: 5
   RotationMax: 30

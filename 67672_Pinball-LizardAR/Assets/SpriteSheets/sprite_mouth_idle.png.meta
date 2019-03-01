@@ -34,6 +34,38 @@ TextureImporter:
     21300058: mouth_idle_29
     21300060: mouth_idle_30
     21300062: mouth_idle_31
+    21300064: sprite_mouth_idle_0
+    21300066: sprite_mouth_idle_1
+    21300068: sprite_mouth_idle_2
+    21300070: sprite_mouth_idle_3
+    21300072: sprite_mouth_idle_4
+    21300074: sprite_mouth_idle_5
+    21300076: sprite_mouth_idle_6
+    21300078: sprite_mouth_idle_7
+    21300080: sprite_mouth_idle_8
+    21300082: sprite_mouth_idle_9
+    21300084: sprite_mouth_idle_10
+    21300086: sprite_mouth_idle_11
+    21300088: sprite_mouth_idle_12
+    21300090: sprite_mouth_idle_13
+    21300092: sprite_mouth_idle_14
+    21300094: sprite_mouth_idle_15
+    21300096: sprite_mouth_idle_16
+    21300098: sprite_mouth_idle_17
+    21300100: sprite_mouth_idle_18
+    21300102: sprite_mouth_idle_19
+    21300104: sprite_mouth_idle_20
+    21300106: sprite_mouth_idle_21
+    21300108: sprite_mouth_idle_22
+    21300110: sprite_mouth_idle_23
+    21300112: sprite_mouth_idle_24
+    21300114: sprite_mouth_idle_25
+    21300116: sprite_mouth_idle_26
+    21300118: sprite_mouth_idle_27
+    21300120: sprite_mouth_idle_28
+    21300122: sprite_mouth_idle_29
+    21300124: sprite_mouth_idle_30
+    21300126: sprite_mouth_idle_31
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -171,13 +203,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mouth_idle_0
+      name: sprite_mouth_idle_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 6144
-        width: 1024
-        height: 2048
+        y: 3072
+        width: 512
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,19 +217,39 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43245ec50a886014c863155f19329a31
+      spriteID: a340c59ead19297418f11a980ce9e7d8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mouth_idle_1
+      name: sprite_mouth_idle_1
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 3072
+        width: 512
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecd667175c57d9a4b9bba5d400d895b1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_mouth_idle_2
       rect:
         serializedVersion: 2
         x: 1024
-        y: 6144
-        width: 1024
-        height: 2048
+        y: 3072
+        width: 512
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,19 +257,39 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a3c26af157e2ee4a83430840a48ecbd
+      spriteID: e91be2f5794da4b4daf3c9b9ae509392
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mouth_idle_2
+      name: sprite_mouth_idle_3
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 3072
+        width: 512
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d50d7f200d3ba064aadddfbf68f757a7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_mouth_idle_4
       rect:
         serializedVersion: 2
         x: 2048
-        y: 6144
-        width: 1024
-        height: 2048
+        y: 3072
+        width: 512
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -225,19 +297,39 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4143bb5178d5a94bb9abbe8ca24916d
+      spriteID: e8e0823fde67a2644bdf2994e6729088
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mouth_idle_3
+      name: sprite_mouth_idle_5
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 3072
+        width: 512
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5ad338550bed9f489f6cb4bccb4639a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_mouth_idle_6
       rect:
         serializedVersion: 2
         x: 3072
-        y: 6144
-        width: 1024
-        height: 2048
+        y: 3072
+        width: 512
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -245,19 +337,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: edc5ac46ad5a37d41ad3c9556bd7d9e0
+      spriteID: 3dce5baddb1e57341b30d8ee12420d22
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mouth_idle_4
+      name: sprite_mouth_idle_7
       rect:
         serializedVersion: 2
-        x: 4096
-        y: 6144
-        width: 1024
-        height: 2048
+        x: 3584
+        y: 3072
+        width: 512
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -265,239 +357,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2807b82a79c8054a951a89a1d841f2c
+      spriteID: b021e9d9d10705044b52c356b45aba4d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mouth_idle_5
-      rect:
-        serializedVersion: 2
-        x: 5120
-        y: 6144
-        width: 1024
-        height: 2048
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ce153a6ed49a64d4e8c5aab876977cab
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mouth_idle_6
-      rect:
-        serializedVersion: 2
-        x: 6144
-        y: 6144
-        width: 1024
-        height: 2048
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 37a262570eb9d8c4693e53d4ea72836a
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mouth_idle_7
-      rect:
-        serializedVersion: 2
-        x: 7168
-        y: 6144
-        width: 1024
-        height: 2048
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 72d0cb53e19976b4bad4b776314dfc15
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mouth_idle_8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 4096
-        width: 1024
-        height: 2048
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c35d3abe38557774bb65a3e6a2b0a00d
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mouth_idle_9
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 4096
-        width: 1024
-        height: 2048
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 701ef8a0e34ec0841aaa7300f6c689e4
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mouth_idle_10
-      rect:
-        serializedVersion: 2
-        x: 2048
-        y: 4096
-        width: 1024
-        height: 2048
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f2c3aad99b076c3469038bd31093dc6f
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mouth_idle_11
-      rect:
-        serializedVersion: 2
-        x: 3072
-        y: 4096
-        width: 1024
-        height: 2048
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e3091229e04af0e43b6f6476e31d2960
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mouth_idle_12
-      rect:
-        serializedVersion: 2
-        x: 4096
-        y: 4096
-        width: 1024
-        height: 2048
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dd0fbb9016dd5964b8c192f4b8b7c2ad
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mouth_idle_13
-      rect:
-        serializedVersion: 2
-        x: 5120
-        y: 4096
-        width: 1024
-        height: 2048
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e55ccf22764f7574db390936ac045477
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mouth_idle_14
-      rect:
-        serializedVersion: 2
-        x: 6144
-        y: 4096
-        width: 1024
-        height: 2048
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 246f7f0637e8e90428ebb24e835b289e
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mouth_idle_15
-      rect:
-        serializedVersion: 2
-        x: 7168
-        y: 4096
-        width: 1024
-        height: 2048
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7e3cdc7044fe0f047b742bb523709b01
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mouth_idle_16
+      name: sprite_mouth_idle_8
       rect:
         serializedVersion: 2
         x: 0
         y: 2048
-        width: 1024
-        height: 2048
+        width: 512
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -505,19 +377,39 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 867f90e7716fd8846842014acc581677
+      spriteID: 600d7f4be2734f04ca64f6955e0f5109
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mouth_idle_17
+      name: sprite_mouth_idle_9
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2048
+        width: 512
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbafe11ff64d224438d12018e6b996b5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_mouth_idle_10
       rect:
         serializedVersion: 2
         x: 1024
         y: 2048
-        width: 1024
-        height: 2048
+        width: 512
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -525,19 +417,39 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6cd62c2a52ba824ea683ed5ba69fc41
+      spriteID: 4d606986a68b7a74dba2c31be3239722
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mouth_idle_18
+      name: sprite_mouth_idle_11
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 2048
+        width: 512
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a1a9c573a569f1439add3ed0f14fcef
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_mouth_idle_12
       rect:
         serializedVersion: 2
         x: 2048
         y: 2048
-        width: 1024
-        height: 2048
+        width: 512
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -545,19 +457,39 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7cd0f07ef8f21a46970b5f72c3c42b7
+      spriteID: 082eed3bf78da244e9b10328e34c0c38
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mouth_idle_19
+      name: sprite_mouth_idle_13
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 2048
+        width: 512
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1737601156291d468f2004d2d65efc3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_mouth_idle_14
       rect:
         serializedVersion: 2
         x: 3072
         y: 2048
-        width: 1024
-        height: 2048
+        width: 512
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -565,19 +497,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 067d8cbbb665c5e4fb26e7f180ee7900
+      spriteID: cf499b28185737444b2c2c4dc6bbb824
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mouth_idle_20
+      name: sprite_mouth_idle_15
       rect:
         serializedVersion: 2
-        x: 4096
+        x: 3584
         y: 2048
-        width: 1024
-        height: 2048
+        width: 512
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -585,19 +517,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7fe22395b6108e458c20d774132e645
+      spriteID: 8881c9c83b4f4204e8eeb5da09c6e4f9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mouth_idle_21
+      name: sprite_mouth_idle_16
       rect:
         serializedVersion: 2
-        x: 5120
-        y: 2048
-        width: 1024
-        height: 2048
+        x: 0
+        y: 1024
+        width: 512
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -605,19 +537,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fbc55db1a183e794fbd9e694e4db2348
+      spriteID: c242b56dc71e0d040a5bf4a907322824
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mouth_idle_22
+      name: sprite_mouth_idle_17
       rect:
         serializedVersion: 2
-        x: 6144
-        y: 2048
-        width: 1024
-        height: 2048
+        x: 512
+        y: 1024
+        width: 512
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -625,19 +557,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f3d3df361b2c2e4498d179e65ed85e7
+      spriteID: 173b8f51b5ea7ed4fb6a762a9986485f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mouth_idle_23
+      name: sprite_mouth_idle_18
       rect:
         serializedVersion: 2
-        x: 7168
-        y: 2048
-        width: 1024
-        height: 2048
+        x: 1024
+        y: 1024
+        width: 512
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -645,19 +577,119 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 33b6a5c1f75cf334b857052074da99a9
+      spriteID: 48cad5749d5bf3442b6173be608eb731
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mouth_idle_24
+      name: sprite_mouth_idle_19
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1024
+        width: 512
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 645607600b3f5de4eabcef55583fd82e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_mouth_idle_20
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1024
+        width: 512
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03417f29aed139c4fba224f9b9c7dfd7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_mouth_idle_21
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 1024
+        width: 512
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 923e3cff4fc0a584aaf01b091a37975e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_mouth_idle_22
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 1024
+        width: 512
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5235e5f1494ca349ad923db121dda36
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_mouth_idle_23
+      rect:
+        serializedVersion: 2
+        x: 3584
+        y: 1024
+        width: 512
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7c189eacb118a64cbdc0faaab87e263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_mouth_idle_24
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1024
-        height: 2048
+        width: 512
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -665,19 +697,39 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: efad0f27541321c4da505de7f888326a
+      spriteID: cff42f44b30b96846b4f5f4c2cd9c856
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mouth_idle_25
+      name: sprite_mouth_idle_25
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 512
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76c9846b4371c7744a0550378c08e8db
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_mouth_idle_26
       rect:
         serializedVersion: 2
         x: 1024
         y: 0
-        width: 1024
-        height: 2048
+        width: 512
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -685,19 +737,39 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 13ce30d3c39e4ca468feb2d930b1332a
+      spriteID: 037075a8ce792e646b224f1099a19231
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mouth_idle_26
+      name: sprite_mouth_idle_27
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 512
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 289d7a9a7773ccf40b8a3ad5bb38b68e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_mouth_idle_28
       rect:
         serializedVersion: 2
         x: 2048
         y: 0
-        width: 1024
-        height: 2048
+        width: 512
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -705,19 +777,39 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49ebbcd137106cb448a01bc12956e240
+      spriteID: 6129e63f8cdd14a46a57da821458693c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mouth_idle_27
+      name: sprite_mouth_idle_29
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 0
+        width: 512
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e686020c8cd0be4fbcfef81471045fd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_mouth_idle_30
       rect:
         serializedVersion: 2
         x: 3072
         y: 0
-        width: 1024
-        height: 2048
+        width: 512
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -725,19 +817,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dee79c65d4c6936488c9e631ebcf26d2
+      spriteID: cd78d243bb74a0a438a43bf1554914d8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mouth_idle_28
+      name: sprite_mouth_idle_31
       rect:
         serializedVersion: 2
-        x: 4096
+        x: 3584
         y: 0
-        width: 1024
-        height: 2048
+        width: 512
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -745,67 +837,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6176bcdecf295ee46bafab52fd151021
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mouth_idle_29
-      rect:
-        serializedVersion: 2
-        x: 5120
-        y: 0
-        width: 1024
-        height: 2048
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 72643b3038941534684ec78b53e9dcc0
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mouth_idle_30
-      rect:
-        serializedVersion: 2
-        x: 6144
-        y: 0
-        width: 1024
-        height: 2048
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 646f447fd51947743aa317e57eef2e43
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mouth_idle_31
-      rect:
-        serializedVersion: 2
-        x: 7168
-        y: 0
-        width: 1024
-        height: 2048
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a0932747578d6924fa45da864b300c72
+      spriteID: 07a84dbfcdbd0b54da170e90dbba2719
       vertices: []
       indices: 
       edges: []

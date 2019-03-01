@@ -114,4 +114,11 @@ public static class StoreEvents
     {
         OnSubtractAnimosity?.Invoke(animosityToSubtract);
     }
+
+    public delegate void AwardItemOnLoss();
+    public static event AwardItemOnLoss OnAwardItemOnLoss;
+    public static void SendAwardItemOnLoss()
+    {
+        OnAwardItemOnLoss?.Invoke();
+    }
 }

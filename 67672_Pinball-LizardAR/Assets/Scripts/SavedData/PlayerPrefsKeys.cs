@@ -8,4 +8,5 @@
     public const string DailyChallengeSeed = "dailychallenge";
     public const string PlayFabTitleId = "playfabtitleid";
     public const string HasViewedTutorial = "hasplayedgame";
+    public const string ConsecutiveLosses = "consecutivelosses";
 }

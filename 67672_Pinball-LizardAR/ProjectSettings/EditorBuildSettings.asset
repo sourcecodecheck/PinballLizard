@@ -14,4 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NonARMainGame.unity
     guid: c3ed0b6ca0314a643932a4da0b7f03ad
+  - enabled: 0
+    path: Assets/Scenes/iOSMainMenuScene.unity
+    guid: 02edd96491b857540b2b307d5a1cc0ba
+  - enabled: 0
+    path: Assets/Scenes/iOSARMainGameScene.unity
+    guid: 1298a51b5e5e52d43b9a2e4024ab9732
+  - enabled: 0
+    path: Assets/Scenes/iOSNonARMainGame.unity
+    guid: c06836fcf40586647b508e1668a652a7
   m_configObjects: {}

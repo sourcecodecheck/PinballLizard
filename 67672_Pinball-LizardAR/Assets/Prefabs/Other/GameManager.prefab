@@ -88,12 +88,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4234794324996366}
   - component: {fileID: 114985824715871998}
-  - component: {fileID: 114323605422397884}
   - component: {fileID: 114637790595044344}
+  - component: {fileID: 114323605422397884}
   - component: {fileID: 114592979269334322}
   - component: {fileID: 114200097094938070}
-  - component: {fileID: 114409113570882540}
   - component: {fileID: 114730587293188760}
+  - component: {fileID: 114409113570882540}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -251,7 +251,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1760405203558776}
-  m_Mesh: {fileID: 4300000, guid: e57655b64334e6d4ab6a5e3b3f806724, type: 3}
+  m_Mesh: {fileID: 4300002, guid: e57655b64334e6d4ab6a5e3b3f806724, type: 3}
 --- !u!81 &81403028737389304
 AudioListener:
   m_ObjectHideFlags: 1

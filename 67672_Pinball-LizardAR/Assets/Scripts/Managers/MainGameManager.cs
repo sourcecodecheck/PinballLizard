@@ -144,6 +144,8 @@ public class MainGameManager : MonoBehaviour
     {
         gameStarted = true;
         buildingCount = numBuildings;
+        StoreEvents.SendLoadCurrencies();
+        TrackingEvents.SendLoadPlayerInfo();
     }
     private void BombBonus()
     {
@@ -165,11 +167,24 @@ public class MainGameManager : MonoBehaviour
     private void Victory()
     {
         gameScore += 1000 * appetiteCurrent;
+        PlayerPrefs.SetInt(PlayerPrefsKeys.ConsecutiveLosses, 0);
         TrackingEvents.SendGameVictory(gameScore, bugsEatenThisGame, highestMultiplier);
     }
 
     private void Defeat()
     {
+        int losses = 1;
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.ConsecutiveLosses))
+        {
+            losses = PlayerPrefs.GetInt(PlayerPrefsKeys.ConsecutiveLosses) + 1;
+        }
+        if (losses >= 3)
+        {
+            //StoreEvents.SendAwardItemOnLoss();
+            losses = 0;
+        }
+        PlayerPrefs.SetInt(PlayerPrefsKeys.ConsecutiveLosses, losses);
+
         TrackingEvents.SendGameDefeat(gameScore, bugsEatenThisGame, highestMultiplier);
     }
 

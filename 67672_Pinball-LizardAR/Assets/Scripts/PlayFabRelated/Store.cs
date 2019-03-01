@@ -19,8 +19,8 @@ public class Store : MonoBehaviour
         StoreEvents.OnPurchaseItem += PurchaseItem;
         StoreEvents.OnLoadInventory += GetUserInventory;
         StoreEvents.OnConsumeItem += ConsumeItem;
+        StoreEvents.OnAwardItemOnLoss += AwardLossItem;
     }
-
     
     void Update()
     {
@@ -57,14 +57,15 @@ public class Store : MonoBehaviour
                     StoreEvents.SendLoadCurrencies();
                     StoreEvents.SendLoadInventory(catalogVersion);
                     MenuEvents.SendShowGeneralMessage(result.Items.First().DisplayName + " Purchased!");
-                    //ShowMessageWindowHelper.ShowMessage(result.Items.First().DisplayName + " Purchased!");
                 }
             },
             (error) =>
             {
                 MenuEvents.SendShowGeneralMessage(error.ErrorMessage);
-                //ShowMessageWindowHelper.ShowMessage(error.ErrorMessage);
+#if UNITY_ANDROID
+                //Crashes on iOS every single time without fail
                 Crashes.TrackError(new Exception(error.ErrorMessage));
+#endif
             });
         }
     }
@@ -122,7 +123,10 @@ public class Store : MonoBehaviour
             (error) =>
             {
                 Debug.Log(error);
+#if UNITY_ANDROID
+                //Crashes on iOS every single time without fail
                 Crashes.TrackError(new Exception(error.ErrorMessage));
+#endif
             });
         }
     }
@@ -150,7 +154,10 @@ public class Store : MonoBehaviour
                 (error) => 
                 {
                     ShowMessageWindowHelper.ShowMessage(error.ErrorMessage);
+#if UNITY_ANDROID
+                    //Crashes on iOS every single time without fail
                     Crashes.TrackError(new Exception(error.ErrorMessage));
+#endif
                 });
         }
     }
@@ -171,7 +178,10 @@ public class Store : MonoBehaviour
             (error) =>
             {
                 Debug.Log(error);
+#if UNITY_ANDROID
+                //Crashes on iOS every single time without fail
                 Crashes.TrackError(new Exception(error.ErrorMessage));
+#endif
             });
         }
     }
@@ -195,7 +205,10 @@ public class Store : MonoBehaviour
             (error) =>
             {
                 Debug.Log(error);
+#if UNITY_ANDROID
+                //Crashes on iOS every single time without fail
                 Crashes.TrackError(new Exception(error.ErrorMessage));
+#endif
             });
         }
     }
@@ -218,7 +231,10 @@ public class Store : MonoBehaviour
                (error) =>
                {
                    Debug.Log(error);
+#if UNITY_ANDROID
+                   //Crashes on iOS every single time without fail
                    Crashes.TrackError(new Exception(error.ErrorMessage));
+#endif
                });
     }
 
@@ -239,8 +255,39 @@ public class Store : MonoBehaviour
             (error) =>
             {
                 Debug.Log(error);
+#if UNITY_ANDROID
+                //Crashes on iOS every single time without fail
                 Crashes.TrackError(new Exception(error.ErrorMessage));
+#endif
             });
+        }
+    }
+
+    public void AwardLossItem()
+    {
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
+        {
+            PlayFabClientAPI.ExecuteCloudScript(
+                new ExecuteCloudScriptRequest()
+                {
+                    FunctionName = "awardPityItem",
+                    FunctionParameter = new
+                    {
+                       
+                    }
+                },
+                (result) =>
+                {
+                    MenuEvents.SendShowGeneralMessage("Here is a DaBomb to help you out!");
+                },
+                (error) =>
+                {
+                    Debug.Log(error);
+#if UNITY_ANDROID
+                    //Crashes on iOS every single time without fail
+                    Crashes.TrackError(new Exception(error.ErrorMessage));
+#endif
+                });
         }
     }
 
