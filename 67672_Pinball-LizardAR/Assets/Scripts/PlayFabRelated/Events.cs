@@ -40,10 +40,14 @@ public class Events : MonoBehaviour
             (error) =>
             {
                 Debug.Log(error.ErrorMessage);
-#if UNITY_ANDROID
-                //Crashes on iOS every single time without fail
-                Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
+                try
+                {
+                    throw new Exception(error.ErrorMessage);
+                }
+                catch (Exception exception)
+                {
+                    Crashes.TrackError(exception);
+                }
             }
        );
     }
@@ -64,10 +68,14 @@ public class Events : MonoBehaviour
             (error) =>
             {
                 Debug.Log(error.ErrorMessage);
-#if UNITY_ANDROID
-                //Crashes on iOS every single time without fail
-                Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
+                try
+                {
+                    throw new Exception(error.ErrorMessage);
+                }
+                catch (Exception exception)
+                {
+                    Crashes.TrackError(exception);
+                }
             }
        );
     }

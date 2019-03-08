@@ -14,6 +14,7 @@ public class ARController : MonoBehaviour
     public Camera FirstPersonCamera;
     public GameObject MainGameWorld;
     public GameObject SearchingForPlaneUI;
+    public AudioSource ScanningMusic;
 
     private bool gameWorldPlaced;
     private GameObject city;
@@ -52,6 +53,7 @@ public class ARController : MonoBehaviour
                     GameObject prefab = gameWorldPlaced ? null : MainGameWorld;
                     if (gameWorldPlaced == false && city == null)
                     {
+                        ScanningMusic.Stop();
                         gameWorldPlaced = true;
                         city = InstantiateOnPlane(prefab, hit);
                         SearchingForPlaneUI.SetActive(false);

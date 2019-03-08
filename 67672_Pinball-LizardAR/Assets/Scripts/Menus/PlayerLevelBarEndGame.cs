@@ -33,7 +33,7 @@ public class PlayerLevelBarEndGame : MonoBehaviour
                 if (nextLevel > 0)
                 {
                     float levelDiff = PlayerInventory.ExperienceToNextLevel[nextLevel] - PlayerInventory.ExperienceToNextLevel[nextLevel - 1];
-                    float expAsDiff = PlayerInventory.ExperienceToNextLevel[nextLevel] - PlayerInventory.ExperienceCount;
+                    float expAsDiff = PlayerInventory.ExperienceCount - PlayerInventory.ExperienceToNextLevel[nextLevel - 1];
                     percentage +=
                        expAsDiff / levelDiff * Time.deltaTime;
                     float truePercentage = expAsDiff / levelDiff;
@@ -62,7 +62,7 @@ public class PlayerLevelBarEndGame : MonoBehaviour
                     if (PlayerInventory.PlayerLevel > 1 && nextLevel > 0)
                     {
                         float levelDiff = PlayerInventory.ExperienceToNextLevel[nextLevel] - PlayerInventory.ExperienceToNextLevel[nextLevel - 1];
-                        float expAsDiff = PlayerInventory.ExperienceToNextLevel[nextLevel] - PlayerInventory.ExperienceCount; 
+                        float expAsDiff = PlayerInventory.ExperienceCount - PlayerInventory.ExperienceToNextLevel[nextLevel - 1]; 
                         percentage = expAsDiff / levelDiff;
                     }
                     else

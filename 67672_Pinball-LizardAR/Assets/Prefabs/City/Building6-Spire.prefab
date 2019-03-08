@@ -69,6 +69,8 @@ GameObject:
   - component: {fileID: 54198433591220574}
   - component: {fileID: 64983410116485454}
   - component: {fileID: 114635508107584952}
+  - component: {fileID: 114688954888788320}
+  - component: {fileID: 82048897414701624}
   m_Layer: 0
   m_Name: Building6-Spire
   m_TagString: Untagged
@@ -275,6 +277,101 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 102fa39952199c34d9ba1db2eb056676, type: 3}
+--- !u!82 &82048897414701624
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1932073209895458}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114635508107584952
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -291,4 +388,29 @@ MonoBehaviour:
   ARCollider: {fileID: 1346098775542760, guid: b09e3a0ec421e5d49be336110dc46762, type: 2}
   NonARCollider: {fileID: 1459575706258222, guid: bc9ccad04f351cf4fb503faa7bf308a7,
     type: 2}
+  EmptySpace: {fileID: 1486261941468126, guid: 8ad4358e9e5adc341bdb3727f7316cca, type: 2}
+  SoundPlayer: {fileID: 114688954888788320}
   StackCount: 6
+--- !u!114 &114688954888788320
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1932073209895458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3969171bfe07c47a05e218837f6ed3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sounds:
+  - {fileID: 8300000, guid: d977facb579a6b7448d9350f2912b0c1, type: 3}
+  - {fileID: 8300000, guid: 59b3587ae79d8ee4aa724168dd607bd4, type: 3}
+  - {fileID: 8300000, guid: 5c65a7e6ea6c97947afaaa4eb7815986, type: 3}
+  - {fileID: 8300000, guid: a7a38e4521d3b644489b4a27b0dfa46c, type: 3}
+  - {fileID: 8300000, guid: 219cf085d3936584aafdb9e82cdd6f5e, type: 3}
+  - {fileID: 8300000, guid: caabcec63c71e8243bb43aa53c2675c7, type: 3}
+  - {fileID: 8300000, guid: da91e61df29bdc942a49bb91e33467a1, type: 3}
+  - {fileID: 8300000, guid: afff63e8952bfcf4a93eb9a3acc9bb25, type: 3}
+  - {fileID: 8300000, guid: 0e0a7fcf1d5ba1743842370420c3478b, type: 3}
+  SoundSource: {fileID: 82048897414701624}
+  PlayOnCreate: 0

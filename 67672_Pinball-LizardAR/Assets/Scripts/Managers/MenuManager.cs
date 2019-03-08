@@ -2,6 +2,7 @@
 using System;
 using UnityEngine;
 using Microsoft.AppCenter.Unity.Crashes;
+using PlayFab.ClientModels;
 
 public class MenuManager : MonoBehaviour
 {
@@ -14,8 +15,10 @@ public class MenuManager : MonoBehaviour
     public GameObject EventBoard;
     public GameObject ContainerPopUp;
     public GameObject Tutorial;
+    public GameObject SpecatatorMenu;
     public Canvas MenuParent;
     public GameObject GeneralMessageWindow;
+    public GameObject HUD;
     public Inventory PlayerInventory;
     public ChallengeMode ChallengeMode;
 
@@ -37,6 +40,7 @@ public class MenuManager : MonoBehaviour
         MenuEvents.OnChangeMenu += ChangeMenu;
         StoreEvents.OnOpenContainerPopUp += LoadContainerPopUp;
         MenuEvents.OnShowGeneralMessage += ShowGeneralMessageWindow;
+        MenuEvents.OnShowContainerPopUp += ShowContainerPopup;
     }
 
     void Update()
@@ -51,6 +55,7 @@ public class MenuManager : MonoBehaviour
     {
         PlayerInventory.enabled = true;
         TrackingEvents.SendLoadPlayerInfo();
+        HUD.SetActive(true);
         UnloadMenu();
         switch (menu)
         {
@@ -72,6 +77,9 @@ public class MenuManager : MonoBehaviour
             case MenuEvents.Menus.DAILY_CHALLENGE:
                 LoadDailyChallenge();
                 break;
+            case MenuEvents.Menus.SPECTATE:
+                LoadSpectator();
+                break;
             default:
                 LoadMainMenu();
                 break;
@@ -85,15 +93,11 @@ public class MenuManager : MonoBehaviour
             //PlayerPrefs.SetInt(PlayerPrefsKeys.HasViewedTutorial, 0);
             hasMainMenuBeenLoaded = true;
             GameObject mainMenuInstance = Instantiate(MainMenuButtons, MenuParent.transform);
-            mainMenuInstance.GetComponentInChildren<PlayerLevelDisplay>().PlayerInventory = PlayerInventory;
-            mainMenuInstance.GetComponentInChildren<PlayerLevelBarEndGame>().PlayerInventory = PlayerInventory;
             menuObjects.Add(mainMenuInstance);
         }
         catch(Exception menuLoading)
         {
-#if UNITY_ANDROID
             Crashes.TrackError(menuLoading);
-#endif
         }
     }
 
@@ -105,9 +109,7 @@ public class MenuManager : MonoBehaviour
         }
         catch (Exception menuLoading)
         {
-#if UNITY_ANDROID
             Crashes.TrackError(menuLoading);
-#endif
         }
     }
 
@@ -116,15 +118,12 @@ public class MenuManager : MonoBehaviour
         try
         {
             GameObject inventoryScreen = Instantiate(PlayerInventoryScreen, MenuParent.transform);
-            inventoryScreen.GetComponentInChildren<CurrencyCounters>().PlayerInventory = PlayerInventory;
             inventoryScreen.GetComponent<PlayerInventoryScreen>().PlayerInventory = PlayerInventory;
             menuObjects.Add(inventoryScreen);
         }
         catch (Exception menuLoading)
         {
-#if UNITY_ANDROID
             Crashes.TrackError(menuLoading);
-#endif
         }
     }
 
@@ -133,16 +132,24 @@ public class MenuManager : MonoBehaviour
         try
         {
             GameObject storeFront = Instantiate(StoreFront, MenuParent.transform);
-            storeFront.GetComponentInChildren<CurrencyCounters>().PlayerInventory = PlayerInventory;
             storeFront.GetComponent<StoreFront>().PlayerInventory = PlayerInventory;
             menuObjects.Add(storeFront);
         }
         catch (Exception menuLoading)
         {
-#if UNITY_ANDROID
-            //Crashes on iOS every single time without fail
             Crashes.TrackError(menuLoading);
-#endif
+        }
+    }
+    private void LoadSpectator()
+    {
+        try
+        {
+            menuObjects.Add(Instantiate(SpecatatorMenu, MenuParent.transform));
+        }
+        catch (Exception menuLoading)
+        {
+            Crashes.TrackError(menuLoading);
+
         }
     }
 
@@ -150,14 +157,12 @@ public class MenuManager : MonoBehaviour
     {
         try
         {
-            Instantiate(ContainerPopUp, MenuParent.transform);
+            menuObjects.Add(Instantiate(ContainerPopUp, MenuParent.transform));
         }
         catch (Exception menuLoading)
         {
-#if UNITY_ANDROID
-            //Crashes on iOS every single time without fail
             Crashes.TrackError(menuLoading);
-#endif
+
         }
     }
 
@@ -178,10 +183,7 @@ public class MenuManager : MonoBehaviour
         }
         catch (Exception menuLoading)
         {
-#if UNITY_ANDROID
-            //Crashes on iOS every single time without fail
             Crashes.TrackError(menuLoading);
-#endif
         }
     }
 
@@ -192,19 +194,12 @@ public class MenuManager : MonoBehaviour
             PlayerPrefs.SetInt(PlayerPrefsKeys.ChallengeModeSet, 1);
             PlayerPrefs.Save();
             GameObject eventScreen = Instantiate(EventBoard, MenuParent.transform);
-            eventScreen.GetComponentInChildren<CurrencyCounters>().PlayerInventory = PlayerInventory;
-            AnimosityCost animosityPopUp = eventScreen.GetComponentInChildren<AnimosityCost>();
-            animosityPopUp.PlayerInventory = PlayerInventory;
-            animosityPopUp.gameObject.SetActive(false);
             ChallengeMode.GetChallengeSeed();
             menuObjects.Add(eventScreen);
         }
         catch (Exception menuLoading)
         {
-#if UNITY_ANDROID
-            //Crashes on iOS every single time without fail
             Crashes.TrackError(menuLoading);
-#endif
         }
     }
     private void LoadTutorial()
@@ -217,10 +212,7 @@ public class MenuManager : MonoBehaviour
         }
         catch (Exception menuLoading)
         {
-#if UNITY_ANDROID
-            //Crashes on iOS every single time without fail
             Crashes.TrackError(menuLoading);
-#endif
         }
     }
     private void ShowGeneralMessageWindow(string message)
@@ -229,13 +221,23 @@ public class MenuManager : MonoBehaviour
         {
             GameObject messageWindow = Instantiate(GeneralMessageWindow, MenuParent.transform);
             messageWindow.GetComponentInChildren<GeneralMessage>().SetMessage(message);
+            menuObjects.Add(messageWindow);
         }
         catch (Exception menuLoading)
         {
-#if UNITY_ANDROID
-            //Crashes on iOS every single time without fail
             Crashes.TrackError(menuLoading);
-#endif
+        }
+    }
+
+    private void ShowContainerPopup(List<ItemInstance> items, Dictionary<string, uint> currencies)
+    {
+        try
+        {
+            Instantiate(ContainerPopUp, MenuParent.transform).GetComponent<ContainerPopUp>().ReceiveContainerItems(items, currencies);
+        }
+        catch (Exception menuLoading)
+        {
+            Crashes.TrackError(menuLoading);
         }
     }
 
@@ -250,5 +252,8 @@ public class MenuManager : MonoBehaviour
     private void OnDestroy()
     {
         MenuEvents.OnChangeMenu -= ChangeMenu;
+        StoreEvents.OnOpenContainerPopUp -= LoadContainerPopUp;
+        MenuEvents.OnShowGeneralMessage -= ShowGeneralMessageWindow;
+        MenuEvents.OnShowContainerPopUp -= ShowContainerPopup;
     }
 }

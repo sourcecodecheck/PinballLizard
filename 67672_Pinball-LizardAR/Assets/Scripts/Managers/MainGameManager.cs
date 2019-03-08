@@ -8,7 +8,8 @@ public class MainGameManager : MonoBehaviour
     public float DefaultMultiplier;
     public GameObject VictoryScreen;
     public GameObject DefeatScreen;
-    public Canvas UIParent;
+    public Canvas GameplayCanvas;
+    public Canvas GameEndCanvas;
 
     private int gameScore;
     private float gameMultiplier;
@@ -144,6 +145,8 @@ public class MainGameManager : MonoBehaviour
     {
         gameStarted = true;
         buildingCount = numBuildings;
+        GameEndCanvas.gameObject.SetActive(false);
+        GameplayCanvas.gameObject.SetActive(true);
         StoreEvents.SendLoadCurrencies();
         TrackingEvents.SendLoadPlayerInfo();
     }
@@ -166,26 +169,18 @@ public class MainGameManager : MonoBehaviour
 
     private void Victory()
     {
-        gameScore += 1000 * appetiteCurrent;
+        gameScore += 4000 * appetiteCurrent;
         PlayerPrefs.SetInt(PlayerPrefsKeys.ConsecutiveLosses, 0);
-        TrackingEvents.SendGameVictory(gameScore, bugsEatenThisGame, highestMultiplier);
+        TrackingEvents.SendGameVictory(gameScore, appetiteCurrent, highestMultiplier);
+        GameplayCanvas.gameObject.SetActive(false);
+        MenuEvents.SendSwitchCanvas(GameEndCanvas);
     }
 
     private void Defeat()
     {
-        int losses = 1;
-        if (PlayerPrefs.HasKey(PlayerPrefsKeys.ConsecutiveLosses))
-        {
-            losses = PlayerPrefs.GetInt(PlayerPrefsKeys.ConsecutiveLosses) + 1;
-        }
-        if (losses >= 3)
-        {
-            //StoreEvents.SendAwardItemOnLoss();
-            losses = 0;
-        }
-        PlayerPrefs.SetInt(PlayerPrefsKeys.ConsecutiveLosses, losses);
-
-        TrackingEvents.SendGameDefeat(gameScore, bugsEatenThisGame, highestMultiplier);
+        TrackingEvents.SendGameDefeat(gameScore, appetiteCurrent, highestMultiplier);
+        GameplayCanvas.gameObject.SetActive(false);
+        MenuEvents.SendSwitchCanvas(GameEndCanvas);
     }
 
     private void OnDestroy()

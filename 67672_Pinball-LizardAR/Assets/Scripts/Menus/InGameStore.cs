@@ -17,6 +17,7 @@ public class InGameStore : MonoBehaviour
         StoreEvents.OnLoadStoreItem += LoadStoreItem;
         StoreEvents.OnStartInGamePurchase += InGameBuyStart;
         StoreEvents.SendLoadStore(StoreId, CatalogVersion);
+        StoreEvents.SendLoadInventory(CatalogVersion);
     }
     
     void Update()
@@ -25,21 +26,21 @@ public class InGameStore : MonoBehaviour
 
     void LoadStoreItem(StoreItemData itemData)
     {
-        if (itemData.ItemId.ToLower().Contains(keyTermSpicy))
+        if (itemData.ItemId.ToLower().Contains(keyTermSpicy) && SpicyWindow != null)
         {
             StoreItem relatedItem = new StoreItem();
             relatedItem.KeyTerm = keyTermSpicy;
             relatedItem.ItemData = itemData;
             SpicyWindow.Item = relatedItem;
         }
-        else if (itemData.ItemId.ToLower().Contains(keyTermBomb))
+        else if (itemData.ItemId.ToLower().Contains(keyTermBomb) && BombWindow != null)
         {
             StoreItem relatedItem = new StoreItem();
             relatedItem.KeyTerm = keyTermBomb;
             relatedItem.ItemData = itemData;
             BombWindow.Item = relatedItem;
         }
-        else if (itemData.ItemId.ToLower().Contains(keyTermFeast))
+        else if (itemData.ItemId.ToLower().Contains(keyTermFeast) && FeastWindow != null)
         {
             StoreItem relatedItem = new StoreItem();
             relatedItem.KeyTerm = keyTermFeast;

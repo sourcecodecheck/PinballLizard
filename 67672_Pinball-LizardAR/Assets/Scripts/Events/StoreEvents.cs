@@ -121,4 +121,11 @@ public static class StoreEvents
     {
         OnAwardItemOnLoss?.Invoke();
     }
+
+    public delegate void OpenContainer(ItemInstance container, string catalogVersion);
+    public static event OpenContainer OnOpenContainer;
+    public static void SendOpenContainer(ItemInstance container, string catalogVersion)
+    {
+        OnOpenContainer?.Invoke(container, catalogVersion);
+    }
 }

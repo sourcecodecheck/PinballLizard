@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114832130173285762}
   - component: {fileID: 114623270363805814}
   - component: {fileID: 114100633361282112}
+  - component: {fileID: 114544510832210052}
   m_Layer: 5
   m_Name: OKButton
   m_TagString: Untagged
@@ -223,6 +224,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &114544510832210052
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1103616754819236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1988cfeb048b54b43af9f0d922773559, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Category: 5
+  PlayOnPress: {fileID: 114623270363805814}
 --- !u!114 &114577845126027700
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -421,8 +435,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -6.6, y: 21}
-  m_SizeDelta: {x: 2488.9, y: 3152.5}
+  m_AnchoredPosition: {x: -6.6, y: -47.6}
+  m_SizeDelta: {x: 2488.9, y: 4520.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224635450837642468
 RectTransform:

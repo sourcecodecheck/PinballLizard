@@ -153,12 +153,13 @@
     <Compile Include="Assets\Scripts\GameObjects\City\HexGrid.cs" />
     <Compile Include="Assets\Scripts\GameObjects\City\HexNode.cs" />
     <Compile Include="Assets\Scripts\GameObjects\EnemyBehavior.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\GlobalSoundPlayer.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\LocalSoundPlayer.cs" />
     <Compile Include="Assets\Scripts\GameObjects\MouthBehavior.cs" />
     <Compile Include="Assets\Scripts\GameObjects\NonARCamera.cs" />
     <Compile Include="Assets\Scripts\GameObjects\Pausable.cs" />
     <Compile Include="Assets\Scripts\GameObjects\PowerUpButton.cs" />
     <Compile Include="Assets\Scripts\GameObjects\ShotBehavior.cs" />
-    <Compile Include="Assets\Scripts\GameObjects\SoundPlayer.cs" />
     <Compile Include="Assets\Scripts\GameObjects\SpawnEnemies.cs" />
     <Compile Include="Assets\Scripts\Managers\Inventory.cs" />
     <Compile Include="Assets\Scripts\Managers\MainGameManager.cs" />

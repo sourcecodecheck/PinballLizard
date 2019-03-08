@@ -178,7 +178,10 @@ public class HexNode
 
     private void Explode()
     {
-        GamePlayBuilding.Explode();
+        if (GamePlayBuilding != null)
+        {
+            GamePlayBuilding.Explode();
+        }
     }
     #endregion
 }

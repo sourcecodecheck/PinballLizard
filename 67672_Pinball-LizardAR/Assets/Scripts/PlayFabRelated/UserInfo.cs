@@ -4,7 +4,7 @@ using PlayFab.ClientModels;
 using PlayFab.Json;
 using System;
 using Microsoft.AppCenter.Unity.Crashes;
-
+using System.Collections.Generic;
 
 public class UserInfo : MonoBehaviour
 {
@@ -46,9 +46,14 @@ public class UserInfo : MonoBehaviour
                (error) =>
                {
                    Debug.Log(error);
-#if UNITY_ANDROID
-                   Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
+                   try
+                   {
+                       throw new Exception(error.ErrorMessage);
+                   }
+                   catch (Exception exception)
+                   {
+                       Crashes.TrackError(exception);
+                   }
                });
         }
     }
@@ -71,14 +76,19 @@ public class UserInfo : MonoBehaviour
                (error) =>
                {
                    Debug.Log(error);
-#if UNITY_ANDROID
-                   Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
+                   try
+                   {
+                       throw new Exception(error.ErrorMessage);
+                   }
+                   catch (Exception exception)
+                   {
+                       Crashes.TrackError(exception);
+                   }
                });
         }
     }
 
-    public void SubmitScoreToPlayFab(bool isChallenge)
+    public void SubmitScoreToPlayFab(bool isChallenge, bool isWin)
     {
         if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
@@ -91,7 +101,8 @@ public class UserInfo : MonoBehaviour
                         score = PlayerInventory.LastGameScore,
                         bugsEaten = PlayerInventory.BugsEatenCount,
                         bestCombo = PlayerInventory.BestCombo * 10f,
-                        isEvent = isChallenge
+                        isEvent = isChallenge,
+                        isVictoy = isWin
                     }
                 },
                 (result) =>
@@ -103,9 +114,14 @@ public class UserInfo : MonoBehaviour
                 (error) =>
                 {
                     Debug.Log(error);
-#if UNITY_ANDROID
-                    Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
+                    try
+                    {
+                        throw new Exception(error.ErrorMessage);
+                    }
+                    catch (Exception exception)
+                    {
+                        Crashes.TrackError(exception);
+                    }
                 });
         }
     }
@@ -120,7 +136,7 @@ public class UserInfo : MonoBehaviour
                     FunctionName = "getUpcomingExperienceRequirements",
                     FunctionParameter = new
                     {
-                        level = PlayerInventory.PlayerLevel > 1? PlayerInventory.PlayerLevel - 1: PlayerInventory.PlayerLevel,
+                        level = PlayerInventory.PlayerLevel > 1 ? PlayerInventory.PlayerLevel - 1 : PlayerInventory.PlayerLevel,
                         count = 5
                     }
                 },
@@ -138,20 +154,25 @@ public class UserInfo : MonoBehaviour
                 (error) =>
                 {
                     Debug.Log(error);
-#if UNITY_ANDROID
-                    Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
+                    try
+                    {
+                        throw new Exception(error.ErrorMessage);
+                    }
+                    catch (Exception exception)
+                    {
+                        Crashes.TrackError(exception);
+                    }
                 });
         }
     }
 
-    public void GameEnd(int score, int bugsEaten, float maxMultiplier)
+    public void GameEnd(int score, int bugsEaten, float maxMultiplier, bool isWin)
     {
         PlayerInventory.LastGameScore = score;
         PlayerInventory.BugsEatenCount += bugsEaten;
         PlayerInventory.BestCombo = maxMultiplier;
         bool isChallenge = PlayerPrefs.GetInt("ischallenge") == 1;
-        SubmitScoreToPlayFab(isChallenge);
+        SubmitScoreToPlayFab(isChallenge, isWin);
 
     }
 
@@ -174,10 +195,14 @@ public class UserInfo : MonoBehaviour
                 (error) =>
                 {
                     Debug.Log(error);
-#if UNITY_ANDROID
-                    //Crashes on iOS every single time without fail
-                    Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
+                    try
+                    {
+                        throw new Exception(error.ErrorMessage);
+                    }
+                    catch (Exception exception)
+                    {
+                        Crashes.TrackError(exception);
+                    }
                 });
         }
     }
@@ -214,12 +239,56 @@ public class UserInfo : MonoBehaviour
                         break;
                 }
             }
+            if (inventoryResult.ContainsKey("Rewards"))
+            {
+                JsonArray rewards = inventoryResult["Rewards"] as JsonArray;
+                List<ItemInstance> items = new List<ItemInstance>();
+                Dictionary<string, uint> currencies = new Dictionary<string, uint>();
+                if (rewards != null)
+                {
+                    foreach (JsonObject reward in rewards)
+                    {
+                        switch (reward["Type"] as string)
+                        {
+                            case "chest":
+                                StoreEvents.SendOpenContainer(new ItemInstance() { ItemInstanceId = reward["InstanceId"] as string }, PlayerInventory.CatalogVersion);
+                                break;
+                            case "token":
+                            case "powerup":
+                                int itemAmount = PlayFabSimpleJson.DeserializeObject<int>(PlayFabSimpleJson.SerializeObject(reward["Amount"]));
+                                for (int i = 0; i < itemAmount; ++i)
+                                {
+                                    ItemInstance item = new ItemInstance()
+                                    {
+                                        ItemId = reward["Id"] as string,
+
+                                    };
+                                    items.Add(item);
+                                }
+                                break;
+                            case "currency":
+                                currencies.Add(reward["Id"] as string,
+                                    PlayFabSimpleJson.DeserializeObject<uint>(PlayFabSimpleJson.SerializeObject(reward["Amount"])));
+                                break;
+                        }
+                    }
+                }
+                if (items.Count > 0 || currencies.Count > 0)
+                {
+                    MenuEvents.SendShowContainerPopUp(items, currencies);
+                }
+            }
             MenuEvents.SendUpdateLevelDisplay();
         }
         else
         {
             SetUpNewPlayer();
         }
+
+    }
+    private IEnumerator<WaitForSeconds> Wait(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
     }
 
     private void OnDestroy()

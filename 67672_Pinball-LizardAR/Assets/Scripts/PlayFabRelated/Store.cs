@@ -19,7 +19,7 @@ public class Store : MonoBehaviour
         StoreEvents.OnPurchaseItem += PurchaseItem;
         StoreEvents.OnLoadInventory += GetUserInventory;
         StoreEvents.OnConsumeItem += ConsumeItem;
-        StoreEvents.OnAwardItemOnLoss += AwardLossItem;
+        StoreEvents.OnOpenContainer += ConsumeContainer;
     }
     
     void Update()
@@ -48,7 +48,7 @@ public class Store : MonoBehaviour
                 if(isContainer == true)
                 {
                     //open container
-                    StoreEvents.SendOpenContainerPopUp();
+                    //StoreEvents.SendOpenContainerPopUp();
                     ConsumeContainer(result.Items.First(), catalogVersion);
                 }
                 else
@@ -57,15 +57,22 @@ public class Store : MonoBehaviour
                     StoreEvents.SendLoadCurrencies();
                     StoreEvents.SendLoadInventory(catalogVersion);
                     MenuEvents.SendShowGeneralMessage(result.Items.First().DisplayName + " Purchased!");
+                    AudioEvents.SendPlayItemGet();
+                    GetStore(storeId, catalogVersion);
                 }
             },
             (error) =>
             {
+                AudioEvents.SendPlayDown();
                 MenuEvents.SendShowGeneralMessage(error.ErrorMessage);
-#if UNITY_ANDROID
-                //Crashes on iOS every single time without fail
-                Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
+                try
+                {
+                    throw new Exception(error.ErrorMessage);
+                }
+                catch (Exception exception)
+                {
+                    Crashes.TrackError(exception);
+                }
             });
         }
     }
@@ -123,10 +130,14 @@ public class Store : MonoBehaviour
             (error) =>
             {
                 Debug.Log(error);
-#if UNITY_ANDROID
-                //Crashes on iOS every single time without fail
-                Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
+                try
+                {
+                    throw new Exception(error.ErrorMessage);
+                }
+                catch (Exception exception)
+                {
+                    Crashes.TrackError(exception);
+                }
             });
         }
     }
@@ -154,10 +165,14 @@ public class Store : MonoBehaviour
                 (error) => 
                 {
                     ShowMessageWindowHelper.ShowMessage(error.ErrorMessage);
-#if UNITY_ANDROID
-                    //Crashes on iOS every single time without fail
-                    Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
+                    try
+                    {
+                        throw new Exception(error.ErrorMessage);
+                    }
+                    catch (Exception exception)
+                    {
+                        Crashes.TrackError(exception);
+                    }
                 });
         }
     }
@@ -178,10 +193,14 @@ public class Store : MonoBehaviour
             (error) =>
             {
                 Debug.Log(error);
-#if UNITY_ANDROID
-                //Crashes on iOS every single time without fail
-                Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
+                try
+                {
+                    throw new Exception(error.ErrorMessage);
+                }
+                catch (Exception exception)
+                {
+                    Crashes.TrackError(exception);
+                }
             });
         }
     }
@@ -198,17 +217,22 @@ public class Store : MonoBehaviour
             (result) =>
             {
                 //notify and update inventory and container display window
-                StoreEvents.SendContainerOpened(result.GrantedItems, result.VirtualCurrency);
+                //StoreEvents.SendContainerOpened(result.GrantedItems, result.VirtualCurrency);
+                MenuEvents.SendShowContainerPopUp(result.GrantedItems, result.VirtualCurrency);
                 StoreEvents.SendLoadCurrencies();
                 StoreEvents.SendLoadInventory(catalogVersion);
             },
             (error) =>
             {
                 Debug.Log(error);
-#if UNITY_ANDROID
-                //Crashes on iOS every single time without fail
-                Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
+                try
+                {
+                    throw new Exception(error.ErrorMessage);
+                }
+                catch (Exception exception)
+                {
+                    Crashes.TrackError(exception);
+                }
             });
         }
     }
@@ -231,10 +255,14 @@ public class Store : MonoBehaviour
                (error) =>
                {
                    Debug.Log(error);
-#if UNITY_ANDROID
-                   //Crashes on iOS every single time without fail
-                   Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
+                   try
+                   {
+                       throw new Exception(error.ErrorMessage);
+                   }
+                   catch (Exception exception)
+                   {
+                       Crashes.TrackError(exception);
+                   }
                });
     }
 
@@ -250,44 +278,21 @@ public class Store : MonoBehaviour
             },
             (result) =>
             {
+                GetUserInventory(catalogVersion);
                 ItemCatalog.LoadItems(result.Catalog);
             },
             (error) =>
             {
                 Debug.Log(error);
-#if UNITY_ANDROID
-                //Crashes on iOS every single time without fail
-                Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
+                try
+                {
+                    throw new Exception(error.ErrorMessage);
+                }
+                catch (Exception exception)
+                {
+                    Crashes.TrackError(exception);
+                }
             });
-        }
-    }
-
-    public void AwardLossItem()
-    {
-        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
-        {
-            PlayFabClientAPI.ExecuteCloudScript(
-                new ExecuteCloudScriptRequest()
-                {
-                    FunctionName = "awardPityItem",
-                    FunctionParameter = new
-                    {
-                       
-                    }
-                },
-                (result) =>
-                {
-                    MenuEvents.SendShowGeneralMessage("Here is a DaBomb to help you out!");
-                },
-                (error) =>
-                {
-                    Debug.Log(error);
-#if UNITY_ANDROID
-                    //Crashes on iOS every single time without fail
-                    Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
-                });
         }
     }
 
@@ -297,5 +302,6 @@ public class Store : MonoBehaviour
         StoreEvents.OnPurchaseItem -= PurchaseItem;
         StoreEvents.OnLoadInventory -= GetUserInventory;
         StoreEvents.OnConsumeItem -= ConsumeItem;
+        StoreEvents.OnOpenContainer -= ConsumeContainer;
     }
 }

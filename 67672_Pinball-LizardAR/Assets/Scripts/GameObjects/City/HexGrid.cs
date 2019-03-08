@@ -7,6 +7,8 @@ public class HexGrid
     #region Properties
     public HexNode Root { get; private set; }
     public List<GameObject> BuildingObjects { get; set; }
+
+    public List<GameObject> BuildingInstances { get; set; }
     public GameObject BlankSpot { get; set; }
     public int NodeCount { get; private set; }
     public float MaxX { get; private set; }
@@ -27,6 +29,7 @@ public class HexGrid
     public HexGrid()
     {
         BuildingObjects = new List<GameObject>();
+
         BlankSpot = null;
         Root = null;
         nodeMax = 0;
@@ -34,11 +37,13 @@ public class HexGrid
         MinX = 99999999;
         MaxZ = -99999999;
         MinZ = 99999999;
+        BuildingInstances = new List<GameObject>();
     }
 
     public int Generate(int amountOfNodes, int seed, float buildingToEmptyRatio, GameObject parent)
     {
         UnityEngine.Random.InitState(seed);
+        
         //check to make sure we have objects in the gameobject pools
         if (BuildingObjects.Count > 0 && BlankSpot != null)
         {
@@ -58,7 +63,7 @@ public class HexGrid
                 Root.gameObject.transform.parent = parent.transform;
                 NodeCount = 1;
                 mostRecent = Root;
-
+                BuildingInstances.Add(Root.gameObject);
             }
             //call recursive helper to fill rest of nodes beyond root
             Queue<HexNode> nodeQueue = new Queue<HexNode>();
@@ -151,6 +156,7 @@ public class HexGrid
                         if (isNodeBuilding)
                         {
                             ++buildingCount;
+                            BuildingInstances.Add(toAdd.gameObject);
                         }
                         //if we've reached the desired amount of nodes exit
                         if (NodeCount >= nodeMax)

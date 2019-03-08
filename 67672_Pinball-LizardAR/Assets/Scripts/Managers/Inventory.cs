@@ -52,28 +52,23 @@ public class Inventory : MonoBehaviour
         if (ServerSideItems.Keys.Contains(itemInstance.ItemInstanceId) == false)
         {
             ServerSideItems.Add(itemInstance.ItemInstanceId, itemInstance);
-            string lowercaseId = itemInstance.ItemId.ToLower();
-            if (lowercaseId.Contains(SpicyKeyTerm))
-            {
-                SpicyMeatABallCount += itemInstance.RemainingUses ?? 1;
-            }
-            else if (lowercaseId.Contains(BombKeyTerm))
-            {
-                DaBombCount += itemInstance.RemainingUses ?? 1;
-            }
-            else if (lowercaseId.Contains(FeastKeyTerm))
-            {
-                ArachnoFeastCount += itemInstance.RemainingUses ?? 1;
-            }
-            StoreEvents.SendUpdateInventoryDisplay();
         }
+        else
+        {
+            ServerSideItems[itemInstance.ItemId] = itemInstance;
+        }
+        SpicyMeatABallCount = ServerSideItems.Where((item) => item.Key.ToLower().Contains(SpicyKeyTerm))?.Sum((item)=> item.Value.RemainingUses) ?? 1;
+        DaBombCount = ServerSideItems.Where((item) => item.Key.ToLower().Contains(BombKeyTerm))?.Sum((item) => item.Value.RemainingUses) ?? 1;
+        ArachnoFeastCount = ServerSideItems.Where((item) => item.Key.ToLower().Contains(FeastKeyTerm))?.Sum((item) => item.Value.RemainingUses) ?? 1;
+      
+        StoreEvents.SendUpdateInventoryDisplay();
     }
 
     public void UseItem(string keyTerm)
     {
         ItemInstance itemInstance = ServerSideItems.FirstOrDefault((item) => item.Value.ItemId.ToLower().Contains(keyTerm)).Value;
-        ServerSideItems.Remove(itemInstance.ItemInstanceId);
         StoreEvents.SendConsumeItem(itemInstance);
+        --itemInstance.RemainingUses;
         if (keyTerm.Contains(SpicyKeyTerm))
         {
             --SpicyMeatABallCount;
@@ -86,6 +81,7 @@ public class Inventory : MonoBehaviour
         {
             --ArachnoFeastCount;
         }
+        StoreEvents.SendUpdateInventoryDisplay();
     }
 
     public int GetItemAmount(string itemId)

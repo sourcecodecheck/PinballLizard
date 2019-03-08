@@ -17,7 +17,7 @@ public class City : Pausable
     public int Seed;
     public bool isAR;
 
-    private const float rotateSpeed = 10f;
+    private const float rotateSpeed = 5f;
 
     private List<GameObject> buildingBlock;
     private HexGrid city;

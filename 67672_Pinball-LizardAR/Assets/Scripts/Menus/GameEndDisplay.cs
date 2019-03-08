@@ -20,7 +20,7 @@ public class GameEndDisplay : MonoBehaviour
     {
     }
 
-    public void GameEnd(int score, int bugsEaten, float maxMultiplier)
+    public void GameEnd(int score, int bugsEaten, float maxMultiplier, bool isWin)
     {
         ScoreText.text = score.ToString();
         BestComboText.text = maxMultiplier.ToString();

@@ -22,14 +22,14 @@ public static class TrackingEvents
         OnCityGenerated?.Invoke(numBuildings);
     }
 
-    public delegate void GameVictory(int score, int numbugsEaten, float maxMultiplier);
+    public delegate void GameVictory(int score, int numbugsEaten, float maxMultiplier, bool isWin = true);
     public static event GameVictory OnGameVictory;
     public static void SendGameVictory(int score, int numbugsEaten, float maxMultiplier)
     {
         OnGameVictory?.Invoke(score, numbugsEaten, maxMultiplier);
     }
 
-    public delegate void GameDefeat(int score, int numbugsEaten, float maxMultiplier);
+    public delegate void GameDefeat(int score, int numbugsEaten, float maxMultiplier, bool isWin = false);
     public static event GameDefeat OnGameDefeat;
     public static void SendGameDefeat(int score, int numbugsEaten, float maxMultiplier)
     {

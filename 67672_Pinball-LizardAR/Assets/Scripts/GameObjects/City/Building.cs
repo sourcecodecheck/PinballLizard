@@ -6,6 +6,7 @@ public class Building : MonoBehaviour
     public GameObject Explosion;
     public GameObject ARCollider;
     public GameObject NonARCollider;
+    public GameObject EmptySpace;
 
     public HexNode hexNode;
     public int StackCount;
@@ -33,7 +34,6 @@ public class Building : MonoBehaviour
             ScoreEvents.SendAddScore(StackCount);
             GameObject explosion = Instantiate(Explosion, gameObject.transform.position, Quaternion.LookRotation(Camera.main.transform.position - transform.position));
             explosion.transform.localScale = transform.localScale * 200f;
-            AudioEvents.SendPlayBuildingCollapse();
             Handheld.Vibrate();
             Invoke("DestroySelf", 0.1f);
         }
@@ -56,9 +56,11 @@ public class Building : MonoBehaviour
                 {
                     Instantiate(ARCollider, stack.transform);
                 }
+                
             }
             if (colliderName.Contains("spicy"))
             {
+                Instantiate(EmptySpace, gameObject.transform.parent);
                 Destroy(collision.gameObject);
                 hexNode.SpreadExplosion();
                 Explode();

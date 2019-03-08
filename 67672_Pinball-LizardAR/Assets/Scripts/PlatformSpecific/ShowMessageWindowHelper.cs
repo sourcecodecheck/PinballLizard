@@ -6,7 +6,7 @@
         AndroidHelpers.ShowAndroidToastMessage(message);
 #endif
 #if UNITY_IOS
-        //Write iOS code
+        //Turns out there is no iOS toast message!
 #endif
     }
 }
