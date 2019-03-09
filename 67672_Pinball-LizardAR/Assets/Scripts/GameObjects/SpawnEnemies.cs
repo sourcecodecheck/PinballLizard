@@ -54,7 +54,16 @@ public class SpawnEnemies : Pausable
                     Vector3 offset = new Vector3(0, HeightOffsets[offsetIndex], CameraOffset);
                     GameObject spawnedEnemy = Instantiate(Enemy, gameObject.transform.position  + offset, Quaternion.identity, gameObject.transform);
                     spawnedEnemy.transform.localScale *= Scale;
-                    spawnedEnemy.GetComponent<EnemyBehavior>().Rotation = Rotations[Random.Range(0, Rotations.Length - 1)];
+                    float rotation = Rotations[Random.Range(0, Rotations.Length - 1)];
+                    if(rotation > 0)
+                    {
+                        spawnedEnemy.transform.Rotate(new Vector3(0, 1, 0), 90);
+                    }
+                    else
+                    {
+                        spawnedEnemy.transform.Rotate(new Vector3(0, 1, 0), -90);
+                    }
+                    spawnedEnemy.GetComponent<EnemyBehavior>().Rotation = rotation;
                     spawnedEnemies.Add(spawnedEnemy);
                     ++totalSpawned;
                 }

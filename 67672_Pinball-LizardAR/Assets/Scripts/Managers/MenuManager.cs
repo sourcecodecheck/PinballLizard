@@ -22,6 +22,7 @@ public class MenuManager : MonoBehaviour
     public Inventory PlayerInventory;
     public ChallengeMode ChallengeMode;
 
+    private MenuEvents.Menus currentMenu;
     private static bool hasMainMenuBeenLoaded = false;
     private List<GameObject> menuObjects;
 
@@ -30,6 +31,7 @@ public class MenuManager : MonoBehaviour
         menuObjects = new List<GameObject>();
         if (hasMainMenuBeenLoaded == false)
         {
+           
             LoadTitle();
         }
         else
@@ -56,6 +58,10 @@ public class MenuManager : MonoBehaviour
         PlayerInventory.enabled = true;
         TrackingEvents.SendLoadPlayerInfo();
         HUD.SetActive(true);
+        if (currentMenu == menu)
+        {
+            return;
+        }
         UnloadMenu();
         switch (menu)
         {
@@ -80,6 +86,9 @@ public class MenuManager : MonoBehaviour
             case MenuEvents.Menus.SPECTATE:
                 LoadSpectator();
                 break;
+            case MenuEvents.Menus.TUTORIAL:
+                LoadSpectator();
+                break;
             default:
                 LoadMainMenu();
                 break;
@@ -91,6 +100,7 @@ public class MenuManager : MonoBehaviour
         try
         {
             //PlayerPrefs.SetInt(PlayerPrefsKeys.HasViewedTutorial, 0);
+            currentMenu = MenuEvents.Menus.MAIN;
             hasMainMenuBeenLoaded = true;
             GameObject mainMenuInstance = Instantiate(MainMenuButtons, MenuParent.transform);
             menuObjects.Add(mainMenuInstance);
@@ -105,6 +115,7 @@ public class MenuManager : MonoBehaviour
     {
         try
         {
+            currentMenu = MenuEvents.Menus.TITLE;
             menuObjects.Add(Instantiate(TitleScreen, MenuParent.transform));
         }
         catch (Exception menuLoading)
@@ -117,6 +128,7 @@ public class MenuManager : MonoBehaviour
     {
         try
         {
+            currentMenu = MenuEvents.Menus.PLAYERINFO;
             GameObject inventoryScreen = Instantiate(PlayerInventoryScreen, MenuParent.transform);
             inventoryScreen.GetComponent<PlayerInventoryScreen>().PlayerInventory = PlayerInventory;
             menuObjects.Add(inventoryScreen);
@@ -131,6 +143,7 @@ public class MenuManager : MonoBehaviour
     {
         try
         {
+            currentMenu = MenuEvents.Menus.STORE;
             GameObject storeFront = Instantiate(StoreFront, MenuParent.transform);
             storeFront.GetComponent<StoreFront>().PlayerInventory = PlayerInventory;
             menuObjects.Add(storeFront);
@@ -144,6 +157,7 @@ public class MenuManager : MonoBehaviour
     {
         try
         {
+            currentMenu = MenuEvents.Menus.SPECTATE;
             menuObjects.Add(Instantiate(SpecatatorMenu, MenuParent.transform));
         }
         catch (Exception menuLoading)
@@ -172,10 +186,12 @@ public class MenuManager : MonoBehaviour
         {
             if (PlayerPrefs.HasKey(PlayerPrefsKeys.HasViewedTutorial) == false || PlayerPrefs.GetInt(PlayerPrefsKeys.HasViewedTutorial) != 1)
             {
+               
                 LoadTutorial();
             }
             else
             {
+                currentMenu = MenuEvents.Menus.AR;
                 PlayerPrefs.SetInt(PlayerPrefsKeys.ChallengeModeSet, 0);
                 PlayerPrefs.Save();
                 menuObjects.Add(Instantiate(ARMenu, MenuParent.transform));
@@ -191,6 +207,7 @@ public class MenuManager : MonoBehaviour
     {
         try
         {
+            currentMenu = MenuEvents.Menus.DAILY_CHALLENGE;
             PlayerPrefs.SetInt(PlayerPrefsKeys.ChallengeModeSet, 1);
             PlayerPrefs.Save();
             GameObject eventScreen = Instantiate(EventBoard, MenuParent.transform);
@@ -206,6 +223,7 @@ public class MenuManager : MonoBehaviour
     {
         try
         {
+            currentMenu = MenuEvents.Menus.TUTORIAL;
             UnloadMenu();
             GameObject tutorial = Instantiate(Tutorial, MenuParent.transform);
             menuObjects.Add(tutorial);

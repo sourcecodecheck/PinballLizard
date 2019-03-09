@@ -228,7 +228,7 @@ MonoBehaviour:
   ConcurrentEnemyCap: 3
   TotalSpawnCap: 3
   Scale: 3
-  CameraOffset: 0.54
+  CameraOffset: 0.67
   HeightOffsets:
   - 0
   - 0.3

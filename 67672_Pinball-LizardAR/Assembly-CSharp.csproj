@@ -135,7 +135,6 @@
     <Compile Include="Assets\Scripts\AnimationStateScripts\MouthExited.cs" />
     <Compile Include="Assets\Scripts\AnimationStateScripts\MouthNommed.cs" />
     <Compile Include="Assets\Scripts\AnimationStateScripts\RightHandActioned.cs" />
-    <Compile Include="Assets\Scripts\AppCenter\CrashTracking.cs" />
     <Compile Include="Assets\Scripts\AR\ARController.cs" />
     <Compile Include="Assets\Scripts\AR\DestroyARVisualizer.cs" />
     <Compile Include="Assets\Scripts\Events\AnimationEvents.cs" />

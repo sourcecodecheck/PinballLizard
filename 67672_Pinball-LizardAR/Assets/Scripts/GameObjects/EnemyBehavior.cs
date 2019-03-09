@@ -2,17 +2,15 @@
 
 public class EnemyBehavior : Pausable
 {
-    public bool WillKeepMoving;
-    public bool IsGrabbable;
     public float Rotation;
 
     private bool isBeingNommed;
+    private float accumulator;
 
     new void Start()
     {
+        accumulator = 0;
         base.Start();
-        IsGrabbable = false;
-        WillKeepMoving = true;
         isBeingNommed = false;
         GamePlayEvents.OnTryNom += TryNom;
     }
@@ -31,6 +29,8 @@ public class EnemyBehavior : Pausable
     {
         if (!isPaused)
         {
+            if (accumulator > 4000000)
+                accumulator = 0f;
             transform.RotateAround(gameObject.transform.parent.position, new Vector3(0f, 1f, 0f), Rotation);
         }
     }

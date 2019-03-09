@@ -125,7 +125,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4898267826735920}
-  - component: {fileID: 95420583196427844}
   - component: {fileID: 135992387228614604}
   - component: {fileID: 114246272024406998}
   - component: {fileID: 96080438095282026}
@@ -451,7 +450,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4797933217214548}
-  - component: {fileID: 95532979718604732}
   m_Layer: 0
   m_Name: Lice_MASTER
   m_TagString: Untagged
@@ -1268,42 +1266,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1431997661820664}
   m_Mesh: {fileID: 4300006, guid: 4c1d7037d91ffd142a925f3ca6c0776f, type: 3}
---- !u!95 &95420583196427844
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1155887635145770}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 4c1d7037d91ffd142a925f3ca6c0776f, type: 3}
-  m_Controller: {fileID: 9100000, guid: 70d3dd11f48ddd842a400c7bb86d3e40, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!95 &95532979718604732
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1794964237530920}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 4c1d7037d91ffd142a925f3ca6c0776f, type: 3}
-  m_Controller: {fileID: 9100000, guid: 70d3dd11f48ddd842a400c7bb86d3e40, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!96 &96080438095282026
 TrailRenderer:
   serializedVersion: 2
@@ -1417,9 +1379,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPaused: 0
-  WillKeepMoving: 0
-  IsGrabbable: 0
   Rotation: 0
+  Body: {fileID: 1794964237530920}
+  FrontLeftWing: {fileID: 1891143009679742}
+  FrontRightWing: {fileID: 1744276186394224}
+  BackLeftWing: {fileID: 1900615191972680}
+  BackRightWing: {fileID: 1000473959494110}
 --- !u!135 &135992387228614604
 SphereCollider:
   m_ObjectHideFlags: 1

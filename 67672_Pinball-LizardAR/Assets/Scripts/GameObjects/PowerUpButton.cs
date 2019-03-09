@@ -85,7 +85,7 @@ public class PowerUpButton : Pausable
                     {
                         state = PowerUpState.ACTIVE;
                     }
-                    PowerUpCountDisplay.text = Inventory.SpicyMeatABallCount.ToString();
+                    PowerUpCountDisplay.text = Mathf.Min(Inventory.SpicyMeatABallCount, 99).ToString();
                     if (BuyButton != null)
                     {
                         BuyButton.SetActive(false);
@@ -108,7 +108,7 @@ public class PowerUpButton : Pausable
                     {
                         state = PowerUpState.ACTIVE;
                     }
-                    PowerUpCountDisplay.text = Inventory.DaBombCount.ToString();
+                    PowerUpCountDisplay.text = Mathf.Min(Inventory.DaBombCount, 99).ToString();
                     if (BuyButton != null)
                     {
                         BuyButton.SetActive(false);
@@ -131,7 +131,7 @@ public class PowerUpButton : Pausable
                     {
                         state = PowerUpState.ACTIVE;
                     }
-                    PowerUpCountDisplay.text = Inventory.ArachnoFeastCount.ToString();
+                    PowerUpCountDisplay.text = Mathf.Min(Inventory.ArachnoFeastCount, 99).ToString();
                     if (BuyButton != null)
                     {
                         BuyButton.SetActive(false);

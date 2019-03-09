@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class MenuEvents
 {
-    public enum Menus {TITLE = 0, MAIN, PLAYERINFO, STORE, SETTINGS, AR, DAILY_CHALLENGE, SPECTATE }
+    public enum Menus {TITLE = 0, MAIN, PLAYERINFO, STORE, SETTINGS, AR, DAILY_CHALLENGE, SPECTATE, TUTORIAL }
     public delegate void ChangeMenu(Menus menu);
     public static event ChangeMenu OnChangeMenu;
     public static void SendChangeMenu(Menus menu)
