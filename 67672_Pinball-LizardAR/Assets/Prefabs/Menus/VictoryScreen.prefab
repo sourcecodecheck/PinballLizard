@@ -527,6 +527,7 @@ GameObject:
   - component: {fileID: 114690164363997974}
   - component: {fileID: 114732974861948080}
   - component: {fileID: 114518955014376160}
+  - component: {fileID: 114016957385581924}
   m_Layer: 5
   m_Name: Button_Items
   m_TagString: Untagged
@@ -760,7 +761,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1883798358960768
 GameObject:
   m_ObjectHideFlags: 0
@@ -1023,6 +1024,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114016957385581924
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1502572432414670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0552de13c0293924eb1ae5620677a991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectToEnable: {fileID: 0}
 --- !u!114 &114040647568573318
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1759,7 +1772,7 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 0
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 00
@@ -2263,7 +2276,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Power-ups used
+  m_Text: Mayhem caused
 --- !u!114 &114837572361521946
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2559,7 +2572,7 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 0
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 00

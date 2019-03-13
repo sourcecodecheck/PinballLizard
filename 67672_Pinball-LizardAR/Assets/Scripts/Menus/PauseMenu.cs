@@ -16,7 +16,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (loadPauseMenu == true)
         {
-            TrackingEvents.SendBuildCityEvent(new CitySessionResume() { CityPauseDuration = Mathf.RoundToInt(timeAlive) });
+            TrackingEvents.SendBuildCityEvent(new CitySessionResume() { CityPauseDuration = Mathf.RoundToInt(timeAlive) }, EventNames.SessionResume);
             Destroy(gameObject);
         }
     }

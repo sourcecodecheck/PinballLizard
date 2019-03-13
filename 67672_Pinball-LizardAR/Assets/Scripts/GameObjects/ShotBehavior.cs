@@ -109,6 +109,11 @@ public class ShotBehavior : Pausable
         else
         {
             AnimationEvents.SendMissEnter();
+            TrackingEvents.SendBuildVolleyActionStep2(new CityVolleyAction()
+            {
+                VolleyAction = "miss",
+                VolleySource = "player",
+            }, EventNames.VolleyAction);
         }
     }
     private void SelfDestruct()

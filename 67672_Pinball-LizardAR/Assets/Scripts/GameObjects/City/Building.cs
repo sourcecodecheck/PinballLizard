@@ -13,9 +13,11 @@ public class Building : MonoBehaviour
 
 
     private bool isSelfDestructing;
+    private Vector3 collisionLocation;
     
     void Start()
     {
+        collisionLocation = new Vector3();
         isSelfDestructing = false;
         GamePlayEvents.OnBombDetonated += Explode;
     }
@@ -25,7 +27,7 @@ public class Building : MonoBehaviour
 
     }
 
-    public void Explode()
+    public void Explode(string damageSource)
     {
         if (!isSelfDestructing)
         {
@@ -34,6 +36,14 @@ public class Building : MonoBehaviour
             ScoreEvents.SendAddScore(StackCount);
             GameObject explosion = Instantiate(Explosion, gameObject.transform.position, Quaternion.LookRotation(Camera.main.transform.position - transform.position));
             explosion.transform.localScale = transform.localScale * 200f;
+            TrackingEvents.SendBuildingDestroyedStep2(new CityBuildingDestroyed()
+                {
+                    DamageLoactionX = collisionLocation.x,
+                    DamageLoactionY = collisionLocation.y,
+                    DamageLoactionZ = collisionLocation.z,
+                    DamageType = damageSource,
+                    ScoreBaseValue = StackCount
+                }, EventNames.BuildingDestroyed);
             Handheld.Vibrate();
             Invoke("DestroySelf", 0.1f);
         }
@@ -46,7 +56,8 @@ public class Building : MonoBehaviour
             string colliderName = collision.gameObject.name.ToLower();
             if (colliderName.Contains("shot"))
             {
-                Explode();
+                Explode("bug");
+                collisionLocation = collision.transform.position;
                 GameObject stack = Instantiate(HexStack, gameObject.transform.position, gameObject.transform.localRotation, gameObject.transform.parent);
                 if (colliderName.Contains("non"))
                 {
@@ -60,13 +71,14 @@ public class Building : MonoBehaviour
             }
             if (colliderName.Contains("spicy"))
             {
+                collisionLocation = collision.transform.position;
                 Instantiate(EmptySpace, gameObject.transform.parent);
                 Destroy(collision.gameObject);
                 if (hexNode != null)
                 {
-                    hexNode.SpreadExplosion();
+                    hexNode.SpreadExplosion("spicy-collateral");
                 }
-                Explode();
+                Explode("spicy-source");
             }
         }
     }

@@ -20,6 +20,12 @@ public class EnemyBehavior : Pausable
        if(isBeingNommed == false && gameObject.GetInstanceID() == instanceId)
        {
             isBeingNommed = true;
+            TrackingEvents.SendBuildBugEatenStep2(new CityBugEaten()
+            {
+                BugLocationX = gameObject.transform.position.x,
+                BugLocationY = gameObject.transform.position.y,
+                BugLocationZ = gameObject.transform.position.z
+            }, EventNames.BugEaten);
             GamePlayEvents.SendConfirmNom();
             Invoke("SelfDestruct", 0.2f);
        }

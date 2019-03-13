@@ -175,6 +175,11 @@ public class MouthBehavior : Pausable
                     AnimationEvents.SendHandsEnter();
                     Reticle.SetActive(false);
                 }
+                TrackingEvents.SendBuildVolleyActionStep2(new CityVolleyAction()
+                {
+                    VolleyAction = "shoot",
+                    VolleySource = "player",
+                }, EventNames.VolleyAction);
                 AudioEvents.SendPlaySpit();
                 ScoreEvents.SendSetMultiplier(1.0f);
                
@@ -272,6 +277,11 @@ public class MouthBehavior : Pausable
             {
                 AnimationEvents.SendRightHandSwipe();
             }
+            TrackingEvents.SendBuildVolleyActionStep2(new CityVolleyAction()
+            {
+                VolleyAction = "volley",
+                VolleySource = "player",
+            }, EventNames.VolleyAction);
             leftHandSwipe = !leftHandSwipe;
             Invoke("ResetSwipe", VolleyInterval);
         }

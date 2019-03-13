@@ -223,6 +223,7 @@
     <Compile Include="Assets\Scripts\Telemetry\CitySessionResume.cs" />
     <Compile Include="Assets\Scripts\Telemetry\CitySessionStart.cs" />
     <Compile Include="Assets\Scripts\Telemetry\CityVolleyAction.cs" />
+    <Compile Include="Assets\Scripts\Telemetry\EventNames.cs" />
     <Compile Include="Assets\Scripts\Telemetry\ICityEvent.cs" />
     <Compile Include="Assets\Scripts\Telemetry\IPlayerEvent.cs" />
     <Compile Include="Assets\Scripts\Telemetry\PlayerBase.cs" />

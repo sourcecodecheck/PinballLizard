@@ -215,12 +215,12 @@ GameObject:
   - component: {fileID: 114637629213244766}
   - component: {fileID: 114344392580410506}
   m_Layer: 5
-  m_Name: PlayerInfo
+  m_Name: Spectate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1654890949889058
 GameObject:
   m_ObjectHideFlags: 1
@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 114667157717753954}
   - component: {fileID: 114175669484775870}
   m_Layer: 5
-  m_Name: Spectate
+  m_Name: Profile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1125,7 +1125,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Spectate
+  m_Text: Profile
 --- !u!114 &114566148351419908
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1277,7 +1277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1988cfeb048b54b43af9f0d922773559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Category: 2
+  Category: 5
   PlayOnPress: {fileID: 114092468702834852}
 --- !u!114 &114655168642583742
 MonoBehaviour:
@@ -1290,7 +1290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a11d62a04ab2e4abae9aa5e1a59692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuToChangeTo: 2
+  MenuToChangeTo: 7
   IsButton: 1
 --- !u!114 &114662705560756380
 MonoBehaviour:
@@ -1330,7 +1330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a11d62a04ab2e4abae9aa5e1a59692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuToChangeTo: 7
+  MenuToChangeTo: 2
   IsButton: 1
 --- !u!114 &114697193630711724
 MonoBehaviour:
@@ -1520,7 +1520,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Profile
+  m_Text: Spectate
 --- !u!114 &114857381615232850
 MonoBehaviour:
   m_ObjectHideFlags: 1

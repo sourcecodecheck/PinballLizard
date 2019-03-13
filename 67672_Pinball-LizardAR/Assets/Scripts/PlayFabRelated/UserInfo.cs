@@ -123,7 +123,7 @@ public class UserInfo : MonoBehaviour
                     {
                         score = PlayerInventory.LastGameScore,
                         bugsEaten = 2,
-                        bestCombo = Math.Round(PlayerInventory.BestCombo * 10f),
+                        bestCombo = (int)Math.Round(PlayerInventory.BestCombo * 10f),
                         isDailyChallenge = isChallenge,
                         isVictory = isWin
                     }

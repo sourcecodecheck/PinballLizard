@@ -17,7 +17,7 @@ public class DestroyObjectButton : MonoBehaviour
     }
     void DestroyObject()
     {
-        TrackingEvents.SendBuildPlayerEvent(new PlayerUIAction() { UIAction = "DismissButton" });
+        TrackingEvents.SendBuildPlayerEvent(new PlayerUIAction() { UIAction = "DismissButton" }, EventNames.UiAction);
         Destroy(ObjectToDestroy);
     }
 }

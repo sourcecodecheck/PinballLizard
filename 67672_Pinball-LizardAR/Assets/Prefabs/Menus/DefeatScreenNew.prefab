@@ -376,7 +376,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1294773169323982
 GameObject:
   m_ObjectHideFlags: 1
@@ -793,6 +793,7 @@ GameObject:
   - component: {fileID: 114348661891623542}
   - component: {fileID: 114477873539460816}
   - component: {fileID: 114185483076605928}
+  - component: {fileID: 114350005453417172}
   m_Layer: 5
   m_Name: Button_Items
   m_TagString: Untagged
@@ -1353,7 +1354,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Power-ups used
+  m_Text: Mayhem caused
 --- !u!114 &114203378460923652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1571,6 +1572,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Category: 5
   PlayOnPress: {fileID: 114810530986235154}
+--- !u!114 &114350005453417172
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1871228931315828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0552de13c0293924eb1ae5620677a991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectToEnable: {fileID: 0}
 --- !u!114 &114386848333981978
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1708,7 +1721,7 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 0
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 00
@@ -1858,7 +1871,7 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 0
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 00
@@ -3088,7 +3101,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 88.900024, y: 361.3}
+  m_AnchoredPosition: {x: 88.8999, y: 361.3}
   m_SizeDelta: {x: 174, y: 136}
   m_Pivot: {x: 0, y: 0}
 --- !u!224 &224034443749133306

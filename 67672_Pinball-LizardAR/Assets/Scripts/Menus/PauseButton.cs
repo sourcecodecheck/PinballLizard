@@ -18,11 +18,11 @@ public class PauseButton : Pausable
     {
         if (!isPaused)
         {
-            TrackingEvents.SendBuildPlayerEvent(new PlayerUIAction() { UIAction = "PauseButton" });
+            TrackingEvents.SendBuildPlayerEvent(new PlayerUIAction() { UIAction = "PauseButton" }, EventNames.UiAction);
             GamePlayEvents.SendPause(true);
             if (LoadPauseMenu)
             {
-                TrackingEvents.SendBuildCityEvent( new CitySessionPause() { });
+                TrackingEvents.SendBuildCityEvent( new CitySessionPause() { }, EventNames.SessionPause);
                 GamePlayEvents.SendLoadPauseMenu();
             }
         }

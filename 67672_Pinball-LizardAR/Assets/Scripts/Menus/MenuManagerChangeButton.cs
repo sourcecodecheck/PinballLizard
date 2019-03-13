@@ -24,7 +24,7 @@ public class MenuManagerChangeButton : MonoBehaviour
 
     private void ToMenu()
     {
-        TrackingEvents.SendBuildPlayerEvent(new PlayerUIAction() { UIAction = "MenuChangeButton" });
+        TrackingEvents.SendBuildPlayerEvent(new PlayerUIAction() { UIAction = "MenuChangeButton" }, EventNames.UiAction);
         MenuEvents.SendChangeMenu(MenuToChangeTo);
     }
 }

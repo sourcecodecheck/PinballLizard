@@ -27,7 +27,11 @@ public class HexBehavior : MonoBehaviour
             collidingShot.RegenerateRotation();
             collidingShot.Invoke("HitBuilding", 0.1f);
             collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-
+            TrackingEvents.SendBuildVolleyActionStep2(new CityVolleyAction()
+            {
+                VolleyAction = "bounce",
+                VolleySource = "building",
+            }, EventNames.VolleyAction);
             Invoke("SelfDestruct", TimeToSelfDestruct);
             isSelfDestructing = true;
         }

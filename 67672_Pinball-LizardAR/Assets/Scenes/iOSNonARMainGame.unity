@@ -9502,7 +9502,7 @@ MonoBehaviour:
   BuyItemsScreen: {fileID: 307918829}
   Miss: {fileID: 1659609432}
   MenuParent: {fileID: 765298786}
-  ContainerCanvas: {fileID: 0}
+  ContainerCanvas: {fileID: 187344904}
 --- !u!114 &1861667637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9571,6 +9571,7 @@ MonoBehaviour:
   DefeatScreen: {fileID: 2134406041}
   GameplayCanvas: {fileID: 765298786}
   GameEndCanvas: {fileID: 1619243185}
+  IsAR: 0
 --- !u!4 &1861667641
 Transform:
   m_ObjectHideFlags: 0

@@ -8,6 +8,6 @@ public class CityBuildingDestroyed : ICityEvent
     public float DamageLoactionY { get; set; }
     public float DamageLoactionZ { get; set; }
     public int ScoreBaseValue { get; set; }
-    public int ScoreModifier { get; set; }
+    public float ScoreModifier { get; set; }
     public int ScoreActiveBug { get; set; }
 }

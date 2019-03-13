@@ -36,6 +36,7 @@ public class Inventory : MonoBehaviour
         StoreEvents.OnLoadInventoryItem += LoadServerSideItem;
         StoreEvents.SendLoadInventory(CatalogVersion);
         GamePlayEvents.OnUsePowerUp += UseItem;
+        TrackingEvents.OnBuildPlayerEvent += BuildPlayerEvent;
         DaBombCount = 0;
         SpicyMeatABallCount = 0;
         ArachnoFeastCount = 0;
@@ -112,6 +113,19 @@ public class Inventory : MonoBehaviour
             SpicyCount = SpicyMeatABallCount
         };
     }
+
+    void BuildPlayerEvent(IPlayerEvent playerEvent, string name)
+    {
+        playerEvent.PlayerInfo = new PlayerBase()
+        {
+            BombCount = DaBombCount,
+            FeastCount = ArachnoFeastCount,
+            SpicyCount = SpicyMeatABallCount,
+            PlayerExperience = ExperienceCount,
+            PlayerLevel = this.PlayerLevel
+        };
+        TrackingEvents.SendQueueEvent(playerEvent, name);
+    }
     
     void Update()
     {
@@ -122,5 +136,6 @@ public class Inventory : MonoBehaviour
     {
         StoreEvents.OnLoadInventoryItem -= LoadServerSideItem;
         GamePlayEvents.OnUsePowerUp -= UseItem;
+        TrackingEvents.OnBuildPlayerEvent -= BuildPlayerEvent;
     }
 }

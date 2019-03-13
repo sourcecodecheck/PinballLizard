@@ -144,7 +144,7 @@ public class PowerUpButton : Pausable
 
     private void ActivateSpicy()
     {
-        TrackingEvents.SendBuildPlayerEvent(new PlayerUIAction() { UIAction = "SpicyButton" });
+        TrackingEvents.SendBuildPlayerEvent(new PlayerUIAction() { UIAction = "SpicyButton" }, EventNames.UiAction);
         AudioEvents.SendPlayPowerUp();
         GamePlayEvents.SendSpicyReady();
         GamePlayEvents.SendUsePowerUp(keyTerm);
@@ -159,7 +159,7 @@ public class PowerUpButton : Pausable
 
     private void ActivateBomb()
     {
-        TrackingEvents.SendBuildPlayerEvent(new PlayerUIAction() { UIAction = "BombButton" });
+        TrackingEvents.SendBuildPlayerEvent(new PlayerUIAction() { UIAction = "BombButton" }, EventNames.UiAction);
         GamePlayEvents.SendBombDetonated();
         GamePlayEvents.SendUsePowerUp(keyTerm);
         state = PowerUpState.INUSE;
@@ -168,7 +168,7 @@ public class PowerUpButton : Pausable
 
     private void ActivateFeast()
     {
-        TrackingEvents.SendBuildPlayerEvent(new PlayerUIAction() { UIAction = "FeastButton" });
+        TrackingEvents.SendBuildPlayerEvent(new PlayerUIAction() { UIAction = "FeastButton" }, EventNames.UiAction);
         AudioEvents.SendPlayPowerUp();
         GamePlayEvents.SendFeastStart();
         GamePlayEvents.SendUsePowerUp(keyTerm);

@@ -6,6 +6,6 @@ public class CitySessionEnd : ICityEvent
     public string ExitType { get; set; }
     public int CitySessionDuration { get; set; }
     public int FinalScore { get; set; }
-    public int HighestCombo { get; set; }
+    public float HighestCombo { get; set; }
     public int PowerUpsUsed { get; set; }
 }

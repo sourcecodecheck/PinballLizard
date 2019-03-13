@@ -121,7 +121,7 @@ public class City : Pausable
         Base.transform.parent = gameObject.transform;
     }
 
-    void DaBombAnimation()
+    void DaBombAnimation(string damageType)
     {
         daBombInstance = Instantiate(DaBomb, transform);
         Invoke("DestroyDaBomb", 5f);

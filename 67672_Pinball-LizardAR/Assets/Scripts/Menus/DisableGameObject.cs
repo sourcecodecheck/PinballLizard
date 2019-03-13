@@ -16,7 +16,7 @@ public class DisableGameObject : MonoBehaviour
 
     void DoDisable()
     {
-        TrackingEvents.SendBuildPlayerEvent(new PlayerUIAction() { UIAction = "HideButton" });
+        TrackingEvents.SendBuildPlayerEvent(new PlayerUIAction() { UIAction = "HideButton" }, EventNames.UiAction);
         ObjectToDisable.SetActive(false);
     }
 }

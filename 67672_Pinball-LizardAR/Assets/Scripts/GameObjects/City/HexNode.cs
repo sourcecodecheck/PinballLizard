@@ -165,22 +165,22 @@ public class HexNode
         return false;
     }
 
-    public void SpreadExplosion()
+    public void SpreadExplosion(string damageType)
     {
         foreach (HexNode neighbor in Neighbors)
         {
             if (neighbor != null)
             {
-                neighbor.Explode();
+                neighbor.Explode(damageType);
             }
         }
     }
 
-    private void Explode()
+    private void Explode(string damageType)
     {
         if (GamePlayBuilding != null)
         {
-            GamePlayBuilding.Explode();
+            GamePlayBuilding.Explode(damageType);
         }
     }
     #endregion

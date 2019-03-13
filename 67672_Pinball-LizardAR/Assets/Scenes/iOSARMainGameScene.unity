@@ -2006,6 +2006,10 @@ Prefab:
       propertyPath: m_AnchoredPosition.x
       value: 88.8999
       objectReference: {fileID: 0}
+    - target: {fileID: 1283558990971852, guid: 166e68d7e54799a45b65e5c322bf3493, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 166e68d7e54799a45b65e5c322bf3493, type: 2}
   m_IsPrefabAsset: 0
@@ -2804,6 +2808,10 @@ Prefab:
       propertyPath: PlayerInventory
       value: 
       objectReference: {fileID: 1553412463}
+    - target: {fileID: 1883532513797322, guid: 7711f891047a9f747b84b8d0e754f5a3, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7711f891047a9f747b84b8d0e754f5a3, type: 2}
   m_IsPrefabAsset: 0
@@ -9792,7 +9800,7 @@ Prefab:
         type: 2}
       propertyPath: MenuParent
       value: 
-      objectReference: {fileID: 605867724}
+      objectReference: {fileID: 1895303424}
     - target: {fileID: 114103429421081230, guid: acca2663ea3d4154498f50c404d0886c,
         type: 2}
       propertyPath: VictoryScreen

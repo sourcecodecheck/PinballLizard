@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using PlayFab;
-using PlayFab.ClientModels;
-using PlayFab.Json;
 using PlayFab.EventsModels;
 using System;
 using Microsoft.AppCenter.Unity.Crashes;
@@ -11,84 +9,53 @@ using Microsoft.AppCenter.Unity.Crashes;
 
 public class Events : MonoBehaviour
 {
-    private List<EventContents> eventQueue;
+    private static List<EventContents> eventQueue;
 
     // Use this for initialization
     void Awake()
     {
-        eventQueue = new List<EventContents>();
-        TrackingEvents.OnPlayFabTitleEvent += SendTitleEvent;
-        TrackingEvents.OnPlayFabPlayerEvent += SendPlayerEvent;
+        if (eventQueue == null)
+        {
+            eventQueue = new List<EventContents>();
+        }
+        TrackingEvents.OnQueueEvent += QueueEvent;
+        InvokeRepeating("SendEvents", 1f, 15f);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
-    public void SendTitleEvent(Dictionary<string, object> eventBody, string eventTitle)
+    void SendEvents()
     {
-
-        PlayFabClientAPI.WriteTitleEvent(
-            new WriteTitleEventRequest()
-            {
-                Body = eventBody,
-                EventName = eventTitle,
-                Timestamp = DateTime.Now
-            },
-            (result) =>
-            {
-
-            },
-            (error) =>
-            {
-                Debug.Log(error.ErrorMessage);
-                try
-                {
-                    throw new Exception(error.ErrorMessage);
-                }
-                catch (Exception exception)
-                {
-                    Crashes.TrackError(exception);
-                }
-            }
-       );
+        if (eventQueue != null && eventQueue.Count > 0)
+        {
+            SendPlayStreamEvents(eventQueue);
+            eventQueue.RemoveRange(0, 25);
+        }
     }
-
-    public void SendPlayerEvent(Dictionary<string, object> eventBody, string eventTitle)
+    void QueueEvent(IPlayerEvent playerEvent, string name)
     {
-        PlayFabClientAPI.WritePlayerEvent(
-            new WriteClientPlayerEventRequest()
-            {
-                Body = eventBody,
-                EventName = eventTitle,
-                Timestamp = DateTime.Now
-            },
-            (result) =>
-            {
-
-            },
-            (error) =>
-            {
-                Debug.Log(error.ErrorMessage);
-                try
-                {
-                    throw new Exception(error.ErrorMessage);
-                }
-                catch (Exception exception)
-                {
-                    Crashes.TrackError(exception);
-                }
-            }
-       );
+        EventContents tobeQueued = new EventContents();
+        tobeQueued.Payload = playerEvent;
+        tobeQueued.OriginalTimestamp = DateTime.Now.ToUniversalTime();
+        tobeQueued.EventNamespace = "com.playfab.events.pinballlizard";
+        tobeQueued.Entity = new PlayFab.EventsModels.EntityKey()
+        {
+            Id = PlayerPrefs.GetString(PlayerPrefsKeys.PlayerEntityId),
+            Type = "title_player_account"
+        };
+        tobeQueued.Name = name;
+        eventQueue.Add(tobeQueued);
     }
 
     void SendPlayStreamEvents(List<EventContents> events)
     {
         PlayFabEventsAPI.WriteEvents(new PlayFab.EventsModels.WriteEventsRequest()
         {
-            Events = events
+            Events = events.Take(25).ToList()
         },
         (result) =>
         {
@@ -109,7 +76,6 @@ public class Events : MonoBehaviour
 
     private void OnDestroy()
     {
-        TrackingEvents.OnPlayFabTitleEvent -= SendTitleEvent;
-        TrackingEvents.OnPlayFabPlayerEvent -= SendPlayerEvent;
+        TrackingEvents.OnQueueEvent -= QueueEvent;
     }
 }

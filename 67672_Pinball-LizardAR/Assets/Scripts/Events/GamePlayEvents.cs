@@ -35,11 +35,11 @@
         OnShotDestroyed?.Invoke();
     }
 
-    public delegate void BombDetonated();
+    public delegate void BombDetonated(string damageType);
     public static event BombDetonated OnBombDetonated;
-    public static void SendBombDetonated()
+    public static void SendBombDetonated(string damageType = "bomb")
     {
-        OnBombDetonated?.Invoke();
+        OnBombDetonated?.Invoke(damageType);
     }
 
     public delegate void FeastStart();

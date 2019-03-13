@@ -64,17 +64,52 @@ public static class TrackingEvents
         OnAddExperience?.Invoke(experienceToAdd);
     }
 
-    public delegate void BuildCityEvent(ICityEvent cityEvent);
+    public delegate void BuildCityEvent(ICityEvent cityEvent, string name);
     public static event BuildCityEvent OnBuildCityEvent;
-    public static void SendBuildCityEvent(ICityEvent cityEvent)
+    public static void SendBuildCityEvent(ICityEvent cityEvent, string name)
     {
-        OnBuildCityEvent?.Invoke(cityEvent);
+        OnBuildCityEvent?.Invoke(cityEvent, name);
     }
 
-    public delegate void BuildPlayerEvent(IPlayerEvent playerEvent);
-    public static event BuildPlayerEvent OnBuildPlayerEvent;
-    public static void SendBuildPlayerEvent(IPlayerEvent playerEvent)
+    public delegate void BuildBuildingDestroyedStep2(CityBuildingDestroyed buildingDestroyed, string name);
+    public static event BuildBuildingDestroyedStep2 OnBuildBuildingDestroyedStep2;
+    public static void SendBuildingDestroyedStep2(CityBuildingDestroyed buildingDestroyed, string name)
     {
-        OnBuildPlayerEvent?.Invoke(playerEvent);
+        OnBuildBuildingDestroyedStep2?.Invoke(buildingDestroyed, name);
+    }
+
+    public delegate void BuildBugEatenStep2(CityBugEaten bugEaten, string name);
+    public static event BuildBugEatenStep2 OnBuildBugEatenStep2;
+    public static void SendBuildBugEatenStep2(CityBugEaten bugEaten, string name)
+    {
+        OnBuildBugEatenStep2?.Invoke(bugEaten, name);
+    }
+
+    public delegate void BuildVolleyActionStep2(CityVolleyAction volleyAction, string name);
+    public static event BuildVolleyActionStep2 OnBuildVolleyActionStep2;
+    public static void SendBuildVolleyActionStep2(CityVolleyAction volleyAction, string name)
+    {
+        OnBuildVolleyActionStep2?.Invoke(volleyAction, name);
+    }
+
+    public delegate void BuildSessionEndStep2(CitySessionEnd sessionEnd, string name);
+    public static event BuildSessionEndStep2 OnBuildSessionEndStep2;
+    public static void SendBuildSessionEndStep2(CitySessionEnd sessionEnd, string name)
+    {
+        OnBuildSessionEndStep2?.Invoke(sessionEnd, name);
+    }
+
+    public delegate void BuildPlayerEvent(IPlayerEvent playerEvent, string name);
+    public static event BuildPlayerEvent OnBuildPlayerEvent;
+    public static void SendBuildPlayerEvent(IPlayerEvent playerEvent, string name)
+    {
+        OnBuildPlayerEvent?.Invoke(playerEvent, name);
+    }
+
+    public delegate void QueueEvent(IPlayerEvent playerEvent, string name);
+    public static event QueueEvent OnQueueEvent;
+    public static void SendQueueEvent(IPlayerEvent playerEvent, string name)
+    {
+        OnQueueEvent?.Invoke(playerEvent, name);
     }
 }

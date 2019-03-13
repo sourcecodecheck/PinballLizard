@@ -26,6 +26,7 @@ public class MenuManager : MonoBehaviour
     private MenuEvents.Menus currentMenu;
     private static bool hasMainMenuBeenLoaded = false;
     private List<GameObject> menuObjects;
+    private DateTime timeofLastMenuChange;
 
     void Start()
     {
@@ -103,11 +104,18 @@ public class MenuManager : MonoBehaviour
         try
         {
             //PlayerPrefs.SetInt(PlayerPrefsKeys.HasViewedTutorial, 0);
+            TrackingEvents.SendBuildPlayerEvent(new PlayerScreenChange()
+            {
+                PreviousScreenID = currentMenu.ToString(),
+                PrevScreenDuration = (int)(DateTime.Now - timeofLastMenuChange).TotalSeconds,
+                CurrentScreenID = MenuEvents.Menus.MAIN.ToString()
+            }, EventNames.ScreenChange);
             HomeButton.SetActive(false);
             currentMenu = MenuEvents.Menus.MAIN;
             hasMainMenuBeenLoaded = true;
             GameObject mainMenuInstance = Instantiate(MainMenuButtons, MenuParent.transform);
             menuObjects.Add(mainMenuInstance);
+            timeofLastMenuChange = DateTime.Now;
         }
         catch(Exception menuLoading)
         {
@@ -133,10 +141,17 @@ public class MenuManager : MonoBehaviour
         try
         {
             HomeButton.SetActive(true);
+            TrackingEvents.SendBuildPlayerEvent(new PlayerScreenChange()
+            {
+                PreviousScreenID = currentMenu.ToString(),
+                PrevScreenDuration = (int)(DateTime.Now - timeofLastMenuChange).TotalSeconds,
+                CurrentScreenID = MenuEvents.Menus.PLAYERINFO.ToString()
+            }, EventNames.ScreenChange);
             currentMenu = MenuEvents.Menus.PLAYERINFO;
             GameObject inventoryScreen = Instantiate(PlayerInventoryScreen, MenuParent.transform);
             inventoryScreen.GetComponent<PlayerInventoryScreen>().PlayerInventory = PlayerInventory;
             menuObjects.Add(inventoryScreen);
+            timeofLastMenuChange = DateTime.Now;
         }
         catch (Exception menuLoading)
         {
@@ -149,10 +164,17 @@ public class MenuManager : MonoBehaviour
         try
         {
             HomeButton.SetActive(true);
+            TrackingEvents.SendBuildPlayerEvent(new PlayerScreenChange()
+            {
+                PreviousScreenID = currentMenu.ToString(),
+                PrevScreenDuration = (int)(DateTime.Now - timeofLastMenuChange).TotalSeconds,
+                CurrentScreenID = MenuEvents.Menus.STORE.ToString()
+            }, EventNames.ScreenChange);
             currentMenu = MenuEvents.Menus.STORE;
             GameObject storeFront = Instantiate(StoreFront, MenuParent.transform);
             storeFront.GetComponent<StoreFront>().PlayerInventory = PlayerInventory;
             menuObjects.Add(storeFront);
+            timeofLastMenuChange = DateTime.Now;
         }
         catch (Exception menuLoading)
         {
@@ -164,8 +186,15 @@ public class MenuManager : MonoBehaviour
         try
         {
             HomeButton.SetActive(true);
+            TrackingEvents.SendBuildPlayerEvent(new PlayerScreenChange()
+            {
+                PreviousScreenID = currentMenu.ToString(),
+                PrevScreenDuration = (int)(DateTime.Now - timeofLastMenuChange).TotalSeconds,
+                CurrentScreenID = MenuEvents.Menus.SPECTATE.ToString()
+            }, EventNames.ScreenChange);
             currentMenu = MenuEvents.Menus.SPECTATE;
             menuObjects.Add(Instantiate(SpecatatorMenu, MenuParent.transform));
+            timeofLastMenuChange = DateTime.Now;
         }
         catch (Exception menuLoading)
         {
@@ -186,6 +215,12 @@ public class MenuManager : MonoBehaviour
             else
             {
                 HomeButton.SetActive(true);
+                TrackingEvents.SendBuildPlayerEvent(new PlayerScreenChange()
+                {
+                    PreviousScreenID = currentMenu.ToString(),
+                    PrevScreenDuration = (int)(DateTime.Now - timeofLastMenuChange).TotalSeconds,
+                    CurrentScreenID = MenuEvents.Menus.AR.ToString()
+                }, EventNames.ScreenChange);
                 if (currentMenu != MenuEvents.Menus.DAILY_CHALLENGE)
                 {
                     PlayerPrefs.SetInt(PlayerPrefsKeys.ChallengeModeSet, 0);
@@ -193,6 +228,7 @@ public class MenuManager : MonoBehaviour
                 }
                 currentMenu = MenuEvents.Menus.AR;
                 menuObjects.Add(Instantiate(ARMenu, MenuParent.transform));
+                timeofLastMenuChange = DateTime.Now;
             }
         }
         catch (Exception menuLoading)
@@ -206,12 +242,19 @@ public class MenuManager : MonoBehaviour
         try
         {
             HomeButton.SetActive(true);
+            TrackingEvents.SendBuildPlayerEvent(new PlayerScreenChange()
+            {
+                PreviousScreenID = currentMenu.ToString(),
+                PrevScreenDuration = (int)(DateTime.Now - timeofLastMenuChange).TotalSeconds,
+                CurrentScreenID = MenuEvents.Menus.DAILY_CHALLENGE.ToString()
+            }, EventNames.ScreenChange);
             currentMenu = MenuEvents.Menus.DAILY_CHALLENGE;
             PlayerPrefs.SetInt(PlayerPrefsKeys.ChallengeModeSet, 1);
             PlayerPrefs.Save();
             GameObject eventScreen = Instantiate(EventBoard, MenuParent.transform);
             ChallengeMode.GetChallengeSeed();
             menuObjects.Add(eventScreen);
+            timeofLastMenuChange = DateTime.Now;
         }
         catch (Exception menuLoading)
         {
@@ -223,10 +266,17 @@ public class MenuManager : MonoBehaviour
         try
         {
             HomeButton.SetActive(false);
+            TrackingEvents.SendBuildPlayerEvent(new PlayerScreenChange()
+            {
+                PreviousScreenID = currentMenu.ToString(),
+                PrevScreenDuration = (int)(DateTime.Now - timeofLastMenuChange).TotalSeconds,
+                CurrentScreenID = MenuEvents.Menus.TUTORIAL.ToString()
+            }, EventNames.ScreenChange);
             currentMenu = MenuEvents.Menus.TUTORIAL;
             UnloadMenu();
             GameObject tutorial = Instantiate(Tutorial, MenuParent.transform);
             menuObjects.Add(tutorial);
+            timeofLastMenuChange = DateTime.Now;
         }
         catch (Exception menuLoading)
         {
