@@ -30,10 +30,17 @@ public class PlayerLevelBar : MonoBehaviour
             }
             if (IsStatic == false)
             {
+
+                float levelDiff = PlayerInventory.ExperienceToNextLevel[nextLevel] - PlayerInventory.ExperienceToNextLevel[nextLevel - 1];
+                float expAsDiff = PlayerInventory.ExperienceCount - PlayerInventory.ExperienceToNextLevel[nextLevel - 1];
+                if (percentage == 0)
+                {
+                    float previousExpDiff = PlayerInventory.PreviousExperienceCount - PlayerInventory.ExperienceToNextLevel[nextLevel - 1];
+                    percentage = previousExpDiff / levelDiff;
+                }
                 if (nextLevel > 0)
                 {
-                    float levelDiff = PlayerInventory.ExperienceToNextLevel[nextLevel] - PlayerInventory.ExperienceToNextLevel[nextLevel - 1];
-                    float expAsDiff = PlayerInventory.ExperienceCount - PlayerInventory.ExperienceToNextLevel[nextLevel - 1]; ;
+
                     percentage +=
                        expAsDiff / levelDiff * Time.deltaTime;
                     float truePercentage = expAsDiff / levelDiff;

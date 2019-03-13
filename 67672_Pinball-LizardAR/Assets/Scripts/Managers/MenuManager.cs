@@ -19,6 +19,7 @@ public class MenuManager : MonoBehaviour
     public Canvas MenuParent;
     public GameObject GeneralMessageWindow;
     public GameObject HUD;
+    public GameObject HomeButton;
     public Inventory PlayerInventory;
     public ChallengeMode ChallengeMode;
 
@@ -28,6 +29,7 @@ public class MenuManager : MonoBehaviour
 
     void Start()
     {
+        HomeButton.SetActive(false);
         menuObjects = new List<GameObject>();
         if (hasMainMenuBeenLoaded == false)
         {
@@ -37,10 +39,10 @@ public class MenuManager : MonoBehaviour
         else
         {
             PlayerInventory.enabled = true;
+            
             LoadMainMenu();
         }
         MenuEvents.OnChangeMenu += ChangeMenu;
-        StoreEvents.OnOpenContainerPopUp += LoadContainerPopUp;
         MenuEvents.OnShowGeneralMessage += ShowGeneralMessageWindow;
         MenuEvents.OnShowContainerPopUp += ShowContainerPopup;
     }
@@ -58,6 +60,7 @@ public class MenuManager : MonoBehaviour
         PlayerInventory.enabled = true;
         TrackingEvents.SendLoadPlayerInfo();
         HUD.SetActive(true);
+        
         if (currentMenu == menu)
         {
             return;
@@ -100,6 +103,7 @@ public class MenuManager : MonoBehaviour
         try
         {
             //PlayerPrefs.SetInt(PlayerPrefsKeys.HasViewedTutorial, 0);
+            HomeButton.SetActive(false);
             currentMenu = MenuEvents.Menus.MAIN;
             hasMainMenuBeenLoaded = true;
             GameObject mainMenuInstance = Instantiate(MainMenuButtons, MenuParent.transform);
@@ -128,6 +132,7 @@ public class MenuManager : MonoBehaviour
     {
         try
         {
+            HomeButton.SetActive(true);
             currentMenu = MenuEvents.Menus.PLAYERINFO;
             GameObject inventoryScreen = Instantiate(PlayerInventoryScreen, MenuParent.transform);
             inventoryScreen.GetComponent<PlayerInventoryScreen>().PlayerInventory = PlayerInventory;
@@ -143,6 +148,7 @@ public class MenuManager : MonoBehaviour
     {
         try
         {
+            HomeButton.SetActive(true);
             currentMenu = MenuEvents.Menus.STORE;
             GameObject storeFront = Instantiate(StoreFront, MenuParent.transform);
             storeFront.GetComponent<StoreFront>().PlayerInventory = PlayerInventory;
@@ -157,21 +163,9 @@ public class MenuManager : MonoBehaviour
     {
         try
         {
+            HomeButton.SetActive(true);
             currentMenu = MenuEvents.Menus.SPECTATE;
             menuObjects.Add(Instantiate(SpecatatorMenu, MenuParent.transform));
-        }
-        catch (Exception menuLoading)
-        {
-            Crashes.TrackError(menuLoading);
-
-        }
-    }
-
-    private void LoadContainerPopUp()
-    {
-        try
-        {
-            menuObjects.Add(Instantiate(ContainerPopUp, MenuParent.transform));
         }
         catch (Exception menuLoading)
         {
@@ -184,16 +178,20 @@ public class MenuManager : MonoBehaviour
     {
         try
         {
-            if (PlayerPrefs.HasKey(PlayerPrefsKeys.HasViewedTutorial) == false || PlayerPrefs.GetInt(PlayerPrefsKeys.HasViewedTutorial) != 1)
+            if (PlayerPrefs.HasKey(PlayerPrefsKeys.HasViewedTutorial) == false || PlayerPrefs.GetInt(PlayerPrefsKeys.HasViewedTutorial) != 1 
+                && currentMenu!= MenuEvents.Menus.DAILY_CHALLENGE)
             {
-               
                 LoadTutorial();
             }
             else
             {
+                HomeButton.SetActive(true);
+                if (currentMenu != MenuEvents.Menus.DAILY_CHALLENGE)
+                {
+                    PlayerPrefs.SetInt(PlayerPrefsKeys.ChallengeModeSet, 0);
+                    PlayerPrefs.Save();
+                }
                 currentMenu = MenuEvents.Menus.AR;
-                PlayerPrefs.SetInt(PlayerPrefsKeys.ChallengeModeSet, 0);
-                PlayerPrefs.Save();
                 menuObjects.Add(Instantiate(ARMenu, MenuParent.transform));
             }
         }
@@ -207,6 +205,7 @@ public class MenuManager : MonoBehaviour
     {
         try
         {
+            HomeButton.SetActive(true);
             currentMenu = MenuEvents.Menus.DAILY_CHALLENGE;
             PlayerPrefs.SetInt(PlayerPrefsKeys.ChallengeModeSet, 1);
             PlayerPrefs.Save();
@@ -223,6 +222,7 @@ public class MenuManager : MonoBehaviour
     {
         try
         {
+            HomeButton.SetActive(false);
             currentMenu = MenuEvents.Menus.TUTORIAL;
             UnloadMenu();
             GameObject tutorial = Instantiate(Tutorial, MenuParent.transform);
@@ -270,7 +270,6 @@ public class MenuManager : MonoBehaviour
     private void OnDestroy()
     {
         MenuEvents.OnChangeMenu -= ChangeMenu;
-        StoreEvents.OnOpenContainerPopUp -= LoadContainerPopUp;
         MenuEvents.OnShowGeneralMessage -= ShowGeneralMessageWindow;
         MenuEvents.OnShowContainerPopUp -= ShowContainerPopup;
     }

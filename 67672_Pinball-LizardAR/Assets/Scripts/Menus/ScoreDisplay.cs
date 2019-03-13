@@ -3,12 +3,16 @@ using UnityEngine.UI;
 public class ScoreDisplay : MonoBehaviour
 {
     public Text scoreText;
+    public GameObject Burst;
+    public GameObject Animation;
+
     private int score;
     void Start()
     {
         ScoreEvents.OnScoreUpdated += UpdateScore;
         GamePlayEvents.OnFeastStart += FeastStart;
         GamePlayEvents.OnFeastEnd += FeastEnd;
+        AnimationEvents.OnDoublePointsExit += HideAnimation;
         score = 0;
         scoreText.text = score.ToString();
     }
@@ -19,11 +23,18 @@ public class ScoreDisplay : MonoBehaviour
 
     void FeastStart()
     {
-        scoreText.color = new Color(1f, 1f, 0f);
+        Animation.SetActive(true);
+        Burst.SetActive(true);
     }
     void FeastEnd()
     {
-        scoreText.color = new Color(1f, 1f, 1f);
+        Animation.SetActive(false);
+        Burst.SetActive(false);
+    }
+
+    void HideAnimation()
+    {
+        Animation.SetActive(false);
     }
 
     void UpdateScore(int currentScore)

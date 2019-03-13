@@ -468,9 +468,9 @@ GameObject:
   - component: {fileID: 222681097662820496}
   - component: {fileID: 114258931549620974}
   - component: {fileID: 114933532519631406}
-  - component: {fileID: 114022398673961004}
-  - component: {fileID: 114757886275523428}
   - component: {fileID: 114596419686586754}
+  - component: {fileID: 114882701958507074}
+  - component: {fileID: 114933237726629908}
   m_Layer: 5
   m_Name: HomeButton
   m_TagString: Untagged
@@ -818,7 +818,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1914918542691708
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,18 +912,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114022398673961004
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1575102631971810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4ae10930565230499c74c10853baebf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneToChangeTo: 0
 --- !u!114 &114023530416885124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1973,18 +1961,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114757886275523428
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1575102631971810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0552de13c0293924eb1ae5620677a991, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectToEnable: {fileID: 1513692828947616}
 --- !u!114 &114761769745916886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2153,6 +2129,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114882701958507074
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1575102631971810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a74b8af2b7203f54e8896dfd81ec71d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectToDisable: {fileID: 0}
+  DisableButton: {fileID: 114933532519631406}
 --- !u!114 &114887060380445916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2197,6 +2186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2c6a1b5fdc155e43800b4aa4678674c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPaused: 0
   StoreId: marketplace
   CatalogVersion: 1.0.0
   keyTermSpicy: spicy
@@ -2238,6 +2228,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &114933237726629908
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1575102631971810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a74b8af2b7203f54e8896dfd81ec71d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectToDisable: {fileID: 1853124309658770}
+  DisableButton: {fileID: 114933532519631406}
 --- !u!114 &114933532519631406
 MonoBehaviour:
   m_ObjectHideFlags: 1

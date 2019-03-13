@@ -127,6 +127,8 @@
     <Compile Include="Assets\AppCenter\Properties\CustomUrlProperty.cs" />
     <Compile Include="Assets\AppCenter\Properties\MaxStorageSizeProperty.cs" />
     <Compile Include="Assets\Scripts\AnimationStateScripts\BannerExited.cs" />
+    <Compile Include="Assets\Scripts\AnimationStateScripts\ChestAnimation.cs" />
+    <Compile Include="Assets\Scripts\AnimationStateScripts\DoublePointsAnimation.cs" />
     <Compile Include="Assets\Scripts\AnimationStateScripts\HandsEntered.cs" />
     <Compile Include="Assets\Scripts\AnimationStateScripts\HandsExited.cs" />
     <Compile Include="Assets\Scripts\AnimationStateScripts\LeftHandActioned.cs" />
@@ -168,6 +170,7 @@
     <Compile Include="Assets\Scripts\Menus\AnimosityCost.cs" />
     <Compile Include="Assets\Scripts\Menus\AppetiteDisplay.cs" />
     <Compile Include="Assets\Scripts\Menus\ChangeScene.cs" />
+    <Compile Include="Assets\Scripts\Menus\ChestDisabler.cs" />
     <Compile Include="Assets\Scripts\Menus\ContainerPopUp.cs" />
     <Compile Include="Assets\Scripts\Menus\CrashTheGameButton.cs" />
     <Compile Include="Assets\Scripts\Menus\CurrencyCounters.cs" />
@@ -193,7 +196,6 @@
     <Compile Include="Assets\Scripts\Menus\PlaySoundOnButton.cs" />
     <Compile Include="Assets\Scripts\Menus\ReloadCurrentScene.cs" />
     <Compile Include="Assets\Scripts\Menus\ScoreDisplay.cs" />
-    <Compile Include="Assets\Scripts\Menus\StoreButton.cs" />
     <Compile Include="Assets\Scripts\Menus\StoreFront.cs" />
     <Compile Include="Assets\Scripts\Menus\StoreItem.cs" />
     <Compile Include="Assets\Scripts\Menus\StoreItemData.cs" />
@@ -213,6 +215,19 @@
     <Compile Include="Assets\Scripts\PlayFabRelated\UserInfo.cs" />
     <Compile Include="Assets\Scripts\SavedData\LoginSettings.cs" />
     <Compile Include="Assets\Scripts\SavedData\PlayerPrefsKeys.cs" />
+    <Compile Include="Assets\Scripts\Telemetry\CityBase.cs" />
+    <Compile Include="Assets\Scripts\Telemetry\CityBugEaten.cs" />
+    <Compile Include="Assets\Scripts\Telemetry\CityBuildingDestroyed.cs" />
+    <Compile Include="Assets\Scripts\Telemetry\CitySessionEnd.cs" />
+    <Compile Include="Assets\Scripts\Telemetry\CitySessionPause.cs" />
+    <Compile Include="Assets\Scripts\Telemetry\CitySessionResume.cs" />
+    <Compile Include="Assets\Scripts\Telemetry\CitySessionStart.cs" />
+    <Compile Include="Assets\Scripts\Telemetry\CityVolleyAction.cs" />
+    <Compile Include="Assets\Scripts\Telemetry\ICityEvent.cs" />
+    <Compile Include="Assets\Scripts\Telemetry\IPlayerEvent.cs" />
+    <Compile Include="Assets\Scripts\Telemetry\PlayerBase.cs" />
+    <Compile Include="Assets\Scripts\Telemetry\PlayerScreenChange.cs" />
+    <Compile Include="Assets\Scripts\Telemetry\PlayerUIAction.cs" />
     <Compile Include="Assets\SDKs\PlayFabSdk\Admin\PlayFabAdminAPI.cs" />
     <Compile Include="Assets\SDKs\PlayFabSdk\Admin\PlayFabAdminModels.cs" />
     <Compile Include="Assets\SDKs\PlayFabSdk\Admin\PlayFabEvents.cs" />

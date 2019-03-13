@@ -1278,7 +1278,6 @@ MonoBehaviour:
   MayhemPriceText: {fileID: 471026285}
   BugBucksPriceText: {fileID: 333915272}
   GluttonyPriceText: {fileID: 0}
-  AmountOwnedText: {fileID: 0}
   Item: {fileID: 0}
   SendUnpause: 1
   IsContainer: 0
@@ -1601,7 +1600,6 @@ MonoBehaviour:
   MayhemPriceText: {fileID: 1122639662}
   BugBucksPriceText: {fileID: 182626329}
   GluttonyPriceText: {fileID: 0}
-  AmountOwnedText: {fileID: 0}
   Item: {fileID: 0}
   SendUnpause: 1
   IsContainer: 0
@@ -2813,6 +2811,14 @@ Prefab:
       objectReference: {fileID: 1178915522}
     - target: {fileID: 1007774608008140, guid: a5cf1d298b15fc144815c823f62d996a, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1686563392755056, guid: a5cf1d298b15fc144815c823f62d996a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1660228168262276, guid: a5cf1d298b15fc144815c823f62d996a, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3896,6 +3902,31 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: d5b60dc452e32594bb75865b36706dba, type: 3}
+    - target: {fileID: 114428469256579720, guid: d9607d809ea9e0d4aa7e14f45d245f87,
+        type: 2}
+      propertyPath: NonARRotateSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114409113570882540, guid: d9607d809ea9e0d4aa7e14f45d245f87,
+        type: 2}
+      propertyPath: ContainerCanvas
+      value: 
+      objectReference: {fileID: 187344904}
+    - target: {fileID: 114482839744551270, guid: d9607d809ea9e0d4aa7e14f45d245f87,
+        type: 2}
+      propertyPath: HeightOffsets.Array.data[1]
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 114482839744551270, guid: d9607d809ea9e0d4aa7e14f45d245f87,
+        type: 2}
+      propertyPath: HeightOffsets.Array.data[2]
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 114482839744551270, guid: d9607d809ea9e0d4aa7e14f45d245f87,
+        type: 2}
+      propertyPath: HeightOffsets.Array.data[0]
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9607d809ea9e0d4aa7e14f45d245f87, type: 2}
   m_IsPrefabAsset: 0
@@ -4569,6 +4600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2c6a1b5fdc155e43800b4aa4678674c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPaused: 0
   StoreId: marketplace
   CatalogVersion: 1.0.0
   keyTermSpicy: spicy
@@ -6705,6 +6737,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 913836498}
+  Burst: {fileID: 0}
+  Animation: {fileID: 0}
 --- !u!114 &1265407346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6917,14 +6951,24 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114121715599496622, guid: c271008ff91f1a34b9e113fe9633581e,
+    - target: {fileID: 114882701958507074, guid: c271008ff91f1a34b9e113fe9633581e,
+        type: 2}
+      propertyPath: ObjectToDisable
+      value: 
+      objectReference: {fileID: 1621791835}
+    - target: {fileID: 114627850749441822, guid: c271008ff91f1a34b9e113fe9633581e,
         type: 2}
       propertyPath: PlayerInventory
       value: 
       objectReference: {fileID: 1178915522}
-    - target: {fileID: 114627850749441822, guid: c271008ff91f1a34b9e113fe9633581e,
+    - target: {fileID: 114264546399890550, guid: c271008ff91f1a34b9e113fe9633581e,
         type: 2}
       propertyPath: PlayerInventory
+      value: 
+      objectReference: {fileID: 1178915522}
+    - target: {fileID: 114050754599839468, guid: c271008ff91f1a34b9e113fe9633581e,
+        type: 2}
+      propertyPath: Inventory
       value: 
       objectReference: {fileID: 1178915522}
     - target: {fileID: 114213609288281626, guid: c271008ff91f1a34b9e113fe9633581e,
@@ -6937,20 +6981,11 @@ Prefab:
       propertyPath: Inventory
       value: 
       objectReference: {fileID: 1178915522}
-    - target: {fileID: 114050754599839468, guid: c271008ff91f1a34b9e113fe9633581e,
-        type: 2}
-      propertyPath: Inventory
-      value: 
-      objectReference: {fileID: 1178915522}
-    - target: {fileID: 114264546399890550, guid: c271008ff91f1a34b9e113fe9633581e,
+    - target: {fileID: 114121715599496622, guid: c271008ff91f1a34b9e113fe9633581e,
         type: 2}
       propertyPath: PlayerInventory
       value: 
       objectReference: {fileID: 1178915522}
-    - target: {fileID: 1853124309658770, guid: c271008ff91f1a34b9e113fe9633581e, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c271008ff91f1a34b9e113fe9633581e, type: 2}
   m_IsPrefabAsset: 0
@@ -7941,7 +7976,6 @@ MonoBehaviour:
   MayhemPriceText: {fileID: 0}
   BugBucksPriceText: {fileID: 0}
   GluttonyPriceText: {fileID: 1600438287}
-  AmountOwnedText: {fileID: 0}
   Item: {fileID: 0}
   SendUnpause: 1
   IsContainer: 0

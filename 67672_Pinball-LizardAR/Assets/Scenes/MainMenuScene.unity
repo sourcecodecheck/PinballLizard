@@ -440,6 +440,15 @@ Prefab:
       value: 
       objectReference: {fileID: 1996079779270834, guid: 05df277a8d354eb4d87542130ccc2320,
         type: 2}
+    - target: {fileID: 114320896889645202, guid: 9b26112ab1577d24a8e0bda77d863bc1,
+        type: 2}
+      propertyPath: HomeButton
+      value: 
+      objectReference: {fileID: 1969564738}
+    - target: {fileID: 1422444826761412, guid: 9b26112ab1577d24a8e0bda77d863bc1, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b26112ab1577d24a8e0bda77d863bc1, type: 2}
   m_IsPrefabAsset: 0
@@ -627,12 +636,21 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1825165891403512, guid: 345553930f083dc43b790043e3f7b491, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 345553930f083dc43b790043e3f7b491, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1969564737 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1786175857846948, guid: 345553930f083dc43b790043e3f7b491,
+    type: 2}
+  m_PrefabInternal: {fileID: 1969564736}
+--- !u!1 &1969564738 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1825165891403512, guid: 345553930f083dc43b790043e3f7b491,
     type: 2}
   m_PrefabInternal: {fileID: 1969564736}
 --- !u!1 &2101684417

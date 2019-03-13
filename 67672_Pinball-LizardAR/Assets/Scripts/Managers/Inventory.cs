@@ -101,6 +101,17 @@ public class Inventory : MonoBehaviour
         }
         return -1;
     }
+    public PlayerBase GetPlayerInfo()
+    {
+        return new PlayerBase()
+        {
+            BombCount = DaBombCount,
+            FeastCount = ArachnoFeastCount,
+            PlayerExperience = ExperienceCount,
+            PlayerLevel = PlayerLevel,
+            SpicyCount = SpicyMeatABallCount
+        };
+    }
     
     void Update()
     {

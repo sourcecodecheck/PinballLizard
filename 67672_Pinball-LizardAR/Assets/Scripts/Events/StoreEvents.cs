@@ -59,25 +59,11 @@ public static class StoreEvents
         OnLoadInventoryItem?.Invoke(instance);
     }
 
-    public delegate void ContainerOpened(List<ItemInstance> items, Dictionary<string, uint> currencies);
-    public static event ContainerOpened OnContainerOpened;
-    public static void SendContainerOpened(List<ItemInstance> items, Dictionary<string, uint> currencies)
-    {
-        OnContainerOpened?.Invoke(items, currencies);
-    }
-
     public delegate void ConsumeItem(ItemInstance instance);
     public static event ConsumeItem OnConsumeItem;
     public static void SendConsumeItem(ItemInstance instance)
     {
         OnConsumeItem?.Invoke(instance);
-    }
-
-    public delegate void OpenContainerPopUp();
-    public static event OpenContainerPopUp OnOpenContainerPopUp;
-    public static void SendOpenContainerPopUp()
-    {
-        OnOpenContainerPopUp?.Invoke();
     }
 
     public delegate void LoadCurrencies();

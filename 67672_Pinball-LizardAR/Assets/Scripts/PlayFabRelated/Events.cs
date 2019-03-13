@@ -4,16 +4,19 @@ using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
 using PlayFab.Json;
+using PlayFab.EventsModels;
 using System;
 using Microsoft.AppCenter.Unity.Crashes;
 
 
 public class Events : MonoBehaviour
 {
+    private List<EventContents> eventQueue;
 
     // Use this for initialization
     void Awake()
     {
+        eventQueue = new List<EventContents>();
         TrackingEvents.OnPlayFabTitleEvent += SendTitleEvent;
         TrackingEvents.OnPlayFabPlayerEvent += SendPlayerEvent;
     }
@@ -26,6 +29,7 @@ public class Events : MonoBehaviour
 
     public void SendTitleEvent(Dictionary<string, object> eventBody, string eventTitle)
     {
+
         PlayFabClientAPI.WriteTitleEvent(
             new WriteTitleEventRequest()
             {
@@ -78,6 +82,29 @@ public class Events : MonoBehaviour
                 }
             }
        );
+    }
+
+    void SendPlayStreamEvents(List<EventContents> events)
+    {
+        PlayFabEventsAPI.WriteEvents(new PlayFab.EventsModels.WriteEventsRequest()
+        {
+            Events = events
+        },
+        (result) =>
+        {
+        },
+        (error) =>
+        {
+            Debug.Log(error.ErrorMessage);
+            try
+            {
+                throw new Exception(error.ErrorMessage);
+            }
+            catch (Exception exception)
+            {
+                Crashes.TrackError(exception);
+            }
+        });
     }
 
     private void OnDestroy()

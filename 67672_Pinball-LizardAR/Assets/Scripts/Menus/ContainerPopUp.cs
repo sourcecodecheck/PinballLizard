@@ -25,8 +25,7 @@ public class ContainerPopUp : MonoBehaviour
 
     void Awake()
     {
-        StoreEvents.OnContainerOpened += ReceiveContainerItems;
-        CloseButton.SetActive(false);
+        CloseButton.SetActive(true);
     }
 
     void Update()
@@ -59,6 +58,5 @@ public class ContainerPopUp : MonoBehaviour
 
     private void OnDestroy()
     {
-        StoreEvents.OnContainerOpened -= ReceiveContainerItems;
     }
 }

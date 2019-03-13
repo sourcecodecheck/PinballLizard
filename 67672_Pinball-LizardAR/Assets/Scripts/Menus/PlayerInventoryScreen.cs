@@ -5,18 +5,16 @@ public class PlayerInventoryScreen : MonoBehaviour
 {
     public string CatalogVersion;
     public Inventory PlayerInventory;
-    public Text LevelText;
+
     public Text UserIdText;
     public Text DateJoinedText;
     public Text HighestScoreText;
     public Text BestComboText;
-    public Text SpicyCountText;
-    public Text BombCountText;
-    public Text FeastCountText;
-    
+
     void Start()
     {
         StoreEvents.OnUpdateInventoryDisplay += UpdateInventoryDisplay;
+        TrackingEvents.SendLoadPlayerInfo();
         UpdateInventoryDisplay();
     }
 
@@ -26,14 +24,10 @@ public class PlayerInventoryScreen : MonoBehaviour
 
     void UpdateInventoryDisplay()
     {
-        LevelText.text = PlayerInventory.PlayerLevel.ToString();
-        UserIdText.text = PlayerInventory.PlayerId;
+        UserIdText.text = PlayerPrefs.GetString(PlayerPrefsKeys.PlayFabId);
         DateJoinedText.text = PlayerInventory.DateJoined.ToString();
         HighestScoreText.text = PlayerInventory.BestScore.ToString();
         BestComboText.text = PlayerInventory.BestCombo.ToString();
-        SpicyCountText.text = PlayerInventory.SpicyMeatABallCount.ToString();
-        BombCountText.text = PlayerInventory.DaBombCount.ToString();
-        FeastCountText.text = PlayerInventory.ArachnoFeastCount.ToString();
     }
 
     private void OnDestroy()

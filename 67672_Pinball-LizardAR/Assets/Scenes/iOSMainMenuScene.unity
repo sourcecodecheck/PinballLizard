@@ -411,12 +411,21 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1477161930402944, guid: a171694a81741fe46952d082b8723ce2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a171694a81741fe46952d082b8723ce2, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1662318039 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1441403469301946, guid: a171694a81741fe46952d082b8723ce2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1662318038}
+--- !u!1 &1662318040 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1477161930402944, guid: a171694a81741fe46952d082b8723ce2,
     type: 2}
   m_PrefabInternal: {fileID: 1662318038}
 --- !u!1001 &1876302189
@@ -573,6 +582,17 @@ Prefab:
       propertyPath: HUD
       value: 
       objectReference: {fileID: 1662318039}
+    - target: {fileID: 114320896889645202, guid: 9b26112ab1577d24a8e0bda77d863bc1,
+        type: 2}
+      propertyPath: SpecatatorMenu
+      value: 
+      objectReference: {fileID: 1996079779270834, guid: 05df277a8d354eb4d87542130ccc2320,
+        type: 2}
+    - target: {fileID: 114320896889645202, guid: 9b26112ab1577d24a8e0bda77d863bc1,
+        type: 2}
+      propertyPath: HomeButton
+      value: 
+      objectReference: {fileID: 1662318040}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b26112ab1577d24a8e0bda77d863bc1, type: 2}
   m_IsPrefabAsset: 0
@@ -769,9 +789,9 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

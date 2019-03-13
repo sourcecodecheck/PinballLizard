@@ -17,6 +17,7 @@ public class ChangeScene : MonoBehaviour
 
     private void DoSceneChange()
     {
+        TrackingEvents.SendBuildPlayerEvent(new PlayerUIAction() { UIAction = "LoadSceneButton" });
         SceneManager.LoadScene(sceneToChangeTo);
     }
 }

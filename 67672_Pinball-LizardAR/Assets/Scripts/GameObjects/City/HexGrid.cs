@@ -60,6 +60,9 @@ public class HexGrid
                     gameObject = UnityEngine.Object.Instantiate(BuildingObjects[building],
                     parent.transform.position, Quaternion.identity)
                 };
+                Building gamePlayBuilding = Root.gameObject.GetComponent<Building>();
+                Root.GamePlayBuilding = gamePlayBuilding;
+                gamePlayBuilding.hexNode = Root;
                 Root.gameObject.transform.parent = parent.transform;
                 NodeCount = 1;
                 mostRecent = Root;

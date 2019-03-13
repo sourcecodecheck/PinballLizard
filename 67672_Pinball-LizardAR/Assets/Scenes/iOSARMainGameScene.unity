@@ -1816,32 +1816,12 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114802372943485480, guid: 3127743306a75674fb37abc55d7a1bf0,
+    - target: {fileID: 114745702020198932, guid: 3127743306a75674fb37abc55d7a1bf0,
         type: 2}
-      propertyPath: Item
-      value: 
-      objectReference: {fileID: 471157253}
-    - target: {fileID: 114908711675055472, guid: 3127743306a75674fb37abc55d7a1bf0,
-        type: 2}
-      propertyPath: Item
-      value: 
-      objectReference: {fileID: 471157254}
-    - target: {fileID: 114608380428434174, guid: 3127743306a75674fb37abc55d7a1bf0,
-        type: 2}
-      propertyPath: Item
-      value: 
-      objectReference: {fileID: 471157255}
-    - target: {fileID: 114065394676082514, guid: 3127743306a75674fb37abc55d7a1bf0,
-        type: 2}
-      propertyPath: PlayerInventory
+      propertyPath: Inventory
       value: 
       objectReference: {fileID: 1553412463}
-    - target: {fileID: 114287300305136802, guid: 3127743306a75674fb37abc55d7a1bf0,
-        type: 2}
-      propertyPath: PlayerInventory
-      value: 
-      objectReference: {fileID: 1553412463}
-    - target: {fileID: 114329179642261034, guid: 3127743306a75674fb37abc55d7a1bf0,
+    - target: {fileID: 114839951312772450, guid: 3127743306a75674fb37abc55d7a1bf0,
         type: 2}
       propertyPath: Inventory
       value: 
@@ -1851,20 +1831,36 @@ Prefab:
       propertyPath: PlayerInventory
       value: 
       objectReference: {fileID: 1553412463}
-    - target: {fileID: 114839951312772450, guid: 3127743306a75674fb37abc55d7a1bf0,
+    - target: {fileID: 114329179642261034, guid: 3127743306a75674fb37abc55d7a1bf0,
         type: 2}
       propertyPath: Inventory
       value: 
       objectReference: {fileID: 1553412463}
-    - target: {fileID: 114745702020198932, guid: 3127743306a75674fb37abc55d7a1bf0,
+    - target: {fileID: 114287300305136802, guid: 3127743306a75674fb37abc55d7a1bf0,
         type: 2}
-      propertyPath: Inventory
+      propertyPath: PlayerInventory
       value: 
       objectReference: {fileID: 1553412463}
-    - target: {fileID: 1189014516716870, guid: 3127743306a75674fb37abc55d7a1bf0, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 114065394676082514, guid: 3127743306a75674fb37abc55d7a1bf0,
+        type: 2}
+      propertyPath: PlayerInventory
+      value: 
+      objectReference: {fileID: 1553412463}
+    - target: {fileID: 114608380428434174, guid: 3127743306a75674fb37abc55d7a1bf0,
+        type: 2}
+      propertyPath: Item
+      value: 
+      objectReference: {fileID: 471157255}
+    - target: {fileID: 114908711675055472, guid: 3127743306a75674fb37abc55d7a1bf0,
+        type: 2}
+      propertyPath: Item
+      value: 
+      objectReference: {fileID: 471157254}
+    - target: {fileID: 114802372943485480, guid: 3127743306a75674fb37abc55d7a1bf0,
+        type: 2}
+      propertyPath: Item
+      value: 
+      objectReference: {fileID: 471157253}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3127743306a75674fb37abc55d7a1bf0, type: 2}
   m_IsPrefabAsset: 0
@@ -2023,6 +2019,23 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1283558990971852, guid: 166e68d7e54799a45b65e5c322bf3493,
     type: 2}
   m_PrefabInternal: {fileID: 345773074}
+--- !u!1 &345773077 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1871228931315828, guid: 166e68d7e54799a45b65e5c322bf3493,
+    type: 2}
+  m_PrefabInternal: {fileID: 345773074}
+--- !u!114 &345773078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 345773077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0552de13c0293924eb1ae5620677a991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectToEnable: {fileID: 1895303426}
 --- !u!1 &363739693
 GameObject:
   m_ObjectHideFlags: 0
@@ -2804,6 +2817,23 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1883532513797322, guid: 7711f891047a9f747b84b8d0e754f5a3,
     type: 2}
   m_PrefabInternal: {fileID: 432740926}
+--- !u!1 &432740929 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1502572432414670, guid: 7711f891047a9f747b84b8d0e754f5a3,
+    type: 2}
+  m_PrefabInternal: {fileID: 432740926}
+--- !u!114 &432740930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 432740929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0552de13c0293924eb1ae5620677a991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectToEnable: {fileID: 1895303426}
 --- !u!1 &446221258
 GameObject:
   m_ObjectHideFlags: 0
@@ -5921,7 +5951,6 @@ MonoBehaviour:
   MayhemPriceText: {fileID: 0}
   BugBucksPriceText: {fileID: 0}
   GluttonyPriceText: {fileID: 1272984644}
-  AmountOwnedText: {fileID: 0}
   Item: {fileID: 0}
   SendUnpause: 1
   IsContainer: 0
@@ -6363,7 +6392,6 @@ MonoBehaviour:
   MayhemPriceText: {fileID: 469898064}
   BugBucksPriceText: {fileID: 1307065241}
   GluttonyPriceText: {fileID: 0}
-  AmountOwnedText: {fileID: 0}
   Item: {fileID: 0}
   SendUnpause: 1
   IsContainer: 0
@@ -7940,7 +7968,6 @@ MonoBehaviour:
   MayhemPriceText: {fileID: 768995904}
   BugBucksPriceText: {fileID: 1455629215}
   GluttonyPriceText: {fileID: 0}
-  AmountOwnedText: {fileID: 0}
   Item: {fileID: 0}
   SendUnpause: 1
   IsContainer: 0
@@ -9287,6 +9314,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 2044860315}
+  Burst: {fileID: 0}
+  Animation: {fileID: 0}
 --- !u!114 &1737719187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9794,6 +9823,11 @@ Prefab:
       propertyPath: GameEndCanvas
       value: 
       objectReference: {fileID: 1895303424}
+    - target: {fileID: 114047230392665880, guid: acca2663ea3d4154498f50c404d0886c,
+        type: 2}
+      propertyPath: ContainerCanvas
+      value: 
+      objectReference: {fileID: 569244236}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acca2663ea3d4154498f50c404d0886c, type: 2}
   m_IsPrefabAsset: 0
@@ -10085,6 +10119,10 @@ Prefab:
       propertyPath: PlayerInventory
       value: 
       objectReference: {fileID: 1553412463}
+    - target: {fileID: 1231616640363112, guid: bc65628a20c658a4695822acc41982bf, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc65628a20c658a4695822acc41982bf, type: 2}
   m_IsPrefabAsset: 0
@@ -10096,6 +10134,11 @@ Canvas:
 --- !u!1 &1895303425 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1331901366705054, guid: bc65628a20c658a4695822acc41982bf,
+    type: 2}
+  m_PrefabInternal: {fileID: 1895303423}
+--- !u!1 &1895303426 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1231616640363112, guid: bc65628a20c658a4695822acc41982bf,
     type: 2}
   m_PrefabInternal: {fileID: 1895303423}
 --- !u!1 &1901412191
@@ -10363,6 +10406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2c6a1b5fdc155e43800b4aa4678674c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPaused: 0
   StoreId: marketplace
   CatalogVersion: 1.0.0
   keyTermSpicy: spicy

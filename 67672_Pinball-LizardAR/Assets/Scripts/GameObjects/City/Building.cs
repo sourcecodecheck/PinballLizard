@@ -62,7 +62,10 @@ public class Building : MonoBehaviour
             {
                 Instantiate(EmptySpace, gameObject.transform.parent);
                 Destroy(collision.gameObject);
-                hexNode.SpreadExplosion();
+                if (hexNode != null)
+                {
+                    hexNode.SpreadExplosion();
+                }
                 Explode();
             }
         }

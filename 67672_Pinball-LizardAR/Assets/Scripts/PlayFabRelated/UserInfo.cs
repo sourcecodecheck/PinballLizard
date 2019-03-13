@@ -42,6 +42,17 @@ public class UserInfo : MonoBehaviour
                    UpdateInventory((JsonObject)result.FunctionResult);
                    GetNextFiveLevels();
                    GetFirstLoginTime();
+                   if (result.Error != null)
+                   {
+                       try
+                       {
+                           throw new Exception(result.Error.Message);
+                       }
+                       catch (Exception exception)
+                       {
+                           Crashes.TrackError(exception);
+                       }
+                   }
                },
                (error) =>
                {
@@ -72,6 +83,18 @@ public class UserInfo : MonoBehaviour
                {
                    string creationTime = result.FunctionResult as string;
                    PlayerInventory.DateJoined = DateTime.Parse(creationTime);
+                   StoreEvents.SendUpdateInventoryDisplay();
+                   if (result.Error != null)
+                   {
+                       try
+                       {
+                           throw new Exception(result.Error.Message);
+                       }
+                       catch (Exception exception)
+                       {
+                           Crashes.TrackError(exception);
+                       }
+                   }
                },
                (error) =>
                {
@@ -99,10 +122,10 @@ public class UserInfo : MonoBehaviour
                     FunctionParameter = new
                     {
                         score = PlayerInventory.LastGameScore,
-                        bugsEaten = PlayerInventory.BugsEatenCount,
-                        bestCombo = PlayerInventory.BestCombo * 10f,
-                        isEvent = isChallenge,
-                        isVictoy = isWin
+                        bugsEaten = 2,
+                        bestCombo = Math.Round(PlayerInventory.BestCombo * 10f),
+                        isDailyChallenge = isChallenge,
+                        isVictory = isWin
                     }
                 },
                 (result) =>
@@ -110,6 +133,17 @@ public class UserInfo : MonoBehaviour
                     GetNextFiveLevels();
                     UpdateInventory((JsonObject)result.FunctionResult);
                     GetFirstLoginTime();
+                    if(result.Error!=null)
+                    {
+                        try
+                        {
+                            throw new Exception(result.Error.Message);
+                        }
+                        catch (Exception exception)
+                        {
+                            Crashes.TrackError(exception);
+                        }
+                    }
                 },
                 (error) =>
                 {
@@ -142,13 +176,28 @@ public class UserInfo : MonoBehaviour
                 },
                 (result) =>
                 {
-                    PlayerInventory.ExperienceToNextLevel.Clear();
-                    JsonObject response = result.FunctionResult as JsonObject;
-                    JsonObject requirements = response[0] as JsonObject;
-                    for (int i = 0; i < 5; ++i)
+                    if (result.FunctionResult != null)
                     {
-                        PlayerInventory.ExperienceToNextLevel.Add(
-                            PlayFabSimpleJson.DeserializeObject<int>(PlayFabSimpleJson.SerializeObject(requirements[i])));
+                        PlayerInventory.ExperienceToNextLevel.Clear();
+                        JsonObject response = result.FunctionResult as JsonObject;
+                        JsonObject requirements = response[0] as JsonObject;
+                        for (int i = 0; i < 5; ++i)
+                        {
+                            PlayerInventory.ExperienceToNextLevel.Add(
+                                PlayFabSimpleJson.DeserializeObject<int>(PlayFabSimpleJson.SerializeObject(requirements[i])));
+                        }
+                        StoreEvents.SendUpdateInventoryDisplay();
+                    }
+                    if (result.Error != null)
+                    {
+                        try
+                        {
+                            throw new Exception(result.Error.Message);
+                        }
+                        catch (Exception exception)
+                        {
+                            Crashes.TrackError(exception);
+                        }
                     }
                 },
                 (error) =>
@@ -171,7 +220,7 @@ public class UserInfo : MonoBehaviour
         PlayerInventory.LastGameScore = score;
         PlayerInventory.BugsEatenCount += bugsEaten;
         PlayerInventory.BestCombo = maxMultiplier;
-        bool isChallenge = PlayerPrefs.GetInt("ischallenge") == 1;
+        bool isChallenge = PlayerPrefs.GetInt(PlayerPrefsKeys.ChallengeModeSet) == 1;
         SubmitScoreToPlayFab(isChallenge, isWin);
 
     }
@@ -188,6 +237,17 @@ public class UserInfo : MonoBehaviour
                 },
                 (result) =>
                 {
+                    if (result.Error != null)
+                    {
+                        try
+                        {
+                            throw new Exception(result.Error.Message);
+                        }
+                        catch (Exception exception)
+                        {
+                            Crashes.TrackError(exception);
+                        }
+                    }
                     UpdateInventory((JsonObject)result.FunctionResult);
                     GetNextFiveLevels();
                     GetFirstLoginTime();
@@ -222,7 +282,7 @@ public class UserInfo : MonoBehaviour
                     case "Best Score":
                         PlayerInventory.BestScore = PlayFabSimpleJson.DeserializeObject<int>(PlayFabSimpleJson.SerializeObject(stat[1]));
                         break;
-                    case "Bugs Eaten":
+                    case "BugsEaten":
                         PlayerInventory.BugsEatenCount = PlayFabSimpleJson.DeserializeObject<int>(PlayFabSimpleJson.SerializeObject(stat[1]));
                         break;
                     case "Level":

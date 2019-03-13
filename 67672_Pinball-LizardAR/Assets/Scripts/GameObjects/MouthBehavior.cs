@@ -186,6 +186,10 @@ public class MouthBehavior : Pausable
     {
         if (state == MouthState.HANDS || state == MouthState.SHOOT)
         {
+            if(state == MouthState.SHOOT)
+            {
+                AnimationEvents.SendHandsExit();
+            }
             if (shotsExisting <= 0 )
             {
                 AnimationEvents.SendHandsExit();

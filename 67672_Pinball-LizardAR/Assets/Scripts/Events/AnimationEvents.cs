@@ -125,4 +125,18 @@
     {
         OnMissExited?.Invoke();
     }
+
+    public delegate void ChestOpened();
+    public static event ChestOpened OnChestOpened;
+    public static void SendChestOpened()
+    {
+        OnChestOpened?.Invoke();
+    }
+
+    public delegate void DoublePointsExit();
+    public static event DoublePointsExit OnDoublePointsExit;
+    public static void SendDoublePointsExit()
+    {
+        OnDoublePointsExit?.Invoke();
+    }
 }

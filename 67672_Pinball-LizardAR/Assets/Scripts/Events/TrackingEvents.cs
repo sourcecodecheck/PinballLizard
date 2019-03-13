@@ -63,4 +63,18 @@ public static class TrackingEvents
     {
         OnAddExperience?.Invoke(experienceToAdd);
     }
+
+    public delegate void BuildCityEvent(ICityEvent cityEvent);
+    public static event BuildCityEvent OnBuildCityEvent;
+    public static void SendBuildCityEvent(ICityEvent cityEvent)
+    {
+        OnBuildCityEvent?.Invoke(cityEvent);
+    }
+
+    public delegate void BuildPlayerEvent(IPlayerEvent playerEvent);
+    public static event BuildPlayerEvent OnBuildPlayerEvent;
+    public static void SendBuildPlayerEvent(IPlayerEvent playerEvent)
+    {
+        OnBuildPlayerEvent?.Invoke(playerEvent);
+    }
 }

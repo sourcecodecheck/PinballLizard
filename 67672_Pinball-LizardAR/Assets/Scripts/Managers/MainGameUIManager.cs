@@ -12,10 +12,10 @@ public class MainGameUIManager : MonoBehaviour
     public GameObject GeneralMessageWindow;
     //show/hide
     public GameObject BuyItemsScreen;
-    public GameObject Banner;
     public GameObject Miss;
     //canvas
     public Canvas MenuParent;
+    public Canvas ContainerCanvas;
 
     void Start()
     {
@@ -23,11 +23,8 @@ public class MainGameUIManager : MonoBehaviour
         MenuEvents.OnLoadPlayerInfoScreen += LoadPlayerInfoScreen;
         MenuEvents.OnShowGeneralMessage += ShowGeneralMessageWindow;
         MenuEvents.OnSwitchCanvas += SwitchCanvas;
-        AnimationEvents.OnBannerEnter += ShowBanner;
-        AnimationEvents.OnBannerExited += HideBanner;
         AnimationEvents.OnMissEnter += ShowMiss;
         AnimationEvents.OnMissExited += HideMiss;
-        StoreEvents.OnOpenContainerPopUp += LoadContainerPopUp;
         MenuEvents.OnShowContainerPopUp += ShowContainerPopup;
     }
 
@@ -51,28 +48,6 @@ public class MainGameUIManager : MonoBehaviour
     void LoadPlayerInfoScreen()
     {
         BuyItemsScreen.SetActive(true);
-    }
-    void LoadContainerPopUp()
-    {
-        try
-        {
-            Instantiate(ContainerPopUp, MenuParent.transform);
-        }
-        catch (Exception menuLoading)
-        {
-            Crashes.TrackError(menuLoading);
-
-        }
-    }
-
-    private void HideBanner()
-    {
-        Banner.SetActive(false);
-    }
-
-    private void ShowBanner()
-    {
-        Banner.SetActive(true);
     }
 
     private void HideMiss()
@@ -101,7 +76,7 @@ public class MainGameUIManager : MonoBehaviour
     {
         try
         {
-            Instantiate(ContainerPopUp, MenuParent.transform).GetComponent<ContainerPopUp>().ReceiveContainerItems(items, currencies);
+            Instantiate(ContainerPopUp, ContainerCanvas.transform).GetComponent<ContainerPopUp>().ReceiveContainerItems(items, currencies);
         }
         catch (Exception menuLoading)
         {
@@ -118,8 +93,6 @@ public class MainGameUIManager : MonoBehaviour
     {
         GamePlayEvents.OnLoadPauseMenu -= LoadPauseMenu;
         MenuEvents.OnLoadPlayerInfoScreen -= LoadPlayerInfoScreen;
-        AnimationEvents.OnBannerEnter -= ShowBanner;
-        AnimationEvents.OnBannerExited -= HideBanner;
         MenuEvents.OnShowGeneralMessage -= ShowGeneralMessageWindow;
         AnimationEvents.OnMissEnter -= ShowMiss;
         AnimationEvents.OnMissExited -= HideMiss;

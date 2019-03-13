@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Name: PlayFabEditorPrefsSO
   m_EditorClassIdentifier: 
   DevAccountEmail: 
-  DevAccountToken: 
-  SelectedStudio: 
+  DevAccountToken: pxj9zxcair8kor7cx6as1e48dxpt7ms85gynkop33j79xw4wssghku43b31i9uahdjdatiupw386dscha9wn13yuzrdqxq1hg1ft8zq5dia1newsgpysu9mahc4nd84gph75z6aaq8a9j6xhu4eadnsnrftc64p4t8juws64yfsbu5ibupa6c1xiuth5zznyce5er8me
+  SelectedStudio: Pinball Lizard V2
   SdkPath: 
   EdExPath: 
-  LocalCloudScriptPath: 
+  LocalCloudScriptPath: D:/67672_Pinball-Lizard-AR/67672_Pinball-LizardAR/67672_Pinball-LizardAR/Assets/PlayFabEditorExtensions/Editor/Resources/.CloudScript.js
   PanelIsShown: 0
-  curMainMenuIdx: 0
-  curSubMenuIdx: 0
+  curMainMenuIdx: 1
+  curSubMenuIdx: 1

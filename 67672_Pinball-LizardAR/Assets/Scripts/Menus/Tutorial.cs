@@ -22,6 +22,7 @@ public class Tutorial : MonoBehaviour
         OnTouch();
         if (isTransitioning)
         {
+            TrackingEvents.SendBuildPlayerEvent(new PlayerUIAction() { UIAction = "TapTutorial" });
             TutorialImage.transform.position = Vector2.MoveTowards(TutorialImage.transform.position,
                 new Vector2(StopPoints[currentStep], TutorialImage.transform.position.y), MoveSpeed);
             if (Mathf.Abs(TutorialImage.transform.position.x - StopPoints[currentStep]) <= 0.1f)

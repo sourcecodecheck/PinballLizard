@@ -31,13 +31,27 @@ public class ChallengeMode : MonoBehaviour
                    },
                    (result) =>
                    {
-                       //retrieve random seed and store it along with the time we retrieved it
-                       int randomResult =
-                       PlayFabSimpleJson.DeserializeObject<int>(
-                           PlayFabSimpleJson.SerializeObject(((JsonObject)result.FunctionResult)[0]));
-                       PlayerPrefs.SetInt(PlayerPrefsKeys.DailyChallengeSeed, randomResult);
-                       PlayerPrefs.SetString(PlayerPrefsKeys.DailyChallengeTimeStamp, DateTime.Today.ToShortDateString());
-                       PlayerPrefs.Save();
+                       if (result.FunctionResult != null)
+                       {
+                           //retrieve random seed and store it along with the time we retrieved it
+                           int randomResult =
+                           PlayFabSimpleJson.DeserializeObject<int>(
+                               PlayFabSimpleJson.SerializeObject(((JsonObject)result.FunctionResult)[0]));
+                           PlayerPrefs.SetInt(PlayerPrefsKeys.DailyChallengeSeed, randomResult);
+                           PlayerPrefs.SetString(PlayerPrefsKeys.DailyChallengeTimeStamp, DateTime.Today.ToShortDateString());
+                           PlayerPrefs.Save();
+                       }
+                       if (result.Error != null)
+                       {
+                           try
+                           {
+                               throw new Exception(result.Error.Message);
+                           }
+                           catch (Exception exception)
+                           {
+                               Crashes.TrackError(exception);
+                           }
+                       }
                    },
                    (error) =>
                    {

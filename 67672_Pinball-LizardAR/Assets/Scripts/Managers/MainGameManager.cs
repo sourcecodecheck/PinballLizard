@@ -24,6 +24,9 @@ public class MainGameManager : MonoBehaviour
     private bool gameEnded;
     private bool daBombDetonated;
 
+    private System.Guid cityID;
+    private System.DateTime startTime;
+
     void Awake()
     {
         gameStarted = false;
@@ -147,6 +150,8 @@ public class MainGameManager : MonoBehaviour
         buildingCount = numBuildings;
         GameEndCanvas.gameObject.SetActive(false);
         GameplayCanvas.gameObject.SetActive(true);
+        cityID = System.Guid.NewGuid();
+        startTime = System.DateTime.Now;
         StoreEvents.SendLoadCurrencies();
         TrackingEvents.SendLoadPlayerInfo();
     }

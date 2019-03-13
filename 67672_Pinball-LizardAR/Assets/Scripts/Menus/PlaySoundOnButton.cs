@@ -17,6 +17,7 @@ public class PlaySoundOnButton : MonoBehaviour
 
     void PlaySound()
     {
+        TrackingEvents.SendBuildPlayerEvent(new PlayerUIAction() { UIAction = "PlaySoundButton" });
         switch (Category)
         {
             case GlobalSoundPlayer.SoundCategory.BUILDING:
