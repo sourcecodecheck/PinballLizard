@@ -1,0 +1,889 @@
+fileFormatVersion: 2
+guid: b8a406b35558bc344b85336e47960773
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: TitleCard_Destroy_0
+    21300002: TitleCard_Destroy_1
+    21300004: TitleCard_Destroy_2
+    21300006: TitleCard_Destroy_3
+    21300008: TitleCard_Destroy_4
+    21300010: TitleCard_Destroy_5
+    21300012: TitleCard_Destroy_6
+    21300014: TitleCard_Destroy_7
+    21300016: TitleCard_Destroy_8
+    21300018: TitleCard_Destroy_9
+    21300020: TitleCard_Destroy_10
+    21300022: TitleCard_Destroy_11
+    21300024: TitleCard_Destroy_12
+    21300026: TitleCard_Destroy_13
+    21300028: TitleCard_Destroy_14
+    21300030: TitleCard_Destroy_15
+    21300032: TitleCard_Destroy_16
+    21300034: TitleCard_Destroy_17
+    21300036: TitleCard_Destroy_18
+    21300038: TitleCard_Destroy_19
+    21300040: TitleCard_Destroy_20
+    21300042: TitleCard_Destroy_21
+    21300044: TitleCard_Destroy_22
+    21300046: TitleCard_Destroy_23
+    21300048: TitleCard_Destroy_24
+    21300050: TitleCard_Destroy_25
+    21300052: TitleCard_Destroy_26
+    21300054: TitleCard_Destroy_27
+    21300056: TitleCard_Destroy_28
+    21300058: TitleCard_Destroy_29
+    21300060: TitleCard_Destroy_30
+    21300062: TitleCard_Destroy_31
+    21300064: TitleCard_Destroy_32
+    21300066: TitleCard_Destroy_33
+    21300068: TitleCard_Destroy_34
+  externalObjects: {}
+  serializedVersion: 7
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: iPhone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: tvOS
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Windows Store Apps
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TitleCard_Destroy_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2201.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c08156c2f4d8f34eb49552405001e16
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_1
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 2201.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43f444aac8d07614ea796d6a5d3ab8fc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_2
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 2201.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b62b565f17408045be085bda4137bc5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_3
+      rect:
+        serializedVersion: 2
+        x: 1755
+        y: 2201.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 713361adf4fb54d48842506743ea7a3a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_4
+      rect:
+        serializedVersion: 2
+        x: 2340
+        y: 2201.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e4b39fafc7d4674397a7efb9391db98
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_5
+      rect:
+        serializedVersion: 2
+        x: 2925
+        y: 2201.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d3e39707aaa4124aa132e4183dc2829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_6
+      rect:
+        serializedVersion: 2
+        x: 3510
+        y: 2201.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28f77968800b57d4e8edd4742fec1a5a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1651.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81b09fcf67b38e24b993fa346c74b500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_8
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 1651.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c35b7299d5e700f43a5f8c1cd58b4395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_9
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 1651.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4de7468b07ecaa47876fb5c8eec37b4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_10
+      rect:
+        serializedVersion: 2
+        x: 1755
+        y: 1651.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 116830285a91f5b43b78fdc87c13ecd2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_11
+      rect:
+        serializedVersion: 2
+        x: 2340
+        y: 1651.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a53a6b207ad8c434497c6db17b5c3b01
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_12
+      rect:
+        serializedVersion: 2
+        x: 2925
+        y: 1651.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09ccffb40d843514694f34d6baec0ff5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_13
+      rect:
+        serializedVersion: 2
+        x: 3510
+        y: 1651.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10a589ddc65bcce4e8aeb1b0a6c4af86
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1101.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06cbe3693739b08418b13e34bbbe9a53
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_15
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 1101.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d430093b57143144588804a6f266affa
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_16
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 1101.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 491a6e2d97485d145a465b794a755e4c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_17
+      rect:
+        serializedVersion: 2
+        x: 1755
+        y: 1101.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 138a7b19d58feec44aa50e49fd5342a3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_18
+      rect:
+        serializedVersion: 2
+        x: 2340
+        y: 1101.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec5d15afd6fac7546a2378bf843a68df
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_19
+      rect:
+        serializedVersion: 2
+        x: 2925
+        y: 1101.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a19a0578ec772a7439067b522e6f5665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_20
+      rect:
+        serializedVersion: 2
+        x: 3510
+        y: 1101.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52fe21457c2885542ac326c7c9bd1f7e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 551.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57d6ba9a6f4d70344b06dd39b78b85f0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_22
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 551.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8a00ee78d4313645a38515a3a18da21
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_23
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 551.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ce4ae05697fa9241aaee04d6272d22c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_24
+      rect:
+        serializedVersion: 2
+        x: 1755
+        y: 551.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 360249cc85a65e844892df49c24f4cfd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_25
+      rect:
+        serializedVersion: 2
+        x: 2340
+        y: 551.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 622a40d7ddd6c524080ac69e925d9fdf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_26
+      rect:
+        serializedVersion: 2
+        x: 2925
+        y: 551.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14fb5d2c2eb13554a8995eea6d22e5dd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_27
+      rect:
+        serializedVersion: 2
+        x: 3510
+        y: 551.6
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44060859d40cb8f4d87f8e4b1089abc6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1.5999756
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cd9fdb5cb52d62489463c5b8db93669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_29
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 1.5999756
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6b49bc4f4198ff488ff828785e07e0b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_30
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 1.5999756
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 558aec614664c214c87afb7f5d056ff7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_31
+      rect:
+        serializedVersion: 2
+        x: 1755
+        y: 1.5999756
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1874df936be0d58438bd25a75ad28df1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_32
+      rect:
+        serializedVersion: 2
+        x: 2340
+        y: 1.5999756
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb019744b290bfb4094fe65b79ac3135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_33
+      rect:
+        serializedVersion: 2
+        x: 2925
+        y: 1.5999756
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdaae6f75ed7b3c4ca11cf3892a521f2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleCard_Destroy_34
+      rect:
+        serializedVersion: 2
+        x: 3510
+        y: 1.5999756
+        width: 585.1429
+        height: 550.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1f8f9ea625217044900711403079afa
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: ccca1df69f6a8174486d63ddc98ddbaa
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

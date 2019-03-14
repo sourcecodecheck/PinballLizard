@@ -1,0 +1,195 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1422444826761412}
+  m_IsPrefabAsset: 1
+--- !u!1 &1422444826761412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4318731951739164}
+  - component: {fileID: 114723271685787582}
+  - component: {fileID: 114649245368489526}
+  - component: {fileID: 114320896889645202}
+  - component: {fileID: 114522198909860578}
+  - component: {fileID: 114920584836492134}
+  - component: {fileID: 114549065341086598}
+  - component: {fileID: 114413271506018970}
+  - component: {fileID: 114912234493377584}
+  m_Layer: 0
+  m_Name: MenuManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4318731951739164
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1422444826761412}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -437.75854, y: 110.79285, z: 578.14215}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114320896889645202
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1422444826761412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e1cd9ea134dc824b89b364bcd2062a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainMenuButtons: {fileID: 1834905990852122, guid: 4360988bc12ca344985ed17798ea535f,
+    type: 2}
+  SettingsButton: {fileID: 1431484817174718, guid: acd9fde9a4079d14080d08840dbd0c2f,
+    type: 2}
+  TitleScreen: {fileID: 1254218786140170, guid: 2fa4cf423951b8e428b615c626327994,
+    type: 2}
+  StoreFront: {fileID: 1433649431002404, guid: ff36ca7ab97005742b2d752a6be749dc, type: 2}
+  PlayerInventoryScreen: {fileID: 1594520360895178, guid: d2db27e2203306d42b626d58522ae5a9,
+    type: 2}
+  ARMenu: {fileID: 1685341366730504, guid: db005f3e920420549889935db50b55f4, type: 2}
+  EventBoard: {fileID: 1543924082210966, guid: 99535caf2dc50cb40876b6236acd5213, type: 2}
+  ContainerPopUp: {fileID: 1196062387415010, guid: 763fb52121bd92243bd31753e9839d99,
+    type: 2}
+  Tutorial: {fileID: 1254923355395940, guid: 2028cfd7bc8124f4d909c21263f6ecf7, type: 2}
+  MenuParent: {fileID: 0}
+  GeneralMessageWindow: {fileID: 1274791734511400, guid: f5a825dd45c2bbb47ac56b06697c671b,
+    type: 2}
+  PlayerInventory: {fileID: 114649245368489526}
+  ChallengeMode: {fileID: 114413271506018970}
+--- !u!114 &114413271506018970
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1422444826761412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45dea72e60556be4fafd6d09b9b73a99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114522198909860578
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1422444826761412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cef5d3a1081c3c47ab667c56a376ac9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerInventory: {fileID: 114649245368489526}
+  LevelKey: Level
+  ExperienceKey: Experience
+  BugsEatenKey: BugsEaten
+  BestScoreKey: BestScore
+--- !u!114 &114549065341086598
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1422444826761412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb2d5f1f2aa85844a82ebe0661fa6507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MayhemKey: MH
+  AnimosityKey: AN
+  BugBucksKey: BB
+  GluttonyKey: GL
+  PlayerInventory: {fileID: 114649245368489526}
+--- !u!114 &114649245368489526
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1422444826761412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 133c1849945e7d34599222d32c931b6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DaBombCount: 0
+  SpicyMeatABallCount: 0
+  ArachnoFeastCount: 0
+  MayhemCount: 0
+  BugBucksCount: 0
+  AnimosityCount: 0
+  GluttonyCount: 0
+  PlayerLevel: 1
+  ExperienceCount: 0
+  PreviousExperienceCount: 0
+  BugsEatenCount: 0
+  LastGameScore: 0
+  BestScore: 0
+  BestCombo: 0
+  CatalogVersion: 1.0.0
+  SpicyKeyTerm: spicy
+  BombKeyTerm: bomb
+  FeastKeyTerm: feast
+  PlayerId: 
+  ExperienceToNextLevel: 
+--- !u!114 &114723271685787582
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1422444826761412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ab78fcd816d354a93737858bb5038b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayFabSettings: {fileID: 11400000, guid: 698b2db098268c640929a7b8090a31eb, type: 2}
+  TitleId: 
+  ProductionEnvironmentUrl: .playfabapi.com
+  LoginTimeout: 0
+  TitleIdPopUp: {fileID: 0}
+  TimeoutMessage: {fileID: 0}
+--- !u!114 &114912234493377584
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1422444826761412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e332e5ecdd45a44b97b7551bda8e96f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114920584836492134
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1422444826761412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02f5bb22ae1b75e4b9cdb5f9d620b53a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MayhemKey: MH
+  BugBucksKey: BB
+  GluttonyKey: GL
