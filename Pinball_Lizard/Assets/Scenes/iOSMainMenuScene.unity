@@ -377,7 +377,17 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114990932410343728, guid: a171694a81741fe46952d082b8723ce2,
+        type: 2}
+      propertyPath: PlayerInventory
+      value: 
+      objectReference: {fileID: 1937722845}
     - target: {fileID: 114956933118894588, guid: a171694a81741fe46952d082b8723ce2,
+        type: 2}
+      propertyPath: Inventory
+      value: 
+      objectReference: {fileID: 1937722845}
+    - target: {fileID: 114805077194485568, guid: a171694a81741fe46952d082b8723ce2,
         type: 2}
       propertyPath: Inventory
       value: 
@@ -387,14 +397,9 @@ Prefab:
       propertyPath: Inventory
       value: 
       objectReference: {fileID: 1937722845}
-    - target: {fileID: 114990932410343728, guid: a171694a81741fe46952d082b8723ce2,
+    - target: {fileID: 114432393886025794, guid: a171694a81741fe46952d082b8723ce2,
         type: 2}
       propertyPath: PlayerInventory
-      value: 
-      objectReference: {fileID: 1937722845}
-    - target: {fileID: 114805077194485568, guid: a171694a81741fe46952d082b8723ce2,
-        type: 2}
-      propertyPath: Inventory
       value: 
       objectReference: {fileID: 1937722845}
     - target: {fileID: 114105990078083472, guid: a171694a81741fe46952d082b8723ce2,
@@ -402,19 +407,6 @@ Prefab:
       propertyPath: PlayerInventory
       value: 
       objectReference: {fileID: 1937722845}
-    - target: {fileID: 114432393886025794, guid: a171694a81741fe46952d082b8723ce2,
-        type: 2}
-      propertyPath: PlayerInventory
-      value: 
-      objectReference: {fileID: 1937722845}
-    - target: {fileID: 1441403469301946, guid: a171694a81741fe46952d082b8723ce2, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1477161930402944, guid: a171694a81741fe46952d082b8723ce2, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a171694a81741fe46952d082b8723ce2, type: 2}
   m_IsPrefabAsset: 0
@@ -582,12 +574,6 @@ Prefab:
       propertyPath: HUD
       value: 
       objectReference: {fileID: 1662318039}
-    - target: {fileID: 114320896889645202, guid: 9b26112ab1577d24a8e0bda77d863bc1,
-        type: 2}
-      propertyPath: SpecatatorMenu
-      value: 
-      objectReference: {fileID: 1996079779270834, guid: 05df277a8d354eb4d87542130ccc2320,
-        type: 2}
     - target: {fileID: 114320896889645202, guid: 9b26112ab1577d24a8e0bda77d863bc1,
         type: 2}
       propertyPath: HomeButton

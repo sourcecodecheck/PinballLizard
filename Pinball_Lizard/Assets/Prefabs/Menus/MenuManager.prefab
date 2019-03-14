@@ -72,10 +72,13 @@ MonoBehaviour:
   ContainerPopUp: {fileID: 1196062387415010, guid: 763fb52121bd92243bd31753e9839d99,
     type: 2}
   Tutorial: {fileID: 1254923355395940, guid: 2028cfd7bc8124f4d909c21263f6ecf7, type: 2}
+  SpecatatorMenu: {fileID: 1996079779270834, guid: 05df277a8d354eb4d87542130ccc2320,
+    type: 2}
   MenuParent: {fileID: 0}
   GeneralMessageWindow: {fileID: 1274791734511400, guid: f5a825dd45c2bbb47ac56b06697c671b,
     type: 2}
   HUD: {fileID: 0}
+  HomeButton: {fileID: 0}
   PlayerInventory: {fileID: 114649245368489526}
   ChallengeMode: {fileID: 114413271506018970}
 --- !u!114 &114413271506018970
@@ -180,6 +183,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e332e5ecdd45a44b97b7551bda8e96f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EventsSentAtOnce: 5
+  EventSendRate: 60
+  ClearQueueOnSend: 1
 --- !u!114 &114920584836492134
 MonoBehaviour:
   m_ObjectHideFlags: 1

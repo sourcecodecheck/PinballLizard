@@ -41,6 +41,11 @@ public class AndroidDeviceIdLogin
             PlayerPrefs.SetString(PlayerPrefsKeys.PlayerEntityId, response.EntityToken.Entity.Id);
             PlayerPrefs.Save();
             LogOnEvents.SendLoginSuccess();
+            if (response.NewlyCreated == true)
+            {
+                LoginHelper.SetUpNewPlayer();
+            }
+            
         },
         (error) =>
         {

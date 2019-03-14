@@ -310,5 +310,5 @@ MonoBehaviour:
   NonARCollider: {fileID: 1459575706258222, guid: bc9ccad04f351cf4fb503faa7bf308a7,
     type: 2}
   EmptySpace: {fileID: 1486261941468126, guid: 8ad4358e9e5adc341bdb3727f7316cca, type: 2}
-  SoundPlayer: {fileID: 114226135875005028}
   StackCount: 8
+  ExplosionScale: 70
