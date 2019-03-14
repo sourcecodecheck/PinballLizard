@@ -9,7 +9,7 @@ public class PlayerLevelBar : MonoBehaviour
 
     private float percentage;
     private int nextLevel;
-    
+
     void Start()
     {
         percentage = 0f;
@@ -18,7 +18,7 @@ public class PlayerLevelBar : MonoBehaviour
 
     void Update()
     {
-        if (PlayerInventory != null && PlayerInventory.PlayerLevel != 0)
+        if (PlayerInventory != null && PlayerInventory.PlayerLevel != 0 && PlayerInventory.ExperienceToNextLevel.Count > 0)
         {
             if (PlayerInventory.PlayerLevel > 1)
             {
@@ -30,10 +30,17 @@ public class PlayerLevelBar : MonoBehaviour
             }
             if (IsStatic == false)
             {
+
+                float levelDiff = PlayerInventory.ExperienceToNextLevel[nextLevel] - PlayerInventory.ExperienceToNextLevel[nextLevel - 1];
+                float expAsDiff = PlayerInventory.ExperienceCount - PlayerInventory.ExperienceToNextLevel[nextLevel - 1];
+                if (percentage == 0)
+                {
+                    float previousExpDiff = PlayerInventory.PreviousExperienceCount - PlayerInventory.ExperienceToNextLevel[nextLevel - 1];
+                    percentage = previousExpDiff / levelDiff;
+                }
                 if (nextLevel > 0)
                 {
-                    float levelDiff = PlayerInventory.ExperienceToNextLevel[nextLevel] - PlayerInventory.ExperienceToNextLevel[nextLevel - 1];
-                    float expAsDiff = PlayerInventory.ExperienceToNextLevel[nextLevel] - PlayerInventory.ExperienceCount;
+
                     percentage +=
                        expAsDiff / levelDiff * Time.deltaTime;
                     float truePercentage = expAsDiff / levelDiff;
@@ -62,7 +69,7 @@ public class PlayerLevelBar : MonoBehaviour
                     if (PlayerInventory.PlayerLevel > 1 && nextLevel > 0)
                     {
                         float levelDiff = PlayerInventory.ExperienceToNextLevel[nextLevel] - PlayerInventory.ExperienceToNextLevel[nextLevel - 1];
-                        float expAsDiff = PlayerInventory.ExperienceToNextLevel[nextLevel] - PlayerInventory.ExperienceCount;
+                        float expAsDiff = PlayerInventory.ExperienceCount - PlayerInventory.ExperienceToNextLevel[nextLevel - 1];
                         percentage = expAsDiff / levelDiff;
                     }
                     else

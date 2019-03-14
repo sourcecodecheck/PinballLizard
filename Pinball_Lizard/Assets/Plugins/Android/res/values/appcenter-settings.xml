@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="appcenter_app_secret" translatable="false">82c1c5a3-256d-4abb-98b2-c4e5d6326449</string>
-  <string name="appcenter_initial_log_level" translatable="false">4</string>
+  <string name="appcenter_initial_log_level" translatable="false">2</string>
   <string name="appcenter_use_crashes" translatable="false">True</string>
   <string name="appcenter_startup_type" translatable="false">0</string>
 </resources>

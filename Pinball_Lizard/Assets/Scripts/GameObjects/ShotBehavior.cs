@@ -10,6 +10,7 @@ public class ShotBehavior : Pausable
     public float RotationMin;
     public float RotationMax;
     public Vector3 NonReboundDirection;
+    public LocalSoundPlayer SoundPlayer;
 
     private float deathDistance;
     private float deathDistanceDerivedSpeed;
@@ -25,7 +26,7 @@ public class ShotBehavior : Pausable
         GamePlayEvents.OnTryVolley += Volley;
         HasHitBuilding = false;
         base.Start();
-        GameObject city = GameObject.Find("City");
+        GameObject city = GameObject.Find("City") ?? GameObject.Find("City(Clone)");
         if(city != null)
         {
             deathDistance = Vector3.Distance(city.transform.position, Camera.main.transform.position);
@@ -39,10 +40,7 @@ public class ShotBehavior : Pausable
         shotRenderer = GetComponentInChildren<Renderer>();
         NonReboundDirection = Camera.main.transform.forward;
         RegenerateRotation();
-        if(IsNonAR)
-        {
-            deathDistance *= 1.5f;
-        }
+        deathDistance *= 1.5f;
     }
     public void HitBuilding()
     {
@@ -105,11 +103,17 @@ public class ShotBehavior : Pausable
             NonReboundDirection = Camera.main.transform.forward;
             RegenerateRotation();
             HasHitBuilding = false;
+            SoundPlayer.PlaySound();
             GamePlayEvents.SendConfirmVolley();
         }
         else
         {
             AnimationEvents.SendMissEnter();
+            TrackingEvents.SendBuildVolleyActionStep2(new CityVolleyAction()
+            {
+                VolleyAction = "miss",
+                VolleySource = "player",
+            }, EventNames.VolleyAction);
         }
     }
     private void SelfDestruct()

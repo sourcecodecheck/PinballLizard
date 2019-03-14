@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainGameManager : MonoBehaviour
@@ -8,7 +9,9 @@ public class MainGameManager : MonoBehaviour
     public float DefaultMultiplier;
     public GameObject VictoryScreen;
     public GameObject DefeatScreen;
-    public Canvas UIParent;
+    public Canvas GameplayCanvas;
+    public Canvas GameEndCanvas;
+    public bool IsAR;
 
     private int gameScore;
     private float gameMultiplier;
@@ -17,11 +20,15 @@ public class MainGameManager : MonoBehaviour
     private bool isFeastActive;
     private int bugsEatenThisGame;
     private int buildingCount;
-    
+    private int totalBuildingCount;
     private int appetiteCurrent;
+    private int powerUpCount;
     private bool gameStarted;
     private bool gameEnded;
     private bool daBombDetonated;
+
+    private System.Guid cityID;
+    private System.DateTime startTime;
 
     void Awake()
     {
@@ -33,6 +40,7 @@ public class MainGameManager : MonoBehaviour
         gameMultiplier = 1.0f;
         bugsEatenThisGame = 0;
         highestMultiplier = 1.0f;
+        powerUpCount = 0;
         ScoreEvents.OnAddScore += AddScore;
         ScoreEvents.OnSetMultiplier += ChangeMultiplier;
         ScoreEvents.OnAddMultiplier += AddMultiplier;
@@ -42,7 +50,18 @@ public class MainGameManager : MonoBehaviour
         GamePlayEvents.OnFeastStart += FeastStart;
         GamePlayEvents.OnFeastEnd += FeastEnd;
         GamePlayEvents.OnBombDetonated += BombBonus;
+        GamePlayEvents.OnUsePowerUp += IncrementPowerup;
         AnimationEvents.OnHandsExited += DefeatCheck;
+        TrackingEvents.OnBuildCityEvent += BuildCityEvent;
+        TrackingEvents.OnBuildBuildingDestroyedStep2 += BuildBuildingDestroyedStep2;
+        TrackingEvents.OnBuildBugEatenStep2 += BuildBugEatenStep2;
+        TrackingEvents.OnBuildVolleyActionStep2 += BuildVolleyActionStep2;
+        TrackingEvents.OnBuildSessionEndStep2 += BuildSessionEndStep2;
+    }
+
+    private void IncrementPowerup(string keyTerm)
+    {
+        ++powerUpCount;
     }
 
     private void Start()
@@ -143,11 +162,20 @@ public class MainGameManager : MonoBehaviour
     public void CityGenerated(int numBuildings)
     {
         gameStarted = true;
-        buildingCount = numBuildings;
         StoreEvents.SendLoadCurrencies();
         TrackingEvents.SendLoadPlayerInfo();
+        totalBuildingCount = numBuildings;
+        buildingCount = numBuildings;
+        GameEndCanvas.gameObject.SetActive(false);
+        GameplayCanvas.gameObject.SetActive(true);
+        cityID = System.Guid.NewGuid();
+        startTime = System.DateTime.Now;
+        BuildCityEvent(new CitySessionStart() { }, EventNames.SessionStart);
+        VolleyCounter.ResetVolleyCount();
+        MenuEvents.SendSwitchCanvas(GameplayCanvas);
+        ScoreEvents.SendGetMayhemMultiplier();
     }
-    private void BombBonus()
+    private void BombBonus(string damageType)
     {
         if (daBombDetonated == false)
         {
@@ -166,26 +194,83 @@ public class MainGameManager : MonoBehaviour
 
     private void Victory()
     {
-        gameScore += 1000 * appetiteCurrent;
+        gameScore += 4000 * appetiteCurrent;
         PlayerPrefs.SetInt(PlayerPrefsKeys.ConsecutiveLosses, 0);
-        TrackingEvents.SendGameVictory(gameScore, bugsEatenThisGame, highestMultiplier);
+        TrackingEvents.SendGameVictory(gameScore, appetiteCurrent, highestMultiplier);
+        BuildCityEvent(new CitySessionEnd()
+        {
+            ExitType = "victory",
+            FinalScore = gameScore,
+            HighestCombo = highestMultiplier,
+            PowerUpsUsed = powerUpCount,
+            CitySessionDuration = (int)(DateTime.Now - startTime).TotalSeconds
+        }, EventNames.SessionEnd);
+        GameplayCanvas.gameObject.SetActive(false);
+        MenuEvents.SendSwitchCanvas(GameEndCanvas);
     }
 
     private void Defeat()
     {
-        int losses = 1;
-        if (PlayerPrefs.HasKey(PlayerPrefsKeys.ConsecutiveLosses))
+       
+        TrackingEvents.SendGameDefeat(gameScore, appetiteCurrent, highestMultiplier);
+        BuildCityEvent(new CitySessionEnd()
         {
-            losses = PlayerPrefs.GetInt(PlayerPrefsKeys.ConsecutiveLosses) + 1;
-        }
-        if (losses >= 3)
+            ExitType = "defeat",
+            FinalScore = gameScore,
+            HighestCombo = highestMultiplier,
+            PowerUpsUsed = powerUpCount,
+            CitySessionDuration = (int)(DateTime.Now - startTime).TotalSeconds
+        }, EventNames.SessionEnd);
+        GameplayCanvas.gameObject.SetActive(false);
+        MenuEvents.SendSwitchCanvas(GameEndCanvas);
+    }
+    private void BuildCityEvent(ICityEvent cityEvent, string name)
+    {
+        cityEvent.CityInfo = new CityBase()
         {
-            //StoreEvents.SendAwardItemOnLoss();
-            losses = 0;
-        }
-        PlayerPrefs.SetInt(PlayerPrefsKeys.ConsecutiveLosses, losses);
+            ARMode = IsAR,
+            CitySessionID = cityID.ToString(),
+            ClientSessionID = cityID.ToString(),
+            IsChallengeMode = PlayerPrefs.GetInt(PlayerPrefsKeys.ChallengeModeSet) == 1,
+            CurrentBuildingCount = buildingCount,
+            PlayerLocationX = Camera.main.transform.position.x,
+            PlayerLoactionY = Camera.main.transform.position.y,
+            PlayerLoactionZ = Camera.main.transform.position.z,
+            RemainingBugs = appetiteCurrent,
+            TotalBuildingCount = totalBuildingCount
+        };
+        TrackingEvents.SendBuildPlayerEvent(cityEvent, name);
+    }
+    private void BuildBuildingDestroyedStep2(CityBuildingDestroyed buildingDestroyed, string name)
+    {
+        buildingDestroyed.ScoreBaseValue *= ScoreUnit;
+        buildingDestroyed.ScoreModifier = gameMultiplier;
+        buildingDestroyed.ScoreActiveBug = appetiteCurrent;
+        BuildCityEvent(buildingDestroyed, name);
+    }
 
-        TrackingEvents.SendGameDefeat(gameScore, bugsEatenThisGame, highestMultiplier);
+    private void BuildBugEatenStep2(CityBugEaten bugEaten, string name)
+    {
+        bugEaten.ActiveBug = appetiteCurrent;
+        BuildCityEvent(bugEaten, name);
+    }
+
+    private void BuildVolleyActionStep2(CityVolleyAction volleyAction, string name)
+    {
+        volleyAction.ActiveBug = appetiteCurrent;
+        BuildCityEvent(volleyAction, name);
+    }
+
+    private void BuildSessionEndStep2(CitySessionEnd sessionEnd, string name)
+    {
+        if (startTime != default(DateTime))
+        {
+            sessionEnd.FinalScore = gameScore;
+            sessionEnd.HighestCombo = highestMultiplier;
+            sessionEnd.PowerUpsUsed = powerUpCount;
+            sessionEnd.CitySessionDuration = (int)(DateTime.Now - startTime).TotalSeconds;
+            BuildCityEvent(sessionEnd, name);
+        }
     }
 
     private void OnDestroy()
@@ -200,5 +285,11 @@ public class MainGameManager : MonoBehaviour
         GamePlayEvents.OnFeastEnd -= FeastEnd;
         AnimationEvents.OnHandsExited -= DefeatCheck;
         GamePlayEvents.OnBombDetonated -= BombBonus;
+        GamePlayEvents.OnUsePowerUp -= IncrementPowerup;
+        TrackingEvents.OnBuildCityEvent -= BuildCityEvent;
+        TrackingEvents.OnBuildBuildingDestroyedStep2 -= BuildBuildingDestroyedStep2;
+        TrackingEvents.OnBuildBugEatenStep2 -= BuildBugEatenStep2;
+        TrackingEvents.OnBuildVolleyActionStep2 -= BuildVolleyActionStep2;
+        TrackingEvents.OnBuildSessionEndStep2 -= BuildSessionEndStep2;
     }
 }

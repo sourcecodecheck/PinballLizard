@@ -16,6 +16,7 @@ public class EnableObject : MonoBehaviour
 
     private void DoEnable()
     {
+        TrackingEvents.SendBuildPlayerEvent(new PlayerUIAction() { UIAction = "RevealButton" }, EventNames.UiAction);
         ObjectToEnable.SetActive(true);
     }
 }

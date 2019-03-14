@@ -38,6 +38,7 @@ public class AndroidDeviceIdLogin
         {
             PlayerPrefs.SetString(PlayerPrefsKeys.SessionTicket, response.SessionTicket);
             PlayerPrefs.SetString(PlayerPrefsKeys.PlayFabId, response.PlayFabId);
+            PlayerPrefs.SetString(PlayerPrefsKeys.PlayerEntityId, response.EntityToken.Entity.Id);
             PlayerPrefs.Save();
             LogOnEvents.SendLoginSuccess();
         },

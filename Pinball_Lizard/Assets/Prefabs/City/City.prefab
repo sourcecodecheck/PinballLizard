@@ -124,7 +124,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 921c234efc40fb74586213bb67382f29, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d5b60dc452e32594bb75865b36706dba, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -228,7 +228,7 @@ MonoBehaviour:
   ConcurrentEnemyCap: 3
   TotalSpawnCap: 3
   Scale: 3
-  CameraOffset: 0.48
+  CameraOffset: 0.67
   HeightOffsets:
   - 0
   - 0.3
@@ -238,8 +238,8 @@ MonoBehaviour:
   - 1.5
   - -2
   - -1.5
-  - -0.5
-  - 0.5
+  - -1
+  - 1
 --- !u!114 &114519317890729990
 MonoBehaviour:
   m_ObjectHideFlags: 1

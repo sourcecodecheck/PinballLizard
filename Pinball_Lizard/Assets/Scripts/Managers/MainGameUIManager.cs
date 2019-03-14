@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System;
 using Microsoft.AppCenter.Unity.Crashes;
+using System.Collections.Generic;
+using PlayFab.ClientModels;
 
 public class MainGameUIManager : MonoBehaviour
 {
@@ -10,21 +12,20 @@ public class MainGameUIManager : MonoBehaviour
     public GameObject GeneralMessageWindow;
     //show/hide
     public GameObject BuyItemsScreen;
-    public GameObject Banner;
     public GameObject Miss;
     //canvas
     public Canvas MenuParent;
+    public Canvas ContainerCanvas;
 
     void Start()
     {
         GamePlayEvents.OnLoadPauseMenu += LoadPauseMenu;
         MenuEvents.OnLoadPlayerInfoScreen += LoadPlayerInfoScreen;
         MenuEvents.OnShowGeneralMessage += ShowGeneralMessageWindow;
-        AnimationEvents.OnBannerEnter += ShowBanner;
-        AnimationEvents.OnBannerExited += HideBanner;
-        StoreEvents.OnOpenContainerPopUp += LoadContainerPopUp;
+        MenuEvents.OnSwitchCanvas += SwitchCanvas;
         AnimationEvents.OnMissEnter += ShowMiss;
         AnimationEvents.OnMissExited += HideMiss;
+        MenuEvents.OnShowContainerPopUp += ShowContainerPopup;
     }
 
     void Update()
@@ -40,40 +41,13 @@ public class MainGameUIManager : MonoBehaviour
         }
         catch (Exception menuLoading)
         {
-#if UNITY_ANDROID
-            //Crashes on iOS every single time without fail
             Crashes.TrackError(menuLoading);
-#endif
         }
     }
 
     void LoadPlayerInfoScreen()
     {
         BuyItemsScreen.SetActive(true);
-    }
-    void LoadContainerPopUp()
-    {
-        try
-        {
-            Instantiate(ContainerPopUp, MenuParent.transform);
-        }
-        catch (Exception menuLoading)
-        {
-#if UNITY_ANDROID
-            //Crashes on iOS every single time without fail
-            Crashes.TrackError(menuLoading);
-#endif
-        }
-    }
-
-    private void HideBanner()
-    {
-        Banner.SetActive(false);
-    }
-
-    private void ShowBanner()
-    {
-        Banner.SetActive(true);
     }
 
     private void HideMiss()
@@ -98,15 +72,31 @@ public class MainGameUIManager : MonoBehaviour
             Crashes.TrackError(menuLoading);
         }
     }
+    private void ShowContainerPopup(List<ItemInstance> items, Dictionary<string, uint> currencies)
+    {
+        try
+        {
+            Instantiate(ContainerPopUp, ContainerCanvas.transform).GetComponent<ContainerPopUp>().ReceiveContainerItems(items, currencies);
+        }
+        catch (Exception menuLoading)
+        {
+            Crashes.TrackError(menuLoading);
+        }
+    }
+
+    private void SwitchCanvas(Canvas toSwitchTo)
+    {
+        MenuParent = toSwitchTo;
+    }
 
     private void OnDestroy()
     {
         GamePlayEvents.OnLoadPauseMenu -= LoadPauseMenu;
         MenuEvents.OnLoadPlayerInfoScreen -= LoadPlayerInfoScreen;
-        AnimationEvents.OnBannerEnter -= ShowBanner;
-        AnimationEvents.OnBannerExited -= HideBanner;
         MenuEvents.OnShowGeneralMessage -= ShowGeneralMessageWindow;
         AnimationEvents.OnMissEnter -= ShowMiss;
         AnimationEvents.OnMissExited -= HideMiss;
+        MenuEvents.OnSwitchCanvas -= SwitchCanvas;
+        MenuEvents.OnShowContainerPopUp -= ShowContainerPopup;
     }
 }

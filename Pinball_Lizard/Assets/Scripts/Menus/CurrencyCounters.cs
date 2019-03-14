@@ -22,10 +22,10 @@ public class CurrencyCounters : MonoBehaviour
 
     private void UpdateDisplay()
     {
-        MayhemCount.text = PlayerInventory.MayhemCount.ToString();
-        BugBucksCount.text = PlayerInventory.BugBucksCount.ToString();
-        AnimosityCount.text = PlayerInventory.AnimosityCount.ToString();
-        GluttonyCount.text = PlayerInventory.GluttonyCount.ToString();
+        MayhemCount.text = Mathf.Min(PlayerInventory.MayhemCount, 9999).ToString();
+        BugBucksCount.text = Mathf.Min(PlayerInventory.BugBucksCount, 9999).ToString();
+        AnimosityCount.text = Mathf.Min(PlayerInventory.AnimosityCount, 9999).ToString();
+        GluttonyCount.text = Mathf.Min(PlayerInventory.GluttonyCount, 9999).ToString();
     }
     private void OnDestroy()
     {

@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class PowerUpButton : Pausable
 {
     public enum PowerUp { SPICY, NUKE, FEAST }
+    public enum PowerUpState { EMPTY, ACTIVE, INUSE}
     public PowerUp PowerUpType;
     public string keyTerm;
     public Inventory Inventory;
@@ -12,15 +13,19 @@ public class PowerUpButton : Pausable
     public Button UsePowerUp;
     public float FeastLength;
 
-    private bool isDisabled;
+    private PowerUpState state;
     new void Start()
     {
         UsePowerUp.onClick.AddListener(OnClick);
-        isDisabled = true;
+        state = PowerUpState.EMPTY;
         base.Start();
         if (PowerUpType == PowerUp.SPICY)
         {
             GamePlayEvents.OnSpicyEnd += EndSpicy;
+        }
+        if (PowerUpType == PowerUp.FEAST)
+        {
+            GamePlayEvents.OnFeastEnd -= EndFeast;
         }
         StoreEvents.OnUpdateInventoryDisplay += UpdateAmounts;
         UpdateAmounts();
@@ -39,7 +44,7 @@ public class PowerUpButton : Pausable
     {
         if (!isPaused)
         {
-            if (isDisabled == false)
+            if (state == PowerUpState.ACTIVE)
             {
                 switch (PowerUpType)
                 {
@@ -68,76 +73,114 @@ public class PowerUpButton : Pausable
                 if (Inventory.SpicyMeatABallCount <= 0)
                 {
                     PowerUpCountDisplay.text = "0";
-                    BuyButton.SetActive(true);
-                    isDisabled = true;
+                    if (BuyButton != null)
+                    {
+                        BuyButton.SetActive(true);
+                    }
+                    state = PowerUpState.EMPTY;
                 }
                 else
                 {
-                    isDisabled = false;
-                    PowerUpCountDisplay.text = Inventory.SpicyMeatABallCount.ToString();
-                    BuyButton.SetActive(false);
+                    if (state == PowerUpState.EMPTY)
+                    {
+                        state = PowerUpState.ACTIVE;
+                    }
+                    PowerUpCountDisplay.text = Mathf.Min(Inventory.SpicyMeatABallCount, 99).ToString();
+                    if (BuyButton != null)
+                    {
+                        BuyButton.SetActive(false);
+                    }
                 }
                 break;
             case PowerUp.NUKE:
                 if (Inventory.DaBombCount <= 0)
                 {
                     PowerUpCountDisplay.text = "0";
-                    BuyButton.SetActive(true);
-                    isDisabled = true;
+                    if (BuyButton != null)
+                    {
+                        BuyButton.SetActive(true);
+                    }
+                    state = PowerUpState.EMPTY;
                 }
                 else
                 {
-                    isDisabled = false;
-                    PowerUpCountDisplay.text = Inventory.DaBombCount.ToString();
-                    BuyButton.SetActive(false);
+                    if (state == PowerUpState.EMPTY)
+                    {
+                        state = PowerUpState.ACTIVE;
+                    }
+                    PowerUpCountDisplay.text = Mathf.Min(Inventory.DaBombCount, 99).ToString();
+                    if (BuyButton != null)
+                    {
+                        BuyButton.SetActive(false);
+                    }
                 }
                 break;
             case PowerUp.FEAST:
                 if (Inventory.ArachnoFeastCount <= 0)
                 {
                     PowerUpCountDisplay.text = "0";
-                    BuyButton.SetActive(true);
-                    isDisabled = true;
+                    if (BuyButton != null)
+                    {
+                        BuyButton.SetActive(true);
+                    }
+                    state = PowerUpState.EMPTY;
                 }
                 else
                 {
-                    isDisabled = false;
-                    PowerUpCountDisplay.text = Inventory.ArachnoFeastCount.ToString();
-                    BuyButton.SetActive(false);
+                    if (state == PowerUpState.EMPTY)
+                    {
+                        state = PowerUpState.ACTIVE;
+                    }
+                    PowerUpCountDisplay.text = Mathf.Min(Inventory.ArachnoFeastCount, 99).ToString();
+                    if (BuyButton != null)
+                    {
+                        BuyButton.SetActive(false);
+                    }
                 }
                 break;
         }
     }
 
+
     private void ActivateSpicy()
     {
+        TrackingEvents.SendBuildPlayerEvent(new PlayerUIAction() { UIAction = "SpicyButton" }, EventNames.UiAction);
+        AudioEvents.SendPlayPowerUp();
         GamePlayEvents.SendSpicyReady();
         GamePlayEvents.SendUsePowerUp(keyTerm);
-        isDisabled = true;
+        state = PowerUpState.INUSE;
     }
 
     private void EndSpicy()
     {
-        isDisabled = false;
+        state = PowerUpState.ACTIVE;
+        UpdateAmounts();
     }
 
     private void ActivateBomb()
     {
+        TrackingEvents.SendBuildPlayerEvent(new PlayerUIAction() { UIAction = "BombButton" }, EventNames.UiAction);
         GamePlayEvents.SendBombDetonated();
         GamePlayEvents.SendUsePowerUp(keyTerm);
-        isDisabled = true;
+        state = PowerUpState.INUSE;
+
     }
 
     private void ActivateFeast()
     {
+        TrackingEvents.SendBuildPlayerEvent(new PlayerUIAction() { UIAction = "FeastButton" }, EventNames.UiAction);
+        AudioEvents.SendPlayPowerUp();
         GamePlayEvents.SendFeastStart();
         GamePlayEvents.SendUsePowerUp(keyTerm);
         Invoke("EndFeast", FeastLength);
+        state = PowerUpState.INUSE;
+
     }
     private void EndFeast()
     {
         GamePlayEvents.SendFeastEnd();
-        isDisabled = false;
+        state = PowerUpState.ACTIVE;
+        UpdateAmounts();
     }
 
     private new void OnDestroy()
@@ -145,6 +188,11 @@ public class PowerUpButton : Pausable
         if (PowerUpType == PowerUp.SPICY)
         {
             GamePlayEvents.OnSpicyEnd -= EndSpicy;
+        }
+
+        if (PowerUpType == PowerUp.FEAST)
+        {
+            GamePlayEvents.OnFeastEnd -= EndFeast;
         }
         StoreEvents.OnUpdateInventoryDisplay -= UpdateAmounts;
         base.OnDestroy();

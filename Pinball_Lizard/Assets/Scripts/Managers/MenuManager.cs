@@ -2,6 +2,7 @@
 using System;
 using UnityEngine;
 using Microsoft.AppCenter.Unity.Crashes;
+using PlayFab.ClientModels;
 
 public class MenuManager : MonoBehaviour
 {
@@ -14,29 +15,37 @@ public class MenuManager : MonoBehaviour
     public GameObject EventBoard;
     public GameObject ContainerPopUp;
     public GameObject Tutorial;
+    public GameObject SpecatatorMenu;
     public Canvas MenuParent;
     public GameObject GeneralMessageWindow;
+    public GameObject HUD;
+    public GameObject HomeButton;
     public Inventory PlayerInventory;
     public ChallengeMode ChallengeMode;
 
+    private MenuEvents.Menus currentMenu;
     private static bool hasMainMenuBeenLoaded = false;
     private List<GameObject> menuObjects;
+    private DateTime timeofLastMenuChange;
 
     void Start()
     {
+        HomeButton.SetActive(false);
         menuObjects = new List<GameObject>();
         if (hasMainMenuBeenLoaded == false)
         {
+           
             LoadTitle();
         }
         else
         {
             PlayerInventory.enabled = true;
+            
             LoadMainMenu();
         }
         MenuEvents.OnChangeMenu += ChangeMenu;
-        StoreEvents.OnOpenContainerPopUp += LoadContainerPopUp;
         MenuEvents.OnShowGeneralMessage += ShowGeneralMessageWindow;
+        MenuEvents.OnShowContainerPopUp += ShowContainerPopup;
     }
 
     void Update()
@@ -51,6 +60,12 @@ public class MenuManager : MonoBehaviour
     {
         PlayerInventory.enabled = true;
         TrackingEvents.SendLoadPlayerInfo();
+        HUD.SetActive(true);
+        
+        if (currentMenu == menu)
+        {
+            return;
+        }
         UnloadMenu();
         switch (menu)
         {
@@ -72,6 +87,12 @@ public class MenuManager : MonoBehaviour
             case MenuEvents.Menus.DAILY_CHALLENGE:
                 LoadDailyChallenge();
                 break;
+            case MenuEvents.Menus.SPECTATE:
+                LoadSpectator();
+                break;
+            case MenuEvents.Menus.TUTORIAL:
+                LoadSpectator();
+                break;
             default:
                 LoadMainMenu();
                 break;
@@ -83,17 +104,22 @@ public class MenuManager : MonoBehaviour
         try
         {
             //PlayerPrefs.SetInt(PlayerPrefsKeys.HasViewedTutorial, 0);
+            TrackingEvents.SendBuildPlayerEvent(new PlayerScreenChange()
+            {
+                PreviousScreenID = currentMenu.ToString(),
+                PrevScreenDuration = (int)(DateTime.Now - timeofLastMenuChange).TotalSeconds,
+                CurrentScreenID = MenuEvents.Menus.MAIN.ToString()
+            }, EventNames.ScreenChange);
+            HomeButton.SetActive(false);
+            currentMenu = MenuEvents.Menus.MAIN;
             hasMainMenuBeenLoaded = true;
             GameObject mainMenuInstance = Instantiate(MainMenuButtons, MenuParent.transform);
-            mainMenuInstance.GetComponentInChildren<PlayerLevelDisplay>().PlayerInventory = PlayerInventory;
-            mainMenuInstance.GetComponentInChildren<PlayerLevelBarEndGame>().PlayerInventory = PlayerInventory;
             menuObjects.Add(mainMenuInstance);
+            timeofLastMenuChange = DateTime.Now;
         }
         catch(Exception menuLoading)
         {
-#if UNITY_ANDROID
             Crashes.TrackError(menuLoading);
-#endif
         }
     }
 
@@ -101,13 +127,12 @@ public class MenuManager : MonoBehaviour
     {
         try
         {
+            currentMenu = MenuEvents.Menus.TITLE;
             menuObjects.Add(Instantiate(TitleScreen, MenuParent.transform));
         }
         catch (Exception menuLoading)
         {
-#if UNITY_ANDROID
             Crashes.TrackError(menuLoading);
-#endif
         }
     }
 
@@ -115,16 +140,22 @@ public class MenuManager : MonoBehaviour
     {
         try
         {
+            HomeButton.SetActive(true);
+            TrackingEvents.SendBuildPlayerEvent(new PlayerScreenChange()
+            {
+                PreviousScreenID = currentMenu.ToString(),
+                PrevScreenDuration = (int)(DateTime.Now - timeofLastMenuChange).TotalSeconds,
+                CurrentScreenID = MenuEvents.Menus.PLAYERINFO.ToString()
+            }, EventNames.ScreenChange);
+            currentMenu = MenuEvents.Menus.PLAYERINFO;
             GameObject inventoryScreen = Instantiate(PlayerInventoryScreen, MenuParent.transform);
-            inventoryScreen.GetComponentInChildren<CurrencyCounters>().PlayerInventory = PlayerInventory;
             inventoryScreen.GetComponent<PlayerInventoryScreen>().PlayerInventory = PlayerInventory;
             menuObjects.Add(inventoryScreen);
+            timeofLastMenuChange = DateTime.Now;
         }
         catch (Exception menuLoading)
         {
-#if UNITY_ANDROID
             Crashes.TrackError(menuLoading);
-#endif
         }
     }
 
@@ -132,32 +163,43 @@ public class MenuManager : MonoBehaviour
     {
         try
         {
+            HomeButton.SetActive(true);
+            TrackingEvents.SendBuildPlayerEvent(new PlayerScreenChange()
+            {
+                PreviousScreenID = currentMenu.ToString(),
+                PrevScreenDuration = (int)(DateTime.Now - timeofLastMenuChange).TotalSeconds,
+                CurrentScreenID = MenuEvents.Menus.STORE.ToString()
+            }, EventNames.ScreenChange);
+            currentMenu = MenuEvents.Menus.STORE;
             GameObject storeFront = Instantiate(StoreFront, MenuParent.transform);
-            storeFront.GetComponentInChildren<CurrencyCounters>().PlayerInventory = PlayerInventory;
             storeFront.GetComponent<StoreFront>().PlayerInventory = PlayerInventory;
             menuObjects.Add(storeFront);
+            timeofLastMenuChange = DateTime.Now;
         }
         catch (Exception menuLoading)
         {
-#if UNITY_ANDROID
-            //Crashes on iOS every single time without fail
             Crashes.TrackError(menuLoading);
-#endif
         }
     }
-
-    private void LoadContainerPopUp()
+    private void LoadSpectator()
     {
         try
         {
-            Instantiate(ContainerPopUp, MenuParent.transform);
+            HomeButton.SetActive(true);
+            TrackingEvents.SendBuildPlayerEvent(new PlayerScreenChange()
+            {
+                PreviousScreenID = currentMenu.ToString(),
+                PrevScreenDuration = (int)(DateTime.Now - timeofLastMenuChange).TotalSeconds,
+                CurrentScreenID = MenuEvents.Menus.SPECTATE.ToString()
+            }, EventNames.ScreenChange);
+            currentMenu = MenuEvents.Menus.SPECTATE;
+            menuObjects.Add(Instantiate(SpecatatorMenu, MenuParent.transform));
+            timeofLastMenuChange = DateTime.Now;
         }
         catch (Exception menuLoading)
         {
-#if UNITY_ANDROID
-            //Crashes on iOS every single time without fail
             Crashes.TrackError(menuLoading);
-#endif
+
         }
     }
 
@@ -165,23 +207,33 @@ public class MenuManager : MonoBehaviour
     {
         try
         {
-            if (PlayerPrefs.HasKey(PlayerPrefsKeys.HasViewedTutorial) == false || PlayerPrefs.GetInt(PlayerPrefsKeys.HasViewedTutorial) != 1)
+            if (PlayerPrefs.HasKey(PlayerPrefsKeys.HasViewedTutorial) == false || PlayerPrefs.GetInt(PlayerPrefsKeys.HasViewedTutorial) != 1 
+                && currentMenu!= MenuEvents.Menus.DAILY_CHALLENGE)
             {
                 LoadTutorial();
             }
             else
             {
-                PlayerPrefs.SetInt(PlayerPrefsKeys.ChallengeModeSet, 0);
-                PlayerPrefs.Save();
+                HomeButton.SetActive(true);
+                TrackingEvents.SendBuildPlayerEvent(new PlayerScreenChange()
+                {
+                    PreviousScreenID = currentMenu.ToString(),
+                    PrevScreenDuration = (int)(DateTime.Now - timeofLastMenuChange).TotalSeconds,
+                    CurrentScreenID = MenuEvents.Menus.AR.ToString()
+                }, EventNames.ScreenChange);
+                if (currentMenu != MenuEvents.Menus.DAILY_CHALLENGE)
+                {
+                    PlayerPrefs.SetInt(PlayerPrefsKeys.ChallengeModeSet, 0);
+                    PlayerPrefs.Save();
+                }
+                currentMenu = MenuEvents.Menus.AR;
                 menuObjects.Add(Instantiate(ARMenu, MenuParent.transform));
+                timeofLastMenuChange = DateTime.Now;
             }
         }
         catch (Exception menuLoading)
         {
-#if UNITY_ANDROID
-            //Crashes on iOS every single time without fail
             Crashes.TrackError(menuLoading);
-#endif
         }
     }
 
@@ -189,38 +241,46 @@ public class MenuManager : MonoBehaviour
     {
         try
         {
+            HomeButton.SetActive(true);
+            TrackingEvents.SendBuildPlayerEvent(new PlayerScreenChange()
+            {
+                PreviousScreenID = currentMenu.ToString(),
+                PrevScreenDuration = (int)(DateTime.Now - timeofLastMenuChange).TotalSeconds,
+                CurrentScreenID = MenuEvents.Menus.DAILY_CHALLENGE.ToString()
+            }, EventNames.ScreenChange);
+            currentMenu = MenuEvents.Menus.DAILY_CHALLENGE;
             PlayerPrefs.SetInt(PlayerPrefsKeys.ChallengeModeSet, 1);
             PlayerPrefs.Save();
             GameObject eventScreen = Instantiate(EventBoard, MenuParent.transform);
-            eventScreen.GetComponentInChildren<CurrencyCounters>().PlayerInventory = PlayerInventory;
-            AnimosityCost animosityPopUp = eventScreen.GetComponentInChildren<AnimosityCost>();
-            animosityPopUp.PlayerInventory = PlayerInventory;
-            animosityPopUp.gameObject.SetActive(false);
             ChallengeMode.GetChallengeSeed();
             menuObjects.Add(eventScreen);
+            timeofLastMenuChange = DateTime.Now;
         }
         catch (Exception menuLoading)
         {
-#if UNITY_ANDROID
-            //Crashes on iOS every single time without fail
             Crashes.TrackError(menuLoading);
-#endif
         }
     }
     private void LoadTutorial()
     {
         try
         {
+            HomeButton.SetActive(false);
+            TrackingEvents.SendBuildPlayerEvent(new PlayerScreenChange()
+            {
+                PreviousScreenID = currentMenu.ToString(),
+                PrevScreenDuration = (int)(DateTime.Now - timeofLastMenuChange).TotalSeconds,
+                CurrentScreenID = MenuEvents.Menus.TUTORIAL.ToString()
+            }, EventNames.ScreenChange);
+            currentMenu = MenuEvents.Menus.TUTORIAL;
             UnloadMenu();
             GameObject tutorial = Instantiate(Tutorial, MenuParent.transform);
             menuObjects.Add(tutorial);
+            timeofLastMenuChange = DateTime.Now;
         }
         catch (Exception menuLoading)
         {
-#if UNITY_ANDROID
-            //Crashes on iOS every single time without fail
             Crashes.TrackError(menuLoading);
-#endif
         }
     }
     private void ShowGeneralMessageWindow(string message)
@@ -229,13 +289,23 @@ public class MenuManager : MonoBehaviour
         {
             GameObject messageWindow = Instantiate(GeneralMessageWindow, MenuParent.transform);
             messageWindow.GetComponentInChildren<GeneralMessage>().SetMessage(message);
+            menuObjects.Add(messageWindow);
         }
         catch (Exception menuLoading)
         {
-#if UNITY_ANDROID
-            //Crashes on iOS every single time without fail
             Crashes.TrackError(menuLoading);
-#endif
+        }
+    }
+
+    private void ShowContainerPopup(List<ItemInstance> items, Dictionary<string, uint> currencies)
+    {
+        try
+        {
+            Instantiate(ContainerPopUp, MenuParent.transform).GetComponent<ContainerPopUp>().ReceiveContainerItems(items, currencies);
+        }
+        catch (Exception menuLoading)
+        {
+            Crashes.TrackError(menuLoading);
         }
     }
 
@@ -250,5 +320,7 @@ public class MenuManager : MonoBehaviour
     private void OnDestroy()
     {
         MenuEvents.OnChangeMenu -= ChangeMenu;
+        MenuEvents.OnShowGeneralMessage -= ShowGeneralMessageWindow;
+        MenuEvents.OnShowContainerPopUp -= ShowContainerPopup;
     }
 }

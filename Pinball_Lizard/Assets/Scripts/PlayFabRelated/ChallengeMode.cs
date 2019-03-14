@@ -31,21 +31,39 @@ public class ChallengeMode : MonoBehaviour
                    },
                    (result) =>
                    {
-                       //retrieve random seed and store it along with the time we retrieved it
-                       int randomResult =
-                       PlayFabSimpleJson.DeserializeObject<int>(
-                           PlayFabSimpleJson.SerializeObject(((JsonObject)result.FunctionResult)[0]));
-                       PlayerPrefs.SetInt(PlayerPrefsKeys.DailyChallengeSeed, randomResult);
-                       PlayerPrefs.SetString(PlayerPrefsKeys.DailyChallengeTimeStamp, DateTime.Today.ToShortDateString());
-                       PlayerPrefs.Save();
+                       if (result.FunctionResult != null)
+                       {
+                           //retrieve random seed and store it along with the time we retrieved it
+                           int randomResult =
+                           PlayFabSimpleJson.DeserializeObject<int>(
+                               PlayFabSimpleJson.SerializeObject(((JsonObject)result.FunctionResult)[0]));
+                           PlayerPrefs.SetInt(PlayerPrefsKeys.DailyChallengeSeed, randomResult);
+                           PlayerPrefs.SetString(PlayerPrefsKeys.DailyChallengeTimeStamp, DateTime.Today.ToShortDateString());
+                           PlayerPrefs.Save();
+                       }
+                       if (result.Error != null)
+                       {
+                           try
+                           {
+                               throw new Exception(result.Error.Message);
+                           }
+                           catch (Exception exception)
+                           {
+                               Crashes.TrackError(exception);
+                           }
+                       }
                    },
                    (error) =>
                    {
                        Debug.Log(error);
-#if UNITY_ANDROID
-                       //Crashes on iOS every single time without fail
-                       Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
+                       try
+                       {
+                           throw new Exception(error.ErrorMessage);
+                       }
+                       catch (Exception exception)
+                       {
+                           Crashes.TrackError(exception);
+                       }
                    });
             }
         }
@@ -67,14 +85,19 @@ public class ChallengeMode : MonoBehaviour
                 {
                     //notify leaderboard object that it has been retrieved so we can update it
                     ScoreEvents.SendLeaderBoardRetrieved(result.Leaderboard);
+                    GetChallengeTimeEnd();
                 },
                 (error) =>
                 {
                     Debug.Log(error);
-#if UNITY_ANDROID
-                    //Crashes on iOS every single time without fail
-                    Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
+                    try
+                    {
+                        throw new Exception(error.ErrorMessage);
+                    }
+                    catch (Exception exception)
+                    {
+                        Crashes.TrackError(exception);
+                    }
                 });
         }
     }
@@ -96,15 +119,64 @@ public class ChallengeMode : MonoBehaviour
                (error) =>
                {
                    Debug.Log(error);
-#if UNITY_ANDROID
-                   //Crashes on iOS every single time without fail
-                   Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
+                   try
+                   {
+                       throw new Exception(error.ErrorMessage);
+                   }
+                   catch (Exception exception)
+                   {
+                       Crashes.TrackError(exception);
+                   }
                });
         }
     }
 
-    private void OnDestroy()
+    public void GetChallengeTimeEnd()
+    {
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
+        {
+            //get time challengemode resets
+            PlayFabClientAPI.ExecuteCloudScript(
+               new ExecuteCloudScriptRequest()
+               {
+                   FunctionName = "getChallengeChangeTime"
+               },
+               (result) =>
+               {
+                   if (result.FunctionResult != null)
+                   {
+                       DateTime change = DateTime.Parse(((JsonObject)result.FunctionResult)[0] as string);
+                       MenuEvents.SendChallengeModeEndRetrieved(change);
+                   }
+                   if (result.Error != null)
+                   {
+                       try
+                       {
+                           throw new Exception(result.Error.Message);
+                       }
+                       catch (Exception exception)
+                       {
+                           Crashes.TrackError(exception);
+                       }
+                   }
+               },
+               (error) =>
+               {
+                   Debug.Log(error);
+                   try
+                   {
+                       throw new Exception(error.ErrorMessage);
+                   }
+                   catch (Exception exception)
+                   {
+                       Crashes.TrackError(exception);
+                   }
+               });
+        }
+    }
+
+
+        private void OnDestroy()
     {
         ScoreEvents.OnLoadLeaderBoard -= GetLeaderBoard;
         StoreEvents.OnSubtractAnimosity -= SubtractAnimosity;

@@ -10,7 +10,6 @@ public class StoreItemDetailWindow : MonoBehaviour
     public Text MayhemPriceText;
     public Text BugBucksPriceText;
     public Text GluttonyPriceText;
-    public Text AmountOwnedText;
     public StoreItem Item;
     public bool SendUnpause;
     public bool IsContainer;
@@ -45,22 +44,15 @@ public class StoreItemDetailWindow : MonoBehaviour
         {
             GluttonyPriceText.text = Item.ItemData.GluttonyPrice.ToString();
         }
-        if (AmountOwnedText != null)
-        {
-            AmountOwnedText.text = "x" + Item.PlayerInventory.GetItemAmount(Item.ItemData.ItemId).ToString();
-        }
     }
 
     void Update()
     {
-        if (AmountOwnedText != null)
-        {
-            AmountOwnedText.text = "x" + Item.PlayerInventory.GetItemAmount(Item.ItemData.ItemId).ToString();
-        }
     }
 
     public void PurchaseMayhem()
     {
+        TrackingEvents.SendBuildPlayerEvent(new PlayerUIAction() { UIAction = "PurchaseMayhemButton" }, EventNames.UiAction);
         StoreEvents.SendPurchaseItem(Item.ItemData.ItemId, Item.ItemData.MayhemKey,
             Item.ItemData.CatalogVersion, Item.ItemData.StoreId, Item.ItemData.MayhemPrice, IsContainer);
         Back();
@@ -69,6 +61,7 @@ public class StoreItemDetailWindow : MonoBehaviour
 
     public void PurchaseBugBucks()
     {
+        TrackingEvents.SendBuildPlayerEvent(new PlayerUIAction() { UIAction = "PurchaseBugBucksButton" }, EventNames.UiAction);
         StoreEvents.SendPurchaseItem(Item.ItemData.ItemId, Item.ItemData.BugBucksKey,
             Item.ItemData.CatalogVersion, Item.ItemData.StoreId, Item.ItemData.BugBucksPrice, IsContainer);
         Back();
@@ -76,6 +69,7 @@ public class StoreItemDetailWindow : MonoBehaviour
 
     public void PurchaseGluttony()
     {
+        TrackingEvents.SendBuildPlayerEvent(new PlayerUIAction() { UIAction = "PurchaseGluttonyButton" }, EventNames.UiAction);
         StoreEvents.SendPurchaseItem(Item.ItemData.ItemId, Item.ItemData.GluttonyKey, Item.ItemData.CatalogVersion,
             Item.ItemData.StoreId, Item.ItemData.GluttonyPrice, IsContainer);
         Back();
@@ -83,11 +77,11 @@ public class StoreItemDetailWindow : MonoBehaviour
 
     private void Back()
     {
-        gameObject.SetActive(false);
         if (SendUnpause)
         {
             GamePlayEvents.SendPause(false);
         }
+        gameObject.SetActive(false);
     }
 
     private void OnDestroy()
