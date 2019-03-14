@@ -1,4 +1,4 @@
-![Pinball Lizard](_assets/img/Pinball_Lizard_game.jpg)
+![Pinball Lizard](./_assets/img/Pinball_Lizard_game.jpg)
 
 # Pinball Lizard
 
@@ -17,5 +17,5 @@ Once your backend is configured, you can connect it to the phone app by entering
 * [Azure PlayFab](https://playfab.com/)
 * [Unity](https://unity3d.com/)
 
-![Pinball Lizard ScreenShots](_assets/img/Pinball_Lizard_screens.jpg)
-![Pinball Lizard ScreenShots](_assets/img/Pinball_Lizard_screens_2.jpg)
+![Pinball Lizard ScreenShots](./_assets/img/Pinball_Lizard_screens.jpg)
+![Pinball Lizard ScreenShots](./_assets/img/Pinball_Lizard_screens_2.jpg)
