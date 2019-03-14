@@ -16,12 +16,13 @@ public class City : Pausable
     public float scale;
     public int Seed;
     public bool isAR;
-
-    private const float rotateSpeed = 10f;
+    public float NonARRotateSpeed;
 
     private List<GameObject> buildingBlock;
     private HexGrid city;
     private GameObject daBombInstance;
+
+
 
     new void Start()
     {
@@ -29,6 +30,7 @@ public class City : Pausable
         GamePlayEvents.OnBombDetonated += DaBombAnimation;
         buildingBlock = new List<GameObject>(Buildings);
         city = new HexGrid();
+
         StartCoroutine(BuildCity());
     }
 
@@ -36,7 +38,7 @@ public class City : Pausable
     {
         if (!isAR && !isPaused)
         {
-            transform.Rotate(new Vector3(0, 1, 0), rotateSpeed * Time.deltaTime);
+            transform.Rotate(new Vector3(0, 1, 0), NonARRotateSpeed * Time.deltaTime);
         }
     }
 
@@ -119,7 +121,7 @@ public class City : Pausable
         Base.transform.parent = gameObject.transform;
     }
 
-    void DaBombAnimation()
+    void DaBombAnimation(string damageType)
     {
         daBombInstance = Instantiate(DaBomb, transform);
         Invoke("DestroyDaBomb", 5f);

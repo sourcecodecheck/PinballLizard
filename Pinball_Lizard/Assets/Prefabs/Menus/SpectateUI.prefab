@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 222495157623761032}
   - component: {fileID: 114323951816583026}
   - component: {fileID: 114608598190609558}
+  - component: {fileID: 114595266194566484}
+  - component: {fileID: 114845303260559162}
   m_Layer: 5
   m_Name: backButton
   m_TagString: Untagged
@@ -490,6 +492,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Howard's Game
+--- !u!114 &114595266194566484
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1057015289688982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61a11d62a04ab2e4abae9aa5e1a59692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuToChangeTo: 1
+  IsButton: 1
 --- !u!114 &114608598190609558
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -618,6 +633,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114845303260559162
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1057015289688982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1988cfeb048b54b43af9f0d922773559, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Category: 8
+  PlayOnPress: {fileID: 114608598190609558}
 --- !u!114 &114859131348207004
 MonoBehaviour:
   m_ObjectHideFlags: 1

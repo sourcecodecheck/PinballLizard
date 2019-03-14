@@ -26,5 +26,6 @@ public class CrashTheGameButton : MonoBehaviour {
         {
             Crashes.TrackError(generatedCrash);
         }
+        MenuEvents.SendShowGeneralMessage("An error report has been sent to AppCenter");
     }
 }

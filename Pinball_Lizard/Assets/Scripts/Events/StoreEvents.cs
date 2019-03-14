@@ -1,8 +1,9 @@
 ﻿using PlayFab.ClientModels;
-using System.Collections.Generic;
 
 public static class StoreEvents
 {
+    //Subscribers:
+    //Store
     public delegate void LoadStore(string storeId, string catalogVersion);
     public static event LoadStore OnLoadStore;
     public static void SendLoadStore(string storeId, string catalogVersion)
@@ -10,13 +11,17 @@ public static class StoreEvents
         OnLoadStore?.Invoke(storeId, catalogVersion);
     }
 
+    //Subscribers:
+    //StoreFront
+    //InGameStore
     public delegate void LoadStoreItem(StoreItemData itemData);
     public static event LoadStoreItem OnLoadStoreItem;
     public static void SendLoadStoreItem(StoreItemData itemData)
     {
         OnLoadStoreItem?.Invoke(itemData);
     }
-    
+
+    //Subscribers:
     public delegate void SelectItem(string itemId);
     public static event SelectItem OnSelectItem;
     public static void SendSelectItem(string itemId)
@@ -24,6 +29,7 @@ public static class StoreEvents
         OnSelectItem?.Invoke(itemId);
     }
 
+    //Subscribers:
     public delegate void ShowPurchaseButton(bool isShown);
     public static event ShowPurchaseButton OnShowPurchaseButton;
     public static void SendShowPurchaseButton(bool isShown)
@@ -31,6 +37,7 @@ public static class StoreEvents
         OnShowPurchaseButton?.Invoke(isShown);
     }
 
+    //Subscribers:
     public delegate void StartPurchase(string currency);
     public static event StartPurchase OnStartPurchase;
     public static void SendStartPurchase(string currency)
@@ -38,6 +45,8 @@ public static class StoreEvents
         OnStartPurchase?.Invoke(currency);
     }
 
+    //Subscribers:
+    //Store
     public delegate void PurchaseItem(string itemId, string currency, string catalogVersion, string storeId, int price, bool isContainer);
     public static event PurchaseItem OnPurchaseItem;
     public static void SendPurchaseItem(string itemId, string currency, string catalogVersion, string storeId, int price, bool isContainer)
@@ -45,6 +54,8 @@ public static class StoreEvents
         OnPurchaseItem?.Invoke(itemId, currency, catalogVersion, storeId, price, isContainer);
     }
 
+    //Subscribers:
+    //Store
     public delegate void LoadInventory(string catalogVersion);
     public static event LoadInventory OnLoadInventory;
     public static void SendLoadInventory(string catalogVersion)
@@ -52,6 +63,8 @@ public static class StoreEvents
         OnLoadInventory?.Invoke(catalogVersion);
     }
 
+    //Subscribers:
+    //Inventory
     public delegate void LoadInventoryItem(ItemInstance instance);
     public static event LoadInventoryItem OnLoadInventoryItem;
     public static void SendLoadInventoryItem(ItemInstance instance)
@@ -59,13 +72,8 @@ public static class StoreEvents
         OnLoadInventoryItem?.Invoke(instance);
     }
 
-    public delegate void ContainerOpened(List<ItemInstance> items, Dictionary<string, uint> currencies);
-    public static event ContainerOpened OnContainerOpened;
-    public static void SendContainerOpened(List<ItemInstance> items, Dictionary<string, uint> currencies)
-    {
-        OnContainerOpened?.Invoke(items, currencies);
-    }
-
+    //Subscribers:
+    //Store
     public delegate void ConsumeItem(ItemInstance instance);
     public static event ConsumeItem OnConsumeItem;
     public static void SendConsumeItem(ItemInstance instance)
@@ -73,13 +81,8 @@ public static class StoreEvents
         OnConsumeItem?.Invoke(instance);
     }
 
-    public delegate void OpenContainerPopUp();
-    public static event OpenContainerPopUp OnOpenContainerPopUp;
-    public static void SendOpenContainerPopUp()
-    {
-        OnOpenContainerPopUp?.Invoke();
-    }
-
+    //Subscribers:
+    //Currencies
     public delegate void LoadCurrencies();
     public static event LoadCurrencies OnLoadCurrencies;
     public static void SendLoadCurrencies()
@@ -87,6 +90,8 @@ public static class StoreEvents
         OnLoadCurrencies?.Invoke();
     }
 
+    //Subscribers:
+    //CurrencyCounters
     public delegate void UpdateCurrencyDisplay();
     public static event UpdateCurrencyDisplay OnUpdateCurrencyDisplay;
     public static void SendUpdateCurrencyDisplay()
@@ -94,6 +99,8 @@ public static class StoreEvents
         OnUpdateCurrencyDisplay?.Invoke();
     }
 
+    //Subscribers:
+    //InGameStore
     public delegate void StartInGamePurchase(PowerUpButton.PowerUp type);
     public static event StartInGamePurchase OnStartInGamePurchase;
     public static void SendStartInGamePurchase(PowerUpButton.PowerUp type)
@@ -101,6 +108,9 @@ public static class StoreEvents
         OnStartInGamePurchase?.Invoke(type);
     }
 
+    //Subscribers:
+    //PlayerInventoryScreen
+    //PowerUpButton
     public delegate void UpdateInventoryDisplay();
     public static event UpdateInventoryDisplay OnUpdateInventoryDisplay;
     public static void SendUpdateInventoryDisplay()
@@ -108,6 +118,8 @@ public static class StoreEvents
         OnUpdateInventoryDisplay?.Invoke();
     }
 
+    //Subscribers:
+    //ChallengeMode
     public delegate void SubtractAnimosity(int animosityToSubtract);
     public static event SubtractAnimosity OnSubtractAnimosity;
     public static void SendSubtractAnimosity(int animosityToSubtract)
@@ -115,10 +127,20 @@ public static class StoreEvents
         OnSubtractAnimosity?.Invoke(animosityToSubtract);
     }
 
+    //Subscribers:
     public delegate void AwardItemOnLoss();
     public static event AwardItemOnLoss OnAwardItemOnLoss;
     public static void SendAwardItemOnLoss()
     {
         OnAwardItemOnLoss?.Invoke();
+    }
+
+    //Subscribers:
+    //Store
+    public delegate void OpenContainer(ItemInstance container, string catalogVersion);
+    public static event OpenContainer OnOpenContainer;
+    public static void SendOpenContainer(ItemInstance container, string catalogVersion)
+    {
+        OnOpenContainer?.Invoke(container, catalogVersion);
     }
 }

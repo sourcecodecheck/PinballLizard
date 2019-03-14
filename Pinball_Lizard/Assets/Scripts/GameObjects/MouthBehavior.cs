@@ -113,6 +113,7 @@ public class MouthBehavior : Pausable
 
     private void NomAnimation()
     {
+        AudioEvents.SendPlayNom();
         state = MouthState.NOM;
         if (activeAnimation != null)
         {
@@ -131,6 +132,13 @@ public class MouthBehavior : Pausable
             Reticle.SetActive(false);
             SpicyReticle.SetActive(true);
         }
+        else if(state == MouthState.OPEN)
+        {
+            state = MouthState.SHOOT;
+            HandleMouthNommed();
+            SpicyReticle.SetActive(true);
+        }
+        
     }
 
     private void HandsBehavior()
@@ -149,7 +157,7 @@ public class MouthBehavior : Pausable
     {
         if (state == MouthState.SHOOT)
         {
-            if (ammoQueue.Count > 0)
+            if (ammoQueue.Count > 0 || isSpicyReady == true)
             {
                 if (isSpicyReady)
                 {
@@ -167,6 +175,12 @@ public class MouthBehavior : Pausable
                     AnimationEvents.SendHandsEnter();
                     Reticle.SetActive(false);
                 }
+                TrackingEvents.SendBuildVolleyActionStep2(new CityVolleyAction()
+                {
+                    VolleyAction = "shoot",
+                    VolleySource = "player",
+                }, EventNames.VolleyAction);
+                AudioEvents.SendPlaySpit();
                 ScoreEvents.SendSetMultiplier(1.0f);
                
             }
@@ -177,10 +191,22 @@ public class MouthBehavior : Pausable
     {
         if (state == MouthState.HANDS || state == MouthState.SHOOT)
         {
-            if (shotsExisting <= 0)
+            if(state == MouthState.SHOOT)
             {
                 AnimationEvents.SendHandsExit();
-                AnimationEvents.SendMouthEnter();
+            }
+            if (shotsExisting <= 0 )
+            {
+                AnimationEvents.SendHandsExit();
+                if (isSpicyReady == false)
+                {
+                    AnimationEvents.SendMouthEnter();
+                }
+                else
+                {
+                    Reticle.SetActive(false);
+                    SpicyReticle.SetActive(true);
+                }
             }
         }
 
@@ -251,9 +277,13 @@ public class MouthBehavior : Pausable
             {
                 AnimationEvents.SendRightHandSwipe();
             }
+            TrackingEvents.SendBuildVolleyActionStep2(new CityVolleyAction()
+            {
+                VolleyAction = "volley",
+                VolleySource = "player",
+            }, EventNames.VolleyAction);
             leftHandSwipe = !leftHandSwipe;
             Invoke("ResetSwipe", VolleyInterval);
-            AudioEvents.SendPlayBugSmack();
         }
     }
 

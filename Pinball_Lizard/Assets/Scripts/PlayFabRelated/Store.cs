@@ -19,9 +19,9 @@ public class Store : MonoBehaviour
         StoreEvents.OnPurchaseItem += PurchaseItem;
         StoreEvents.OnLoadInventory += GetUserInventory;
         StoreEvents.OnConsumeItem += ConsumeItem;
-        StoreEvents.OnAwardItemOnLoss += AwardLossItem;
+        StoreEvents.OnOpenContainer += ConsumeContainer;
     }
-    
+
     void Update()
     {
     }
@@ -43,29 +43,45 @@ public class Store : MonoBehaviour
             (result) =>
             {
                 //notify and update inventory and displays
-                
+
                 //if it's a container
-                if(isContainer == true)
+                if (isContainer == true)
                 {
                     //open container
-                    StoreEvents.SendOpenContainerPopUp();
+                    //StoreEvents.SendOpenContainerPopUp();
                     ConsumeContainer(result.Items.First(), catalogVersion);
                 }
                 else
                 {
                     //notify and update inventory and displays
+                    foreach (ItemInstance item in result.Items)
+                    {
+                        StoreEvents.SendLoadInventoryItem(item);
+                    }
                     StoreEvents.SendLoadCurrencies();
                     StoreEvents.SendLoadInventory(catalogVersion);
                     MenuEvents.SendShowGeneralMessage(result.Items.First().DisplayName + " Purchased!");
+                    AudioEvents.SendPlayItemGet();
+                    GetStore(storeId, catalogVersion);
                 }
             },
             (error) =>
             {
+                AudioEvents.SendPlayDown();
                 MenuEvents.SendShowGeneralMessage(error.ErrorMessage);
-#if UNITY_ANDROID
-                //Crashes on iOS every single time without fail
-                Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
+                if (error.Error == PlayFabErrorCode.InvalidAuthToken ||
+                    error.Error == PlayFabErrorCode.ExpiredAuthToken || error.Error == PlayFabErrorCode.AuthTokenExpired)
+                {
+                    LoginHelper.Login();
+                }
+                try
+                {
+                    throw new Exception(error.ErrorMessage);
+                }
+                catch (Exception exception)
+                {
+                    Crashes.TrackError(exception);
+                }
             });
         }
     }
@@ -94,8 +110,8 @@ public class Store : MonoBehaviour
                 {
                     int mayhemPrice = -1;
                     int bugBucksPrice = -1;
-                    int gluttonyPrice = -1; 
-                    if(item.VirtualCurrencyPrices.ContainsKey(MayhemKey))
+                    int gluttonyPrice = -1;
+                    if (item.VirtualCurrencyPrices.ContainsKey(MayhemKey))
                     {
                         mayhemPrice = (int)item.VirtualCurrencyPrices[MayhemKey];
                     }
@@ -107,7 +123,8 @@ public class Store : MonoBehaviour
                     {
                         gluttonyPrice = (int)item.VirtualCurrencyPrices[GluttonyKey];
                     }
-                    StoreEvents.SendLoadStoreItem(new StoreItemData {
+                    StoreEvents.SendLoadStoreItem(new StoreItemData
+                    {
                         ItemId = item.ItemId,
                         CatalogVersion = catalogVersion,
                         MayhemPrice = mayhemPrice,
@@ -123,10 +140,19 @@ public class Store : MonoBehaviour
             (error) =>
             {
                 Debug.Log(error);
-#if UNITY_ANDROID
-                //Crashes on iOS every single time without fail
-                Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
+                if (error.Error == PlayFabErrorCode.InvalidAuthToken ||
+                       error.Error == PlayFabErrorCode.ExpiredAuthToken || error.Error == PlayFabErrorCode.AuthTokenExpired)
+                {
+                    LoginHelper.Login();
+                }
+                try
+                {
+                    throw new Exception(error.ErrorMessage);
+                }
+                catch (Exception exception)
+                {
+                    Crashes.TrackError(exception);
+                }
             });
         }
     }
@@ -136,28 +162,37 @@ public class Store : MonoBehaviour
         if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
             //catalog check and load
-            if(ItemCatalog.isLoaded != true)
+            if (ItemCatalog.isLoaded != true)
             {
                 GetCatalog(catalogVersion);
             }
             //load inventory
             PlayFabClientAPI.GetUserInventory(
                 new GetUserInventoryRequest(),
-                (result) => 
+                (result) =>
                 {
                     //notify and update inventory of every item
-                    foreach( ItemInstance item in result.Inventory )
+                    foreach (ItemInstance item in result.Inventory)
                     {
                         StoreEvents.SendLoadInventoryItem(item);
                     }
                 },
-                (error) => 
+                (error) =>
                 {
                     ShowMessageWindowHelper.ShowMessage(error.ErrorMessage);
-#if UNITY_ANDROID
-                    //Crashes on iOS every single time without fail
-                    Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
+                    if (error.Error == PlayFabErrorCode.InvalidAuthToken ||
+                        error.Error == PlayFabErrorCode.ExpiredAuthToken || error.Error == PlayFabErrorCode.AuthTokenExpired)
+                    {
+                        LoginHelper.Login();
+                    }
+                    try
+                    {
+                        throw new Exception(error.ErrorMessage);
+                    }
+                    catch (Exception exception)
+                    {
+                        Crashes.TrackError(exception);
+                    }
                 });
         }
     }
@@ -172,16 +207,25 @@ public class Store : MonoBehaviour
                 ConsumeCount = 1,
                 ItemInstanceId = itemInstance.ItemInstanceId
             },
-            (result) => 
+            (result) =>
             {
             },
             (error) =>
             {
                 Debug.Log(error);
-#if UNITY_ANDROID
-                //Crashes on iOS every single time without fail
-                Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
+                if (error.Error == PlayFabErrorCode.InvalidAuthToken ||
+                    error.Error == PlayFabErrorCode.ExpiredAuthToken || error.Error == PlayFabErrorCode.AuthTokenExpired)
+                {
+                    LoginHelper.Login();
+                }
+                try
+                {
+                    throw new Exception(error.ErrorMessage);
+                }
+                catch (Exception exception)
+                {
+                    Crashes.TrackError(exception);
+                }
             });
         }
     }
@@ -198,17 +242,31 @@ public class Store : MonoBehaviour
             (result) =>
             {
                 //notify and update inventory and container display window
-                StoreEvents.SendContainerOpened(result.GrantedItems, result.VirtualCurrency);
+                //StoreEvents.SendContainerOpened(result.GrantedItems, result.VirtualCurrency);
+                MenuEvents.SendShowContainerPopUp(result.GrantedItems, result.VirtualCurrency);
+                foreach (ItemInstance item in result.GrantedItems)
+                {
+                    StoreEvents.SendLoadInventoryItem(item);
+                }
                 StoreEvents.SendLoadCurrencies();
                 StoreEvents.SendLoadInventory(catalogVersion);
             },
             (error) =>
             {
                 Debug.Log(error);
-#if UNITY_ANDROID
-                //Crashes on iOS every single time without fail
-                Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
+                if (error.Error == PlayFabErrorCode.InvalidAuthToken ||
+                    error.Error == PlayFabErrorCode.ExpiredAuthToken || error.Error == PlayFabErrorCode.AuthTokenExpired)
+                {
+                    LoginHelper.Login();
+                }
+                try
+                {
+                    throw new Exception(error.ErrorMessage);
+                }
+                catch (Exception exception)
+                {
+                    Crashes.TrackError(exception);
+                }
             });
         }
     }
@@ -219,22 +277,31 @@ public class Store : MonoBehaviour
         PlayFabClientAPI.ExecuteCloudScript(
                new ExecuteCloudScriptRequest()
                {
-                   FunctionName = "initializePlayer",
+                   FunctionName = "isEventTime",
                    FunctionParameter = new { timeZoneOffset = TimeZone.CurrentTimeZone.GetUtcOffset(DateTime.Now).Hours }
                },
                (result) =>
                {
-                   bool isEvent = (bool)((JsonObject)result.FunctionResult)["isEventTime"];
+                   bool isEvent = PlayFabSimpleJson.DeserializeObject<bool>(PlayFabSimpleJson.SerializeObject(((JsonObject)result.FunctionResult)["isEventTime"]));
                    PlayerPrefs.SetInt(PlayerPrefsKeys.EventSet, isEvent ? 1 : 0);
                    PlayerPrefs.Save();
                },
                (error) =>
                {
                    Debug.Log(error);
-#if UNITY_ANDROID
-                   //Crashes on iOS every single time without fail
-                   Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
+                   if (error.Error == PlayFabErrorCode.InvalidAuthToken ||
+                        error.Error == PlayFabErrorCode.ExpiredAuthToken || error.Error == PlayFabErrorCode.AuthTokenExpired)
+                   {
+                       LoginHelper.Login();
+                   }
+                   try
+                   {
+                       throw new Exception(error.ErrorMessage);
+                   }
+                   catch (Exception exception)
+                   {
+                       Crashes.TrackError(exception);
+                   }
                });
     }
 
@@ -250,44 +317,26 @@ public class Store : MonoBehaviour
             },
             (result) =>
             {
+                GetUserInventory(catalogVersion);
                 ItemCatalog.LoadItems(result.Catalog);
             },
             (error) =>
             {
                 Debug.Log(error);
-#if UNITY_ANDROID
-                //Crashes on iOS every single time without fail
-                Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
+                if (error.Error == PlayFabErrorCode.InvalidAuthToken ||
+                    error.Error == PlayFabErrorCode.ExpiredAuthToken || error.Error == PlayFabErrorCode.AuthTokenExpired)
+                {
+                    LoginHelper.Login();
+                }
+                try
+                {
+                    throw new Exception(error.ErrorMessage);
+                }
+                catch (Exception exception)
+                {
+                    Crashes.TrackError(exception);
+                }
             });
-        }
-    }
-
-    public void AwardLossItem()
-    {
-        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
-        {
-            PlayFabClientAPI.ExecuteCloudScript(
-                new ExecuteCloudScriptRequest()
-                {
-                    FunctionName = "awardPityItem",
-                    FunctionParameter = new
-                    {
-                       
-                    }
-                },
-                (result) =>
-                {
-                    MenuEvents.SendShowGeneralMessage("Here is a DaBomb to help you out!");
-                },
-                (error) =>
-                {
-                    Debug.Log(error);
-#if UNITY_ANDROID
-                    //Crashes on iOS every single time without fail
-                    Crashes.TrackError(new Exception(error.ErrorMessage));
-#endif
-                });
         }
     }
 
@@ -297,5 +346,6 @@ public class Store : MonoBehaviour
         StoreEvents.OnPurchaseItem -= PurchaseItem;
         StoreEvents.OnLoadInventory -= GetUserInventory;
         StoreEvents.OnConsumeItem -= ConsumeItem;
+        StoreEvents.OnOpenContainer -= ConsumeContainer;
     }
 }

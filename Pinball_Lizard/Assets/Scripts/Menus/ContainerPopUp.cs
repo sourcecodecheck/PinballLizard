@@ -19,15 +19,13 @@ public class ContainerPopUp : MonoBehaviour
     public Text FeastText;
     public Text MayhemText;
     public Text BugBucksText;
-    public Text AnimosityText;
     public Text GluttonyText;
 
     public GameObject CloseButton;
 
-    void Start()
+    void Awake()
     {
-        StoreEvents.OnContainerOpened += ReceiveContainerItems;
-        CloseButton.SetActive(false);
+        CloseButton.SetActive(true);
     }
 
     void Update()
@@ -35,7 +33,7 @@ public class ContainerPopUp : MonoBehaviour
 
     }
 
-    void ReceiveContainerItems(List<ItemInstance> items, Dictionary<string, uint> currencies)
+    public void ReceiveContainerItems(List<ItemInstance> items, Dictionary<string, uint> currencies)
     {
         int bombCount = items.Where((item) => item.ItemId.ToLower().Contains(BombKeyTerm)).Count();
         int spicyCount = items.Where((item) => item.ItemId.ToLower().Contains(SpicyKeyTerm)).Count();
@@ -51,10 +49,6 @@ public class ContainerPopUp : MonoBehaviour
         {
             BugBucksText.text = currencies[BugBucksKey].ToString();
         }
-        if (currencies.ContainsKey(AnimosityKey))
-        {
-            AnimosityText.text = currencies[AnimosityKey].ToString();
-        }
         if (currencies.ContainsKey(GluttonyKey))
         {
             GluttonyText.text = currencies[GluttonyKey].ToString();
@@ -64,6 +58,5 @@ public class ContainerPopUp : MonoBehaviour
 
     private void OnDestroy()
     {
-        StoreEvents.OnContainerOpened -= ReceiveContainerItems;
     }
 }
