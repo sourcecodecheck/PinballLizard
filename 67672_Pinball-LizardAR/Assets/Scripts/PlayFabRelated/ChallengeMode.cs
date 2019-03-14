@@ -85,6 +85,7 @@ public class ChallengeMode : MonoBehaviour
                 {
                     //notify leaderboard object that it has been retrieved so we can update it
                     ScoreEvents.SendLeaderBoardRetrieved(result.Leaderboard);
+                    GetChallengeTimeEnd();
                 },
                 (error) =>
                 {
@@ -130,7 +131,52 @@ public class ChallengeMode : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    public void GetChallengeTimeEnd()
+    {
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
+        {
+            //get time challengemode resets
+            PlayFabClientAPI.ExecuteCloudScript(
+               new ExecuteCloudScriptRequest()
+               {
+                   FunctionName = "getChallengeChangeTime"
+               },
+               (result) =>
+               {
+                   if (result.FunctionResult != null)
+                   {
+                       DateTime change = DateTime.Parse(((JsonObject)result.FunctionResult)[0] as string);
+                       MenuEvents.SendChallengeModeEndRetrieved(change);
+                   }
+                   if (result.Error != null)
+                   {
+                       try
+                       {
+                           throw new Exception(result.Error.Message);
+                       }
+                       catch (Exception exception)
+                       {
+                           Crashes.TrackError(exception);
+                       }
+                   }
+               },
+               (error) =>
+               {
+                   Debug.Log(error);
+                   try
+                   {
+                       throw new Exception(error.ErrorMessage);
+                   }
+                   catch (Exception exception)
+                   {
+                       Crashes.TrackError(exception);
+                   }
+               });
+        }
+    }
+
+
+        private void OnDestroy()
     {
         ScoreEvents.OnLoadLeaderBoard -= GetLeaderBoard;
         StoreEvents.OnSubtractAnimosity -= SubtractAnimosity;

@@ -18,7 +18,7 @@ public class PlayerLevelBar : MonoBehaviour
 
     void Update()
     {
-        if (PlayerInventory != null && PlayerInventory.PlayerLevel != 0)
+        if (PlayerInventory != null && PlayerInventory.PlayerLevel != 0 && PlayerInventory.ExperienceToNextLevel.Count > 0)
         {
             if (PlayerInventory.PlayerLevel > 1)
             {

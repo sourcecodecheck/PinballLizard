@@ -47,5 +47,6 @@ public class ScoreDisplay : MonoBehaviour
         GamePlayEvents.OnFeastStart -= FeastStart;
         GamePlayEvents.OnFeastEnd -= FeastEnd;
         ScoreEvents.OnScoreUpdated -= UpdateScore;
+        AnimationEvents.OnDoublePointsExit -= HideAnimation;
     }
 }

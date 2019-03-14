@@ -19,6 +19,7 @@ public class UserInfo : MonoBehaviour
         TrackingEvents.OnGameVictory += GameEnd;
         TrackingEvents.OnGameDefeat += GameEnd;
         TrackingEvents.OnLoadPlayerInfo += UpdateUserDataFromPlayFab;
+        ScoreEvents.OnGetMayhemMultiplier += GetMayhemMultiplier;
     }
 
     void Update()
@@ -108,6 +109,49 @@ public class UserInfo : MonoBehaviour
                        Crashes.TrackError(exception);
                    }
                });
+        }
+    }
+    void GetMayhemMultiplier()
+    {
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
+        {
+            PlayFabClientAPI.ExecuteCloudScript(
+                new ExecuteCloudScriptRequest()
+                {
+                    FunctionName = "getMayhemMultiplier",
+                    FunctionParameter = new
+                    {
+                    }
+                },
+                (result) =>
+                {
+                    float mayhemMultiplier = 
+                        PlayFabSimpleJson.DeserializeObject<float>(PlayFabSimpleJson.SerializeObject(((JsonObject)result.FunctionResult)[0]));
+                    TitleDataStore.MayhemMultiplier = mayhemMultiplier;
+                    if (result.Error != null)
+                    {
+                        try
+                        {
+                            throw new Exception(result.Error.Message);
+                        }
+                        catch (Exception exception)
+                        {
+                            Crashes.TrackError(exception);
+                        }
+                    }
+                },
+                (error) =>
+                {
+                    Debug.Log(error);
+                    try
+                    {
+                        throw new Exception(error.ErrorMessage);
+                    }
+                    catch (Exception exception)
+                    {
+                        Crashes.TrackError(exception);
+                    }
+                });
         }
     }
 
@@ -356,5 +400,6 @@ public class UserInfo : MonoBehaviour
         TrackingEvents.OnGameVictory -= GameEnd;
         TrackingEvents.OnGameDefeat -= GameEnd;
         TrackingEvents.OnLoadPlayerInfo -= UpdateUserDataFromPlayFab;
+        ScoreEvents.OnGetMayhemMultiplier -= GetMayhemMultiplier;
     }
 }

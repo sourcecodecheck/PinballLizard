@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+//functionality was rolled into levelbar
+//may still be used somewhere
 public class PlayerLevelBarEndGame : MonoBehaviour
 {
     public Slider ExpSlider;

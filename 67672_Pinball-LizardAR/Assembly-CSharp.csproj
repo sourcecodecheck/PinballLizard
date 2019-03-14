@@ -196,6 +196,7 @@
     <Compile Include="Assets\Scripts\Menus\PlaySoundOnButton.cs" />
     <Compile Include="Assets\Scripts\Menus\ReloadCurrentScene.cs" />
     <Compile Include="Assets\Scripts\Menus\ScoreDisplay.cs" />
+    <Compile Include="Assets\Scripts\Menus\SendSessionEnd.cs" />
     <Compile Include="Assets\Scripts\Menus\StoreFront.cs" />
     <Compile Include="Assets\Scripts\Menus\StoreItem.cs" />
     <Compile Include="Assets\Scripts\Menus\StoreItemData.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="Assets\Scripts\PlayFabRelated\Events.cs" />
     <Compile Include="Assets\Scripts\PlayFabRelated\ItemCatalog.cs" />
     <Compile Include="Assets\Scripts\PlayFabRelated\Store.cs" />
+    <Compile Include="Assets\Scripts\PlayFabRelated\TitleDataStore.cs" />
     <Compile Include="Assets\Scripts\PlayFabRelated\UserInfo.cs" />
     <Compile Include="Assets\Scripts\SavedData\LoginSettings.cs" />
     <Compile Include="Assets\Scripts\SavedData\PlayerPrefsKeys.cs" />

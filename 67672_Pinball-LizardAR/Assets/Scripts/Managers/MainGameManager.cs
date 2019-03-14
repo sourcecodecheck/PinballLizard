@@ -171,7 +171,9 @@ public class MainGameManager : MonoBehaviour
         cityID = System.Guid.NewGuid();
         startTime = System.DateTime.Now;
         BuildCityEvent(new CitySessionStart() { }, EventNames.SessionStart);
+        VolleyCounter.ResetVolleyCount();
         MenuEvents.SendSwitchCanvas(GameplayCanvas);
+        ScoreEvents.SendGetMayhemMultiplier();
     }
     private void BombBonus(string damageType)
     {
@@ -209,6 +211,7 @@ public class MainGameManager : MonoBehaviour
 
     private void Defeat()
     {
+       
         TrackingEvents.SendGameDefeat(gameScore, appetiteCurrent, highestMultiplier);
         BuildCityEvent(new CitySessionEnd()
         {

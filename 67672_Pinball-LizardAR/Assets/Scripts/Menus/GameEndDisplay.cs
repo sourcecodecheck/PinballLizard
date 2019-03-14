@@ -26,7 +26,7 @@ public class GameEndDisplay : MonoBehaviour
         BestComboText.text = Mathf.RoundToInt(maxMultiplier * 10f).ToString();
         PlayerLevelText.text = PlayerInventory.PlayerLevel.ToString();
         BugsText.text = bugsEaten.ToString();
-        PowerUpsUsedText.text = Mathf.FloorToInt(score * 0.001f).ToString();
+        PowerUpsUsedText.text = Mathf.FloorToInt(score * TitleDataStore.MayhemMultiplier).ToString();
     }
 
     public void OnDestroy()
