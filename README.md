@@ -2,7 +2,7 @@
 
 Pinball Lizard is a demo mobile game and full sample code to teach you how to implement key LiveOps concepts into your game using PlayFab and Unity.
 
-![Pinball Lizard](./_assets/img/Pinball_Lizard_game.jpg)
+![Pinball Lizard](./_repo-assets/img/Pinball_Lizard_game.jpg)
 
 ## Deployment
 
@@ -12,7 +12,7 @@ To play the game, you'll need to set up the backend through Azure PlayFab. We've
 
 Once your backend is configured, you can connect it to the phone app by entering the TitleID, which you used in the setup wizard. Once the game is connected to your backend, you can start playing and see the activity in your Game Manager.
 
-![Pinball Lizard ScreenShots](./_assets/img/Pinball_Lizard_screens.jpg)
+![Pinball Lizard ScreenShots](./_repo-assets/img/Pinball_Lizard_screens.jpg)
 
 ## Built With
 
