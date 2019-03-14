@@ -124,7 +124,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1029297494562280}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16, y: 247, z: -278}
+  m_LocalPosition: {x: -16, y: 247, z: -215}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4509797593172976}
@@ -164,7 +164,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1865737042004920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16, y: 247, z: -278}
+  m_LocalPosition: {x: -16, y: 247, z: -215}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4234794324996366}
@@ -268,7 +268,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 921c234efc40fb74586213bb67382f29, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d5b60dc452e32594bb75865b36706dba, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -412,9 +412,9 @@ MonoBehaviour:
   GeneralMessageWindow: {fileID: 1274791734511400, guid: f5a825dd45c2bbb47ac56b06697c671b,
     type: 2}
   BuyItemsScreen: {fileID: 0}
-  Banner: {fileID: 0}
   Miss: {fileID: 0}
   MenuParent: {fileID: 0}
+  ContainerCanvas: {fileID: 0}
 --- !u!114 &114428469256579720
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -463,11 +463,12 @@ MonoBehaviour:
   Blank: {fileID: 1486261941468126, guid: 8ad4358e9e5adc341bdb3727f7316cca, type: 2}
   DaBomb: {fileID: 1718084816663352, guid: 1736103505510cd4ba515bd778e36079, type: 2}
   Base: {fileID: 1760405203558776}
-  NumberOfBuildingsGenerated: 40
+  NumberOfBuildingsGenerated: 43
   BuildingToBlankRatio: 1
   scale: 300
   Seed: 0
   isAR: 0
+  NonARRotateSpeed: 5
 --- !u!114 &114482839744551270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -488,16 +489,16 @@ MonoBehaviour:
   Scale: 1000
   CameraOffset: 175
   HeightOffsets:
-  - 0
-  - 40
-  - 20
+  - 30
+  - 60
+  - 45
   Rotations:
   - 2
   - -2
   - 1.5
   - -1.5
-  - 0.5
-  - -0.5
+  - 1
+  - -1
 --- !u!114 &114592979269334322
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -556,6 +557,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e332e5ecdd45a44b97b7551bda8e96f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EventsSentAtOnce: 5
+  EventSendRate: 60
+  ClearQueueOnSend: 1
 --- !u!114 &114985824715871998
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -572,4 +576,6 @@ MonoBehaviour:
   DefaultMultiplier: 1
   VictoryScreen: {fileID: 0}
   DefeatScreen: {fileID: 0}
-  UIParent: {fileID: 0}
+  GameplayCanvas: {fileID: 0}
+  GameEndCanvas: {fileID: 0}
+  IsAR: 0

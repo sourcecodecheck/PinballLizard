@@ -143,4 +143,14 @@ public static class StoreEvents
     {
         OnOpenContainer?.Invoke(container, catalogVersion);
     }
+
+    //Subscribers:
+    //InGameStore
+    //StoreFront
+    public delegate void ReloadStore();
+    public static event ReloadStore OnReloadStore;
+    public static void SendReloadStore()
+    {
+        OnReloadStore?.Invoke();
+    }
 }

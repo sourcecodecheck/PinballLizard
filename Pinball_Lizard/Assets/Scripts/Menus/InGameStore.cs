@@ -22,6 +22,7 @@ public class InGameStore : Pausable
         base.Start();
         StoreEvents.OnLoadStoreItem += LoadStoreItem;
         StoreEvents.OnStartInGamePurchase += InGameBuyStart;
+        StoreEvents.OnReloadStore += ReloadStore;
         StoreEvents.SendLoadStore(StoreId, CatalogVersion);
         StoreEvents.SendLoadInventory(CatalogVersion);
         storeLoaded = false;
@@ -29,6 +30,12 @@ public class InGameStore : Pausable
     
     void Update()
     {
+    }
+
+    void ReloadStore()
+    {
+        StoreEvents.SendLoadStore(StoreId, CatalogVersion);
+        StoreEvents.SendLoadInventory(CatalogVersion);
     }
 
     void LoadStoreItem(StoreItemData itemData)
@@ -84,5 +91,6 @@ public class InGameStore : Pausable
         base.OnDestroy();
         StoreEvents.OnLoadStoreItem -= LoadStoreItem;
         StoreEvents.OnStartInGamePurchase -= InGameBuyStart;
+        StoreEvents.OnReloadStore -= ReloadStore;
     }
 }

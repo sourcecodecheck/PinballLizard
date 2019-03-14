@@ -20,7 +20,12 @@ public class iOSDeviceIdLogin
            PlayerPrefs.SetString(PlayerPrefsKeys.PlayFabId, response.PlayFabId);
            PlayerPrefs.SetString(PlayerPrefsKeys.PlayerEntityId, response.EntityToken.Entity.Id);
            PlayerPrefs.Save();
+           if (response.NewlyCreated == true)
+           {
+               LoginHelper.SetUpNewPlayer();
+           }
            LogOnEvents.SendLoginSuccess();
+
        },
        (error) =>
        {
