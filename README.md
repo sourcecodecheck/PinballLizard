@@ -13,7 +13,6 @@ To play the game, you'll need to set up the backend through Azure PlayFab. We've
 Once your backend is configured, you can connect it to the phone app by entering the TitleID, which you used in the setup wizard. Once the game is connected to your backend, you can start playing and see the activity in your Game Manager.
 
 ![Pinball Lizard ScreenShots](./_assets/img/Pinball_Lizard_screens.jpg)
-![Pinball Lizard ScreenShots](./_assets/img/Pinball_Lizard_screens_2.jpg)
 
 ## Built With
 
