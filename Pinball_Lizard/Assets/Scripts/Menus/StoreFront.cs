@@ -14,6 +14,7 @@ public class StoreFront : MonoBehaviour
     void Start()
     {
         StoreEvents.OnLoadStoreItem += LoadItem;
+        StoreEvents.OnReloadStore += ReloadStore;
         StoreEvents.SendLoadStore(StoreId, CatalogVersion);
         if(PlayerPrefs.HasKey(PlayerPrefsKeys.EventSet) &&
             PlayerPrefs.GetInt(PlayerPrefsKeys.EventSet) == 1)
@@ -35,6 +36,11 @@ public class StoreFront : MonoBehaviour
     
     void Update()
     {
+    }
+
+    void ReloadStore()
+    {
+        StoreEvents.SendLoadStore(StoreId, CatalogVersion);
     }
 
     private void LoadItem(StoreItemData itemData)
@@ -65,5 +71,6 @@ public class StoreFront : MonoBehaviour
     private void OnDestroy()
     {
         StoreEvents.OnLoadStoreItem -= LoadItem;
+        StoreEvents.OnReloadStore -= ReloadStore;
     }
 }

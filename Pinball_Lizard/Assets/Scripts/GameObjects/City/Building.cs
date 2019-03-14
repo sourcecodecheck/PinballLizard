@@ -10,6 +10,7 @@ public class Building : MonoBehaviour
 
     public HexNode hexNode;
     public int StackCount;
+    public float ExplosionScale;
 
 
     private bool isSelfDestructing;
@@ -34,8 +35,9 @@ public class Building : MonoBehaviour
             isSelfDestructing = true;
             ScoreEvents.SendAddMultiplier(0.1f * StackCount);
             ScoreEvents.SendAddScore(StackCount);
-            GameObject explosion = Instantiate(Explosion, gameObject.transform.position, Quaternion.LookRotation(Camera.main.transform.position - transform.position));
-            explosion.transform.localScale = transform.localScale * 200f;
+            GameObject explosion = Instantiate(Explosion, gameObject.transform.position,
+                Quaternion.LookRotation(Camera.main.transform.position - transform.position), gameObject.transform.parent.transform);
+            explosion.transform.localScale = transform.localScale * ExplosionScale;
             TrackingEvents.SendBuildingDestroyedStep2(new CityBuildingDestroyed()
                 {
                     DamageLoactionX = collisionLocation.x,

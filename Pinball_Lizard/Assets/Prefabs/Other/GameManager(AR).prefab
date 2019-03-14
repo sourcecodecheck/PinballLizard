@@ -282,9 +282,9 @@ MonoBehaviour:
   GeneralMessageWindow: {fileID: 1274791734511400, guid: f5a825dd45c2bbb47ac56b06697c671b,
     type: 2}
   BuyItemsScreen: {fileID: 0}
-  Banner: {fileID: 0}
   Miss: {fileID: 0}
   MenuParent: {fileID: 0}
+  ContainerCanvas: {fileID: 0}
 --- !u!114 &114048465779745800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -317,6 +317,7 @@ MonoBehaviour:
   DefeatScreen: {fileID: 0}
   GameplayCanvas: {fileID: 0}
   GameEndCanvas: {fileID: 0}
+  IsAR: 0
 --- !u!114 &114117187021894684
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -498,6 +499,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e332e5ecdd45a44b97b7551bda8e96f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EventsSentAtOnce: 5
+  EventSendRate: 60
+  ClearQueueOnSend: 1
 --- !u!114 &114992432475683700
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -509,6 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af73a24c2f21f440a411a1128265b4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPaused: 0
   Session: {fileID: 114117187021894684}
   SessionOrigin: {fileID: 114467180398456488}
   PlaneManager: {fileID: 114343072904092922}

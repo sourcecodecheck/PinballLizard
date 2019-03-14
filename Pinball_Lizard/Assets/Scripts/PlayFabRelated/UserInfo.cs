@@ -115,6 +115,8 @@ public class UserInfo : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
         {
+            //get mayhem multiplier from server so we can display how much 
+            //we've earned on the scoreboard
             PlayFabClientAPI.ExecuteCloudScript(
                 new ExecuteCloudScriptRequest()
                 {
@@ -269,48 +271,6 @@ public class UserInfo : MonoBehaviour
 
     }
 
-    private void SetUpNewPlayer()
-    {
-        if (PlayerPrefs.HasKey(PlayerPrefsKeys.SessionTicket))
-        {
-            //initialize statistics to default values
-            PlayFabClientAPI.ExecuteCloudScript(
-                new ExecuteCloudScriptRequest()
-                {
-                    FunctionName = "initializePlayer"
-                },
-                (result) =>
-                {
-                    if (result.Error != null)
-                    {
-                        try
-                        {
-                            throw new Exception(result.Error.Message);
-                        }
-                        catch (Exception exception)
-                        {
-                            Crashes.TrackError(exception);
-                        }
-                    }
-                    UpdateInventory((JsonObject)result.FunctionResult);
-                    GetNextFiveLevels();
-                    GetFirstLoginTime();
-                },
-                (error) =>
-                {
-                    Debug.Log(error);
-                    try
-                    {
-                        throw new Exception(error.ErrorMessage);
-                    }
-                    catch (Exception exception)
-                    {
-                        Crashes.TrackError(exception);
-                    }
-                });
-        }
-    }
-
 
     private void UpdateInventory(JsonObject inventoryResult)
     {
@@ -383,10 +343,6 @@ public class UserInfo : MonoBehaviour
                 }
             }
             MenuEvents.SendUpdateLevelDisplay();
-        }
-        else
-        {
-            SetUpNewPlayer();
         }
 
     }

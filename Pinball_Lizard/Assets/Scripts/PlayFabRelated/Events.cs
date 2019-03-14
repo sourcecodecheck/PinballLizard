@@ -9,6 +9,10 @@ using Microsoft.AppCenter.Unity.Crashes;
 
 public class Events : MonoBehaviour
 {
+    public int EventsSentAtOnce;
+    public float EventSendRate;
+    public bool ClearQueueOnSend;
+
     private static List<EventContents> eventQueue;
 
     // Use this for initialization
@@ -19,7 +23,7 @@ public class Events : MonoBehaviour
             eventQueue = new List<EventContents>();
         }
         TrackingEvents.OnQueueEvent += QueueEvent;
-        InvokeRepeating("SendEvents", 1f, 15f);
+        InvokeRepeating("SendEvents", 1f, EventSendRate);
     }
 
     // Update is called once per frame
@@ -33,7 +37,14 @@ public class Events : MonoBehaviour
         if (eventQueue != null && eventQueue.Count > 0)
         {
             SendPlayStreamEvents(eventQueue);
-            eventQueue.RemoveRange(0, 25);
+            if (ClearQueueOnSend)
+            {
+                eventQueue.Clear();
+            }
+            else
+            {
+                eventQueue.RemoveRange(0, EventsSentAtOnce);
+            }
         }
     }
     void QueueEvent(IPlayerEvent playerEvent, string name)
@@ -55,7 +66,7 @@ public class Events : MonoBehaviour
     {
         PlayFabEventsAPI.WriteEvents(new PlayFab.EventsModels.WriteEventsRequest()
         {
-            Events = events.Take(25).ToList()
+            Events = events.Take(5).ToList()
         },
         (result) =>
         {

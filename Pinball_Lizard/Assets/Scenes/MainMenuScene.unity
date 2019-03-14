@@ -449,6 +449,21 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114912234493377584, guid: 9b26112ab1577d24a8e0bda77d863bc1,
+        type: 2}
+      propertyPath: ClearQueueOnSend
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114912234493377584, guid: 9b26112ab1577d24a8e0bda77d863bc1,
+        type: 2}
+      propertyPath: EventsSentAtOnce
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114912234493377584, guid: 9b26112ab1577d24a8e0bda77d863bc1,
+        type: 2}
+      propertyPath: EventSendRate
+      value: 60
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b26112ab1577d24a8e0bda77d863bc1, type: 2}
   m_IsPrefabAsset: 0
@@ -597,19 +612,9 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114254243572849334, guid: 345553930f083dc43b790043e3f7b491,
-        type: 2}
-      propertyPath: Inventory
-      value: 
-      objectReference: {fileID: 1937722845}
     - target: {fileID: 114986282456622314, guid: 345553930f083dc43b790043e3f7b491,
         type: 2}
       propertyPath: PlayerInventory
-      value: 
-      objectReference: {fileID: 1937722845}
-    - target: {fileID: 114073113106259892, guid: 345553930f083dc43b790043e3f7b491,
-        type: 2}
-      propertyPath: Inventory
       value: 
       objectReference: {fileID: 1937722845}
     - target: {fileID: 114787530849315490, guid: 345553930f083dc43b790043e3f7b491,
@@ -617,29 +622,26 @@ Prefab:
       propertyPath: Inventory
       value: 
       objectReference: {fileID: 1937722845}
-    - target: {fileID: 114440102530608848, guid: 345553930f083dc43b790043e3f7b491,
-        type: 2}
-      propertyPath: PlayerInventory
-      value: 
-      objectReference: {fileID: 1937722845}
     - target: {fileID: 114706227545103156, guid: 345553930f083dc43b790043e3f7b491,
         type: 2}
       propertyPath: PlayerInventory
       value: 
       objectReference: {fileID: 1937722845}
-    - target: {fileID: 114034652842793278, guid: 345553930f083dc43b790043e3f7b491,
+    - target: {fileID: 114440102530608848, guid: 345553930f083dc43b790043e3f7b491,
         type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1786175857846948, guid: 345553930f083dc43b790043e3f7b491, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1825165891403512, guid: 345553930f083dc43b790043e3f7b491, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: PlayerInventory
+      value: 
+      objectReference: {fileID: 1937722845}
+    - target: {fileID: 114254243572849334, guid: 345553930f083dc43b790043e3f7b491,
+        type: 2}
+      propertyPath: Inventory
+      value: 
+      objectReference: {fileID: 1937722845}
+    - target: {fileID: 114073113106259892, guid: 345553930f083dc43b790043e3f7b491,
+        type: 2}
+      propertyPath: Inventory
+      value: 
+      objectReference: {fileID: 1937722845}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 345553930f083dc43b790043e3f7b491, type: 2}
   m_IsPrefabAsset: 0
