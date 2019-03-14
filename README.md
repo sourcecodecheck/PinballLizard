@@ -6,7 +6,7 @@ Pinball Lizard is a demo mobile game and full sample code to teach you how to im
 
 ## Deployment
 
-To get the game running on your phone, you’ll first need to clone the project from GitHub. From there, you’ll need to build the game to your mobile device through Unity. Instructions for this can be found in Unity’s documentation for building on [Android](https://unity3d.com/learn/tutorials/topics/mobile-touch/building-your-unity-game-android-device-testing?playlist=17138) and [iOS](https://unity3d.com/learn/tutorials/topics/mobile-touch/building-your-unity-game-ios-device-testing?playlist=17138).
+To get the game running on your Android phone right away, download and install the [APK file](https://66762pinballlizard.blob.core.windows.net/pinballlizard/PinballLizard.apk). To get the game on your iOS phone, you’ll first need to clone the project from GitHub. From there, you’ll need to build the game to your mobile device through Unity. Instructions for this can be found in Unity’s documentation for building on [iOS](https://unity3d.com/learn/tutorials/topics/mobile-touch/building-your-unity-game-ios-device-testing?playlist=17138).
 
 To play the game, you'll need to set up the backend through Azure PlayFab. We've created a [setup wizard](Deployment) to help. Follow the instructions in the setup wizard to configure with PlayFab.
 
