@@ -26,6 +26,6 @@ Get the game running on your mobile device and connect it to your own backend:
 
 ### Built with:
 * [Azure PlayFab](https://playfab.com/)
-* [Unity](https://unity3d.com/)
+* [Unity3d](https://unity3d.com/)
 
 For a complete list of available APIs through PlayFab, check out the [online documentation](https://docs.microsoft.com/en-us/gaming/playfab/).
