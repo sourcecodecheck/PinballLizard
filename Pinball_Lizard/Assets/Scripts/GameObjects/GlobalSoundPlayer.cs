@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GlobalSoundPlayer : MonoBehaviour
 {
-    public enum SoundCategory { BUILDING, SMACK, BOOP1, BOOP2, BOOP3, BOOP4, STARTGAME, UP, DOWN, GETITEM, NOM, POWERUP, SPIT};
+    public enum SoundCategory { BUILDING, SMACK, BOOP1, BOOP2, BOOP3, BOOP4, STARTGAME, UP, DOWN, GETITEM, NOM, POWERUP, SPIT,_CHEST_OPEN};
     public SoundCategory Category;
     public AudioClip[] Sounds;
     public AudioSource SoundSource;
@@ -52,7 +52,9 @@ public class GlobalSoundPlayer : MonoBehaviour
             case SoundCategory.POWERUP:
                 AudioEvents.OnPlayPowerUp += PlaySound;
                 break;
-
+            case SoundCategory._CHEST_OPEN:
+                AudioEvents.OnPlayChestOpen += PlaySound;
+                break;
         }
     }
 
@@ -109,6 +111,9 @@ public class GlobalSoundPlayer : MonoBehaviour
                 break;
             case SoundCategory.POWERUP:
                 AudioEvents.OnPlayPowerUp -= PlaySound;
+                break;
+            case SoundCategory._CHEST_OPEN:
+                AudioEvents.OnPlayChestOpen -= PlaySound;
                 break;
         }
     }

@@ -116,5 +116,14 @@
     {
         OnPlayDown?.Invoke();
     }
+
+    //Subscribers:
+    //GlobalSoundPlayer
+    public delegate void PlayChestOpen();
+    public static event PlayChestOpen OnPlayChestOpen;
+    public static void SendPlayChestOpen()
+    {
+        OnPlayChestOpen?.Invoke();
+    }
 }
 

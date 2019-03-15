@@ -31,6 +31,7 @@ GameObject:
   - component: {fileID: 114046730042864758}
   - component: {fileID: 114596040996417640}
   - component: {fileID: 114184768902164212}
+  - component: {fileID: 114313996339140096}
   m_Layer: 5
   m_Name: SoundHolderInGame
   m_TagString: Untagged
@@ -219,6 +220,21 @@ MonoBehaviour:
   Category: 12
   Sounds:
   - {fileID: 8300000, guid: 1dfccbbf57cdc13419075f20daa50d2f, type: 3}
+  SoundSource: {fileID: 82805008798053214}
+--- !u!114 &114313996339140096
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1615481563773924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a64112ae6ace0e44c8f6d88e23efa63e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Category: 13
+  Sounds:
+  - {fileID: 8300000, guid: 854fd1429d5f1e240bd0a33b77ab6f22, type: 3}
   SoundSource: {fileID: 82805008798053214}
 --- !u!114 &114489275924052056
 MonoBehaviour:
