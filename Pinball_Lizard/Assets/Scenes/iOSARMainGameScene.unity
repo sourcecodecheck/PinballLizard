@@ -956,7 +956,7 @@ Prefab:
     - target: {fileID: 224670790908176918, guid: 166e68d7e54799a45b65e5c322bf3493,
         type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 224670790908176918, guid: 166e68d7e54799a45b65e5c322bf3493,
         type: 2}
@@ -1053,6 +1053,10 @@ Prefab:
       propertyPath: ObjectToEnable
       value: 
       objectReference: {fileID: 1895303426}
+    - target: {fileID: 1283558990971852, guid: 166e68d7e54799a45b65e5c322bf3493, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 166e68d7e54799a45b65e5c322bf3493, type: 2}
   m_IsPrefabAsset: 0
@@ -1204,7 +1208,7 @@ Prefab:
     - target: {fileID: 224084393732016780, guid: 7711f891047a9f747b84b8d0e754f5a3,
         type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224084393732016780, guid: 7711f891047a9f747b84b8d0e754f5a3,
         type: 2}
@@ -1296,6 +1300,10 @@ Prefab:
       propertyPath: ObjectToEnable
       value: 
       objectReference: {fileID: 1895303426}
+    - target: {fileID: 1883532513797322, guid: 7711f891047a9f747b84b8d0e754f5a3, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7711f891047a9f747b84b8d0e754f5a3, type: 2}
   m_IsPrefabAsset: 0
@@ -1526,7 +1534,7 @@ Prefab:
     - target: {fileID: 224605665192162022, guid: 1d36cf00133fcd84c9d75dae78e57eb6,
         type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 224605665192162022, guid: 1d36cf00133fcd84c9d75dae78e57eb6,
         type: 2}
@@ -1777,7 +1785,7 @@ Prefab:
     - target: {fileID: 224784077768991634, guid: 3745730c2b7545e429668a37aa245f2b,
         type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 224784077768991634, guid: 3745730c2b7545e429668a37aa245f2b,
         type: 2}
@@ -3238,7 +3246,7 @@ Prefab:
     - target: {fileID: 224100672207709466, guid: 48ee9b6817c8f354d920cd35d2a186d7,
         type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 224100672207709466, guid: 48ee9b6817c8f354d920cd35d2a186d7,
         type: 2}
