@@ -5,7 +5,7 @@ To get the game running on your Android phone right away, download and install t
 
 ## Configure the backend
 
-To play the game, you'll need to set up the backend through Azure PlayFab. We've created a [setup wizard](Deployment) to help. Follow the instructions in the setup wizard to configure with PlayFab.
+To play the game, you'll need to set up the backend through Azure PlayFab. We've created a [setup wizard](../Deployment) to help. Follow the instructions in the setup wizard to configure with PlayFab.
 
 ## Connect the backend to the game
 
