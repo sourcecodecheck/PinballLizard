@@ -6,7 +6,7 @@ To get the game on your iOS phone, you’ll first need to clone the project. Fro
 
 ## Configure the backend
 
-To play the game, you'll need to set up the backend through Azure PlayFab. We've created a [setup wizard](Deployment) to help. Follow the instructions in the setup wizard to configure with PlayFab.
+To play the game, you'll need to set up the backend through Azure PlayFab. We've created a [setup wizard](../Deployment) to help. Follow the instructions in the setup wizard to configure with PlayFab.
 
 ## Connect the backend to the game
 
